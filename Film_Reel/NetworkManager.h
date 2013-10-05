@@ -1,9 +1,9 @@
 //
 //  NetworkManager.h
-//  DAY2_URLREADER
+//  Film_Reel
 //
-//  Created by Ben Sweett on 2013-09-11.
-//  Copyright (c) 2013 Ben Sweett - 100846396. All rights reserved.
+//  Created by Ben Sweett on 2013-10-05.
+//  Copyright (c) 2013 Ben Sweett (100846396) and Brayden Girard (100852106). All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
