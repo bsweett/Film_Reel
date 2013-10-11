@@ -23,6 +23,10 @@
 		B506DB351800806C004991A4 /* Film_ReelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B506DB341800806C004991A4 /* Film_ReelTests.m */; };
 		B506DB401800857A004991A4 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B506DB3F1800857A004991A4 /* NetworkManager.m */; };
 		B5C9038C18032D5500448CE6 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C9038B18032D5500448CE6 /* User.m */; };
+		B5F4919418087AA500F03C19 /* Reel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F4919318087AA500F03C19 /* Reel.m */; };
+		B5F4919618087E6E00F03C19 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F4919518087E6E00F03C19 /* CoreMedia.framework */; };
+		B5F4919818087E7700F03C19 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F4919718087E7700F03C19 /* CoreVideo.framework */; };
+		B5F4919A18087E7F00F03C19 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F4919918087E7F00F03C19 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +63,11 @@
 		B506DB3F1800857A004991A4 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		B5C9038A18032D5500448CE6 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		B5C9038B18032D5500448CE6 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		B5F4919218087AA500F03C19 /* Reel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reel.h; sourceTree = "<group>"; };
+		B5F4919318087AA500F03C19 /* Reel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reel.m; sourceTree = "<group>"; };
+		B5F4919518087E6E00F03C19 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		B5F4919718087E7700F03C19 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		B5F4919918087E7F00F03C19 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +75,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5F4919A18087E7F00F03C19 /* AVFoundation.framework in Frameworks */,
+				B5F4919818087E7700F03C19 /* CoreVideo.framework in Frameworks */,
+				B5F4919618087E6E00F03C19 /* CoreMedia.framework in Frameworks */,
 				B506DB0C1800806C004991A4 /* CoreGraphics.framework in Frameworks */,
 				B506DB0E1800806C004991A4 /* UIKit.framework in Frameworks */,
 				B506DB0A1800806C004991A4 /* Foundation.framework in Frameworks */,
@@ -107,6 +119,9 @@
 		B506DB081800806C004991A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B5F4919918087E7F00F03C19 /* AVFoundation.framework */,
+				B5F4919718087E7700F03C19 /* CoreVideo.framework */,
+				B5F4919518087E6E00F03C19 /* CoreMedia.framework */,
 				B506DB091800806C004991A4 /* Foundation.framework */,
 				B506DB0B1800806C004991A4 /* CoreGraphics.framework */,
 				B506DB0D1800806C004991A4 /* UIKit.framework */,
@@ -165,6 +180,8 @@
 			children = (
 				B5C9038A18032D5500448CE6 /* User.h */,
 				B5C9038B18032D5500448CE6 /* User.m */,
+				B5F4919218087AA500F03C19 /* Reel.h */,
+				B5F4919318087AA500F03C19 /* Reel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -279,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5C9038C18032D5500448CE6 /* User.m in Sources */,
+				B5F4919418087AA500F03C19 /* Reel.m in Sources */,
 				B506DB401800857A004991A4 /* NetworkManager.m in Sources */,
 				B506DB201800806C004991A4 /* ViewController.m in Sources */,
 				B506DB1A1800806C004991A4 /* AppDelegate.m in Sources */,

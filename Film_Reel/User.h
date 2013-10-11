@@ -38,7 +38,7 @@
 - (BOOL) addFriend: (User *) userToAdd;
 - (BOOL) deleteFriend: (User *) userToRemove;
 - (User *) getUserByName: (NSMutableString*) name;
-- (void) sortFriendList;
+- (void) sortFriendList: (User *) toget;
 
 // Validatation
 - (BOOL) validateEmailWithString:(NSString*)emailaddress;
