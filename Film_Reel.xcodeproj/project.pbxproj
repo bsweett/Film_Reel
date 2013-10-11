@@ -22,6 +22,7 @@
 		B506DB331800806C004991A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B506DB311800806C004991A4 /* InfoPlist.strings */; };
 		B506DB351800806C004991A4 /* Film_ReelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B506DB341800806C004991A4 /* Film_ReelTests.m */; };
 		B506DB401800857A004991A4 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B506DB3F1800857A004991A4 /* NetworkManager.m */; };
+		B5C9038C18032D5500448CE6 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C9038B18032D5500448CE6 /* User.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		B506DB341800806C004991A4 /* Film_ReelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Film_ReelTests.m; sourceTree = "<group>"; };
 		B506DB3E1800857A004991A4 /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		B506DB3F1800857A004991A4 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
+		B5C9038A18032D5500448CE6 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		B5C9038B18032D5500448CE6 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,8 +118,8 @@
 		B506DB0F1800806C004991A4 /* Film_Reel */ = {
 			isa = PBXGroup;
 			children = (
-				B506DB3E1800857A004991A4 /* NetworkManager.h */,
-				B506DB3F1800857A004991A4 /* NetworkManager.m */,
+				B5C9038D18032D6100448CE6 /* Networking */,
+				B5C9038918032D3600448CE6 /* Models */,
 				B506DB181800806C004991A4 /* AppDelegate.h */,
 				B506DB191800806C004991A4 /* AppDelegate.m */,
 				B506DB1B1800806C004991A4 /* Main.storyboard */,
@@ -155,6 +158,24 @@
 				B506DB311800806C004991A4 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B5C9038918032D3600448CE6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B5C9038A18032D5500448CE6 /* User.h */,
+				B5C9038B18032D5500448CE6 /* User.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		B5C9038D18032D6100448CE6 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				B506DB3E1800857A004991A4 /* NetworkManager.h */,
+				B506DB3F1800857A004991A4 /* NetworkManager.m */,
+			);
+			name = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +278,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5C9038C18032D5500448CE6 /* User.m in Sources */,
 				B506DB401800857A004991A4 /* NetworkManager.m in Sources */,
 				B506DB201800806C004991A4 /* ViewController.m in Sources */,
 				B506DB1A1800806C004991A4 /* AppDelegate.m in Sources */,
@@ -471,6 +493,7 @@
 				B506DB3A1800806C004991A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B506DB3B1800806C004991A4 /* Build configuration list for PBXNativeTarget "Film_ReelTests" */ = {
 			isa = XCConfigurationList;
@@ -479,6 +502,7 @@
 				B506DB3D1800806C004991A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
