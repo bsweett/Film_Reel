@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>96BD9434-FA16-4E41-AC30-B68120D2870E</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Film_Reel</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D258B078-8704-4F55-8077-1B8FECD3113C</key>
+		<string>https://github.com/venom889/Film_Reel.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Film_Reel.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D258B078-8704-4F55-8077-1B8FECD3113C</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/venom889/Film_Reel.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D258B078-8704-4F55-8077-1B8FECD3113C</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D258B078-8704-4F55-8077-1B8FECD3113C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Film_Reel</string>
+		</dict>
+	</array>
+</dict>
+</plist>

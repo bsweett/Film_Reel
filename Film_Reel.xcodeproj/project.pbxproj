@@ -22,6 +22,14 @@
 		B506DB331800806C004991A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B506DB311800806C004991A4 /* InfoPlist.strings */; };
 		B506DB351800806C004991A4 /* Film_ReelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B506DB341800806C004991A4 /* Film_ReelTests.m */; };
 		B506DB401800857A004991A4 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B506DB3F1800857A004991A4 /* NetworkManager.m */; };
+		B58DD655180893540006BB4D /* UserXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B58DD654180893540006BB4D /* UserXMLParser.m */; };
+		B5C26D771811C6F00064F180 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C26D761811C6F00064F180 /* default.png */; };
+		B5C26D781811C6F00064F180 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C26D761811C6F00064F180 /* default.png */; };
+		B5C9038C18032D5500448CE6 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C9038B18032D5500448CE6 /* User.m */; };
+		B5F4919418087AA500F03C19 /* Reel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F4919318087AA500F03C19 /* Reel.m */; };
+		B5F4919618087E6E00F03C19 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F4919518087E6E00F03C19 /* CoreMedia.framework */; };
+		B5F4919818087E7700F03C19 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F4919718087E7700F03C19 /* CoreVideo.framework */; };
+		B5F4919A18087E7F00F03C19 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F4919918087E7F00F03C19 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +64,16 @@
 		B506DB341800806C004991A4 /* Film_ReelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Film_ReelTests.m; sourceTree = "<group>"; };
 		B506DB3E1800857A004991A4 /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		B506DB3F1800857A004991A4 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
+		B58DD653180893540006BB4D /* UserXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserXMLParser.h; sourceTree = "<group>"; };
+		B58DD654180893540006BB4D /* UserXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserXMLParser.m; sourceTree = "<group>"; };
+		B5C26D761811C6F00064F180 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
+		B5C9038A18032D5500448CE6 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		B5C9038B18032D5500448CE6 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		B5F4919218087AA500F03C19 /* Reel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reel.h; sourceTree = "<group>"; };
+		B5F4919318087AA500F03C19 /* Reel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reel.m; sourceTree = "<group>"; };
+		B5F4919518087E6E00F03C19 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		B5F4919718087E7700F03C19 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		B5F4919918087E7F00F03C19 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +81,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5F4919A18087E7F00F03C19 /* AVFoundation.framework in Frameworks */,
+				B5F4919818087E7700F03C19 /* CoreVideo.framework in Frameworks */,
+				B5F4919618087E6E00F03C19 /* CoreMedia.framework in Frameworks */,
 				B506DB0C1800806C004991A4 /* CoreGraphics.framework in Frameworks */,
 				B506DB0E1800806C004991A4 /* UIKit.framework in Frameworks */,
 				B506DB0A1800806C004991A4 /* Foundation.framework in Frameworks */,
@@ -104,6 +125,9 @@
 		B506DB081800806C004991A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B5F4919918087E7F00F03C19 /* AVFoundation.framework */,
+				B5F4919718087E7700F03C19 /* CoreVideo.framework */,
+				B5F4919518087E6E00F03C19 /* CoreMedia.framework */,
 				B506DB091800806C004991A4 /* Foundation.framework */,
 				B506DB0B1800806C004991A4 /* CoreGraphics.framework */,
 				B506DB0D1800806C004991A4 /* UIKit.framework */,
@@ -115,8 +139,8 @@
 		B506DB0F1800806C004991A4 /* Film_Reel */ = {
 			isa = PBXGroup;
 			children = (
-				B506DB3E1800857A004991A4 /* NetworkManager.h */,
-				B506DB3F1800857A004991A4 /* NetworkManager.m */,
+				B5C9038D18032D6100448CE6 /* Networking */,
+				B5C9038918032D3600448CE6 /* Models */,
 				B506DB181800806C004991A4 /* AppDelegate.h */,
 				B506DB191800806C004991A4 /* AppDelegate.m */,
 				B506DB1B1800806C004991A4 /* Main.storyboard */,
@@ -131,6 +155,7 @@
 		B506DB101800806C004991A4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B5C26D761811C6F00064F180 /* default.png */,
 				B506DB111800806C004991A4 /* Film_Reel-Info.plist */,
 				B506DB121800806C004991A4 /* InfoPlist.strings */,
 				B506DB151800806C004991A4 /* main.m */,
@@ -155,6 +180,28 @@
 				B506DB311800806C004991A4 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B5C9038918032D3600448CE6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B5C9038A18032D5500448CE6 /* User.h */,
+				B5C9038B18032D5500448CE6 /* User.m */,
+				B5F4919218087AA500F03C19 /* Reel.h */,
+				B5F4919318087AA500F03C19 /* Reel.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		B5C9038D18032D6100448CE6 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				B506DB3E1800857A004991A4 /* NetworkManager.h */,
+				B506DB3F1800857A004991A4 /* NetworkManager.m */,
+				B58DD653180893540006BB4D /* UserXMLParser.h */,
+				B58DD654180893540006BB4D /* UserXMLParser.m */,
+			);
+			name = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,6 +286,7 @@
 				B506DB221800806C004991A4 /* Images.xcassets in Resources */,
 				B506DB141800806C004991A4 /* InfoPlist.strings in Resources */,
 				B506DB1D1800806C004991A4 /* Main.storyboard in Resources */,
+				B5C26D771811C6F00064F180 /* default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B506DB331800806C004991A4 /* InfoPlist.strings in Resources */,
+				B5C26D781811C6F00064F180 /* default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,10 +306,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5C9038C18032D5500448CE6 /* User.m in Sources */,
+				B5F4919418087AA500F03C19 /* Reel.m in Sources */,
 				B506DB401800857A004991A4 /* NetworkManager.m in Sources */,
 				B506DB201800806C004991A4 /* ViewController.m in Sources */,
 				B506DB1A1800806C004991A4 /* AppDelegate.m in Sources */,
 				B506DB161800806C004991A4 /* main.m in Sources */,
+				B58DD655180893540006BB4D /* UserXMLParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,6 +523,7 @@
 				B506DB3A1800806C004991A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B506DB3B1800806C004991A4 /* Build configuration list for PBXNativeTarget "Film_ReelTests" */ = {
 			isa = XCConfigurationList;
@@ -479,6 +532,7 @@
 				B506DB3D1800806C004991A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
