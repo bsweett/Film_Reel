@@ -8,3 +8,6 @@ https://developer.apple.com/library/ios/DOCUMENTATION/AudioVideo/Conceptual/AVFo
 
 REMOVE BACK BUTTON::
 http://stackoverflow.com/questions/9499423/ios-how-to-remove-back-button
+
+CAMERA::
+http://stackoverflow.com/questions/6389375/iphone-xcode-camera-integration-tutorials
