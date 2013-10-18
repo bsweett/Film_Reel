@@ -139,14 +139,12 @@
 		B506DB0F1800806C004991A4 /* Film_Reel */ = {
 			isa = PBXGroup;
 			children = (
+				B55134A11811E02700009FE9 /* View */,
+				B55134A01811D0F200009FE9 /* iPad */,
 				B5C9038D18032D6100448CE6 /* Networking */,
 				B5C9038918032D3600448CE6 /* Models */,
 				B506DB181800806C004991A4 /* AppDelegate.h */,
 				B506DB191800806C004991A4 /* AppDelegate.m */,
-				B506DB1B1800806C004991A4 /* Main.storyboard */,
-				B506DB1E1800806C004991A4 /* ViewController.h */,
-				B506DB1F1800806C004991A4 /* ViewController.m */,
-				B506DB211800806C004991A4 /* Images.xcassets */,
 				B506DB101800806C004991A4 /* Supporting Files */,
 			);
 			path = Film_Reel;
@@ -180,6 +178,24 @@
 				B506DB311800806C004991A4 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B55134A01811D0F200009FE9 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
+		B55134A11811E02700009FE9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B506DB211800806C004991A4 /* Images.xcassets */,
+				B506DB1B1800806C004991A4 /* Main.storyboard */,
+				B506DB1E1800806C004991A4 /* ViewController.h */,
+				B506DB1F1800806C004991A4 /* ViewController.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		B5C9038918032D3600448CE6 /* Models */ = {
@@ -443,7 +459,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Film_Reel/Film_Reel-Prefix.pch";
 				INFOPLIST_FILE = "Film_Reel/Film_Reel-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -457,7 +475,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Film_Reel/Film_Reel-Prefix.pch";
 				INFOPLIST_FILE = "Film_Reel/Film_Reel-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

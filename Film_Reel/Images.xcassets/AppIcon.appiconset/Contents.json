@@ -3,19 +3,19 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "film-128.png",
+      "filename" : "film-80.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "film-128-2.png",
+      "filename" : "film-120.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "film-128-1.png",
+      "filename" : "film-128.png",
       "scale" : "2x"
     }
   ],
