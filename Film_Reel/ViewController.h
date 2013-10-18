@@ -10,4 +10,10 @@
 
 @interface ViewController : UIViewController
 
+@property(nonatomic, retain) IBOutlet UIButton *loginButton;
+@property(nonatomic, retain) IBOutlet UIButton *createButton;
+@property(nonatomic, retain) IBOutlet UITextField *usernameField;
+@property(nonatomic, retain) IBOutlet UITextField *passwordField;
+
+
 @end
