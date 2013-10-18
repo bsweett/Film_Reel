@@ -12,25 +12,33 @@
 
 @property (strong, nonatomic) NSMutableString * userName;
 @property (strong, nonatomic) UIImage * displayPicture;
-@property (strong, nonatomic) NSString * email;
+@property (strong, nonatomic) NSMutableString * email;
 @property (strong, nonatomic) NSMutableString* location; // dropdown menu?
 @property (strong, nonatomic) NSMutableString * userBio;
+@property (strong, nonatomic) NSMutableString * password;
+@property (strong, nonatomic) NSMutableString * imagePath;
 @property (strong, nonatomic) NSMutableArray * friendsList;
 @property (nonatomic) NSInteger * friendCount;
 
 // Getters
 - (NSMutableString*) getUserName;
+- (UIImage *) getDP;
 - (NSMutableString*) getLocation;
 - (NSString*) getEmail;
 - (NSMutableString*) getUserBio;
+- (NSMutableString*) getPassword;
+- (NSMutableString*) getImagePath;
 - (NSMutableArray*) getFriendList;
 - (NSInteger*) getFriendCount;
 
 // Setters
 - (void) setUserName: (NSMutableString*) name;
 - (void) setLocation: (NSMutableString*) place;
-- (void) setEmail: (NSString*) eAddress;
+- (void) setEmail: (NSMutableString*) eAddress;
 - (void) setUserBio: (NSMutableString*) bio;
+- (void) setPassword:(NSMutableString *)password;
+- (void) setImagePath: (NSMutableString *) image;
+- (void) setUpImageFromData: (NSData*) data;
 - (void) incrementCount;
 - (void) decrementCount;
 
@@ -41,6 +49,7 @@
 - (void) sortFriendList: (User *) toget;
 
 // Validatation
+- (BOOL)validateUserNameWithString:(NSMutableString*)username;
 - (BOOL) validateEmailWithString:(NSString*)emailaddress;
 
 

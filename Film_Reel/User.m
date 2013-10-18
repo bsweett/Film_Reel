@@ -12,6 +12,7 @@
 #define MAX_LOCATION_SIZE 15
 #define MAX_BIO_SIZE 160
 #define MAX_FRIENDS_SIZE 99
+#define MAX_EMAIL_SIZE 30
 
 @implementation User
 
@@ -20,6 +21,8 @@
 @synthesize email;
 @synthesize location;
 @synthesize userBio;
+@synthesize password;
+@synthesize imagePath;
 @synthesize friendsList;
 @synthesize friendCount;
 
@@ -32,7 +35,7 @@
     {
         userName = [[NSMutableString alloc] initWithCapacity:MAX_USER_SIZE];
         displayPicture= [[UIImage alloc] init];
-        email = @"";
+        email = [[NSMutableString alloc] initWithCapacity:MAX_EMAIL_SIZE];
         location = [[NSMutableString alloc] initWithCapacity:MAX_LOCATION_SIZE];
         userBio = [[NSMutableString alloc] initWithCapacity:MAX_BIO_SIZE];
         friendCount = 0;
@@ -43,20 +46,41 @@
 }
 
 // Get Values --------------------------------------------------------------------
-- (NSMutableString*) getUserName  { return userName;    }
-- (NSMutableString*) getLocation  { return location;    }
-- (NSString*) getEmail            { return email;       }
-- (NSMutableString*) getUserBio   { return userBio;     }
-- (NSMutableArray*) getFriendList { return friendsList; }
-- (NSInteger*) getFriendCount     { return friendCount; }
+- (NSMutableString*) getUserName  { return userName;       }
+- (UIImage *) getDP               { return displayPicture; }
+- (NSMutableString*) getLocation  { return location;       }
+- (NSString*) getEmail            { return email;          }
+- (NSMutableString*) getUserBio   { return userBio;        }
+- (NSMutableString*) getPassword  { return password;       }
+- (NSMutableString*) getImagePath { return imagePath;      }
+- (NSMutableArray*) getFriendList { return friendsList;    }
+- (NSInteger*) getFriendCount     { return friendCount;    }
 
 // Set Values --------------------------------------------------------------------
-- (void) setUserName: (NSMutableString*) name   { userName = name;               }
-- (void) setLocation: (NSMutableString*) place  { location = place;              }
-- (void) setEmail:    (NSString*) eAddress      { email = eAddress;              }
-- (void) setUserBio:  (NSMutableString*) bio    { userBio = bio;                 }
-- (void) incrementCount                         { friendCount = friendCount + 1; }
-- (void) decrementCount                         { friendCount = friendCount - 1; }
+- (void) setUserName:  (NSMutableString*) name     { userName = name;               }
+- (void) setLocation:  (NSMutableString*) place    { location = place;              }
+- (void) setEmail:     (NSMutableString*) eAddress { email = eAddress;             }
+- (void) setUserBio:   (NSMutableString*) bio      { userBio = bio;                 }
+- (void) setPassword:  (NSMutableString *)pass     { password = pass;               }
+- (void) setImagePath: (NSMutableString *) image   { imagePath = image;             }
+- (void) incrementCount                            { friendCount = friendCount + 1; }
+- (void) decrementCount                            { friendCount = friendCount - 1; }
+
+
+// Sets up Image from file data provided from server
+- (void) setUpImageFromData: (NSData*) data
+{
+    if(data != NULL)
+    {
+        UIImage * dp = [[UIImage alloc] initWithData:data];
+        displayPicture = dp;
+    } else
+    {
+        NSString *thePath = [[NSBundle mainBundle] pathForResource:@"default" ofType:@"png"];
+        UIImage* errorImage = [[UIImage alloc] initWithContentsOfFile:thePath];
+        displayPicture = errorImage;
+    }
+}
 
 // These functions handle all the friendList searching, adding, and Removing -----
 - (BOOL) addFriend:(User *)userToAdd
@@ -119,7 +143,14 @@
 
 
 // Validations --------------------------------------------------------------------
-- (BOOL)validateEmailWithString:(NSString*)emailaddress;
+- (BOOL)validateUserNameWithString:(NSMutableString*)username
+{
+    NSString *nameRegex = @"[A-Z0-9a-z]*";
+    NSPredicate *nameTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", nameRegex];
+    return [nameTest evaluateWithObject:username];
+}
+
+- (BOOL)validateEmailWithString:(NSMutableString*)emailaddress
 {
     NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];

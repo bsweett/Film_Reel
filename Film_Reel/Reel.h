@@ -13,5 +13,7 @@
 
 @property (strong, nonatomic) NSMutableArray * imagesArray;
 @property (strong, nonatomic) AVAsset* video;
+@property (strong, nonatomic) AVAssetTrack *editingvideo;
+@property (strong, nonatomic) NSString* reelTitle; // Do we need this?
 
 @end
