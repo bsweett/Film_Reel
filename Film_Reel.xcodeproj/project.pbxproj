@@ -30,6 +30,17 @@
 		B5F4919618087E6E00F03C19 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F4919518087E6E00F03C19 /* CoreMedia.framework */; };
 		B5F4919818087E7700F03C19 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F4919718087E7700F03C19 /* CoreVideo.framework */; };
 		B5F4919A18087E7F00F03C19 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F4919918087E7F00F03C19 /* AVFoundation.framework */; };
+		F62F78BD1811D8EF00E7AFE7 /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = F62F78BB1811D8EF00E7AFE7 /* next.png */; };
+		F62F78BE1811D8EF00E7AFE7 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = F62F78BC1811D8EF00E7AFE7 /* back.png */; };
+		F62F78C11811DA2900E7AFE7 /* CameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = F62F78C01811DA2900E7AFE7 /* CameraController.m */; };
+		F62F78C41811DA4200E7AFE7 /* InboxController.m in Sources */ = {isa = PBXBuildFile; fileRef = F62F78C31811DA4100E7AFE7 /* InboxController.m */; };
+		F62F78C71811DA6000E7AFE7 /* FriendsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F62F78C61811DA6000E7AFE7 /* FriendsController.m */; };
+		F62F78CA1811DA6F00E7AFE7 /* ProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = F62F78C91811DA6F00E7AFE7 /* ProfileController.m */; };
+		F62F78CD1811DA9700E7AFE7 /* AlbumsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F62F78CC1811DA9700E7AFE7 /* AlbumsController.m */; };
+		F62F78DF1811E10B00E7AFE7 /* SignUpEmailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F62F78DE1811E10B00E7AFE7 /* SignUpEmailController.m */; };
+		F62F78E21811E12F00E7AFE7 /* SignUpUsernameController.m in Sources */ = {isa = PBXBuildFile; fileRef = F62F78E11811E12F00E7AFE7 /* SignUpUsernameController.m */; };
+		F62F78E51811E14600E7AFE7 /* SignUpPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = F62F78E41811E14600E7AFE7 /* SignUpPasswordController.m */; };
+		F62F78E81811E15B00E7AFE7 /* SignUpCompleteController.m in Sources */ = {isa = PBXBuildFile; fileRef = F62F78E71811E15B00E7AFE7 /* SignUpCompleteController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +85,26 @@
 		B5F4919518087E6E00F03C19 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		B5F4919718087E7700F03C19 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		B5F4919918087E7F00F03C19 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		F62F78BB1811D8EF00E7AFE7 /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = next.png; path = ../../../Desktop/next.png; sourceTree = "<group>"; };
+		F62F78BC1811D8EF00E7AFE7 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back.png; path = ../../../Desktop/back.png; sourceTree = "<group>"; };
+		F62F78BF1811DA2900E7AFE7 /* CameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraController.h; path = ../CameraController.h; sourceTree = "<group>"; };
+		F62F78C01811DA2900E7AFE7 /* CameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraController.m; path = ../CameraController.m; sourceTree = "<group>"; };
+		F62F78C21811DA4100E7AFE7 /* InboxController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InboxController.h; path = ../InboxController.h; sourceTree = "<group>"; };
+		F62F78C31811DA4100E7AFE7 /* InboxController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InboxController.m; path = ../InboxController.m; sourceTree = "<group>"; };
+		F62F78C51811DA6000E7AFE7 /* FriendsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsController.h; sourceTree = "<group>"; };
+		F62F78C61811DA6000E7AFE7 /* FriendsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsController.m; sourceTree = "<group>"; };
+		F62F78C81811DA6F00E7AFE7 /* ProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileController.h; sourceTree = "<group>"; };
+		F62F78C91811DA6F00E7AFE7 /* ProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileController.m; sourceTree = "<group>"; };
+		F62F78CB1811DA9700E7AFE7 /* AlbumsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumsController.h; sourceTree = "<group>"; };
+		F62F78CC1811DA9700E7AFE7 /* AlbumsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumsController.m; sourceTree = "<group>"; };
+		F62F78DD1811E10B00E7AFE7 /* SignUpEmailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignUpEmailController.h; path = ../SignUpEmailController.h; sourceTree = "<group>"; };
+		F62F78DE1811E10B00E7AFE7 /* SignUpEmailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignUpEmailController.m; path = ../SignUpEmailController.m; sourceTree = "<group>"; };
+		F62F78E01811E12F00E7AFE7 /* SignUpUsernameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignUpUsernameController.h; path = ../SignUpUsernameController.h; sourceTree = "<group>"; };
+		F62F78E11811E12F00E7AFE7 /* SignUpUsernameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignUpUsernameController.m; path = ../SignUpUsernameController.m; sourceTree = "<group>"; };
+		F62F78E31811E14600E7AFE7 /* SignUpPasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignUpPasswordController.h; path = ../SignUpPasswordController.h; sourceTree = "<group>"; };
+		F62F78E41811E14600E7AFE7 /* SignUpPasswordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignUpPasswordController.m; path = ../SignUpPasswordController.m; sourceTree = "<group>"; };
+		F62F78E61811E15B00E7AFE7 /* SignUpCompleteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignUpCompleteController.h; path = ../SignUpCompleteController.h; sourceTree = "<group>"; };
+		F62F78E71811E15B00E7AFE7 /* SignUpCompleteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignUpCompleteController.m; path = ../SignUpCompleteController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +176,28 @@
 				B5C9038918032D3600448CE6 /* Models */,
 				B506DB181800806C004991A4 /* AppDelegate.h */,
 				B506DB191800806C004991A4 /* AppDelegate.m */,
+				B506DB1B1800806C004991A4 /* Main.storyboard */,
+				B506DB1E1800806C004991A4 /* ViewController.h */,
+				B506DB1F1800806C004991A4 /* ViewController.m */,
+				F62F78C51811DA6000E7AFE7 /* FriendsController.h */,
+				F62F78C61811DA6000E7AFE7 /* FriendsController.m */,
+				F62F78C81811DA6F00E7AFE7 /* ProfileController.h */,
+				F62F78C91811DA6F00E7AFE7 /* ProfileController.m */,
+				F62F78CB1811DA9700E7AFE7 /* AlbumsController.h */,
+				F62F78CC1811DA9700E7AFE7 /* AlbumsController.m */,
+				F62F78BF1811DA2900E7AFE7 /* CameraController.h */,
+				F62F78C01811DA2900E7AFE7 /* CameraController.m */,
+				F62F78C21811DA4100E7AFE7 /* InboxController.h */,
+				F62F78C31811DA4100E7AFE7 /* InboxController.m */,
+				F62F78DD1811E10B00E7AFE7 /* SignUpEmailController.h */,
+				F62F78DE1811E10B00E7AFE7 /* SignUpEmailController.m */,
+				F62F78E01811E12F00E7AFE7 /* SignUpUsernameController.h */,
+				F62F78E11811E12F00E7AFE7 /* SignUpUsernameController.m */,
+				F62F78E31811E14600E7AFE7 /* SignUpPasswordController.h */,
+				F62F78E41811E14600E7AFE7 /* SignUpPasswordController.m */,
+				F62F78E61811E15B00E7AFE7 /* SignUpCompleteController.h */,
+				F62F78E71811E15B00E7AFE7 /* SignUpCompleteController.m */,
+				B506DB211800806C004991A4 /* Images.xcassets */,
 				B506DB101800806C004991A4 /* Supporting Files */,
 			);
 			path = Film_Reel;
@@ -154,6 +207,8 @@
 			isa = PBXGroup;
 			children = (
 				B5C26D761811C6F00064F180 /* default.png */,
+				F62F78BB1811D8EF00E7AFE7 /* next.png */,
+				F62F78BC1811D8EF00E7AFE7 /* back.png */,
 				B506DB111800806C004991A4 /* Film_Reel-Info.plist */,
 				B506DB121800806C004991A4 /* InfoPlist.strings */,
 				B506DB151800806C004991A4 /* main.m */,
@@ -300,7 +355,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B506DB221800806C004991A4 /* Images.xcassets in Resources */,
+				F62F78BE1811D8EF00E7AFE7 /* back.png in Resources */,
 				B506DB141800806C004991A4 /* InfoPlist.strings in Resources */,
+				F62F78BD1811D8EF00E7AFE7 /* next.png in Resources */,
 				B506DB1D1800806C004991A4 /* Main.storyboard in Resources */,
 				B5C26D771811C6F00064F180 /* default.png in Resources */,
 			);
@@ -324,11 +381,20 @@
 			files = (
 				B5C9038C18032D5500448CE6 /* User.m in Sources */,
 				B5F4919418087AA500F03C19 /* Reel.m in Sources */,
+				F62F78C11811DA2900E7AFE7 /* CameraController.m in Sources */,
+				F62F78CD1811DA9700E7AFE7 /* AlbumsController.m in Sources */,
 				B506DB401800857A004991A4 /* NetworkManager.m in Sources */,
+				F62F78E81811E15B00E7AFE7 /* SignUpCompleteController.m in Sources */,
 				B506DB201800806C004991A4 /* ViewController.m in Sources */,
+				F62F78CA1811DA6F00E7AFE7 /* ProfileController.m in Sources */,
 				B506DB1A1800806C004991A4 /* AppDelegate.m in Sources */,
+				F62F78E51811E14600E7AFE7 /* SignUpPasswordController.m in Sources */,
+				F62F78DF1811E10B00E7AFE7 /* SignUpEmailController.m in Sources */,
+				F62F78C41811DA4200E7AFE7 /* InboxController.m in Sources */,
+				F62F78C71811DA6000E7AFE7 /* FriendsController.m in Sources */,
 				B506DB161800806C004991A4 /* main.m in Sources */,
 				B58DD655180893540006BB4D /* UserXMLParser.m in Sources */,
+				F62F78E21811E12F00E7AFE7 /* SignUpUsernameController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
