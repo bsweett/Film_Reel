@@ -116,7 +116,6 @@ static NSString * defaultURL = @""; // This will have to be hardcoded to an XML 
 // done successfully.  We shut down the connection with a nil status, which
 // causes the image to be displayed.
 {
-    //NSString * content = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
     assert(theConnection == self.connection);
     
     [self stopReceiveWithStatus:nil];
