@@ -245,8 +245,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="completeThumb.png" translatesAutoresizingMaskIntoConstraints="NO" id="pdU-Ii-7fm">
-                                <rect key="frame" x="23" y="192" width="275" height="275"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="completeimage.png" translatesAutoresizingMaskIntoConstraints="NO" id="pdU-Ii-7fm">
+                                <rect key="frame" x="60" y="219" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -424,7 +424,7 @@
         <image name="MyReelTab" width="24" height="23"/>
         <image name="ProfileTab" width="24" height="24"/>
         <image name="TakeReelTab" width="25" height="19"/>
-        <image name="completeThumb.png" width="233" height="245"/>
+        <image name="completeimage.png" width="200" height="198"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
