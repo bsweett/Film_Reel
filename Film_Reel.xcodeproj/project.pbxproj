@@ -30,8 +30,6 @@
 		B5F4919618087E6E00F03C19 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F4919518087E6E00F03C19 /* CoreMedia.framework */; };
 		B5F4919818087E7700F03C19 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F4919718087E7700F03C19 /* CoreVideo.framework */; };
 		B5F4919A18087E7F00F03C19 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F4919918087E7F00F03C19 /* AVFoundation.framework */; };
-		F62F78BD1811D8EF00E7AFE7 /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = F62F78BB1811D8EF00E7AFE7 /* next.png */; };
-		F62F78BE1811D8EF00E7AFE7 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = F62F78BC1811D8EF00E7AFE7 /* back.png */; };
 		F62F78C11811DA2900E7AFE7 /* CameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = F62F78C01811DA2900E7AFE7 /* CameraController.m */; };
 		F62F78C41811DA4200E7AFE7 /* InboxController.m in Sources */ = {isa = PBXBuildFile; fileRef = F62F78C31811DA4100E7AFE7 /* InboxController.m */; };
 		F62F78C71811DA6000E7AFE7 /* FriendsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F62F78C61811DA6000E7AFE7 /* FriendsController.m */; };
@@ -85,8 +83,6 @@
 		B5F4919518087E6E00F03C19 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		B5F4919718087E7700F03C19 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		B5F4919918087E7F00F03C19 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		F62F78BB1811D8EF00E7AFE7 /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = next.png; path = ../../../Desktop/next.png; sourceTree = "<group>"; };
-		F62F78BC1811D8EF00E7AFE7 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back.png; path = ../../../Desktop/back.png; sourceTree = "<group>"; };
 		F62F78BF1811DA2900E7AFE7 /* CameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraController.h; path = ../CameraController.h; sourceTree = "<group>"; };
 		F62F78C01811DA2900E7AFE7 /* CameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraController.m; path = ../CameraController.m; sourceTree = "<group>"; };
 		F62F78C21811DA4100E7AFE7 /* InboxController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InboxController.h; path = ../InboxController.h; sourceTree = "<group>"; };
@@ -207,8 +203,6 @@
 			isa = PBXGroup;
 			children = (
 				B5C26D761811C6F00064F180 /* default.png */,
-				F62F78BB1811D8EF00E7AFE7 /* next.png */,
-				F62F78BC1811D8EF00E7AFE7 /* back.png */,
 				B506DB111800806C004991A4 /* Film_Reel-Info.plist */,
 				B506DB121800806C004991A4 /* InfoPlist.strings */,
 				B506DB151800806C004991A4 /* main.m */,
@@ -355,9 +349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B506DB221800806C004991A4 /* Images.xcassets in Resources */,
-				F62F78BE1811D8EF00E7AFE7 /* back.png in Resources */,
 				B506DB141800806C004991A4 /* InfoPlist.strings in Resources */,
-				F62F78BD1811D8EF00E7AFE7 /* next.png in Resources */,
 				B506DB1D1800806C004991A4 /* Main.storyboard in Resources */,
 				B5C26D771811C6F00064F180 /* default.png in Resources */,
 			);
