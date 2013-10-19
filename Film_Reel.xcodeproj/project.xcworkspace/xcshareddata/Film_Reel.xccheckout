@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>D6CC40A5-E9AB-4C9C-9D9F-5E897304DA37</string>
+	<string>1990B0ED-5ADB-4872-A59E-B071E45CB8C0</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Film_Reel</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>18236339-357A-4F35-BBF3-64C3B5D454A3</key>
-		<string>https://github.com/venom889/Film_Reel.git</string>
+		<key>DB105BD0-B66C-44DC-BF50-D008455C7AE5</key>
+		<string>https://github.com/BraydenGirard/Film_Reel.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Film_Reel.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>18236339-357A-4F35-BBF3-64C3B5D454A3</key>
+		<key>DB105BD0-B66C-44DC-BF50-D008455C7AE5</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/venom889/Film_Reel.git</string>
+	<string>https://github.com/BraydenGirard/Film_Reel.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>18236339-357A-4F35-BBF3-64C3B5D454A3</string>
+	<string>DB105BD0-B66C-44DC-BF50-D008455C7AE5</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>18236339-357A-4F35-BBF3-64C3B5D454A3</string>
+			<string>DB105BD0-B66C-44DC-BF50-D008455C7AE5</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Film_Reel</string>
 		</dict>
