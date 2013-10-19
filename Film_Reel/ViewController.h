@@ -8,12 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+#define MIN_ENTRY_SIZE 4
+#define MAX_USERNAME_ENTRY 29
+#define MAX_PASSWORD_ENTRY 12
+
+@interface ViewController : UIViewController <UIAlertViewDelegate>
 
 @property(nonatomic, retain) IBOutlet UIButton *loginButton;
 @property(nonatomic, retain) IBOutlet UIButton *createButton;
 @property(nonatomic, retain) IBOutlet UITextField *usernameField;
 @property(nonatomic, retain) IBOutlet UITextField *passwordField;
+@property(nonatomic, retain) UIAlertView* error;
 
-
+// Validatation
+- (BOOL)validateUserNameWithString:(NSString*)username;
+- (BOOL) validateEmailWithString:(NSString*)emailaddress;
 @end

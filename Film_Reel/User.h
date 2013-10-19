@@ -48,10 +48,6 @@
 - (User *) getUserByName: (NSMutableString*) name;
 - (void) sortFriendList: (User *) toget;
 
-// Validatation
-- (BOOL)validateUserNameWithString:(NSMutableString*)username;
-- (BOOL) validateEmailWithString:(NSString*)emailaddress;
-
 
 
 
