@@ -45,6 +45,7 @@
     NSString * email = emailField.text;
     NSString * errorMessage = @"";
     
+    [emailField resignFirstResponder];
     
     if(![email  isEqual: @""])
     {
