@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SignUpUsernameController : UIViewController
+#define MIN_ENTRY_SIZE 4
+#define MAX_USERNAME_ENTRY 29
+
+@interface SignUpUsernameController : UIViewController <UIAlertViewDelegate>
+
+@property(nonatomic, retain) IBOutlet UITextField *userField;
+@property(nonatomic, retain) UIAlertView* error;
+
+// Validatation
+- (BOOL)validateUserNameWithString:(NSString*)user;
 
 @end
