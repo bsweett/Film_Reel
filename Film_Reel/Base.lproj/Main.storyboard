@@ -222,10 +222,14 @@
                     <navigationItem key="navigationItem" title="Password" id="cFM-FS-P51">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="Sbh-ua-s2P">
                             <connections>
-                                <segue destination="43b-AY-tq5" kind="push" identifier="passwordNext" id="9cd-JF-3HU"/>
+                                <action selector="doNextButton:" destination="DcI-sM-jP7" id="dQU-p0-chy"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="passField" destination="ApO-7q-JcM" id="FBw-dC-MxM"/>
+                        <segue destination="43b-AY-tq5" kind="push" identifier="finish" id="xf0-nE-xPS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DvB-xl-czc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SignUpPasswordController : UIViewController
+#define MIN_PASS_ENTRY 8
+#define MAX_PASSWORD_ENTRY 18
+
+@interface SignUpPasswordController : UIViewController <UIAlertViewDelegate>
+
+@property(nonatomic, retain) IBOutlet UITextField *passField;
+@property(nonatomic, retain) UIAlertView* error;
+
+// Validatation
+- (BOOL)validatePasswordWithString:(NSString*)pass;
+
 
 @end
