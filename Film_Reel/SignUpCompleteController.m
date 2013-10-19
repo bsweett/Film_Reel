@@ -2,7 +2,7 @@
 //  SignUpCompleteController.m
 //  Film_Reel
 //
-//  Created by Brayden Girard on 2013-10-18.
+//  Created by Brayden Girard on 2013-10-19.
 //  Copyright (c) 2013 Ben Sweett (100846396) and Brayden Girard (100852106). All rights reserved.
 //
 
@@ -26,7 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	[self.navigationItem setHidesBackButton:YES];
 }
 
 - (void)didReceiveMemoryWarning

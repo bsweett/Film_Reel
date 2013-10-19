@@ -1,18 +1,18 @@
 //
-//  AlbumsController.m
+//  MyReelsController.m
 //  Film_Reel
 //
-//  Created by Brayden Girard on 2013-10-18.
+//  Created by Brayden Girard on 2013-10-19.
 //  Copyright (c) 2013 Ben Sweett (100846396) and Brayden Girard (100852106). All rights reserved.
 //
 
-#import "AlbumsController.h"
+#import "MyReelsController.h"
 
-@interface AlbumsController ()
+@interface MyReelsController ()
 
 @end
 
-@implementation AlbumsController
+@implementation MyReelsController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
