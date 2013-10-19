@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 
 #define MIN_ENTRY_SIZE 4
+#define MIN_PASS_ENTRY 8
 #define MAX_USERNAME_ENTRY 29
-#define MAX_PASSWORD_ENTRY 12
+#define MAX_PASSWORD_ENTRY 18
 
 @interface ViewController : UIViewController <UIAlertViewDelegate>
 

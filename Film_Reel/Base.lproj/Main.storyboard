@@ -129,7 +129,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="emailField" destination="cLx-H6-hl4" id="6dd-rt-FLc"/>
-                        <segue destination="N3C-te-hdd" kind="push" identifier="password" id="qoo-RR-0Mp"/>
+                        <segue destination="N3C-te-hdd" kind="push" identifier="user" id="qoo-RR-0Mp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YNR-DX-Gm7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -173,10 +173,14 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="Lhe-cY-HbD"/>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="1EG-fN-117">
                             <connections>
-                                <segue destination="DcI-sM-jP7" kind="push" identifier="usernameNext" id="Jgf-DD-tCu"/>
+                                <action selector="doNextButton:" destination="N3C-te-hdd" id="yrn-iK-XnH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="userField" destination="gkI-YI-6eK" id="dY1-Gh-cnP"/>
+                        <segue destination="DcI-sM-jP7" kind="push" identifier="password" id="bhX-v8-SOS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Dw-x6-mFz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -218,10 +222,14 @@
                     <navigationItem key="navigationItem" title="Password" id="cFM-FS-P51">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="Sbh-ua-s2P">
                             <connections>
-                                <segue destination="43b-AY-tq5" kind="push" identifier="passwordNext" id="9cd-JF-3HU"/>
+                                <action selector="doNextButton:" destination="DcI-sM-jP7" id="dQU-p0-chy"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="passField" destination="ApO-7q-JcM" id="FBw-dC-MxM"/>
+                        <segue destination="43b-AY-tq5" kind="push" identifier="finish" id="xf0-nE-xPS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DvB-xl-czc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

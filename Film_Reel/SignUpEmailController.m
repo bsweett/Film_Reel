@@ -51,7 +51,7 @@
     {
         if( [self validateEmailWithString:email] == TRUE )
         {
-            [self performSegueWithIdentifier:@"password" sender:sender];
+            [self performSegueWithIdentifier:@"user" sender:sender];
             //Start Network operations method
             // inside that method handle networking errors and check to make sure email is not already used
             // When the networking operations finish return a BOOLEAN Value to push to next step
