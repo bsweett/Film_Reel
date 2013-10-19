@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SignUpEmailController : UIViewController
+#define MIN_EMAIL_ENTRY 2
+#define MAX_EMAIL_ENTRY 255
+
+@interface SignUpEmailController : UIViewController <UIAlertViewDelegate>
+
+@property(nonatomic, retain) IBOutlet UITextField *emailField;
+@property(nonatomic, retain) UIAlertView* error;
+
+// Validatation
+- (BOOL)validateEmailWithString:(NSString*)emailaddress;
 
 @end

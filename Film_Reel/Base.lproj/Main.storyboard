@@ -123,10 +123,14 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="IgQ-Jn-2Gg"/>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="wSP-w6-VXe">
                             <connections>
-                                <segue destination="N3C-te-hdd" kind="push" identifier="emailNext" id="Qlw-Q2-c5S"/>
+                                <action selector="doNextButton:" destination="fpy-Aj-rhB" id="3hK-gR-mpH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="emailField" destination="cLx-H6-hl4" id="6dd-rt-FLc"/>
+                        <segue destination="N3C-te-hdd" kind="push" identifier="password" id="qoo-RR-0Mp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YNR-DX-Gm7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
