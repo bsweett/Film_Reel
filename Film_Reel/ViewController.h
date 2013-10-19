@@ -22,5 +22,6 @@
 
 // Validatation
 - (BOOL)validateUserNameWithString:(NSString*)username;
-- (BOOL) validateEmailWithString:(NSString*)emailaddress;
+- (BOOL)validatePasswordWithString:(NSString*)pass;
+
 @end
