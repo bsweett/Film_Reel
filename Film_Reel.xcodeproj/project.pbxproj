@@ -41,6 +41,7 @@
 		F6189F9318131E2D00D1F0FA /* SignUpPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F9218131E2D00D1F0FA /* SignUpPasswordController.m */; };
 		F6189F9618131E3C00D1F0FA /* SignUpCompleteController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F9518131E3C00D1F0FA /* SignUpCompleteController.m */; };
 		F6189F9818131E8E00D1F0FA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6189F9718131E8E00D1F0FA /* Images.xcassets */; };
+		F6189FAD18133F1000D1F0FA /* completeThumb.png in Resources */ = {isa = PBXBuildFile; fileRef = F6189FAC18133F1000D1F0FA /* completeThumb.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		F6189F9418131E3C00D1F0FA /* SignUpCompleteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpCompleteController.h; sourceTree = "<group>"; };
 		F6189F9518131E3C00D1F0FA /* SignUpCompleteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpCompleteController.m; sourceTree = "<group>"; };
 		F6189F9718131E8E00D1F0FA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F6189FAC18133F1000D1F0FA /* completeThumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = completeThumb.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,6 +272,7 @@
 		F6189F99181327C300D1F0FA /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				F6189FAC18133F1000D1F0FA /* completeThumb.png */,
 				B5C26D761811C6F00064F180 /* default.png */,
 			);
 			name = Images;
@@ -356,6 +359,7 @@
 			files = (
 				B506DB141800806C004991A4 /* InfoPlist.strings in Resources */,
 				F6189F9818131E8E00D1F0FA /* Images.xcassets in Resources */,
+				F6189FAD18133F1000D1F0FA /* completeThumb.png in Resources */,
 				B5C26D771811C6F00064F180 /* default.png in Resources */,
 				B5E0CAE918130DD80037EA3A /* Main.storyboard in Resources */,
 			);
