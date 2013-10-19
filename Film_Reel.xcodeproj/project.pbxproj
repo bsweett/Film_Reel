@@ -13,7 +13,6 @@
 		B506DB141800806C004991A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B506DB121800806C004991A4 /* InfoPlist.strings */; };
 		B506DB161800806C004991A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B506DB151800806C004991A4 /* main.m */; };
 		B506DB1A1800806C004991A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B506DB191800806C004991A4 /* AppDelegate.m */; };
-		B506DB221800806C004991A4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B506DB211800806C004991A4 /* Images.xcassets */; };
 		B506DB291800806C004991A4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B506DB281800806C004991A4 /* XCTest.framework */; };
 		B506DB2A1800806C004991A4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B506DB091800806C004991A4 /* Foundation.framework */; };
 		B506DB2B1800806C004991A4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B506DB0D1800806C004991A4 /* UIKit.framework */; };
@@ -32,15 +31,16 @@
 		B5F4919618087E6E00F03C19 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F4919518087E6E00F03C19 /* CoreMedia.framework */; };
 		B5F4919818087E7700F03C19 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F4919718087E7700F03C19 /* CoreVideo.framework */; };
 		B5F4919A18087E7F00F03C19 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F4919918087E7F00F03C19 /* AVFoundation.framework */; };
-		F6189F571813166600D1F0FA /* SignUpEmailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F561813166600D1F0FA /* SignUpEmailController.m */; };
-		F6189F5A1813167700D1F0FA /* SignUpUsernameController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F591813167700D1F0FA /* SignUpUsernameController.m */; };
-		F6189F5D1813168B00D1F0FA /* SignUpPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F5C1813168B00D1F0FA /* SignUpPasswordController.m */; };
-		F6189F60181316A600D1F0FA /* SignUpCompleteController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F5F181316A600D1F0FA /* SignUpCompleteController.m */; };
-		F6189F7218131B8700D1F0FA /* InboxController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F7118131B8700D1F0FA /* InboxController.m */; };
-		F6189F7518131B9A00D1F0FA /* ProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F7418131B9A00D1F0FA /* ProfileController.m */; };
-		F6189F7818131BE400D1F0FA /* FriendsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F7718131BE400D1F0FA /* FriendsController.m */; };
 		F6189F7B18131BF300D1F0FA /* CameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F7A18131BF300D1F0FA /* CameraController.m */; };
 		F6189F7E18131C0700D1F0FA /* MyReelsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F7D18131C0700D1F0FA /* MyReelsController.m */; };
+		F6189F8118131DA700D1F0FA /* InboxController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F8018131DA700D1F0FA /* InboxController.m */; };
+		F6189F8418131DB500D1F0FA /* ProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F8318131DB500D1F0FA /* ProfileController.m */; };
+		F6189F8718131DC700D1F0FA /* FriendsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F8618131DC700D1F0FA /* FriendsController.m */; };
+		F6189F8A18131DD800D1F0FA /* SignUpEmailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F8918131DD800D1F0FA /* SignUpEmailController.m */; };
+		F6189F9018131E1C00D1F0FA /* SignUpUsernameController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F8F18131E1C00D1F0FA /* SignUpUsernameController.m */; };
+		F6189F9318131E2D00D1F0FA /* SignUpPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F9218131E2D00D1F0FA /* SignUpPasswordController.m */; };
+		F6189F9618131E3C00D1F0FA /* SignUpCompleteController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F9518131E3C00D1F0FA /* SignUpCompleteController.m */; };
+		F6189F9818131E8E00D1F0FA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6189F9718131E8E00D1F0FA /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +64,6 @@
 		B506DB171800806C004991A4 /* Film_Reel-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Film_Reel-Prefix.pch"; sourceTree = "<group>"; };
 		B506DB181800806C004991A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B506DB191800806C004991A4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B506DB211800806C004991A4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B506DB271800806C004991A4 /* Film_ReelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Film_ReelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B506DB281800806C004991A4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		B506DB301800806C004991A4 /* Film_ReelTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Film_ReelTests-Info.plist"; sourceTree = "<group>"; };
@@ -85,24 +84,25 @@
 		B5F4919518087E6E00F03C19 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		B5F4919718087E7700F03C19 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		B5F4919918087E7F00F03C19 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		F6189F551813166600D1F0FA /* SignUpEmailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpEmailController.h; sourceTree = "<group>"; };
-		F6189F561813166600D1F0FA /* SignUpEmailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpEmailController.m; sourceTree = "<group>"; };
-		F6189F581813167700D1F0FA /* SignUpUsernameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpUsernameController.h; sourceTree = "<group>"; };
-		F6189F591813167700D1F0FA /* SignUpUsernameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpUsernameController.m; sourceTree = "<group>"; };
-		F6189F5B1813168B00D1F0FA /* SignUpPasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpPasswordController.h; sourceTree = "<group>"; };
-		F6189F5C1813168B00D1F0FA /* SignUpPasswordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpPasswordController.m; sourceTree = "<group>"; };
-		F6189F5E181316A600D1F0FA /* SignUpCompleteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpCompleteController.h; sourceTree = "<group>"; };
-		F6189F5F181316A600D1F0FA /* SignUpCompleteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpCompleteController.m; sourceTree = "<group>"; };
-		F6189F7018131B8700D1F0FA /* InboxController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InboxController.h; sourceTree = "<group>"; };
-		F6189F7118131B8700D1F0FA /* InboxController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InboxController.m; sourceTree = "<group>"; };
-		F6189F7318131B9A00D1F0FA /* ProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileController.h; sourceTree = "<group>"; };
-		F6189F7418131B9A00D1F0FA /* ProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileController.m; sourceTree = "<group>"; };
-		F6189F7618131BE400D1F0FA /* FriendsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsController.h; sourceTree = "<group>"; };
-		F6189F7718131BE400D1F0FA /* FriendsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsController.m; sourceTree = "<group>"; };
 		F6189F7918131BF300D1F0FA /* CameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraController.h; sourceTree = "<group>"; };
 		F6189F7A18131BF300D1F0FA /* CameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraController.m; sourceTree = "<group>"; };
 		F6189F7C18131C0700D1F0FA /* MyReelsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyReelsController.h; sourceTree = "<group>"; };
 		F6189F7D18131C0700D1F0FA /* MyReelsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyReelsController.m; sourceTree = "<group>"; };
+		F6189F7F18131DA700D1F0FA /* InboxController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InboxController.h; sourceTree = "<group>"; };
+		F6189F8018131DA700D1F0FA /* InboxController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InboxController.m; sourceTree = "<group>"; };
+		F6189F8218131DB500D1F0FA /* ProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileController.h; sourceTree = "<group>"; };
+		F6189F8318131DB500D1F0FA /* ProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileController.m; sourceTree = "<group>"; };
+		F6189F8518131DC700D1F0FA /* FriendsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsController.h; sourceTree = "<group>"; };
+		F6189F8618131DC700D1F0FA /* FriendsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsController.m; sourceTree = "<group>"; };
+		F6189F8818131DD800D1F0FA /* SignUpEmailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpEmailController.h; sourceTree = "<group>"; };
+		F6189F8918131DD800D1F0FA /* SignUpEmailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpEmailController.m; sourceTree = "<group>"; };
+		F6189F8E18131E1C00D1F0FA /* SignUpUsernameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpUsernameController.h; sourceTree = "<group>"; };
+		F6189F8F18131E1C00D1F0FA /* SignUpUsernameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpUsernameController.m; sourceTree = "<group>"; };
+		F6189F9118131E2D00D1F0FA /* SignUpPasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpPasswordController.h; sourceTree = "<group>"; };
+		F6189F9218131E2D00D1F0FA /* SignUpPasswordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpPasswordController.m; sourceTree = "<group>"; };
+		F6189F9418131E3C00D1F0FA /* SignUpCompleteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpCompleteController.h; sourceTree = "<group>"; };
+		F6189F9518131E3C00D1F0FA /* SignUpCompleteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpCompleteController.m; sourceTree = "<group>"; };
+		F6189F9718131E8E00D1F0FA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,26 +222,25 @@
 				B5E0CAE718130DD80037EA3A /* Main.storyboard */,
 				B5E0CAEB18130E120037EA3A /* ViewController.h */,
 				B5E0CAEC18130E120037EA3A /* ViewController.m */,
-				F6189F7018131B8700D1F0FA /* InboxController.h */,
-				F6189F7118131B8700D1F0FA /* InboxController.m */,
-				F6189F7318131B9A00D1F0FA /* ProfileController.h */,
-				F6189F7418131B9A00D1F0FA /* ProfileController.m */,
-				F6189F7618131BE400D1F0FA /* FriendsController.h */,
-				F6189F7718131BE400D1F0FA /* FriendsController.m */,
 				F6189F7918131BF300D1F0FA /* CameraController.h */,
 				F6189F7A18131BF300D1F0FA /* CameraController.m */,
 				F6189F7C18131C0700D1F0FA /* MyReelsController.h */,
 				F6189F7D18131C0700D1F0FA /* MyReelsController.m */,
-				F6189F551813166600D1F0FA /* SignUpEmailController.h */,
-				F6189F561813166600D1F0FA /* SignUpEmailController.m */,
-				F6189F581813167700D1F0FA /* SignUpUsernameController.h */,
-				F6189F591813167700D1F0FA /* SignUpUsernameController.m */,
-				F6189F5B1813168B00D1F0FA /* SignUpPasswordController.h */,
-				F6189F5C1813168B00D1F0FA /* SignUpPasswordController.m */,
-				F6189F5E181316A600D1F0FA /* SignUpCompleteController.h */,
-				F6189F5F181316A600D1F0FA /* SignUpCompleteController.m */,
-				B506DB211800806C004991A4 /* Images.xcassets */,
-				B506DB211800806C004991A4 /* Images.xcassets */,
+				F6189F7F18131DA700D1F0FA /* InboxController.h */,
+				F6189F8018131DA700D1F0FA /* InboxController.m */,
+				F6189F8218131DB500D1F0FA /* ProfileController.h */,
+				F6189F8318131DB500D1F0FA /* ProfileController.m */,
+				F6189F8518131DC700D1F0FA /* FriendsController.h */,
+				F6189F8618131DC700D1F0FA /* FriendsController.m */,
+				F6189F8818131DD800D1F0FA /* SignUpEmailController.h */,
+				F6189F8918131DD800D1F0FA /* SignUpEmailController.m */,
+				F6189F8E18131E1C00D1F0FA /* SignUpUsernameController.h */,
+				F6189F8F18131E1C00D1F0FA /* SignUpUsernameController.m */,
+				F6189F9118131E2D00D1F0FA /* SignUpPasswordController.h */,
+				F6189F9218131E2D00D1F0FA /* SignUpPasswordController.m */,
+				F6189F9418131E3C00D1F0FA /* SignUpCompleteController.h */,
+				F6189F9518131E3C00D1F0FA /* SignUpCompleteController.m */,
+				F6189F9718131E8E00D1F0FA /* Images.xcassets */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -347,8 +346,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B506DB221800806C004991A4 /* Images.xcassets in Resources */,
 				B506DB141800806C004991A4 /* InfoPlist.strings in Resources */,
+				F6189F9818131E8E00D1F0FA /* Images.xcassets in Resources */,
 				B5C26D771811C6F00064F180 /* default.png in Resources */,
 				B5E0CAE918130DD80037EA3A /* Main.storyboard in Resources */,
 			);
@@ -371,20 +370,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6189F8118131DA700D1F0FA /* InboxController.m in Sources */,
 				B5C9038C18032D5500448CE6 /* User.m in Sources */,
 				B5F4919418087AA500F03C19 /* Reel.m in Sources */,
-				F6189F5D1813168B00D1F0FA /* SignUpPasswordController.m in Sources */,
+				F6189F9318131E2D00D1F0FA /* SignUpPasswordController.m in Sources */,
+				F6189F9018131E1C00D1F0FA /* SignUpUsernameController.m in Sources */,
+				F6189F8A18131DD800D1F0FA /* SignUpEmailController.m in Sources */,
 				F6189F7E18131C0700D1F0FA /* MyReelsController.m in Sources */,
-				F6189F5A1813167700D1F0FA /* SignUpUsernameController.m in Sources */,
-				F6189F7518131B9A00D1F0FA /* ProfileController.m in Sources */,
-				F6189F7818131BE400D1F0FA /* FriendsController.m in Sources */,
-				F6189F7218131B8700D1F0FA /* InboxController.m in Sources */,
-				F6189F571813166600D1F0FA /* SignUpEmailController.m in Sources */,
 				B506DB401800857A004991A4 /* NetworkManager.m in Sources */,
-				F6189F60181316A600D1F0FA /* SignUpCompleteController.m in Sources */,
+				F6189F9618131E3C00D1F0FA /* SignUpCompleteController.m in Sources */,
 				F6189F7B18131BF300D1F0FA /* CameraController.m in Sources */,
 				B506DB1A1800806C004991A4 /* AppDelegate.m in Sources */,
+				F6189F8418131DB500D1F0FA /* ProfileController.m in Sources */,
 				B5E0CAED18130E120037EA3A /* ViewController.m in Sources */,
+				F6189F8718131DC700D1F0FA /* FriendsController.m in Sources */,
 				B506DB161800806C004991A4 /* main.m in Sources */,
 				B58DD655180893540006BB4D /* UserXMLParser.m in Sources */,
 			);
