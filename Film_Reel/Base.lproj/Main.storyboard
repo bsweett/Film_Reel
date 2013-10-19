@@ -269,16 +269,16 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="8Hf-bs-XWY"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="ProfileTab" id="8Hf-bs-XWY"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nC4-yZ-vM7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="714" y="-750"/>
         </scene>
-        <!--Friends Controller - Friends-->
+        <!--Inbox Controller - Inbox-->
         <scene sceneID="yF7-Ix-Yj0">
             <objects>
-                <viewController id="e6X-Kw-yEx" customClass="FriendsController" sceneMemberID="viewController">
+                <viewController id="e6X-Kw-yEx" customClass="InboxController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KN5-dK-V0t"/>
                         <viewControllerLayoutGuide type="bottom" id="BDM-b1-3Xt"/>
@@ -288,16 +288,16 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Friends" id="MKW-Mu-tFf"/>
+                    <tabBarItem key="tabBarItem" title="Inbox" image="InboxTab" id="MKW-Mu-tFf"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p5i-7T-enR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1272" y="-750"/>
         </scene>
-        <!--Camera Controller - Camera-->
+        <!--My Reels Controller - My Reels-->
         <scene sceneID="8sl-Mo-EED">
             <objects>
-                <viewController id="52b-ye-RD6" customClass="CameraController" sceneMemberID="viewController">
+                <viewController id="52b-ye-RD6" customClass="MyReelsController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="X8x-3C-9q8"/>
                         <viewControllerLayoutGuide type="bottom" id="CcT-GX-iP2"/>
@@ -307,16 +307,16 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Camera" id="53h-X6-nM4"/>
+                    <tabBarItem key="tabBarItem" title="My Reels" image="MyReelTab" id="53h-X6-nM4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AXX-Hm-umg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1674" y="-355"/>
         </scene>
-        <!--Inbox Controller - Inbox-->
+        <!--Friends Controller - Friends-->
         <scene sceneID="8mI-cB-VPB">
             <objects>
-                <viewController id="aGF-4q-qUW" customClass="InboxController" sceneMemberID="viewController">
+                <viewController id="aGF-4q-qUW" customClass="FriendsController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RaQ-aJ-A3i"/>
                         <viewControllerLayoutGuide type="bottom" id="PAD-g9-I6R"/>
@@ -326,17 +326,17 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Inbox" id="oRg-dO-f4x"/>
+                    <tabBarItem key="tabBarItem" title="Friends" image="FriendsTab" id="oRg-dO-f4x"/>
                     <navigationItem key="navigationItem" id="ebh-5u-5qt"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IVF-Mm-PRb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="714" y="51"/>
         </scene>
-        <!--My Reels Controller - My Reels-->
+        <!--Camera Controller - Take A Reel-->
         <scene sceneID="90Y-Sb-uYA">
             <objects>
-                <viewController id="be7-Pz-a3I" customClass="MyReelsController" sceneMemberID="viewController">
+                <viewController id="be7-Pz-a3I" customClass="CameraController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aXF-gl-3Ro"/>
                         <viewControllerLayoutGuide type="bottom" id="v9h-m3-9DK"/>
@@ -346,7 +346,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My Reels" id="nC7-pV-4uY"/>
+                    <tabBarItem key="tabBarItem" title="Take A Reel" image="TakeReelTab" id="nC7-pV-4uY"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GSn-xi-tgp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -393,12 +393,19 @@
             <point key="canvasLocation" x="166" y="-306"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="FriendsTab" width="30" height="30"/>
+        <image name="InboxTab" width="25" height="17"/>
+        <image name="MyReelTab" width="24" height="23"/>
+        <image name="ProfileTab" width="24" height="24"/>
+        <image name="TakeReelTab" width="25" height="19"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="onh-vw-Nri"/>
+        <segue reference="aOt-QZ-u5S"/>
     </inferredMetricsTieBreakers>
 </document>

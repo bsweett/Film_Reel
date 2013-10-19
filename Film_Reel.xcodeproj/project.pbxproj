@@ -168,6 +168,7 @@
 		B506DB0F1800806C004991A4 /* Film_Reel */ = {
 			isa = PBXGroup;
 			children = (
+				F6189F99181327C300D1F0FA /* Images */,
 				B55134A11811E02700009FE9 /* View */,
 				B55134A01811D0F200009FE9 /* iPad */,
 				B5C9038D18032D6100448CE6 /* Networking */,
@@ -182,7 +183,6 @@
 		B506DB101800806C004991A4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B5C26D761811C6F00064F180 /* default.png */,
 				B506DB111800806C004991A4 /* Film_Reel-Info.plist */,
 				B506DB121800806C004991A4 /* InfoPlist.strings */,
 				B506DB151800806C004991A4 /* main.m */,
@@ -265,6 +265,14 @@
 				B58DD654180893540006BB4D /* UserXMLParser.m */,
 			);
 			name = Networking;
+			sourceTree = "<group>";
+		};
+		F6189F99181327C300D1F0FA /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				B5C26D761811C6F00064F180 /* default.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
