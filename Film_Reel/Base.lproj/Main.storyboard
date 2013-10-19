@@ -245,7 +245,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Complete" id="4xn-5v-yfs">
-                        <barButtonItem key="rightBarButtonItem" title="Login" id="Rsd-zc-Tke"/>
+                        <barButtonItem key="rightBarButtonItem" title="Login" id="Rsd-zc-Tke">
+                            <connections>
+                                <segue destination="hlb-GM-SJL" kind="modal" id="onh-vw-Nri"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pOu-gS-LMn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -394,4 +398,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="onh-vw-Nri"/>
+    </inferredMetricsTieBreakers>
 </document>
