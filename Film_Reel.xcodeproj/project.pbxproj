@@ -44,6 +44,8 @@
 		F6189FAF181343E000D1F0FA /* completeimage.png in Resources */ = {isa = PBXBuildFile; fileRef = F6189FAE181343E000D1F0FA /* completeimage.png */; };
 		F6189FB118134DF800D1F0FA /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = F6189FB018134DF800D1F0FA /* star.png */; };
 		F6189FB31813514000D1F0FA /* stargrey.png in Resources */ = {isa = PBXBuildFile; fileRef = F6189FB21813514000D1F0FA /* stargrey.png */; };
+		F6189FB5181389C900D1F0FA /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6189FB4181389C900D1F0FA /* MobileCoreServices.framework */; };
+		F6189FB81813942C00D1F0FA /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189FB71813942C00D1F0FA /* TabBarViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +111,9 @@
 		F6189FAE181343E000D1F0FA /* completeimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = completeimage.png; sourceTree = "<group>"; };
 		F6189FB018134DF800D1F0FA /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		F6189FB21813514000D1F0FA /* stargrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stargrey.png; sourceTree = "<group>"; };
+		F6189FB4181389C900D1F0FA /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		F6189FB61813942C00D1F0FA /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
+		F6189FB71813942C00D1F0FA /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6189FB5181389C900D1F0FA /* MobileCoreServices.framework in Frameworks */,
 				B5F4919A18087E7F00F03C19 /* AVFoundation.framework in Frameworks */,
 				B5F4919818087E7700F03C19 /* CoreVideo.framework in Frameworks */,
 				B5F4919618087E6E00F03C19 /* CoreMedia.framework in Frameworks */,
@@ -160,6 +166,7 @@
 		B506DB081800806C004991A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F6189FB4181389C900D1F0FA /* MobileCoreServices.framework */,
 				B5F4919918087E7F00F03C19 /* AVFoundation.framework */,
 				B5F4919718087E7700F03C19 /* CoreVideo.framework */,
 				B5F4919518087E6E00F03C19 /* CoreMedia.framework */,
@@ -228,6 +235,8 @@
 				B5E0CAE718130DD80037EA3A /* Main.storyboard */,
 				B5E0CAEB18130E120037EA3A /* ViewController.h */,
 				B5E0CAEC18130E120037EA3A /* ViewController.m */,
+				F6189FB61813942C00D1F0FA /* TabBarViewController.h */,
+				F6189FB71813942C00D1F0FA /* TabBarViewController.m */,
 				F6189F7918131BF300D1F0FA /* CameraController.h */,
 				F6189F7A18131BF300D1F0FA /* CameraController.m */,
 				F6189F7C18131C0700D1F0FA /* MyReelsController.h */,
@@ -392,6 +401,7 @@
 			files = (
 				F6189F8118131DA700D1F0FA /* InboxController.m in Sources */,
 				B5C9038C18032D5500448CE6 /* User.m in Sources */,
+				F6189FB81813942C00D1F0FA /* TabBarViewController.m in Sources */,
 				B5F4919418087AA500F03C19 /* Reel.m in Sources */,
 				F6189F9318131E2D00D1F0FA /* SignUpPasswordController.m in Sources */,
 				F6189F9018131E1C00D1F0FA /* SignUpUsernameController.m in Sources */,

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CameraController : UIViewController
-
+@interface CameraController : UIViewController <UIImagePickerControllerDelegate,
+UINavigationControllerDelegate>
 @end

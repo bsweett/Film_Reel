@@ -7,6 +7,7 @@
 //
 
 #import "CameraController.h"
+#import "MobileCoreServices/UTCoreTypes.h"
 
 @interface CameraController ()
 
@@ -26,6 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -34,4 +36,60 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    [self startCameraControllerFromViewController: self
+                                    usingDelegate: self];
+}
+
+- (BOOL) startCameraControllerFromViewController: (UIViewController*) controller
+                                   usingDelegate: (id <UIImagePickerControllerDelegate,
+                                                   UINavigationControllerDelegate>) delegate {
+    
+    if (([UIImagePickerController isSourceTypeAvailable:
+          UIImagePickerControllerSourceTypeCamera] == NO)
+        || (delegate == nil)
+        || (controller == nil))
+        return NO;
+    
+    
+    UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
+    cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
+    
+    // Displays a control that allows the user to choose picture or
+    // movie capture, if both are available:
+   cameraUI.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeMovie, nil];
+    
+    // Hides the controls for moving & scaling pictures, or for
+    // trimming movies. To instead show the controls, use YES.
+    cameraUI.allowsEditing = NO;
+    
+    cameraUI.delegate = delegate;
+    
+    [cameraUI setVideoMaximumDuration:10];
+    
+    //[controller presentModalViewController: cameraUI animated: YES];
+    [controller presentViewController:cameraUI animated:NO completion:nil];
+    return YES;
+}
+
+// For responding to the user tapping Cancel.
+- (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker {
+    
+    [[picker parentViewController] dismissViewControllerAnimated:NO completion:nil];
+    [self.tabBarController setSelectedIndex:3];
+}
+
+// For responding to the user accepting a newly-captured picture or movie
+- (void) imagePickerController: (UIImagePickerController *) picker
+ didFinishPickingMediaWithInfo: (NSDictionary *) info {
+        
+    NSString *moviePath = [[info objectForKey: UIImagePickerControllerMediaURL] path];
+        
+    if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (moviePath)) {
+        UISaveVideoAtPathToSavedPhotosAlbum (
+                                                 moviePath, nil, nil, nil);
+    }
+    
+    [[picker parentViewController] dismissViewControllerAnimated:NO completion:nil];
+}
 @end
