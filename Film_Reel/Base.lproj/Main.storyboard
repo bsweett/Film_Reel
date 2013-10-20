@@ -505,9 +505,6 @@
         <image name="completeimage.png" width="200" height="198"/>
         <image name="default.png" width="128" height="128"/>
         <image name="star.png" width="30" height="30"/>
-        <image name="star.png" width="30" height="30"/>
-        <image name="star.png" width="30" height="30"/>
-        <image name="star.png" width="30" height="30"/>
         <image name="stargrey.png" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -516,6 +513,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="onh-vw-Nri"/>
+        <segue reference="izw-kM-tUZ"/>
     </inferredMetricsTieBreakers>
 </document>

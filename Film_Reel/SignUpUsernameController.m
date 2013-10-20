@@ -29,6 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    userField.delegate = self;
 	// Do any additional setup after loading the view.
 }
 
