@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define MIN_ENTRY_SIZE 4
+#define MIN_ENTRY_SIZE 3
 #define MAX_USERNAME_ENTRY 29
 
 @interface SignUpUsernameController : UIViewController <UIAlertViewDelegate>
