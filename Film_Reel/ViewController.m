@@ -81,7 +81,7 @@
 // Validations --------------------------------------------------------------------
 - (BOOL)validateUserNameWithString:(NSString*)username
 {
-    if( username.length > MIN_ENTRY_SIZE && username.length < MAX_USERNAME_ENTRY )
+    if( username.length >= MIN_ENTRY_SIZE && username.length <= MAX_USERNAME_ENTRY )
     {
         NSString *nameRegex = @"[A-Z0-9a-z]*";
         NSPredicate *nameTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", nameRegex];
@@ -94,7 +94,7 @@
 
 - (BOOL)validatePasswordWithString:(NSString*)pass
 {
-    if( pass.length > MIN_PASS_ENTRY && pass.length < MAX_PASSWORD_ENTRY )
+    if( pass.length >= MIN_PASS_ENTRY && pass.length <= MAX_PASSWORD_ENTRY )
     {
         NSString *passwordRegex = @"^[a-zA-Z_0-9\\-_,;.:#+*?=!§$%&/()@]+$";
         NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", passwordRegex];
