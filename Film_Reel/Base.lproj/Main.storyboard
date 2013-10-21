@@ -288,7 +288,7 @@
                                 <rect key="frame" x="100" y="110" width="120" height="120"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Brayden Girard" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDR-9q-EOh">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" text="Brayden Girard" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDR-9q-EOh">
                                 <rect key="frame" x="20" y="27" width="280" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -317,7 +317,7 @@
                                 <color key="textColor" red="0.050980396570000003" green="0.5411764979" blue="0.77647066119999997" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="brayden_girard@carleton.ca" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1g-yl-RBl">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" text="brayden_girard@carleton.ca" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1g-yl-RBl">
                                 <rect key="frame" x="20" y="68" width="280" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -325,7 +325,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="I am a 3rd year Computer Science student at Carleton University. I am currently in an app development class making this." selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ceH-aa-58l">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" text="I am a 3rd year Computer Science student at Carleton University. I am currently in an app development class making this." selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ceH-aa-58l">
                                 <rect key="frame" x="20" y="260" width="280" height="110"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -333,7 +333,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Ottawa, Ontario" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdu-XV-Ih0">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" text="Ottawa, Ontario" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdu-XV-Ih0">
                                 <rect key="frame" x="20" y="398" width="280" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -522,6 +522,9 @@
         <image name="TakeReelTab" width="25" height="19"/>
         <image name="completeimage.png" width="200" height="198"/>
         <image name="default.png" width="128" height="128"/>
+        <image name="star.png" width="30" height="30"/>
+        <image name="star.png" width="30" height="30"/>
+        <image name="star.png" width="30" height="30"/>
         <image name="star.png" width="30" height="30"/>
         <image name="stargrey.png" width="30" height="30"/>
     </resources>
