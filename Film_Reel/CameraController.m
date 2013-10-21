@@ -62,7 +62,7 @@
     cameraUI.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeMovie, nil];
     
     cameraUI.allowsEditing = NO;
-    cameraUI.showsCameraControls = YES;
+    cameraUI.showsCameraControls = NO;
     cameraUI.navigationBarHidden = YES;
     cameraUI.toolbarHidden = YES;
     
@@ -70,9 +70,9 @@
     
     cameraUI.delegate = self;
     
-    //overlay = [[CameraOverlay alloc] initWithNibName:@"CameraOverlay" bundle:nil];
-    //cameraUI.cameraOverlayView = overlay.view;
-    //[cameraUI setDelegate:overlay];
+    overlay = [[CameraOverlay alloc] initWithNibName:@"CameraOverlay" bundle:nil];
+    cameraUI.cameraOverlayView = overlay.view;
+    [cameraUI setDelegate:overlay];
     
     [controller presentViewController:cameraUI animated:NO completion:nil];
     

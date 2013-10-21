@@ -9,7 +9,16 @@
 #import <UIKit/UIKit.h>
 
 @interface CameraOverlay : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+{
+    int remainingCount;
+}
 
-@property(nonatomic, strong) IBOutlet UIButton *takeReelButton;
+@property(nonatomic, strong) IBOutlet UIImageView *takeReelImage;
+
+@property(nonatomic, strong) IBOutlet UITextView *countDownText;
+
+@property(nonatomic, strong) NSTimer *timer;
+
+
 
 @end

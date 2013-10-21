@@ -14,7 +14,7 @@
 
 @implementation CameraOverlay
 
-@synthesize takeReelButton;
+@synthesize takeReelImage, countDownText, timer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,8 +28,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIImage *btnImage = [UIImage imageNamed:@"takereelbutton.png"];
-    [takeReelButton setImage:btnImage forState:UIControlStateNormal];
+    
+    UITapGestureRecognizer *singleTap =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapping:)];
+    [singleTap setNumberOfTapsRequired:1];
+    [takeReelImage addGestureRecognizer:singleTap];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,6 +59,35 @@
     }
     
     [[picker parentViewController] dismissViewControllerAnimated:NO completion:nil];
+}
+
+-(void)singleTapping:(UIGestureRecognizer *)recognizer
+{
+    NSLog(@"image click");
+    takeReelImage.highlighted = TRUE;
+    [takeReelImage removeGestureRecognizer:[takeReelImage.gestureRecognizers objectAtIndex:0]];
+    timer = [NSTimer scheduledTimerWithTimeInterval:1
+                                             target:self
+                                           selector:@selector(countDown)
+                                           userInfo:nil
+                                            repeats:YES];
+    remainingCount = 10;
+    
+
+}
+
+-(void)countDown {
+   
+    [countDownText setText:[NSString stringWithFormat:@"%d", remainingCount]];
+    [countDownText setTextColor:[UIColor redColor]];
+    [countDownText setFont:[UIFont boldSystemFontOfSize:40.0]];
+    [countDownText setTextAlignment:NSTextAlignmentCenter];
+    
+    if (--remainingCount == -1) {
+        [timer invalidate];
+        [countDownText setHidden:TRUE];
+    }
+    
 }
 
 @end
