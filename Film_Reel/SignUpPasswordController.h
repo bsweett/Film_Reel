@@ -13,8 +13,8 @@
 
 @interface SignUpPasswordController : UIViewController <UIAlertViewDelegate>
 
-@property(nonatomic, retain) IBOutlet UITextField *passField;
-@property(nonatomic, retain) UIAlertView* error;
+@property(nonatomic, strong) IBOutlet UITextField *passField;
+@property(nonatomic, strong) UIAlertView* error;
 
 // Validatation
 - (BOOL)validatePasswordWithString:(NSString*)pass;

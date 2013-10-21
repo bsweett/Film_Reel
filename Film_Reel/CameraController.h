@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#include "CameraOverlay.h"
 
 @interface CameraController : UIViewController <UIImagePickerControllerDelegate,
 UINavigationControllerDelegate>
+
+@property(nonatomic, strong) UIImagePickerController *cameraUI;
+@property(nonatomic, strong) CameraOverlay *overlay;
+
 @end

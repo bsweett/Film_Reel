@@ -495,6 +495,24 @@
             </objects>
             <point key="canvasLocation" x="166" y="-306"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="qKe-kT-ewd">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="T2J-TJ-4J7" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Lh2-3N-k1D"/>
+                        <viewControllerLayoutGuide type="bottom" id="p8u-O5-TMl"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="KBn-KZ-ndS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k5F-Gg-UeF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
     <resources>
         <image name="FriendsTab" width="30" height="30"/>

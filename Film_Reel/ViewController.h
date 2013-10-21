@@ -15,11 +15,11 @@
 
 @interface ViewController : UIViewController <UIAlertViewDelegate>
 
-@property(nonatomic, retain) IBOutlet UIButton *loginButton;
-@property(nonatomic, retain) IBOutlet UIButton *createButton;
-@property(nonatomic, retain) IBOutlet UITextField *usernameField;
-@property(nonatomic, retain) IBOutlet UITextField *passwordField;
-@property(nonatomic, retain) UIAlertView* error;
+@property(nonatomic, strong) IBOutlet UIButton *loginButton;
+@property(nonatomic, strong) IBOutlet UIButton *createButton;
+@property(nonatomic, strong) IBOutlet UITextField *usernameField;
+@property(nonatomic, strong) IBOutlet UITextField *passwordField;
+@property(nonatomic, strong) UIAlertView* error;
 
 // Validatation
 - (BOOL)validateUserNameWithString:(NSString*)username;

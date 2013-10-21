@@ -13,8 +13,8 @@
 
 @interface SignUpUsernameController : UIViewController <UIAlertViewDelegate>
 
-@property(nonatomic, retain) IBOutlet UITextField *userField;
-@property(nonatomic, retain) UIAlertView* error;
+@property(nonatomic, strong) IBOutlet UITextField *userField;
+@property(nonatomic, strong) UIAlertView* error;
 
 // Validatation
 - (BOOL)validateUserNameWithString:(NSString*)user;

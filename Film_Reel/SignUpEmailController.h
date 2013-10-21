@@ -13,8 +13,8 @@
 
 @interface SignUpEmailController : UIViewController <UIAlertViewDelegate>
 
-@property(nonatomic, retain) IBOutlet UITextField *emailField;
-@property(nonatomic, retain) UIAlertView* error;
+@property(nonatomic, strong) IBOutlet UITextField *emailField;
+@property(nonatomic, strong) UIAlertView* error;
 
 // Validatation
 - (BOOL)validateEmailWithString:(NSString*)emailaddress;

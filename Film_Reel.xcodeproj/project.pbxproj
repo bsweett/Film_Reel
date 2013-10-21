@@ -46,6 +46,9 @@
 		F6189FB31813514000D1F0FA /* stargrey.png in Resources */ = {isa = PBXBuildFile; fileRef = F6189FB21813514000D1F0FA /* stargrey.png */; };
 		F6189FB5181389C900D1F0FA /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6189FB4181389C900D1F0FA /* MobileCoreServices.framework */; };
 		F6189FB81813942C00D1F0FA /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189FB71813942C00D1F0FA /* TabBarViewController.m */; };
+		F6B016C41814722800DC974C /* CameraOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B016C21814722800DC974C /* CameraOverlay.m */; };
+		F6B016C51814722800DC974C /* CameraOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6B016C31814722800DC974C /* CameraOverlay.xib */; };
+		F6B016C71814803900DC974C /* takereelbutton.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6B016C61814803900DC974C /* takereelbutton.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +117,10 @@
 		F6189FB4181389C900D1F0FA /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		F6189FB61813942C00D1F0FA /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		F6189FB71813942C00D1F0FA /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
+		F6B016C11814722800DC974C /* CameraOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraOverlay.h; path = ../CameraOverlay.h; sourceTree = "<group>"; };
+		F6B016C21814722800DC974C /* CameraOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraOverlay.m; path = ../CameraOverlay.m; sourceTree = "<group>"; };
+		F6B016C31814722800DC974C /* CameraOverlay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CameraOverlay.xib; path = ../CameraOverlay.xib; sourceTree = "<group>"; };
+		F6B016C61814803900DC974C /* takereelbutton.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = takereelbutton.jpg; path = ../../../Downloads/takereelbutton.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +240,9 @@
 			isa = PBXGroup;
 			children = (
 				B5E0CAE718130DD80037EA3A /* Main.storyboard */,
+				F6B016C11814722800DC974C /* CameraOverlay.h */,
+				F6B016C21814722800DC974C /* CameraOverlay.m */,
+				F6B016C31814722800DC974C /* CameraOverlay.xib */,
 				B5E0CAEB18130E120037EA3A /* ViewController.h */,
 				B5E0CAEC18130E120037EA3A /* ViewController.m */,
 				F6189FB61813942C00D1F0FA /* TabBarViewController.h */,
@@ -286,6 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				F6189FAE181343E000D1F0FA /* completeimage.png */,
+				F6B016C61814803900DC974C /* takereelbutton.jpg */,
 				F6189FB018134DF800D1F0FA /* star.png */,
 				F6189FB21813514000D1F0FA /* stargrey.png */,
 				B5C26D761811C6F00064F180 /* default.png */,
@@ -376,7 +387,9 @@
 				F6189F9818131E8E00D1F0FA /* Images.xcassets in Resources */,
 				F6189FAF181343E000D1F0FA /* completeimage.png in Resources */,
 				B5C26D771811C6F00064F180 /* default.png in Resources */,
+				F6B016C71814803900DC974C /* takereelbutton.jpg in Resources */,
 				B5E0CAE918130DD80037EA3A /* Main.storyboard in Resources */,
+				F6B016C51814722800DC974C /* CameraOverlay.xib in Resources */,
 				F6189FB118134DF800D1F0FA /* star.png in Resources */,
 				F6189FB31813514000D1F0FA /* stargrey.png in Resources */,
 			);
@@ -402,6 +415,7 @@
 				F6189F8118131DA700D1F0FA /* InboxController.m in Sources */,
 				B5C9038C18032D5500448CE6 /* User.m in Sources */,
 				F6189FB81813942C00D1F0FA /* TabBarViewController.m in Sources */,
+				F6B016C41814722800DC974C /* CameraOverlay.m in Sources */,
 				B5F4919418087AA500F03C19 /* Reel.m in Sources */,
 				F6189F9318131E2D00D1F0FA /* SignUpPasswordController.m in Sources */,
 				F6189F9018131E1C00D1F0FA /* SignUpUsernameController.m in Sources */,
