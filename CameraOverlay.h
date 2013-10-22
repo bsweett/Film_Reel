@@ -17,8 +17,8 @@
 
 @property(nonatomic, strong) IBOutlet UITextView *countDownText;
 
+@property(nonatomic, strong) IBOutlet UIButton *cancelButton;
+
 @property(nonatomic, strong) NSTimer *timer;
-
-
 
 @end

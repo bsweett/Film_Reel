@@ -414,7 +414,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AXX-Hm-umg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1674" y="-355"/>
+            <point key="canvasLocation" x="2200" y="-355"/>
         </scene>
         <!--Friends Controller - Friends-->
         <scene sceneID="8mI-cB-VPB">
@@ -436,7 +436,7 @@
             </objects>
             <point key="canvasLocation" x="714" y="51"/>
         </scene>
-        <!--Camera Controller - Take A Reel-->
+        <!--Camera Controller - Current Reel-->
         <scene sceneID="90Y-Sb-uYA">
             <objects>
                 <viewController id="be7-Pz-a3I" customClass="CameraController" sceneMemberID="viewController">
@@ -447,13 +447,86 @@
                     <view key="view" contentMode="scaleToFill" id="BkY-ig-dgo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wnh-Mz-oND">
+                                <rect key="frame" x="0.0" y="58" width="99" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Create Reel">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="takeReelPressed:" destination="be7-Pz-a3I" eventType="touchUpInside" id="ahs-ME-bso"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PWX-TK-Bzc">
+                                <rect key="frame" x="229" y="58" width="71" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Send Reel">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendReelPressed:" destination="be7-Pz-a3I" eventType="touchUpInside" id="ygx-UH-WIA"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yDI-Zy-5wx">
+                                <rect key="frame" x="115" y="72" width="90" height="76"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LFK-8E-o9w">
+                                <rect key="frame" x="115" y="156" width="90" height="76"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PmK-YZ-lf7">
+                                <rect key="frame" x="115" y="240" width="90" height="76"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uwT-1X-6dA">
+                                <rect key="frame" x="115" y="324" width="90" height="76"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FZs-76-Y1N">
+                                <rect key="frame" x="115" y="408" width="90" height="76"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZM4-Am-gV8">
+                                <rect key="frame" x="231" y="489" width="69" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save Reel">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveReel:" destination="be7-Pz-a3I" eventType="touchUpInside" id="WGg-DD-moW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gzh-7n-arL">
+                                <rect key="frame" x="20" y="489" width="79" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Delete Reel">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteReel:" destination="be7-Pz-a3I" eventType="touchUpInside" id="ifo-mO-udt"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Take A Reel" image="TakeReelTab" id="nC7-pV-4uY"/>
+                    <navigationItem key="navigationItem" title="Current Reel" id="bNh-yu-J6d"/>
+                    <connections>
+                        <outlet property="deleteReel" destination="Gzh-7n-arL" id="rJ4-CS-YU7"/>
+                        <outlet property="image1" destination="yDI-Zy-5wx" id="eC1-Lv-VH8"/>
+                        <outlet property="image2" destination="LFK-8E-o9w" id="NyT-dL-cwg"/>
+                        <outlet property="image3" destination="PmK-YZ-lf7" id="6Eq-fJ-9B5"/>
+                        <outlet property="image4" destination="uwT-1X-6dA" id="BKc-zf-nFA"/>
+                        <outlet property="image5" destination="FZs-76-Y1N" id="sGC-yL-uP9"/>
+                        <outlet property="saveReel" destination="ZM4-Am-gV8" id="OQR-AT-YsA"/>
+                        <outlet property="sendReel" destination="PWX-TK-Bzc" id="KkA-Jz-jvi"/>
+                        <outlet property="takeReel" destination="Wnh-Mz-oND" id="zpV-O9-NoB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GSn-xi-tgp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1272" y="51"/>
+            <point key="canvasLocation" x="1798" y="51"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cRy-or-r5k">
@@ -486,7 +559,7 @@
                     <connections>
                         <segue destination="sye-qo-Uds" kind="relationship" relationship="viewControllers" id="1Lc-jN-stm"/>
                         <segue destination="aGF-4q-qUW" kind="relationship" relationship="viewControllers" id="s4f-j1-on0"/>
-                        <segue destination="be7-Pz-a3I" kind="relationship" relationship="viewControllers" id="WXy-C4-eSb"/>
+                        <segue destination="PkG-5h-swa" kind="relationship" relationship="viewControllers" id="WXy-C4-eSb"/>
                         <segue destination="e6X-Kw-yEx" kind="relationship" relationship="viewControllers" id="uua-0O-FJv"/>
                         <segue destination="52b-ye-RD6" kind="relationship" relationship="viewControllers" id="nO5-7o-H4h"/>
                     </connections>
@@ -513,6 +586,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k5F-Gg-UeF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
+        <!--Navigation Controller - Take A Reel-->
+        <scene sceneID="eQH-uv-Bx9">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PkG-5h-swa" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Take A Reel" image="TakeReelTab" id="nC7-pV-4uY"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2t1-lw-imL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="be7-Pz-a3I" kind="relationship" relationship="rootViewController" id="KnZ-PR-mi5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sNG-2n-09d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1272" y="51"/>
+        </scene>
     </scenes>
     <resources>
         <image name="FriendsTab" width="30" height="30"/>
@@ -522,9 +614,6 @@
         <image name="TakeReelTab" width="25" height="19"/>
         <image name="completeimage.png" width="200" height="198"/>
         <image name="default.png" width="128" height="128"/>
-        <image name="star.png" width="30" height="30"/>
-        <image name="star.png" width="30" height="30"/>
-        <image name="star.png" width="30" height="30"/>
         <image name="star.png" width="30" height="30"/>
         <image name="stargrey.png" width="30" height="30"/>
     </resources>
