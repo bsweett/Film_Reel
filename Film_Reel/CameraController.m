@@ -182,9 +182,9 @@
     //Draw images onto the context
     [first drawInRect:CGRectMake(0, 0, firstWidth, firstHeight)];
     [second drawInRect:CGRectMake(0, firstHeight, secondWidth, secondHeight)];
-    [first drawInRect:CGRectMake(0, firstHeight + secondHeight, thirdWidth, thirdHeight)];
-    [second drawInRect:CGRectMake(0, firstHeight + secondHeight + thirdHeight, fourthWidth, fourthHeight)];
-    [first drawInRect:CGRectMake(0, firstHeight + secondHeight + thirdHeight + fourthHeight, fifthWidth, fifthHeight)];
+    [third drawInRect:CGRectMake(0, firstHeight + secondHeight, thirdWidth, thirdHeight)];
+    [fourth drawInRect:CGRectMake(0, firstHeight + secondHeight + thirdHeight, fourthWidth, fourthHeight)];
+    [fifth drawInRect:CGRectMake(0, firstHeight + secondHeight + thirdHeight + fourthHeight, fifthWidth, fifthHeight)];
     
     // assign context to new UIImage
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
