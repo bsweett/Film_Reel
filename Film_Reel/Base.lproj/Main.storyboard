@@ -469,23 +469,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yDI-Zy-5wx">
-                                <rect key="frame" x="115" y="72" width="90" height="76"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LFK-8E-o9w">
-                                <rect key="frame" x="115" y="156" width="90" height="76"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PmK-YZ-lf7">
-                                <rect key="frame" x="115" y="240" width="90" height="76"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uwT-1X-6dA">
-                                <rect key="frame" x="115" y="324" width="90" height="76"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FZs-76-Y1N">
-                                <rect key="frame" x="115" y="408" width="90" height="76"/>
+                                <rect key="frame" x="68" y="81" width="185" height="409"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZM4-Am-gV8">
@@ -515,10 +499,7 @@
                     <connections>
                         <outlet property="deleteReel" destination="Gzh-7n-arL" id="rJ4-CS-YU7"/>
                         <outlet property="image1" destination="yDI-Zy-5wx" id="eC1-Lv-VH8"/>
-                        <outlet property="image2" destination="LFK-8E-o9w" id="NyT-dL-cwg"/>
-                        <outlet property="image3" destination="PmK-YZ-lf7" id="6Eq-fJ-9B5"/>
-                        <outlet property="image4" destination="uwT-1X-6dA" id="BKc-zf-nFA"/>
-                        <outlet property="image5" destination="FZs-76-Y1N" id="sGC-yL-uP9"/>
+                        <outlet property="photoStrip" destination="yDI-Zy-5wx" id="tnC-Um-PaH"/>
                         <outlet property="saveReel" destination="ZM4-Am-gV8" id="OQR-AT-YsA"/>
                         <outlet property="sendReel" destination="PWX-TK-Bzc" id="KkA-Jz-jvi"/>
                         <outlet property="takeReel" destination="Wnh-Mz-oND" id="zpV-O9-NoB"/>

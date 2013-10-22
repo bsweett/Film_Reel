@@ -18,7 +18,7 @@
 
 @implementation CameraController
 
-@synthesize cameraUI, overlay, moviePath, image1, image2, image3, image4, image5;
+@synthesize cameraUI, overlay, moviePath, image1, image2, image3, image4, image5, photoStrip;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -119,30 +119,80 @@
     
     CMTime time1 = CMTimeMake(1, 1);
     CGImageRef ref1 = [generate1 copyCGImageAtTime:time1 actualTime:NULL error:&err];
-    [image1 setImage:[[UIImage alloc] initWithCGImage:ref1]];
-    image1.contentMode = UIViewContentModeScaleAspectFit;
+    image1 = [[UIImage alloc] initWithCGImage:ref1];
     
     CMTime time2 = CMTimeMake(3, 1);
     CGImageRef ref2 = [generate1 copyCGImageAtTime:time2 actualTime:NULL error:&err];
-    [image2 setImage:[[UIImage alloc] initWithCGImage:ref2]];
-    image2.contentMode = UIViewContentModeScaleAspectFit;
+    image2 = [[UIImage alloc] initWithCGImage:ref2];
+  
     
     CMTime time3 = CMTimeMake(5, 1);
     CGImageRef ref3 = [generate1 copyCGImageAtTime:time3 actualTime:NULL error:&err];
-    [image3 setImage:[[UIImage alloc] initWithCGImage:ref3]];
-    image3.contentMode = UIViewContentModeScaleAspectFit;
+    image3 = [[UIImage alloc] initWithCGImage:ref3];
+   
     
     CMTime time4 = CMTimeMake(7, 1);
     CGImageRef ref4 = [generate1 copyCGImageAtTime:time4 actualTime:NULL error:&err];
-    [image4 setImage:[[UIImage alloc] initWithCGImage:ref4]];
-    image4.contentMode = UIViewContentModeScaleAspectFit;
+    image4 = [[UIImage alloc] initWithCGImage:ref4];
+    
     
     CMTime time5 = CMTimeMake(9, 1);
     CGImageRef ref5 = [generate1 copyCGImageAtTime:time5 actualTime:NULL error:&err];
-    [image5 setImage:[[UIImage alloc] initWithCGImage:ref5]];
-    image5.contentMode = UIViewContentModeScaleAspectFit;
+    image5 = [[UIImage alloc] initWithCGImage:ref5];
    
+    [photoStrip setImage:[self mergeImage:image1 withImage:image2 andImage:image3 andImage:image4 andImage:image5]];
     
+    photoStrip.contentMode = UIViewContentModeScaleAspectFit;
+    
+}
+
+- (UIImage*)mergeImage:(UIImage*)first withImage:(UIImage*)second andImage:(UIImage*)third andImage:(UIImage*)fourth andImage:(UIImage*)fifth
+{
+    // get size of the first image
+    CGImageRef firstImageRef = first.CGImage;
+    CGFloat firstWidth = CGImageGetWidth(firstImageRef);
+    CGFloat firstHeight = CGImageGetHeight(firstImageRef);
+    
+    // get size of the second image
+    CGImageRef secondImageRef = second.CGImage;
+    CGFloat secondWidth = CGImageGetWidth(secondImageRef);
+    CGFloat secondHeight = CGImageGetHeight(secondImageRef);
+    
+    // get size of the first image
+    CGImageRef thirdImageRef = third.CGImage;
+    CGFloat thirdWidth = CGImageGetWidth(thirdImageRef);
+    CGFloat thirdHeight = CGImageGetHeight(thirdImageRef);
+    
+    // get size of the second image
+    CGImageRef fourthImageRef = fourth.CGImage;
+    CGFloat fourthWidth = CGImageGetWidth(fourthImageRef);
+    CGFloat fourthHeight = CGImageGetHeight(fourthImageRef);
+    
+    // get size of the first image
+    CGImageRef fifthImageRef = fifth.CGImage;
+    CGFloat fifthWidth = CGImageGetWidth(fifthImageRef);
+    CGFloat fifthHeight = CGImageGetHeight(fifthImageRef);
+    
+    // build merged size
+    CGSize mergedSize = CGSizeMake(firstWidth, firstHeight + secondHeight + thirdHeight + fourthHeight + fifthHeight);
+    
+    // capture image context ref
+    UIGraphicsBeginImageContext(mergedSize);
+    
+    //Draw images onto the context
+    [first drawInRect:CGRectMake(0, 0, firstWidth, firstHeight)];
+    [second drawInRect:CGRectMake(0, firstHeight, secondWidth, secondHeight)];
+    [first drawInRect:CGRectMake(0, firstHeight + secondHeight, thirdWidth, thirdHeight)];
+    [second drawInRect:CGRectMake(0, firstHeight + secondHeight + thirdHeight, fourthWidth, fourthHeight)];
+    [first drawInRect:CGRectMake(0, firstHeight + secondHeight + thirdHeight + fourthHeight, fifthWidth, fifthHeight)];
+    
+    // assign context to new UIImage
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    // end context
+    UIGraphicsEndImageContext();
+    
+    return newImage;
 }
 
 - (void) recordPressed {
@@ -153,7 +203,6 @@
 -(void) recordFinished {
     NSLog(@"recording done");
     [self.cameraUI stopVideoCapture];
-    //[cameraUI dismissViewControllerAnimated:NO completion:nil];
 }
 
 -(void) closeCamera {

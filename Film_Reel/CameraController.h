@@ -16,11 +16,13 @@ UINavigationControllerDelegate>
 @property(nonatomic, strong) UIImagePickerController *cameraUI;
 @property(nonatomic, strong) CameraOverlay *overlay;
 
-@property(nonatomic, strong) IBOutlet UIImageView *image1;
-@property(nonatomic, strong) IBOutlet UIImageView *image2;
-@property(nonatomic, strong) IBOutlet UIImageView *image3;
-@property(nonatomic, strong) IBOutlet UIImageView *image4;
-@property(nonatomic, strong) IBOutlet UIImageView *image5;
+@property(nonatomic, strong) UIImage *image1;
+@property(nonatomic, strong) UIImage *image2;
+@property(nonatomic, strong) UIImage *image3;
+@property(nonatomic, strong) UIImage *image4;
+@property(nonatomic, strong) UIImage *image5;
+
+@property(nonatomic, strong) IBOutlet UIImageView *photoStrip;
 
 @property(nonatomic, strong) IBOutlet UIButton *takeReel;
 @property(nonatomic, strong) IBOutlet UIButton *sendReel;
