@@ -18,7 +18,7 @@
 
 @implementation CameraController
 
-@synthesize cameraUI, overlay, moviePath, images, image1, image2, image3, image4, image5;
+@synthesize cameraUI, overlay, moviePath, image1, image2, image3, image4, image5;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,10 +35,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordPressed) name:@"startRecord" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordFinished) name:@"stopRecord" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closeCamera) name:@"closeCamera" object:nil];
-    
-    images = [[NSMutableArray alloc]init];
-    
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processImage:) name:@"MPMoviePlayerThumbnailImageRequestDidFinishNotification" object:nil];
 }
 
 - (void)didReceiveMemoryWarning
