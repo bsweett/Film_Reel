@@ -7,6 +7,7 @@
 //
 
 #import "TabBarViewController.h"
+#import "UserXMLParser.h"
 
 @interface TabBarViewController ()
 

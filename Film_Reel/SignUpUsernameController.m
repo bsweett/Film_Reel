@@ -79,7 +79,7 @@
 // Validations --------------------------------------------------------------------
 - (BOOL)validateUserNameWithString:(NSString*)username
 {
-    if( username.length > MIN_ENTRY_SIZE && username.length < MAX_USERNAME_ENTRY )
+    if( username.length >= MIN_ENTRY_SIZE && username.length <= MAX_USERNAME_ENTRY )
     {
         NSString *nameRegex = @"[A-Z0-9a-z]*";
         NSPredicate *nameTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", nameRegex];

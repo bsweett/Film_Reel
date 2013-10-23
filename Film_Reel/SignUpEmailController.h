@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-#define MIN_EMAIL_ENTRY 2
-#define MAX_EMAIL_ENTRY 255
+#define MIN_EMAIL_ENTRY 3
+#define MAX_EMAIL_ENTRY 254
 
 @interface SignUpEmailController : UIViewController <UIAlertViewDelegate>
 
