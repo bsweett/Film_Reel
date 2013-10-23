@@ -7,12 +7,35 @@
 //
 
 #import <UIKit/UIKit.h>
-#include "CameraOverlay.h"
+#import "CameraOverlay.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface CameraController : UIViewController <UIImagePickerControllerDelegate,
 UINavigationControllerDelegate>
 
 @property(nonatomic, strong) UIImagePickerController *cameraUI;
 @property(nonatomic, strong) CameraOverlay *overlay;
+
+@property(nonatomic, strong) UIImage *image1;
+@property(nonatomic, strong) UIImage *image2;
+@property(nonatomic, strong) UIImage *image3;
+@property(nonatomic, strong) UIImage *image4;
+@property(nonatomic, strong) UIImage *image5;
+@property(nonatomic, strong) UIImage *frameImage;
+
+@property(nonatomic, strong) IBOutlet UIImageView *photoStrip;
+
+@property(nonatomic, strong) IBOutlet UIButton *takeReel;
+@property(nonatomic, strong) IBOutlet UIButton *sendReel;
+@property(nonatomic, strong) IBOutlet UIButton *saveReel;
+
+@property(nonatomic, strong) IBOutlet UIButton *deleteReel;
+
+@property(nonatomic, strong) NSURL *moviePath;
+
+@property(nonatomic, strong) NSMutableArray *images;
+
+- (void)recordPressed;
+- (void)recordFinished;
 
 @end

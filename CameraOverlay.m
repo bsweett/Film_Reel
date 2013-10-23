@@ -14,7 +14,7 @@
 
 @implementation CameraOverlay
 
-@synthesize takeReelImage, countDownText, timer;
+@synthesize takeReelImage, countDownText, timer, cancelButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,27 +40,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-// For responding to the user tapping Cancel.
-- (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker {
-    NSLog(@"Hello I got called");
-    [[picker parentViewController] dismissViewControllerAnimated:NO completion:nil];
-    [self.tabBarController setSelectedIndex:3];
-}
-
-// For responding to the user accepting a newly-captured picture or movie
-- (void) imagePickerController: (UIImagePickerController *) picker
- didFinishPickingMediaWithInfo: (NSDictionary *) info {
-    
-    NSString *moviePath = [[info objectForKey: UIImagePickerControllerMediaURL] path];
-    
-    if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (moviePath)) {
-        UISaveVideoAtPathToSavedPhotosAlbum (
-                                             moviePath, nil, nil, nil);
-    }
-    
-    [[picker parentViewController] dismissViewControllerAnimated:NO completion:nil];
-}
-
 -(void)singleTapping:(UIGestureRecognizer *)recognizer
 {
     NSLog(@"image click");
@@ -72,8 +51,15 @@
                                            userInfo:nil
                                             repeats:YES];
     remainingCount = 10;
-    
+    cancelButton.hidden = TRUE;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"startRecord" object:nil];
+}
 
+-(IBAction)cancelButtonPushed:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"closeCamera" object:nil];
+    
+    
 }
 
 -(void)countDown {
@@ -86,8 +72,12 @@
     if (--remainingCount == -1) {
         [timer invalidate];
         [countDownText setHidden:TRUE];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"stopRecord" object:nil];
     }
     
 }
 
+
+
 @end
+
