@@ -18,7 +18,7 @@
 
 @implementation CameraController
 
-@synthesize cameraUI, overlay, moviePath, image1, image2, image3, image4, image5, photoStrip;
+@synthesize cameraUI, overlay, moviePath, image1, image2, image3, image4, image5, photoStrip, finalImage, originalImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -140,9 +140,35 @@
     CGImageRef ref5 = [generate1 copyCGImageAtTime:time5 actualTime:NULL error:&err];
     image5 = [[UIImage alloc] initWithCGImage:ref5];
    
-    [photoStrip setImage:[self mergeImage:image1 withImage:image2 andImage:image3 andImage:image4 andImage:image5]];
+    originalImage = [self mergeImage:image1 withImage:image2 andImage:image3 andImage:image4 andImage:image5];
     
-    photoStrip.contentMode = UIViewContentModeScaleAspectFit;
+    
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    //CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    
+    CGSize imgSize = originalImage.size;
+    
+    float ratio = (screenWidth/2)/imgSize.width;
+    float scaledHeight=imgSize.height*ratio;
+    
+    photoStrip.frame = CGRectMake(0, 0, screenWidth/2, scaledHeight);
+        //photoStrip.center = photoStrip.superview.center;
+    
+    finalImage = [self imageWithImage:originalImage convertToSize:photoStrip.frame.size];
+    
+    [photoStrip setImage:finalImage];
+   // photoStrip.contentMode = UIViewContentModeScaleAspectFit;
+    
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(screenWidth/4,44, screenWidth/2,900)];
+    
+    [scrollView setContentSize:CGSizeMake(screenWidth/2,scaledHeight + 425)];
+    
+    
+    [scrollView addSubview:photoStrip];
+    
+    [self.view addSubview:scrollView];
+    
+    
     
 }
 
@@ -193,6 +219,14 @@
     UIGraphicsEndImageContext();
     
     return newImage;
+}
+
+- (UIImage *)imageWithImage:(UIImage *)image convertToSize:(CGSize)size {
+    UIGraphicsBeginImageContext(size);
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *destImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return destImage;
 }
 
 - (void) recordPressed {
