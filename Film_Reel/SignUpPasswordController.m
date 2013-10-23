@@ -77,7 +77,7 @@
 
 - (BOOL)validatePasswordWithString:(NSString*)pass
 {
-    if( pass.length > MIN_PASS_ENTRY && pass.length < MAX_PASSWORD_ENTRY )
+    if( pass.length >= MIN_PASS_ENTRY && pass.length <= MAX_PASSWORD_ENTRY )
     {
         NSString *passwordRegex = @"^[a-zA-Z_0-9\\-_,;.:#+*?=!§$%&/()@]+$";
         NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", passwordRegex];

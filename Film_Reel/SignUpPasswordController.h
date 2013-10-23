@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-#define MIN_PASS_ENTRY 7
-#define MAX_PASSWORD_ENTRY 19
+#define MIN_PASS_ENTRY 8
+#define MAX_PASSWORD_ENTRY 20
 
 @interface SignUpPasswordController : UIViewController <UIAlertViewDelegate>
 

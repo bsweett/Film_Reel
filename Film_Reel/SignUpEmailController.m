@@ -78,7 +78,7 @@
 
 - (BOOL)validateEmailWithString:(NSString*)emailaddress
 {
-    if(emailaddress.length > MIN_EMAIL_ENTRY && emailaddress.length < MAX_EMAIL_ENTRY)
+    if(emailaddress.length >= MIN_EMAIL_ENTRY && emailaddress.length <= MAX_EMAIL_ENTRY)
     {
         NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
         NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
