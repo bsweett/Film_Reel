@@ -21,6 +21,7 @@ UINavigationControllerDelegate>
 @property(nonatomic, strong) UIImage *image3;
 @property(nonatomic, strong) UIImage *image4;
 @property(nonatomic, strong) UIImage *image5;
+@property(nonatomic, strong) UIImage *frameImage;
 
 @property(nonatomic, strong) IBOutlet UIImageView *photoStrip;
 

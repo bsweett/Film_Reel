@@ -173,13 +173,13 @@
     CGFloat fifthWidth = CGImageGetWidth(fifthImageRef);
     CGFloat fifthHeight = CGImageGetHeight(fifthImageRef);
     
-    // build merged size
+    // build merged size 
     CGSize mergedSize = CGSizeMake(firstWidth, firstHeight + secondHeight + thirdHeight + fourthHeight + fifthHeight);
     
     // capture image context ref
     UIGraphicsBeginImageContext(mergedSize);
     
-    //Draw images onto the context
+     //Draw images onto the context
     [first drawInRect:CGRectMake(0, 0, firstWidth, firstHeight)];
     [second drawInRect:CGRectMake(0, firstHeight, secondWidth, secondHeight)];
     [third drawInRect:CGRectMake(0, firstHeight + secondHeight, thirdWidth, thirdHeight)];
