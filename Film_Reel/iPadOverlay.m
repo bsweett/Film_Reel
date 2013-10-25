@@ -1,18 +1,18 @@
 //
-//  CameraOverlay.m
+//  iPadOverlay.m
 //  Film_Reel
 //
-//  Created by Brayden Girard on 2013-10-20.
+//  Created by Ben Sweett on 10/24/2013.
 //  Copyright (c) 2013 Ben Sweett (100846396) and Brayden Girard (100852106). All rights reserved.
 //
 
-#import "CameraOverlay.h"
+#import "iPadOverlay.h"
 
-@interface CameraOverlay ()
+@interface iPadOverlay ()
 
 @end
 
-@implementation CameraOverlay
+@implementation iPadOverlay
 
 @synthesize takeReelImage, countDownText, timer, cancelButton;
 
@@ -28,7 +28,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     UITapGestureRecognizer *singleTap =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapping:)];
     [singleTap setNumberOfTapsRequired:1];
     [takeReelImage addGestureRecognizer:singleTap];
@@ -39,7 +38,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 -(void)singleTapping:(UIGestureRecognizer *)recognizer
 {
     NSLog(@"image click");
@@ -63,7 +61,7 @@
 }
 
 -(void)countDown {
-   
+    
     [countDownText setText:[NSString stringWithFormat:@"%d", remainingCount]];
     [countDownText setTextColor:[UIColor redColor]];
     [countDownText setFont:[UIFont boldSystemFontOfSize:40.0]];
@@ -80,4 +78,5 @@
 
 
 @end
+
 

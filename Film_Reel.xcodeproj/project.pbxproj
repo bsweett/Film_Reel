@@ -19,6 +19,11 @@
 		B506DB331800806C004991A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B506DB311800806C004991A4 /* InfoPlist.strings */; };
 		B506DB351800806C004991A4 /* Film_ReelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B506DB341800806C004991A4 /* Film_ReelTests.m */; };
 		B506DB401800857A004991A4 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B506DB3F1800857A004991A4 /* NetworkManager.m */; };
+		B56E78E31819BA5D008AE8D5 /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B56E78E21819BA5D008AE8D5 /* iPad.storyboard */; };
+		B56E78E51819BCD4008AE8D5 /* button14-20110808201840-00014.png in Resources */ = {isa = PBXBuildFile; fileRef = B56E78E41819BCD4008AE8D5 /* button14-20110808201840-00014.png */; };
+		B56E78EB181A00B5008AE8D5 /* iPadOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = B56E78E9181A00B5008AE8D5 /* iPadOverlay.m */; };
+		B56E78EC181A00B5008AE8D5 /* iPadOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = B56E78EA181A00B5008AE8D5 /* iPadOverlay.xib */; };
+		B56E78F0181A1F2B008AE8D5 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = B56E78EF181A1F2B008AE8D5 /* ALAssetsLibrary+CustomPhotoAlbum.m */; };
 		B58DD655180893540006BB4D /* UserXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B58DD654180893540006BB4D /* UserXMLParser.m */; };
 		B5C26D771811C6F00064F180 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C26D761811C6F00064F180 /* default.png */; };
 		B5C26D781811C6F00064F180 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C26D761811C6F00064F180 /* default.png */; };
@@ -80,6 +85,13 @@
 		B506DB341800806C004991A4 /* Film_ReelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Film_ReelTests.m; sourceTree = "<group>"; };
 		B506DB3E1800857A004991A4 /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		B506DB3F1800857A004991A4 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
+		B56E78E21819BA5D008AE8D5 /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
+		B56E78E41819BCD4008AE8D5 /* button14-20110808201840-00014.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button14-20110808201840-00014.png"; sourceTree = "<group>"; };
+		B56E78E8181A00B5008AE8D5 /* iPadOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadOverlay.h; sourceTree = "<group>"; };
+		B56E78E9181A00B5008AE8D5 /* iPadOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadOverlay.m; sourceTree = "<group>"; };
+		B56E78EA181A00B5008AE8D5 /* iPadOverlay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadOverlay.xib; sourceTree = "<group>"; };
+		B56E78EE181A1F2B008AE8D5 /* ALAssetsLibrary+CustomPhotoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALAssetsLibrary+CustomPhotoAlbum.h"; sourceTree = "<group>"; };
+		B56E78EF181A1F2B008AE8D5 /* ALAssetsLibrary+CustomPhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALAssetsLibrary+CustomPhotoAlbum.m"; sourceTree = "<group>"; };
 		B58DD653180893540006BB4D /* UserXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserXMLParser.h; sourceTree = "<group>"; };
 		B58DD654180893540006BB4D /* UserXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserXMLParser.m; sourceTree = "<group>"; };
 		B5C26D761811C6F00064F180 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
@@ -190,6 +202,7 @@
 		B506DB0F1800806C004991A4 /* Film_Reel */ = {
 			isa = PBXGroup;
 			children = (
+				B56E78ED181A1EFE008AE8D5 /* Add-on Code */,
 				F6189F99181327C300D1F0FA /* Images */,
 				B55134A11811E02700009FE9 /* View */,
 				B55134A01811D0F200009FE9 /* iPad */,
@@ -241,10 +254,14 @@
 		B55134A11811E02700009FE9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B5E0CAE718130DD80037EA3A /* Main.storyboard */,
+				B56E78E8181A00B5008AE8D5 /* iPadOverlay.h */,
+				B56E78E9181A00B5008AE8D5 /* iPadOverlay.m */,
+				B56E78EA181A00B5008AE8D5 /* iPadOverlay.xib */,
 				F6B016C11814722800DC974C /* CameraOverlay.h */,
 				F6B016C21814722800DC974C /* CameraOverlay.m */,
 				F6B016C31814722800DC974C /* CameraOverlay.xib */,
+				B56E78E21819BA5D008AE8D5 /* iPad.storyboard */,
+				B5E0CAE718130DD80037EA3A /* Main.storyboard */,
 				B5E0CAEB18130E120037EA3A /* ViewController.h */,
 				B5E0CAEC18130E120037EA3A /* ViewController.m */,
 				F6189FB61813942C00D1F0FA /* TabBarViewController.h */,
@@ -272,6 +289,15 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		B56E78ED181A1EFE008AE8D5 /* Add-on Code */ = {
+			isa = PBXGroup;
+			children = (
+				B56E78EE181A1F2B008AE8D5 /* ALAssetsLibrary+CustomPhotoAlbum.h */,
+				B56E78EF181A1F2B008AE8D5 /* ALAssetsLibrary+CustomPhotoAlbum.m */,
+			);
+			name = "Add-on Code";
+			sourceTree = "<group>";
+		};
 		B5C9038918032D3600448CE6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,6 +323,7 @@
 		F6189F99181327C300D1F0FA /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B56E78E41819BCD4008AE8D5 /* button14-20110808201840-00014.png */,
 				F6189FAE181343E000D1F0FA /* completeimage.png */,
 				F6B35AF4181569E7006FFFC9 /* takeareelbuttonhighlighted.png */,
 				F6B35AF5181569E7006FFFC9 /* takereelbutton.png */,
@@ -390,7 +417,10 @@
 				F6B35AF6181569E7006FFFC9 /* takeareelbuttonhighlighted.png in Resources */,
 				F6189F9818131E8E00D1F0FA /* Images.xcassets in Resources */,
 				F6189FAF181343E000D1F0FA /* completeimage.png in Resources */,
+				B56E78EC181A00B5008AE8D5 /* iPadOverlay.xib in Resources */,
 				B5C26D771811C6F00064F180 /* default.png in Resources */,
+				B56E78E51819BCD4008AE8D5 /* button14-20110808201840-00014.png in Resources */,
+				B56E78E31819BA5D008AE8D5 /* iPad.storyboard in Resources */,
 				B5E0CAE918130DD80037EA3A /* Main.storyboard in Resources */,
 				F6B016C51814722800DC974C /* CameraOverlay.xib in Resources */,
 				F6189FB118134DF800D1F0FA /* star.png in Resources */,
@@ -431,8 +461,10 @@
 				B506DB1A1800806C004991A4 /* AppDelegate.m in Sources */,
 				F6189F8418131DB500D1F0FA /* ProfileController.m in Sources */,
 				B5E0CAED18130E120037EA3A /* ViewController.m in Sources */,
+				B56E78F0181A1F2B008AE8D5 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,
 				F6189F8718131DC700D1F0FA /* FriendsController.m in Sources */,
 				B506DB161800806C004991A4 /* main.m in Sources */,
+				B56E78EB181A00B5008AE8D5 /* iPadOverlay.m in Sources */,
 				B58DD655180893540006BB4D /* UserXMLParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

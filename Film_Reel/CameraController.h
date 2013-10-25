@@ -8,13 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "CameraOverlay.h"
+#import "iPadOverlay.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface CameraController : UIViewController <UIImagePickerControllerDelegate,
 UINavigationControllerDelegate>
 
 @property(nonatomic, strong) UIImagePickerController *cameraUI;
-@property(nonatomic, strong) CameraOverlay *overlay;
+@property CameraOverlay *overlay;
+@property iPadOverlay* iPadoverlay;
 
 @property(nonatomic, strong) UIImage *image1;
 @property(nonatomic, strong) UIImage *image2;

@@ -8,9 +8,11 @@
 
 #import "CameraController.h"
 #import "MobileCoreServices/UTCoreTypes.h"
+#import "ALAssetsLibrary+CustomPhotoAlbum.h"
 #import <AVFoundation/AVAssetImageGenerator.h>
 #import <AVFoundation/AVAsset.h>
 #import <CoreMedia/CMTimeRange.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @interface CameraController ()
 
@@ -18,7 +20,7 @@
 
 @implementation CameraController
 
-@synthesize cameraUI, overlay, moviePath, image1, image2, image3, image4, image5, photoStrip, finalImage, originalImage;
+@synthesize cameraUI, overlay, moviePath, image1, image2, image3, image4, image5, photoStrip, finalImage, originalImage, iPadoverlay;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -50,13 +52,37 @@
 -(IBAction)sendReelPressed:(id)sender {
     
 }
-
+    
 -(IBAction)saveReel:(id)sender {
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    
+    if(finalImage != NULL)
+    {
+        [library saveImage:finalImage toAlbum:@"My Reels" withCompletionBlock: ^(NSError *error){
+            if (error != nil) {
+                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"ERROR" message:[NSString stringWithFormat:@"IMAGE SAVE FAILED"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                [alert show];
+            } else {
+                UIAlertView *myal = [[UIAlertView alloc] initWithTitle:@"Success" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+                [myal show];
+                [self performSelector:@selector(test:) withObject:myal afterDelay:2];
+            }
+        }];
+    } else
+    {
+        UIAlertView *myal = [[UIAlertView alloc] initWithTitle:@"No Reel" message:@"No Reel has be taken" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+        [myal show];
+        [self performSelector:@selector(test:) withObject:myal afterDelay:2];
+    }
     
 }
 
+-(void)test:(UIAlertView*)x{
+	[x dismissWithClickedButtonIndex:-1 animated:YES];
+}
+
 -(IBAction)deleteReel:(id)sender {
-    
+    photoStrip.image = nil;
 }
 
 
@@ -85,8 +111,16 @@
     
     cameraUI.delegate = self;
     
-    overlay = [[CameraOverlay alloc] initWithNibName:@"CameraOverlay" bundle:nil];
-    cameraUI.cameraOverlayView = overlay.view;
+    // Check Device to load specific view
+    if([[UIDevice currentDevice].model isEqualToString:@"iPad"]) {
+       iPadoverlay = [[iPadOverlay alloc] initWithNibName:@"iPadOverlay" bundle:nil];
+        cameraUI.cameraOverlayView = iPadoverlay.view;
+    } else {
+        overlay = [[CameraOverlay alloc] initWithNibName:@"CameraOverlay" bundle:nil];
+        cameraUI.cameraOverlayView = overlay.view;
+    }
+    
+    
     //[cameraUI setDelegate:overlay];
     
     [controller presentViewController:cameraUI animated:NO completion:nil];
