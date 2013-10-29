@@ -16,7 +16,6 @@
 
 @implementation MyReelsController
 
-@synthesize imagePicker;
 @synthesize assets;
 @synthesize urlStoreArr;
 @synthesize library;
@@ -26,7 +25,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        imagePicker = [[UIImagePickerController alloc]init];
     }
     return self;
 }
@@ -35,7 +33,10 @@
 {
     [super viewDidLoad];
     
+    sleep(5);
     [self loadAllReels];
+    
+    
 	// Do any additional setup after loading the view.
 }
 
@@ -74,6 +75,8 @@
                           failureBlock: ^(NSError *error) {
                               NSLog(@"Failure");
                           }];
+
+    
     [self loadImages];
     
 }

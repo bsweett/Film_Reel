@@ -11,10 +11,11 @@
 
 @interface MyReelsController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
-@property (strong, retain) UIImagePickerController *imagePicker;
+//Has to be done via the ALAssets Library
 @property (strong, retain) NSMutableArray* assets;
 @property (strong, nonatomic) NSMutableArray* urlStoreArr;
 @property (strong, nonatomic) ALAssetsLibrary * library;
+
 @property(nonatomic, strong) IBOutlet UIImageView *imageview;
 
 @end
