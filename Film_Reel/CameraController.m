@@ -20,7 +20,11 @@
 
 @implementation CameraController
 
-@synthesize cameraUI, overlay, moviePath, image1, image2, image3, image4, image5, photoStrip, finalImage, originalImage, iPadoverlay;
+@synthesize image1, image2, image3, image4, image5, combinedImage, stripImage, frameImage;
+@synthesize takeReel, sendReel, saveReel;
+@synthesize cameraUI, cameraOverlay, iPadoverlay;
+@synthesize moviePath;
+@synthesize photoStrip;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -56,9 +60,9 @@
 -(IBAction)saveReel:(id)sender {
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
     
-    if(finalImage != NULL)
+    if(frameImage != NULL)
     {
-        [library saveImage:finalImage toAlbum:@"My Reels" withCompletionBlock: ^(NSError *error){
+        [library saveImage:frameImage toAlbum:@"My Reels" withCompletionBlock: ^(NSError *error){
             if (error != nil) {
                 UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"ERROR" message:[NSString stringWithFormat:@"IMAGE SAVE FAILED"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                 [alert show];
@@ -80,11 +84,6 @@
 -(void)test:(UIAlertView*)x{
 	[x dismissWithClickedButtonIndex:-1 animated:YES];
 }
-
--(IBAction)deleteReel:(id)sender {
-    photoStrip.image = nil;
-}
-
 
 - (BOOL) startCameraControllerFromViewController: (UIViewController*) controller
                                    usingDelegate: (id <UIImagePickerControllerDelegate,
@@ -116,12 +115,9 @@
        iPadoverlay = [[iPadOverlay alloc] initWithNibName:@"iPadOverlay" bundle:nil];
         cameraUI.cameraOverlayView = iPadoverlay.view;
     } else {
-        overlay = [[CameraOverlay alloc] initWithNibName:@"CameraOverlay" bundle:nil];
-        cameraUI.cameraOverlayView = overlay.view;
+        cameraOverlay = [[CameraOverlay alloc] initWithNibName:@"CameraOverlay" bundle:nil];
+        cameraUI.cameraOverlayView = cameraOverlay.view;
     }
-    
-    
-    //[cameraUI setDelegate:overlay];
     
     [controller presentViewController:cameraUI animated:NO completion:nil];
     
@@ -137,13 +133,48 @@
     
     [[picker parentViewController] dismissViewControllerAnimated:NO completion:nil];
     
-    [self getMovieClips];
+    [self convertVideo];
     
     [cameraUI dismissViewControllerAnimated:NO completion:nil];
 
     
 }
 
+// Takes the video and converts it to a film strip
+-(void)convertVideo
+{
+    [self getMovieClips];
+    
+    stripImage = [self mergeImage:image1 withImage:image2 andImage:image3 andImage:image4 andImage:image5];
+    
+    
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    
+    CGSize imgSize = stripImage.size;
+    
+    float ratio = (screenWidth/2)/imgSize.width;
+    float scaledHeight=imgSize.height*ratio;
+    
+    photoStrip.frame = CGRectMake(0, 0, screenWidth/2, scaledHeight);
+    
+    combinedImage = [self imageWithImage:stripImage convertToSize:photoStrip.frame.size];
+    frameImage = [self addBorder:combinedImage];
+    
+    [photoStrip setImage:frameImage];
+    
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(screenWidth/4,74, screenWidth/2,415)];
+    
+    [scrollView setShowsVerticalScrollIndicator:FALSE];
+    
+    [scrollView setContentSize:CGSizeMake(screenWidth/2,scaledHeight)];
+    
+    
+    [scrollView addSubview:photoStrip];
+    
+    [self.view addSubview:scrollView];
+}
+
+// Clips five image from the video
 -(void)getMovieClips
 {
     AVURLAsset *asset1 = [[AVURLAsset alloc] initWithURL:moviePath options:nil];
@@ -173,88 +204,49 @@
     CMTime time5 = CMTimeMake(9, 1);
     CGImageRef ref5 = [generate1 copyCGImageAtTime:time5 actualTime:NULL error:&err];
     image5 = [[UIImage alloc] initWithCGImage:ref5];
-   
-    originalImage = [self mergeImage:image1 withImage:image2 andImage:image3 andImage:image4 andImage:image5];
-    
-    
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    //CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    
-    CGSize imgSize = originalImage.size;
-    
-    float ratio = (screenWidth/2)/imgSize.width;
-    float scaledHeight=imgSize.height*ratio;
-    
-    photoStrip.frame = CGRectMake(0, 0, screenWidth/2, scaledHeight);
-        //photoStrip.center = photoStrip.superview.center;
-    
-    finalImage = [self imageWithImage:originalImage convertToSize:photoStrip.frame.size];
-    
-    [photoStrip setImage:finalImage];
-   // photoStrip.contentMode = UIViewContentModeScaleAspectFit;
-    
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(screenWidth/4,44, screenWidth/2,900)];
-    
-    [scrollView setContentSize:CGSizeMake(screenWidth/2,scaledHeight + 425)];
-    
-    
-    [scrollView addSubview:photoStrip];
-    
-    [self.view addSubview:scrollView];
-    
-    
-    
 }
 
+// Merges the five images together into one "film strip" image
 - (UIImage*)mergeImage:(UIImage*)first withImage:(UIImage*)second andImage:(UIImage*)third andImage:(UIImage*)fourth andImage:(UIImage*)fifth
 {
-    // get size of the first image
     CGImageRef firstImageRef = first.CGImage;
     CGFloat firstWidth = CGImageGetWidth(firstImageRef);
     CGFloat firstHeight = CGImageGetHeight(firstImageRef);
     
-    // get size of the second image
     CGImageRef secondImageRef = second.CGImage;
     CGFloat secondWidth = CGImageGetWidth(secondImageRef);
     CGFloat secondHeight = CGImageGetHeight(secondImageRef);
     
-    // get size of the first image
     CGImageRef thirdImageRef = third.CGImage;
     CGFloat thirdWidth = CGImageGetWidth(thirdImageRef);
     CGFloat thirdHeight = CGImageGetHeight(thirdImageRef);
     
-    // get size of the second image
     CGImageRef fourthImageRef = fourth.CGImage;
     CGFloat fourthWidth = CGImageGetWidth(fourthImageRef);
     CGFloat fourthHeight = CGImageGetHeight(fourthImageRef);
     
-    // get size of the first image
     CGImageRef fifthImageRef = fifth.CGImage;
     CGFloat fifthWidth = CGImageGetWidth(fifthImageRef);
     CGFloat fifthHeight = CGImageGetHeight(fifthImageRef);
     
-    // build merged size 
     CGSize mergedSize = CGSizeMake(firstWidth, firstHeight + secondHeight + thirdHeight + fourthHeight + fifthHeight);
     
-    // capture image context ref
     UIGraphicsBeginImageContext(mergedSize);
-    
-     //Draw images onto the context
+
     [first drawInRect:CGRectMake(0, 0, firstWidth, firstHeight)];
     [second drawInRect:CGRectMake(0, firstHeight, secondWidth, secondHeight)];
     [third drawInRect:CGRectMake(0, firstHeight + secondHeight, thirdWidth, thirdHeight)];
     [fourth drawInRect:CGRectMake(0, firstHeight + secondHeight + thirdHeight, fourthWidth, fourthHeight)];
     [fifth drawInRect:CGRectMake(0, firstHeight + secondHeight + thirdHeight + fourthHeight, fifthWidth, fifthHeight)];
     
-    // assign context to new UIImage
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     
-    // end context
     UIGraphicsEndImageContext();
     
     return newImage;
 }
 
+// Converts the size of the image to fit the display
 - (UIImage *)imageWithImage:(UIImage *)image convertToSize:(CGSize)size {
     UIGraphicsBeginImageContext(size);
     [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
@@ -263,21 +255,50 @@
     return destImage;
 }
 
+// Adds a border line between the images
+- (UIImage*)addBorder:(UIImage*)image
+{
+    UIImage *seperator = [UIImage imageNamed:@"seperator.png"];
+    
+    CGImageRef imageRef = image.CGImage;
+    CGFloat firstWidth = CGImageGetWidth(imageRef);
+    CGFloat firstHeight = CGImageGetHeight(imageRef);
+    
+    CGSize mergedSize = CGSizeMake(firstWidth, firstHeight + 20);
+    
+    UIGraphicsBeginImageContext(mergedSize);
+    
+    CGFloat heightSep = (firstHeight/5);
+    
+    [image drawInRect:CGRectMake(0, 0, firstWidth, firstHeight)];
+    [seperator drawInRect:CGRectMake(0,heightSep - 7, 320, 10)];
+    [seperator drawInRect:CGRectMake(0,(heightSep*2) - 7, 320, 10)];
+    [seperator drawInRect:CGRectMake(0,(heightSep*3) - 7, 320, 10)];
+    [seperator drawInRect:CGRectMake(0,(heightSep*4) - 7, 320, 10)];
+    
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
+
+// When the record button is pressed
+// Start the video and timer
 - (void) recordPressed {
-    NSLog(@"lets record");
     [self.cameraUI startVideoCapture];
 }
 
+// After a 10 second timer expires
+// Stop the video from recording
 -(void) recordFinished {
-    NSLog(@"recording done");
     [self.cameraUI stopVideoCapture];
 }
 
+// When the cancel button on the camera is pressed
+// Close the camera view
 -(void) closeCamera {
-    NSLog(@"close camera");
-    
     [cameraUI dismissViewControllerAnimated:NO completion:nil];
-    
 }
 
 @end

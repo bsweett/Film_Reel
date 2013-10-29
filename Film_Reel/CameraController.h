@@ -15,7 +15,7 @@
 UINavigationControllerDelegate>
 
 @property(nonatomic, strong) UIImagePickerController *cameraUI;
-@property CameraOverlay *overlay;
+@property CameraOverlay *cameraOverlay;
 @property iPadOverlay* iPadoverlay;
 
 @property(nonatomic, strong) UIImage *image1;
@@ -23,21 +23,17 @@ UINavigationControllerDelegate>
 @property(nonatomic, strong) UIImage *image3;
 @property(nonatomic, strong) UIImage *image4;
 @property(nonatomic, strong) UIImage *image5;
-@property(nonatomic, strong) UIImage *originalImage;
-@property(nonatomic, strong) UIImage *finalImage;
+@property(nonatomic, strong) UIImage *stripImage;
+@property(nonatomic, strong) UIImage *combinedImage;
 @property(nonatomic, strong) UIImage *frameImage;
 
 @property(nonatomic, strong) IBOutlet UIImageView *photoStrip;
 
-@property(nonatomic, strong) IBOutlet UIButton *takeReel;
-@property(nonatomic, strong) IBOutlet UIButton *sendReel;
-@property(nonatomic, strong) IBOutlet UIButton *saveReel;
-
-@property(nonatomic, strong) IBOutlet UIButton *deleteReel;
+@property(nonatomic, strong) IBOutlet UIBarButtonItem *takeReel;
+@property(nonatomic, strong) IBOutlet UIBarButtonItem *sendReel;
+@property(nonatomic, strong) IBOutlet UIBarButtonItem *saveReel;
 
 @property(nonatomic, strong) NSURL *moviePath;
-
-@property(nonatomic, strong) NSMutableArray *images;
 
 - (void)recordPressed;
 - (void)recordFinished;

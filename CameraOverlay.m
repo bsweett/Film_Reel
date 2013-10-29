@@ -58,8 +58,6 @@
 -(IBAction)cancelButtonPushed:(id)sender
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"closeCamera" object:nil];
-    
-    
 }
 
 -(void)countDown {
@@ -74,7 +72,6 @@
         [countDownText setHidden:TRUE];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"stopRecord" object:nil];
     }
-    
 }
 
 
