@@ -9,13 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "NetworkManager.h"
 
-@interface UserXMLParser : NSObject <NSXMLParserDelegate>
+@interface Networking : NSObject
 
-@property(nonatomic, strong) NSXMLParser *parser;
 @property(nonatomic, strong, readwrite) NSURLConnection * connection;
 @property(nonatomic, strong) NSMutableData * data;
 
-- (void) startReceive;
+- (void) startReceive: (NSString*) defaultURL;
 - (BOOL)isReceiving;
 - (void) receiveDidStart;
 - (void) receiveDidStopWithStatus: (NSString *) status;

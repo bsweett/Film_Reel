@@ -6,13 +6,12 @@
 //  Copyright (c) 2013 Ben Sweett (100846396) and Brayden Girard (100852106). All rights reserved.
 //
 
-#import "UserXMLParser.h"
+#import "Networking.h"
 
-static NSString * defaultURL = @""; // This will have to be hardcoded to an XML page generated on appache server
+//static NSString * defaultURL = @""; // This will have to be hardcoded
 
-@implementation UserXMLParser
+@implementation Networking
 
-@synthesize parser;
 @synthesize connection;
 @synthesize data;
 
@@ -31,7 +30,7 @@ static NSString * defaultURL = @""; // This will have to be hardcoded to an XML 
     return self;
 }
 
-- (void) startReceive
+- (void) startReceive: (NSString *) defaultURL
 {
     BOOL succuss;
     NSURL  * address;
@@ -107,7 +106,10 @@ static NSString * defaultURL = @""; // This will have to be hardcoded to an XML 
 // would either display or log the actual error.
 {
     assert(theConnection == self.connection);
-    NSLog(@"%@",[error localizedDescription]);
+    
+    NSString * message = [error localizedDescription];
+    UIAlertView* err = [[UIAlertView alloc] initWithTitle: @"Request Failed" message: message delegate: self cancelButtonTitle: @"Ok" otherButtonTitles: nil];
+    [err show];
     [self stopReceiveWithStatus:@"Connection failed"];
 }
 
@@ -120,14 +122,7 @@ static NSString * defaultURL = @""; // This will have to be hardcoded to an XML 
     
     [self stopReceiveWithStatus:nil];
     
-    parser = [[NSXMLParser alloc] initWithData:data];
-    [parser setDelegate:self];
-    [parser parse];
-    
-    for( int i = 0; i < 10; i++ )
-    {
        // Data is finished loading update accordingly
-    }
     
 }
 
