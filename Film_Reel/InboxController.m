@@ -14,11 +14,15 @@
 
 @implementation InboxController
 
+@synthesize tablearray;
+@synthesize indox;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        tablearray = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -32,6 +36,34 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%ld%ld", (long)indexPath.section, (long)indexPath.row];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        
+        cell.backgroundColor = [UIColor clearColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+        cell.backgroundView.opaque = NO;
+        
+        cell.textLabel.backgroundColor = [UIColor clearColor];
+        cell.textLabel.opaque = NO;
+        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.textLabel.highlightedTextColor = [UIColor whiteColor];
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
+
+        
+        cell.accessoryView=UITableViewCellAccessoryNone;
+        
+    }
+    
+    // Set up the cell...
+    [[cell textLabel] setText: [tablearray objectAtIndex:indexPath.row]] ;
+    
+    return cell;
 }
 
 @end

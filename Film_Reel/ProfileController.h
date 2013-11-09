@@ -7,7 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
 
-@interface ProfileController : UIViewController
+@interface ProfileController : UIViewController <UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
+// These local view variables must be mapped to the User object sent from the server at login in
+
+@property (strong, retain) IBOutlet UITextView* name;
+@property (strong, retain) IBOutlet UITextView* email;
+@property (strong, retain) IBOutlet UITextView* bio;
+@property (strong, retain) IBOutlet UITextView* location;
+@property (strong, retain) IBOutlet UIButton *edit;
+@property (strong, retain) IBOutlet UIButton *cancel;
+@property (strong, retain) IBOutlet UIButton *imageButton;
+@property (strong, retain) IBOutlet UIImageView * displaypicture;
+
+@property (strong,retain) NSString* saveBio;
+@property (strong,retain) NSString* saveName;
+@property (strong,retain) NSString* saveLocation;
+@property (strong,retain) UIImage* savedImage;
+@property (nonatomic) int* popular;
+
 
 @end

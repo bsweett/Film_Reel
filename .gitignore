@@ -1,7 +1,16 @@
-build/*
-.DS_Store
-*.xccheckout
-*.mode1v3
-.svn
+# files created by Xcode 3 or older
 *.pbxuser
-profile
+*.mode1
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcclassmodel/
+# files created by Xcode 4
+xcuserdata/
+# build products
+*.build/
+build/
+DerivedData/
+# Misc
+.svn
+.DS_Store

@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface InboxController : UIViewController
+@interface InboxController : UIViewController <UITableViewDelegate>
+
+@property (strong, retain) IBOutlet UITableView * indox;
+@property (strong, retain) NSMutableArray* tablearray;
+
 
 @end
