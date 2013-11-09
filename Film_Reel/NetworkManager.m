@@ -31,7 +31,7 @@
     return sSharedInstance;
 }
 
-- (NSURL *)smartURLForString:(NSString *)str
+- (NSURL *) smartURLForString:(NSString *)str
 {
     NSURL *     result;
     NSString *  trimmedStr;

@@ -24,7 +24,7 @@
 		B56E78EB181A00B5008AE8D5 /* iPadOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = B56E78E9181A00B5008AE8D5 /* iPadOverlay.m */; };
 		B56E78EC181A00B5008AE8D5 /* iPadOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = B56E78EA181A00B5008AE8D5 /* iPadOverlay.xib */; };
 		B56E78F0181A1F2B008AE8D5 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = B56E78EF181A1F2B008AE8D5 /* ALAssetsLibrary+CustomPhotoAlbum.m */; };
-		B58DD655180893540006BB4D /* UserXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B58DD654180893540006BB4D /* UserXMLParser.m */; };
+		B58DD655180893540006BB4D /* Networking.m in Sources */ = {isa = PBXBuildFile; fileRef = B58DD654180893540006BB4D /* Networking.m */; };
 		B5C26D771811C6F00064F180 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C26D761811C6F00064F180 /* default.png */; };
 		B5C26D781811C6F00064F180 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C26D761811C6F00064F180 /* default.png */; };
 		B5C9038C18032D5500448CE6 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C9038B18032D5500448CE6 /* User.m */; };
@@ -40,8 +40,6 @@
 		F6189F8418131DB500D1F0FA /* ProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F8318131DB500D1F0FA /* ProfileController.m */; };
 		F6189F8718131DC700D1F0FA /* FriendsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F8618131DC700D1F0FA /* FriendsController.m */; };
 		F6189F8A18131DD800D1F0FA /* SignUpEmailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F8918131DD800D1F0FA /* SignUpEmailController.m */; };
-		F6189F9018131E1C00D1F0FA /* SignUpUsernameController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F8F18131E1C00D1F0FA /* SignUpUsernameController.m */; };
-		F6189F9318131E2D00D1F0FA /* SignUpPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F9218131E2D00D1F0FA /* SignUpPasswordController.m */; };
 		F6189F9618131E3C00D1F0FA /* SignUpCompleteController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F9518131E3C00D1F0FA /* SignUpCompleteController.m */; };
 		F6189F9818131E8E00D1F0FA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6189F9718131E8E00D1F0FA /* Images.xcassets */; };
 		F6189FAF181343E000D1F0FA /* completeimage.png in Resources */ = {isa = PBXBuildFile; fileRef = F6189FAE181343E000D1F0FA /* completeimage.png */; };
@@ -90,8 +88,8 @@
 		B56E78EA181A00B5008AE8D5 /* iPadOverlay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadOverlay.xib; sourceTree = "<group>"; };
 		B56E78EE181A1F2B008AE8D5 /* ALAssetsLibrary+CustomPhotoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALAssetsLibrary+CustomPhotoAlbum.h"; sourceTree = "<group>"; };
 		B56E78EF181A1F2B008AE8D5 /* ALAssetsLibrary+CustomPhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALAssetsLibrary+CustomPhotoAlbum.m"; sourceTree = "<group>"; };
-		B58DD653180893540006BB4D /* UserXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserXMLParser.h; sourceTree = "<group>"; };
-		B58DD654180893540006BB4D /* UserXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserXMLParser.m; sourceTree = "<group>"; };
+		B58DD653180893540006BB4D /* Networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Networking.h; sourceTree = "<group>"; };
+		B58DD654180893540006BB4D /* Networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Networking.m; sourceTree = "<group>"; };
 		B5C26D761811C6F00064F180 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
 		B5C9038A18032D5500448CE6 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		B5C9038B18032D5500448CE6 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
@@ -111,10 +109,6 @@
 		F6189F8618131DC700D1F0FA /* FriendsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsController.m; sourceTree = "<group>"; };
 		F6189F8818131DD800D1F0FA /* SignUpEmailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpEmailController.h; sourceTree = "<group>"; };
 		F6189F8918131DD800D1F0FA /* SignUpEmailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpEmailController.m; sourceTree = "<group>"; };
-		F6189F8E18131E1C00D1F0FA /* SignUpUsernameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpUsernameController.h; sourceTree = "<group>"; };
-		F6189F8F18131E1C00D1F0FA /* SignUpUsernameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpUsernameController.m; sourceTree = "<group>"; };
-		F6189F9118131E2D00D1F0FA /* SignUpPasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpPasswordController.h; sourceTree = "<group>"; };
-		F6189F9218131E2D00D1F0FA /* SignUpPasswordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpPasswordController.m; sourceTree = "<group>"; };
 		F6189F9418131E3C00D1F0FA /* SignUpCompleteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpCompleteController.h; sourceTree = "<group>"; };
 		F6189F9518131E3C00D1F0FA /* SignUpCompleteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpCompleteController.m; sourceTree = "<group>"; };
 		F6189F9718131E8E00D1F0FA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -270,10 +264,6 @@
 				F6189F8618131DC700D1F0FA /* FriendsController.m */,
 				F6189F8818131DD800D1F0FA /* SignUpEmailController.h */,
 				F6189F8918131DD800D1F0FA /* SignUpEmailController.m */,
-				F6189F8E18131E1C00D1F0FA /* SignUpUsernameController.h */,
-				F6189F8F18131E1C00D1F0FA /* SignUpUsernameController.m */,
-				F6189F9118131E2D00D1F0FA /* SignUpPasswordController.h */,
-				F6189F9218131E2D00D1F0FA /* SignUpPasswordController.m */,
 				F6189F9418131E3C00D1F0FA /* SignUpCompleteController.h */,
 				F6189F9518131E3C00D1F0FA /* SignUpCompleteController.m */,
 				F6189F9718131E8E00D1F0FA /* Images.xcassets */,
@@ -304,8 +294,8 @@
 			children = (
 				B506DB3E1800857A004991A4 /* NetworkManager.h */,
 				B506DB3F1800857A004991A4 /* NetworkManager.m */,
-				B58DD653180893540006BB4D /* UserXMLParser.h */,
-				B58DD654180893540006BB4D /* UserXMLParser.m */,
+				B58DD653180893540006BB4D /* Networking.h */,
+				B58DD654180893540006BB4D /* Networking.m */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -440,8 +430,6 @@
 				B5C9038C18032D5500448CE6 /* User.m in Sources */,
 				F6189FB81813942C00D1F0FA /* TabBarViewController.m in Sources */,
 				F6B016C41814722800DC974C /* CameraOverlay.m in Sources */,
-				F6189F9318131E2D00D1F0FA /* SignUpPasswordController.m in Sources */,
-				F6189F9018131E1C00D1F0FA /* SignUpUsernameController.m in Sources */,
 				F6189F8A18131DD800D1F0FA /* SignUpEmailController.m in Sources */,
 				B506DB401800857A004991A4 /* NetworkManager.m in Sources */,
 				F6189F9618131E3C00D1F0FA /* SignUpCompleteController.m in Sources */,
@@ -453,7 +441,7 @@
 				F6189F8718131DC700D1F0FA /* FriendsController.m in Sources */,
 				B506DB161800806C004991A4 /* main.m in Sources */,
 				B56E78EB181A00B5008AE8D5 /* iPadOverlay.m in Sources */,
-				B58DD655180893540006BB4D /* UserXMLParser.m in Sources */,
+				B58DD655180893540006BB4D /* Networking.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
