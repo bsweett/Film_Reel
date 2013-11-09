@@ -51,6 +51,7 @@
 		F6189FB31813514000D1F0FA /* stargrey.png in Resources */ = {isa = PBXBuildFile; fileRef = F6189FB21813514000D1F0FA /* stargrey.png */; };
 		F6189FB5181389C900D1F0FA /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6189FB4181389C900D1F0FA /* MobileCoreServices.framework */; };
 		F6189FB81813942C00D1F0FA /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189FB71813942C00D1F0FA /* TabBarViewController.m */; };
+		F628B205181FFCD10044073D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F628B204181FFCD10044073D /* QuartzCore.framework */; };
 		F6B016C41814722800DC974C /* CameraOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B016C21814722800DC974C /* CameraOverlay.m */; };
 		F6B016C51814722800DC974C /* CameraOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6B016C31814722800DC974C /* CameraOverlay.xib */; };
 		F6B35AF6181569E7006FFFC9 /* takeareelbuttonhighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B35AF4181569E7006FFFC9 /* takeareelbuttonhighlighted.png */; };
@@ -131,6 +132,7 @@
 		F6189FB4181389C900D1F0FA /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		F6189FB61813942C00D1F0FA /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		F6189FB71813942C00D1F0FA /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
+		F628B204181FFCD10044073D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F6B016C11814722800DC974C /* CameraOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraOverlay.h; path = ../CameraOverlay.h; sourceTree = "<group>"; };
 		F6B016C21814722800DC974C /* CameraOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraOverlay.m; path = ../CameraOverlay.m; sourceTree = "<group>"; };
 		F6B016C31814722800DC974C /* CameraOverlay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CameraOverlay.xib; path = ../CameraOverlay.xib; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F628B205181FFCD10044073D /* QuartzCore.framework in Frameworks */,
 				F6189FB5181389C900D1F0FA /* MobileCoreServices.framework in Frameworks */,
 				B5F4919A18087E7F00F03C19 /* AVFoundation.framework in Frameworks */,
 				B5F4919818087E7700F03C19 /* CoreVideo.framework in Frameworks */,
@@ -189,6 +192,7 @@
 		B506DB081800806C004991A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F628B204181FFCD10044073D /* QuartzCore.framework */,
 				F6189FB4181389C900D1F0FA /* MobileCoreServices.framework */,
 				B5F4919918087E7F00F03C19 /* AVFoundation.framework */,
 				B5F4919718087E7700F03C19 /* CoreVideo.framework */,

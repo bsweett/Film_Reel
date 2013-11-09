@@ -122,7 +122,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qOM-pU-kzv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2736" y="-3018"/>
+            <point key="canvasLocation" x="4600" y="-4194"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="c1B-Tg-IK4">
@@ -538,7 +538,11 @@
         <image name="ProfileTab" width="24" height="24"/>
         <image name="TakeReelTab" width="25" height="19"/>
         <image name="button14-20110808201840-00014.png" width="250" height="99"/>
+        <image name="button14-20110808201840-00014.png" width="250" height="99"/>
         <image name="completeimage.png" width="200" height="198"/>
+        <image name="takereelbutton.png" width="100" height="89"/>
+        <image name="takereelbutton.png" width="100" height="89"/>
+        <image name="takereelbutton.png" width="100" height="89"/>
         <image name="takereelbutton.png" width="100" height="89"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
