@@ -168,6 +168,7 @@
                     <connections>
                         <outlet property="emailField" destination="cLx-H6-hl4" id="6dd-rt-FLc"/>
                         <outlet property="passField" destination="ApO-7q-JcM" id="3sl-fC-lW7"/>
+                        <outlet property="titlebar" destination="JDK-un-cYY" id="Xr5-Ls-Vjm"/>
                         <outlet property="userField" destination="gkI-YI-6eK" id="dZs-hd-Qke"/>
                         <segue destination="43b-AY-tq5" kind="push" identifier="done" id="p6m-mU-eO5"/>
                     </connections>

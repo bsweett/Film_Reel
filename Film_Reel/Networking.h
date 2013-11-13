@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "NetworkManager.h"
 
+#define SERVER_ADDRESS "http://localhost:8080/filmreel/"
+
 @interface Networking : NSObject
 
 @property(nonatomic, strong, readwrite) NSURLConnection * connection;

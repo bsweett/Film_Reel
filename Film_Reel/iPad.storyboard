@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="Hue-4f-fnc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="Hue-4f-fnc">
     <dependencies>
-         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -17,7 +17,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7AD-mx-VlN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-269" y="-273"/>
+            <point key="canvasLocation" x="-137" y="-693"/>
         </scene>
         <!--View Controller - Welcome to Film Reel-->
         <scene sceneID="VpO-8v-hvz">
@@ -103,30 +103,8 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Mj-bB-GsD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="725" y="-273"/>
+            <point key="canvasLocation" x="757" y="-693"/>
         </scene>
-<<<<<<< HEAD
-        <!--Profile Controller - Profile-->
-        <scene sceneID="3k0-eO-1Cg">
-            <objects>
-                <viewController id="nn7-gY-prG" customClass="ProfileController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="4zv-Og-eCM"/>
-                        <viewControllerLayoutGuide type="bottom" id="X4B-sn-PoI"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="RIs-Pn-qR8">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="ProfileTab" id="jQL-qg-ZXZ"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qOM-pU-kzv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4600" y="-4194"/>
-        </scene>
-=======
->>>>>>> d20239e3271b0391e9ba6c200a6e256b1605f7ba
         <!--Tab Bar View Controller-->
         <scene sceneID="c1B-Tg-IK4">
             <objects>
@@ -146,7 +124,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fOC-Oi-dwq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1981" y="-1335"/>
+            <point key="canvasLocation" x="3521" y="-599"/>
         </scene>
         <!--Friends Controller - Friends-->
         <scene sceneID="Dgc-BF-9Eg">
@@ -165,7 +143,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cPa-Rg-3cd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3699" y="-2485"/>
+            <point key="canvasLocation" x="4571" y="-2777"/>
         </scene>
         <!--Inbox Controller - Indox-->
         <scene sceneID="nEt-ek-Iv5">
@@ -201,7 +179,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Jw-9z-gCe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4623" y="-597"/>
+            <point key="canvasLocation" x="5163" y="-33"/>
         </scene>
         <!--Navigation Controller - Take Reel-->
         <scene sceneID="wBc-fi-Yad">
@@ -217,7 +195,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HgB-TG-Kpf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4574" y="-1884"/>
+            <point key="canvasLocation" x="4902" y="-1504"/>
         </scene>
         <!--Sign Up Complete Controller - Account Created!-->
         <scene sceneID="Q14-1n-9m9">
@@ -353,6 +331,7 @@
                     <connections>
                         <outlet property="emailField" destination="oRq-WI-QOQ" id="Z1l-Ra-gH9"/>
                         <outlet property="passField" destination="Lhx-yx-hFh" id="Rxs-aQ-NL6"/>
+                        <outlet property="titlebar" destination="N4N-wF-xuL" id="Tzn-Wb-AaK"/>
                         <outlet property="userField" destination="SRh-9d-CsB" id="oMs-yj-Q7F"/>
                         <segue destination="D5n-EC-wU3" kind="push" identifier="done" id="poY-V7-tYb"/>
                     </connections>
@@ -500,7 +479,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KDt-WM-k27" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2508" y="-2711"/>
+            <point key="canvasLocation" x="4680" y="1139"/>
         </scene>
         <!--Camera Controller - Current Reel-->
         <scene sceneID="MVg-pF-S08">
@@ -650,7 +629,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jb9-6D-5JI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5518" y="-1884"/>
+            <point key="canvasLocation" x="5798" y="-1504"/>
         </scene>
     </scenes>
     <resources>
@@ -659,14 +638,10 @@
         <image name="ProfileTab" width="24" height="24"/>
         <image name="TakeReelTab" width="25" height="19"/>
         <image name="button14-20110808201840-00014.png" width="250" height="99"/>
-        <image name="button14-20110808201840-00014.png" width="250" height="99"/>
         <image name="completeimage.png" width="200" height="198"/>
         <image name="default.png" width="128" height="128"/>
         <image name="star.png" width="30" height="30"/>
         <image name="stargrey.png" width="30" height="30"/>
-        <image name="takereelbutton.png" width="100" height="89"/>
-        <image name="takereelbutton.png" width="100" height="89"/>
-        <image name="takereelbutton.png" width="100" height="89"/>
         <image name="takereelbutton.png" width="100" height="89"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -675,6 +650,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="P1n-ES-8Kz"/>
+        <segue reference="scF-fN-z6X"/>
     </inferredMetricsTieBreakers>
 </document>

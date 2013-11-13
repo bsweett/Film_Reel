@@ -18,8 +18,9 @@
 @synthesize userField;
 @synthesize passField;
 @synthesize error;
-@synthesize loading;
+@synthesize indicator;
 @synthesize userRequest;
+@synthesize titlebar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,6 +38,13 @@
     emailField.delegate = self;
     userField.delegate = self;
     passField.delegate = self;
+    [emailField setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [userField setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [passField setAutocorrectionType:UITextAutocorrectionTypeNo];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@"AddressFailed" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@"FailStatus" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@"SucceedStatus" object:nil];
 	// Do any additional setup after loading the view.
 }
 
@@ -46,18 +54,22 @@
     // Dispose of any resources that can be recreated.
 }
 
+// Runs when login button is pressed
 -(IBAction)doNextButton:(id)sender
 {
-    
+    // Grab values and alloc network object and error Messages
+    userRequest = [[Networking alloc] init];
     NSString * email = emailField.text;
     NSString * username = userField.text;
     NSString * password = passField.text;
     NSString * errorTitle = @"Error";
     NSMutableString * errorMessage = [[NSMutableString alloc] init];
     
+    // Drop keyboard
     [emailField resignFirstResponder];
     [userField resignFirstResponder];
     [passField resignFirstResponder];
+    
     
     if(![email  isEqual: @""] && ![username  isEqual: @""] && ![password  isEqual: @""])
     {
@@ -67,41 +79,43 @@
         }
         if ( [self validateUserNameWithString:username] == FALSE )
         {
-            [errorMessage appendString: @"Username can only have letters and numbers and must between 4-30 characters\n"];
+            [errorMessage appendString: @"Username can only contain letters and numbers (MAX 30)\n"];
         }
-        if  ( [self validatePasswordWithString:username] == FALSE )
+        if  ( [self validatePasswordWithString:password] == FALSE )
         {
             [errorMessage appendString: @"Password must be between 8 and 18 characters\n"];
         }
         
+        // If everything is the correct format
         if([self validateEmailWithString:email] == TRUE && [self validateUserNameWithString:username] == TRUE && [self validatePasswordWithString:username] == TRUE)
         {
-            [userRequest startReceive:@"http"];
-            //Start Network operations method
-            // inside that method handle networking errors and check to make sure email is not already used
-            // When the networking operations finish return a BOOLEAN Value to push to next step
+            titlebar.backBarButtonItem.enabled = NO;
             
+            // Build URL
+            NSString* request = [self buildSignUpRequest:email withName:username withPassword:password];
+            
+            // NOTE:: Comment this out to bypass networking
+            [userRequest startReceive:request];
+            
+            // Set up awesome spiny wheel
+            indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+            [indicator setFrame:self.view.frame];
+            CGPoint center = self.view.center;
+            indicator.center = center;
+            [indicator.layer setBackgroundColor:[[UIColor colorWithWhite:0.0 alpha:0.30] CGColor]];
+            [self.view addSubview:indicator];
+
+            // Animate it
             if([userRequest isReceiving] == TRUE)
             {
-                loading = [[UIAlertView alloc] initWithTitle: @"Receiving..." message:nil delegate: self cancelButtonTitle:nil otherButtonTitles: nil];
-                UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-                
-                // Adjust the indicator so it is up a few pixels from the bottom of the alert
-                indicator.center = CGPointMake(loading.bounds.size.width / 2, loading.bounds.size.height - 50);
                 [indicator startAnimating];
-                [loading addSubview:indicator];
-                [loading show];
             }
-            
-            if([userRequest isReceiving] == FALSE)
-            {
-                [loading dismissWithClickedButtonIndex:0 animated:YES];
-            }
-            
-            // if network stops without error
-             [self performSegueWithIdentifier:@"done" sender:sender];
+
+            // NOTE:: If you need to bypass create account uncomment this
+            //[self performSegueWithIdentifier:@"done" sender:sender];
             
         } else {
+            // Format Errors
             error = [[UIAlertView alloc] initWithTitle: errorTitle message: errorMessage delegate: self cancelButtonTitle: @"Ok" otherButtonTitles: nil];
             [error show];
         }
@@ -109,6 +123,7 @@
     }
     else
     {
+        // Empty Field Errors
         error = [[UIAlertView alloc] initWithTitle: @"Input Error" message:@"Please fill in the required fields" delegate: self cancelButtonTitle: @"Ok" otherButtonTitles: nil];
         [error show];
     }
@@ -116,13 +131,75 @@
 
 }
 
+// This is the template for building future URLRequests
+// NOTE:: SERVER_ADDRESS is hardcoded in Networking.h
+- (NSString*) buildSignUpRequest: (NSString*) email withName: (NSString*) name withPassword: (NSString*) password
+{
+    NSMutableString* signup = [[NSMutableString alloc] initWithString:@SERVER_ADDRESS];
+    [signup appendString:@"create?"];
+    
+    NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"email=%@" , email];
+    NSMutableString* parameter2 = [[NSMutableString alloc] initWithFormat: @"&name=%@" , name];
+    NSMutableString* parameter3 = [[NSMutableString alloc] initWithFormat: @"&password=%@" , password];
+    
+    [signup appendString:parameter1];
+    [signup appendString:parameter2];
+    [signup appendString:parameter3];
+    
+    NSLog(@"Create Account request:: %@", signup);
+    
+    return signup;
+}
+
+// Handles all Networking errors that come from Networking.m
+-(void) didGetNetworkError: (NSNotification*) notif
+{
+    if([[notif name] isEqualToString:@"AddressFailed"])
+    {
+        NSLog(@"Wrong Address\n");
+       
+        [indicator stopAnimating];
+        error = [[UIAlertView alloc] initWithTitle:nil message:@"Address Error" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+        [error show];
+        [self performSelector:@selector(dismissErrors:) withObject:error afterDelay:3];
+        titlebar.backBarButtonItem.enabled = YES;
+    }
+    if([[notif name] isEqualToString:@"FailStatus"])
+    {
+        NSLog(@"Failed to connect\n");
+        [indicator stopAnimating];
+        error = [[UIAlertView alloc] initWithTitle:nil message:@"Failed to connect to Server" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+        [error show];
+        [self performSelector:@selector(dismissErrors:) withObject:error afterDelay:3];
+        titlebar.backBarButtonItem.enabled = YES;
+    }
+}
+
+// Dismiss dialogs when done
+-(void) dismissErrors:(UIAlertView*) alert
+{
+    [alert dismissWithClickedButtonIndex:0 animated:YES];
+}
+
+// Handles Succussful acount creation
+-(void) didSucceedRequest: (NSNotification*) notif
+{
+    if([[notif name] isEqualToString:@"SucceedStatus"])
+    {
+        NSLog(@"YAYAYAYAYA!!! It worked\n");
+        [indicator stopAnimating];
+        [self performSegueWithIdentifier:@"done" sender:self];
+    }
+}
+
+// Drops keyboard when return key is pressed
 - (BOOL) textFieldShouldReturn:(UITextField*) textField
 {
     [textField resignFirstResponder];
     return YES;
 }
 
-// Validations --------------------------------------------------------------------
+// Validations for Email, Passoword, and Username ------------------------------------------
 - (BOOL)validateEmailWithString:(NSString*)emailaddress
 {
     if(emailaddress.length >= MIN_EMAIL_ENTRY && emailaddress.length <= MAX_EMAIL_ENTRY)
@@ -151,12 +228,13 @@
 {
     if( pass.length >= MIN_PASS_ENTRY && pass.length <= MAX_PASSWORD_ENTRY )
     {
-        NSString *passwordRegex = @"^[a-zA-Z_0-9\\-_,;.:#+*?=!§$%&/()@]+$";
+        NSString *passwordRegex = @"^[a-zA-Z_0-9\\-_,;.:#+*?=!§%&/()@]+";
         NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", passwordRegex];
         return [emailTest evaluateWithObject:pass];
     }
     
     return FALSE;
 }
+// --------------------------------------------------------------------------------------
 
 @end

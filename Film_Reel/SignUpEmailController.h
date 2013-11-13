@@ -18,14 +18,26 @@
 
 @interface SignUpEmailController : UIViewController <UIAlertViewDelegate>
 
+// Types
 @property(nonatomic, strong) IBOutlet UITextField *emailField;
 @property(nonatomic, strong) IBOutlet UITextField *userField;
 @property(nonatomic, strong) IBOutlet UITextField *passField;
+@property(nonatomic, strong) IBOutlet UINavigationItem *titlebar;
 @property(nonatomic, strong) UIAlertView* error;
-@property(nonatomic, strong) UIAlertView* loading;
+@property(nonatomic, strong) UIActivityIndicatorView *indicator;
 @property(nonatomic, strong) Networking * userRequest;
 
-// Validatation
+// Actions
+-(IBAction)doNextButton:(id)sender;
+
+// General
+- (NSString*) buildSignUpRequest: (NSString*) email withName: (NSString*) name withPassword: (NSString*) password;
+-(void) didGetNetworkError: (NSNotification*) notif;
+-(void) dismissErrors:(UIAlertView*) alert;
+-(void) didSucceedRequest: (NSNotification*) notif;
+- (BOOL) textFieldShouldReturn:(UITextField*) textField;
+
+// Validatations
 - (BOOL)validateEmailWithString:(NSString*)emailaddress;
 - (BOOL)validateUserNameWithString:(NSString*)user;
 - (BOOL)validatePasswordWithString:(NSString*)pass;

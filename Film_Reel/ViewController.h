@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Networking.h"
 
 #define MIN_ENTRY_SIZE 4
 #define MIN_PASS_ENTRY 8
@@ -20,6 +21,8 @@
 @property(nonatomic, strong) IBOutlet UITextField *usernameField;
 @property(nonatomic, strong) IBOutlet UITextField *passwordField;
 @property(nonatomic, strong) UIAlertView* error;
+@property(nonatomic, strong) UIActivityIndicatorView* indicator;
+@property(nonatomic, strong) Networking* loginrequest;
 
 // Validatation
 - (BOOL)validateUserNameWithString:(NSString*)username;
