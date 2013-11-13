@@ -43,7 +43,7 @@
         // Update with error status
         [[NSNotificationCenter defaultCenter]postNotificationName:@"AddressFailed" object:self];
     } else {
-        request = [NSURLRequest requestWithURL:address];
+        request = [NSURLRequest requestWithURL:address cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
         assert(request != nil);
         
         self.connection = [NSURLConnection connectionWithRequest:request delegate:self];
@@ -60,6 +60,7 @@
 
 - (void) receiveDidStart
 {
+    NSLog(@"Did Start\n");
     //Update UI with Status
     [[NetworkManager sharedInstance] didStartNetworkOperation];
 }
@@ -70,10 +71,12 @@
     {
         status = @"Succeed";
         [[NetworkManager sharedInstance] didStopNetworkOperation];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"SucceedStatus" object:nil];
     }
-    else if(status != nil)
+    else
     {
-         [[NSNotificationCenter defaultCenter]postNotificationName:@"FailStatus" object:status];
+         [[NSNotificationCenter defaultCenter]postNotificationName:@"FailStatus" object:nil];
+         NSLog(@"Sent Fail notification\n");
     }
     
     //Update UI with Status
@@ -90,9 +93,8 @@
         [self.connection cancel];
         self.connection = nil;
     }
-    
+
     [self receiveDidStopWithStatus:statusString];
-    
 }
 
 - (void)connection:(NSURLConnection *)theConnection didReceiveData:(NSData *)theData
@@ -113,6 +115,7 @@
     assert(theConnection == self.connection);
     
     NSString * message = [error localizedDescription];
+    NSLog(@"Error:: %@", message);
     [self stopReceiveWithStatus:message];
 }
 
