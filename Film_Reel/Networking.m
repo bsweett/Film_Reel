@@ -8,8 +8,6 @@
 
 #import "Networking.h"
 
-//static NSString * defaultURL = @""; // This will have to be hardcoded
-
 @implementation Networking
 
 @synthesize connection;
@@ -43,6 +41,7 @@
     if( ! succuss)
     {
         // Update with error status
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"AddressFailed" object:self];
     } else {
         request = [NSURLRequest requestWithURL:address];
         assert(request != nil);
@@ -70,9 +69,15 @@
     if(status == nil)
     {
         status = @"Succeed";
+        [[NetworkManager sharedInstance] didStopNetworkOperation];
     }
+    else if(status != nil)
+    {
+         [[NSNotificationCenter defaultCenter]postNotificationName:@"FailStatus" object:status];
+    }
+    
     //Update UI with Status
-    [[NetworkManager sharedInstance] didStopNetworkOperation];
+    //[[NetworkManager sharedInstance] didStopNetworkOperation];
     
     
     // Update UI Get Button etc...
@@ -108,9 +113,7 @@
     assert(theConnection == self.connection);
     
     NSString * message = [error localizedDescription];
-    UIAlertView* err = [[UIAlertView alloc] initWithTitle: @"Request Failed" message: message delegate: self cancelButtonTitle: @"Ok" otherButtonTitles: nil];
-    [err show];
-    [self stopReceiveWithStatus:@"Connection failed"];
+    [self stopReceiveWithStatus:message];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)theConnection
