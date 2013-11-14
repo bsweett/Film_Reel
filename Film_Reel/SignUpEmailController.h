@@ -16,6 +16,8 @@
 #define MIN_PASS_ENTRY 8
 #define MAX_PASSWORD_ENTRY 20
 
+#define SIGNUP_REQUEST "Signup"
+
 @interface SignUpEmailController : UIViewController <UIAlertViewDelegate>
 
 // Types

@@ -9,14 +9,22 @@
 #import <Foundation/Foundation.h>
 #import "NetworkManager.h"
 
-#define SERVER_ADDRESS "http://localhost:8080/filmreel/"
+#define SERVER_ADDRESS "http://192.168.1.237:8080/filmreel/"
 
-@interface Networking : NSObject
+#define LOGIN_REQUEST "Login"
+#define FETCH_REQUEST "Fetch"
+#define UPDATE_REQUEST "Update"
+#define SIGNUP_REQUEST "Signup"
+#define REEL_SEND "Reel_Request"
+
+@interface Networking : NSObject <NSXMLParserDelegate>
 
 @property(nonatomic, strong, readwrite) NSURLConnection * connection;
 @property(nonatomic, strong) NSMutableData * data;
+@property(nonatomic, strong) NSXMLParser* parser;
+@property(nonatomic, strong) NSString* requestType;
 
-- (void) startReceive: (NSString*) defaultURL;
+- (void) startReceive: (NSString*) defaultURL withType: (NSString*) typeOfRequest;
 - (BOOL)isReceiving;
 - (void) receiveDidStart;
 - (void) receiveDidStopWithStatus: (NSString *) status;

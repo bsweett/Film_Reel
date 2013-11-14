@@ -14,6 +14,8 @@
 #define MAX_USERNAME_ENTRY 29
 #define MAX_PASSWORD_ENTRY 18
 
+#define LOGIN_REQUEST "Login"
+
 @interface ViewController : UIViewController <UIAlertViewDelegate>
 
 @property(nonatomic, strong) IBOutlet UIButton *loginButton;

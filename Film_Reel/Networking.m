@@ -12,6 +12,8 @@
 
 @synthesize connection;
 @synthesize data;
+@synthesize parser;
+@synthesize requestType;
 
 - (id) init
 {
@@ -28,11 +30,13 @@
     return self;
 }
 
-- (void) startReceive: (NSString *) defaultURL
+- (void) startReceive: (NSString *) defaultURL withType:(NSString *) typeOfRequest
 {
     BOOL succuss;
     NSURL  * address;
     NSURLRequest * request;
+    
+    requestType = typeOfRequest;
     
     assert(self.connection == nil);
     address = [[NetworkManager sharedInstance] smartURLForString: defaultURL];
@@ -71,7 +75,28 @@
     {
         status = @"Succeed";
         [[NetworkManager sharedInstance] didStopNetworkOperation];
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"SucceedStatus" object:nil];
+        
+        // check what type of request it is
+        if([requestType isEqualToString: @LOGIN_REQUEST])
+        {
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"SucceedStatus" object:nil];
+        }
+        else if([requestType isEqualToString: @SIGNUP_REQUEST])
+        {
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"SIGN_UP" object:nil];
+        }
+        else if([requestType isEqualToString: @FETCH_REQUEST])
+        {
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"FETCH_COMPLETE" object:nil];
+        }
+        else if([requestType isEqualToString: @UPDATE_REQUEST])
+        {
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"UPDATE" object:nil];
+        }
+        else if([requestType isEqualToString: @REEL_SEND])
+        {
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"REEL_SENT" object:nil];
+        }
     }
     else
     {
@@ -127,9 +152,24 @@
     assert(theConnection == self.connection);
     
     [self stopReceiveWithStatus:nil];
+    parser = [[NSXMLParser alloc] initWithData:data];
+    [parser setDelegate:self];
+    [parser parse];
+    
+    
     
        // Data is finished loading update accordingly
     
+}
+
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
+{
+    
+}
+
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
+{
+
 }
 
 

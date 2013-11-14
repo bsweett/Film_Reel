@@ -44,7 +44,7 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@"AddressFailed" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@"FailStatus" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@"SucceedStatus" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@"SIGN_UP" object:nil];
 	// Do any additional setup after loading the view.
 }
 
@@ -95,7 +95,7 @@
             NSString* request = [self buildSignUpRequest:email withName:username withPassword:password];
             
             // NOTE:: Comment this out to bypass networking
-            [userRequest startReceive:request];
+            [userRequest startReceive:request withType:@SIGNUP_REQUEST];
             
             // Set up awesome spiny wheel
             indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -184,7 +184,7 @@
 // Handles Succussful acount creation
 -(void) didSucceedRequest: (NSNotification*) notif
 {
-    if([[notif name] isEqualToString:@"SucceedStatus"])
+    if([[notif name] isEqualToString:@"SIGN_UP"])
     {
         NSLog(@"YAYAYAYAYA!!! It worked\n");
         [indicator stopAnimating];

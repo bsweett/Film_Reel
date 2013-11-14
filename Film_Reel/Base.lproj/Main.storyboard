@@ -524,6 +524,13 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Swipe up" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfc-3B-Ikm">
+                                <rect key="frame" x="120" y="489" width="81" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <color key="textColor" red="0.43521018569999997" green="0.70263330980000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -554,9 +561,9 @@
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Current Reel" id="bNh-yu-J6d">
-                        <barButtonItem key="leftBarButtonItem" title="Create" id="G0e-p6-Gcu">
+                        <barButtonItem key="leftBarButtonItem" title="Send" id="G0e-p6-Gcu">
                             <connections>
-                                <action selector="takeReelPressed:" destination="be7-Pz-a3I" id="MRH-o8-Ztf"/>
+                                <action selector="sendReelPressed:" destination="be7-Pz-a3I" id="7o2-Af-2T0"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="7QR-49-5g4">

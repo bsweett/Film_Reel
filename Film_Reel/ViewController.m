@@ -32,12 +32,15 @@
     [usernameField setAutocorrectionType:UITextAutocorrectionTypeNo];
     [passwordField setAutocorrectionType:UITextAutocorrectionTypeNo];
     
+	// Do any additional setup after loading the view, typically from a nib.
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
     // NOTE:: Should have another notification that tells user if the information they entered doesnt exist (no password or username matching)
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@"AddressFailed" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@"FailStatus" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@"SucceedStatus" object:nil];
-    
-	// Do any additional setup after loading the view, typically from a nib.
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@"SucceedStatus" object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -66,7 +69,7 @@
             NSString* requestURL = [self buildLoginRequest:username withPassword:password];
     
             // NOTE:: to bypass login comment out
-            [loginrequest startReceive:requestURL];
+            [loginrequest startReceive:requestURL withType:@LOGIN_REQUEST];
             
             // Set up awesome spiny wheel
             indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -124,7 +127,6 @@
 // Handles all Networking errors that come from Networking.m
 -(void) didGetNetworkError: (NSNotification*) notif
 {
-    NSLog(@"Got notif\n");
     if([[notif name] isEqualToString:@"AddressFailed"])
     {
         NSLog(@"Wrong Address\n");
@@ -161,6 +163,7 @@
     {
         NSLog(@"LOGGED IN WE ARE!!!\n");
         [indicator stopAnimating];
+        [[NSNotificationCenter defaultCenter] removeObserver:@"SucceedStatus"];
         [self performSegueWithIdentifier:@"loggedIn" sender:self];
     }
 }
@@ -190,7 +193,7 @@
 {
     if( pass.length >= MIN_PASS_ENTRY && pass.length <= MAX_PASSWORD_ENTRY )
     {
-        NSString *passwordRegex = @"^[a-zA-Z_0-9\\-_,;.:#+*?=!§$%&/()@]+$";
+        NSString *passwordRegex = @"^[a-zA-Z_0-9\\-_,;.:#+*?=!§%&/()@]+";
         NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", passwordRegex];
         return [emailTest evaluateWithObject:pass];
     } else
