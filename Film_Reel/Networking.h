@@ -17,6 +17,9 @@
 #define SIGNUP_REQUEST "Signup"
 #define REEL_SEND "Reel_Request"
 
+#define ADDRESS_FAIL_ERROR "Server or request address was incorrect"
+#define SERVER_CONNECT_ERROR "Failed to connect to the server"
+
 @interface Networking : NSObject <NSXMLParserDelegate>
 
 @property(nonatomic, strong, readwrite) NSURLConnection * connection;

@@ -69,7 +69,7 @@
             NSString* requestURL = [self buildLoginRequest:username withPassword:password];
     
             // NOTE:: to bypass login comment out
-            [loginrequest startReceive:requestURL withType:@LOGIN_REQUEST];
+            //[loginrequest startReceive:requestURL withType:@LOGIN_REQUEST];
             
             // Set up awesome spiny wheel
             indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -86,7 +86,7 @@
             }
             
             // NOTE:: to bypass login uncomment
-            //[self performSegueWithIdentifier:@"loggedIn" sender:sender];
+            [self performSegueWithIdentifier:@"loggedIn" sender:sender];
         } else
         {
             errorMessage = @"Password or Username are the wrong length or contain invalid characters";
@@ -132,7 +132,7 @@
         NSLog(@"Wrong Address\n");
         
         [indicator stopAnimating];
-        error = [[UIAlertView alloc] initWithTitle:nil message:@"Address Error" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+        error = [[UIAlertView alloc] initWithTitle:nil message:@ADDRESS_FAIL_ERROR delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
         [error show];
         [self performSelector:@selector(dismissErrors:) withObject:error afterDelay:3];
         createButton.enabled = YES;
@@ -142,7 +142,7 @@
     {
         NSLog(@"Failed to connect\n");
         [indicator stopAnimating];
-        error = [[UIAlertView alloc] initWithTitle:nil message:@"Failed to connect to Server" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+        error = [[UIAlertView alloc] initWithTitle:nil message:@SERVER_CONNECT_ERROR delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
         [error show];
         [self performSelector:@selector(dismissErrors:) withObject:error afterDelay:3];
         createButton.enabled = YES;

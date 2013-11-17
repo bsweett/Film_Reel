@@ -149,7 +149,7 @@
     {
         NSLog(@"Wrong Address\n");
         
-        [alert setMessage:@"Address Failed"];
+        [alert setMessage:@ADDRESS_FAIL_ERROR];
         [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
     }
     if([[notif name] isEqualToString:@"FailStatus"])

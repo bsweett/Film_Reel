@@ -159,7 +159,7 @@
         NSLog(@"Wrong Address\n");
        
         [indicator stopAnimating];
-        error = [[UIAlertView alloc] initWithTitle:nil message:@"Address Error" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+        error = [[UIAlertView alloc] initWithTitle:nil message:@ADDRESS_FAIL_ERROR delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
         [error show];
         [self performSelector:@selector(dismissErrors:) withObject:error afterDelay:3];
         titlebar.backBarButtonItem.enabled = YES;
@@ -168,7 +168,7 @@
     {
         NSLog(@"Failed to connect\n");
         [indicator stopAnimating];
-        error = [[UIAlertView alloc] initWithTitle:nil message:@"Failed to connect to Server" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+        error = [[UIAlertView alloc] initWithTitle:nil message:@SERVER_CONNECT_ERROR delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
         [error show];
         [self performSelector:@selector(dismissErrors:) withObject:error afterDelay:3];
         titlebar.backBarButtonItem.enabled = YES;

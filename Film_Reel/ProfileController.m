@@ -99,14 +99,14 @@
     {
         NSLog(@"Wrong Address\n");
         
-        [loading setMessage:@"Address Error"];
+        [loading setMessage:@ADDRESS_FAIL_ERROR];
         [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
     }
     if([[notif name] isEqualToString:@"FailStatus"])
     {
         NSLog(@"Failed to connect\n");
 
-        [loading setMessage:@"Connection Failed"];
+        [loading setMessage:@SERVER_CONNECT_ERROR];
         [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
     }
 }
