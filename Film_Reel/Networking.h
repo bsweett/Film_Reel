@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "NetworkManager.h"
+#import "User.h"
 
 #define SERVER_ADDRESS "http://192.168.1.237:8080/filmreel/"
 
@@ -26,6 +27,8 @@
 @property(nonatomic, strong) NSMutableData * data;
 @property(nonatomic, strong) NSXMLParser* parser;
 @property(nonatomic, strong) NSString* requestType;
+@property(nonatomic, strong) User* userObject;
+@property(nonatomic, strong) NSMutableString* currentObject;
 
 - (void) startReceive: (NSString*) defaultURL withType: (NSString*) typeOfRequest;
 - (BOOL)isReceiving;

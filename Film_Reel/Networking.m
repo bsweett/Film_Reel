@@ -15,6 +15,9 @@
 @synthesize parser;
 @synthesize requestType;
 
+@synthesize userObject;
+@synthesize currentObject;
+
 - (id) init
 {
     
@@ -76,40 +79,63 @@
         status = @"Succeed";
         [[NetworkManager sharedInstance] didStopNetworkOperation];
         
-        // check what type of request it is
-        if([requestType isEqualToString: @LOGIN_REQUEST])
+        if(userObject != nil && [userObject getToken] != nil)
         {
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"SucceedStatus" object:nil];
-        }
-        else if([requestType isEqualToString: @SIGNUP_REQUEST])
-        {
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"SIGN_UP" object:nil];
-        }
-        else if([requestType isEqualToString: @FETCH_REQUEST])
-        {
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"FETCH_COMPLETE" object:nil];
-        }
-        else if([requestType isEqualToString: @UPDATE_REQUEST])
-        {
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"UPDATE" object:nil];
-        }
-        else if([requestType isEqualToString: @REEL_SEND])
-        {
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"REEL_SENT" object:nil];
+            NSString* localToken = [userObject getToken];
+            // check what type of request it is
+            if([requestType isEqualToString: @LOGIN_REQUEST])
+            {
+                [self isValidLoginRequest:localToken];
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"SucceedStatus" object:nil];
+            }
+            else if([requestType isEqualToString: @SIGNUP_REQUEST])
+            {
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"SIGN_UP" object:nil];
+            }
+            else if([requestType isEqualToString: @FETCH_REQUEST])
+            {
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"FETCH_COMPLETE" object:nil];
+            }
+            else if([requestType isEqualToString: @UPDATE_REQUEST])
+            {
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"UPDATE" object:nil];
+            }
+            else if([requestType isEqualToString: @REEL_SEND])
+            {
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"REEL_SENT" object:nil];
+            }
         }
     }
     else
     {
-         [[NSNotificationCenter defaultCenter]postNotificationName:@"FailStatus" object:nil];
-         NSLog(@"Sent Fail notification\n");
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"FailStatus" object:nil];
+        NSLog(@"Sent Fail notification\n");
     }
-    
-    //Update UI with Status
-    //[[NetworkManager sharedInstance] didStopNetworkOperation];
-    
-    
-    // Update UI Get Button etc...
-    
+}
+
+- (void) isValidLoginRequest: (NSString*) localToken
+{
+    if([localToken isEqualToString:@"Fail"])
+    {
+        // Invalid parameter request
+    }
+    else if ([localToken isEqualToString:@"NoUserFound"])
+    {
+        // Login by username and password failed
+    }
+    else // check validToken
+    {
+        
+    }
+}
+
+- (void) isValidSignUpRequest
+{
+    NSString* localToken = [userObject getToken];
+    if([localToken isEqualToString:@"Fail"])
+    {
+        
+    }
 }
 
 - (void)stopReceiveWithStatus:(NSString *)statusString
@@ -162,14 +188,55 @@
     
 }
 
+- (void)parser:(NSXMLParser*)parser didStartElement:(NSString *)elementName namespaceURI:(NSString*)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary*)attributeDict
+{
+    if([elementName isEqualToString:@"user"])
+    {
+        userObject = [[User alloc] init];
+        NSLog(@"found User Element");
+    }
+    
+    if([elementName isEqualToString:@"token"])
+    {
+        currentObject = [[NSMutableString alloc] init];
+    }
+}
+
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
-    
+    if([elementName isEqualToString:@"name"])
+    {
+        [userObject setUserName: currentObject];
+    }
+    if([elementName isEqualToString:@"email"])
+    {
+        [userObject setEmail: currentObject];
+    }
+    if([elementName isEqualToString:@"location"])
+    {
+        [userObject setLocation: currentObject];
+    }
+    if([elementName isEqualToString:@"token"])
+    {
+        [userObject setToken: currentObject];
+    }
+    if([elementName isEqualToString:@"userbio"])
+    {
+        [userObject setUserBio: currentObject];
+    }
+    if([elementName isEqualToString:@"password"])
+    {
+        [userObject setPassword: currentObject];
+    }
+    if([elementName isEqualToString:@"imagepath"])
+    {
+        [userObject setImagePath: currentObject];
+    }
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
-
+    [currentObject appendString:string];
 }
 
 

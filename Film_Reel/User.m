@@ -17,6 +17,7 @@
 @implementation User
 
 @synthesize userName;
+@synthesize token;
 @synthesize displayPicture;
 @synthesize email;
 @synthesize location;
@@ -47,6 +48,7 @@
 
 // Get Values --------------------------------------------------------------------
 - (NSMutableString*) getUserName  { return userName;       }
+- (NSString *) getToken           { return token;          }
 - (UIImage *) getDP               { return displayPicture; }
 - (NSMutableString*) getLocation  { return location;       }
 - (NSString*) getEmail            { return email;          }
@@ -58,8 +60,9 @@
 
 // Set Values --------------------------------------------------------------------
 - (void) setUserName:  (NSMutableString*) name     { userName = name;               }
+- (void) setToken:     (NSString *)validToken      { token = validToken;            }
 - (void) setLocation:  (NSMutableString*) place    { location = place;              }
-- (void) setEmail:     (NSMutableString*) eAddress { email = eAddress;             }
+- (void) setEmail:     (NSMutableString*) eAddress { email = eAddress;              }
 - (void) setUserBio:   (NSMutableString*) bio      { userBio = bio;                 }
 - (void) setPassword:  (NSMutableString *)pass     { password = pass;               }
 - (void) setImagePath: (NSMutableString *) image   { imagePath = image;             }

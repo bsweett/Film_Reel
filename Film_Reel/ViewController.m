@@ -69,7 +69,7 @@
             NSString* requestURL = [self buildLoginRequest:username withPassword:password];
     
             // NOTE:: to bypass login comment out
-            //[loginrequest startReceive:requestURL withType:@LOGIN_REQUEST];
+            [loginrequest startReceive:requestURL withType:@LOGIN_REQUEST];
             
             // Set up awesome spiny wheel
             indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -86,7 +86,7 @@
             }
             
             // NOTE:: to bypass login uncomment
-            [self performSegueWithIdentifier:@"loggedIn" sender:sender];
+            //[self performSegueWithIdentifier:@"loggedIn" sender:sender];
         } else
         {
             errorMessage = @"Password or Username are the wrong length or contain invalid characters";
