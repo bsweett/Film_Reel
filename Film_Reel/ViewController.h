@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Networking.h"
 
 #define MIN_ENTRY_SIZE 4
 #define MIN_PASS_ENTRY 8
 #define MAX_USERNAME_ENTRY 29
 #define MAX_PASSWORD_ENTRY 18
+
+#define LOGIN_REQUEST "Login"
 
 @interface ViewController : UIViewController <UIAlertViewDelegate>
 
@@ -20,6 +23,8 @@
 @property(nonatomic, strong) IBOutlet UITextField *usernameField;
 @property(nonatomic, strong) IBOutlet UITextField *passwordField;
 @property(nonatomic, strong) UIAlertView* error;
+@property(nonatomic, strong) UIActivityIndicatorView* indicator;
+@property(nonatomic, strong) Networking* loginrequest;
 
 // Validatation
 - (BOOL)validateUserNameWithString:(NSString*)username;

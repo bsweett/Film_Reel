@@ -26,6 +26,9 @@
 @synthesize moviePath;
 @synthesize photoStrip;
 
+@synthesize sendReelRequest;
+@synthesize alert;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -38,9 +41,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Camera Notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordPressed) name:@"startRecord" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordFinished) name:@"stopRecord" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closeCamera) name:@"closeCamera" object:nil];
+    
+    // Networking Notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSucceedRequest:) name:@"REEL_SENT" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@"AddressFailed" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@"FailStatus" object:nil];
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    // Set up Gestures
+    takeReel = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe)];
+    [takeReel setDirection:(UISwipeGestureRecognizerDirectionUp)];
+    [self.view addGestureRecognizer:takeReel];
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,14 +67,46 @@
     // Dispose of any resources that can be recreated.
 }
 
--(IBAction)takeReelPressed:(id)sender {
+// Sends reel
+-(IBAction)sendReelPressed:(id)sender
+{
+    sendReelRequest = [[Networking alloc] init];
+    alert = [[UIAlertView alloc] initWithTitle:nil message:@"Sending..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+    
+    
+    // Have the current token be accessed for the sender
+    // Need to pick a friend some how?
+    // Need to send image some how?
+    if(frameImage != NULL)
+    {
+        //NSData* tosend = UIImagePNGRepresentation(frameImage);
+      
+        NSString* request = [self buildSendRequest:@"" withFriend:@"" withImageName:@""];
+        
+        NSLog(@"Ready to Send\n");
+        [sendReelRequest startReceive:request withType:@REEL_SEND];
+        
+        if([sendReelRequest isReceiving] == TRUE)
+        {
+            [alert show];
+        }
+    }
+    else
+    {
+        alert = [[UIAlertView alloc] initWithTitle:nil message:@"No Reel has be taken" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+        [alert show];
+        [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:2];
+    }
+    
+}
+
+// Swipe up to take a new reel
+-(void) handleSwipe
+{
     [self startCameraControllerFromViewController: self usingDelegate: self];
 }
 
--(IBAction)sendReelPressed:(id)sender {
-    
-}
-    
+// Saves Reel to local photo album
 -(IBAction)saveReel:(id)sender {
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
     
@@ -64,30 +114,57 @@
     {
         [library saveImage:frameImage toAlbum:@"My Reels" withCompletionBlock: ^(NSError *error){
             if (error != nil) {
-                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"ERROR" message:[NSString stringWithFormat:@"IMAGE SAVE FAILED"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                alert = [[UIAlertView alloc] initWithTitle:@"ERROR" message:[NSString stringWithFormat:@"IMAGE SAVE FAILED"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                 [alert show];
             } else {
-                UIAlertView *myal = [[UIAlertView alloc] initWithTitle:@"Success" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
-                [myal show];
-                [self performSelector:@selector(test:) withObject:myal afterDelay:2];
+                alert = [[UIAlertView alloc] initWithTitle:@"Success" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+                [alert show];
+                [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:2];
             }
         }];
     } else
     {
-        UIAlertView *myal = [[UIAlertView alloc] initWithTitle:@"No Reel" message:@"No Reel has be taken" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
-        [myal show];
-        [self performSelector:@selector(test:) withObject:myal afterDelay:2];
+        alert = [[UIAlertView alloc] initWithTitle:nil message:@"No Reel has be taken" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+        [alert show];
+        [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:2];
     }
     
 }
 
--(void)test:(UIAlertView*)x{
+// Handles Succussful Server connection
+-(void) didSucceedRequest: (NSNotification*) notif
+{
+    if([[notif name] isEqualToString:@"REEL_SENT"])
+    {
+        NSLog(@"Sent to Server\n");
+        [alert setMessage:@"Message Sent"];
+        [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
+    }
+}
+
+// Handles all Networking errors that come from Networking.m
+-(void) didGetNetworkError: (NSNotification*) notif
+{
+    if([[notif name] isEqualToString:@"AddressFailed"])
+    {
+        NSLog(@"Wrong Address\n");
+        
+        [alert setMessage:@ADDRESS_FAIL_ERROR];
+        [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
+    }
+    if([[notif name] isEqualToString:@"FailStatus"])
+    {
+        NSLog(@"Failed to connect\n");
+        [alert setMessage:@"Failed to Connect to Server"];
+        [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
+    }
+}
+    
+-(void)dismissErrors: (UIAlertView*)x{
 	[x dismissWithClickedButtonIndex:-1 animated:YES];
 }
 
-- (BOOL) startCameraControllerFromViewController: (UIViewController*) controller
-                                   usingDelegate: (id <UIImagePickerControllerDelegate,
-                                                   UINavigationControllerDelegate>) delegate {
+- (BOOL) startCameraControllerFromViewController: (UIViewController*) controller usingDelegate: (id <UIImagePickerControllerDelegate,UINavigationControllerDelegate>) delegate {
     
     if (([UIImagePickerController isSourceTypeAvailable:
           UIImagePickerControllerSourceTypeCamera] == NO)
@@ -125,8 +202,7 @@
 }
 
 // For responding to the user accepting a newly-captured picture or movie
-- (void) imagePickerController: (UIImagePickerController *) picker
- didFinishPickingMediaWithInfo: (NSDictionary *) info {
+- (void) imagePickerController: (UIImagePickerController *) picker didFinishPickingMediaWithInfo: (NSDictionary *) info {
     
     
     moviePath = [info objectForKey:UIImagePickerControllerMediaURL];
@@ -302,6 +378,26 @@
 // Close the camera view
 -(void) closeCamera {
     [cameraUI dismissViewControllerAnimated:NO completion:nil];
+}
+
+// This is the template for building future URLRequests
+// NOTE:: SERVER_ADDRESS is hardcoded in Networking.h
+- (NSString*) buildSendRequest: (NSString*) sender withFriend: (NSString*) receiver withImageName: (NSString*) imageName
+{
+    NSMutableString* send = [[NSMutableString alloc] initWithString:@SERVER_ADDRESS];
+    [send appendString:@"send?"];
+    
+    NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"from=%@" , sender];
+    NSMutableString* parameter2 = [[NSMutableString alloc] initWithFormat: @"&to=%@" , receiver];
+    NSMutableString* parameter3 = [[NSMutableString alloc] initWithFormat: @"&image=%@" , imageName];
+    
+    [send appendString:parameter1];
+    [send appendString:parameter2];
+    [send appendString:parameter3];
+    
+    NSLog(@"Send Reel request:: %@", send);
+    
+    return send;
 }
 
 @end

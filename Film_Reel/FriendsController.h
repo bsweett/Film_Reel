@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Networking.h"
 
-@interface FriendsController : UIViewController
+#define ADD_REQUEST "ADD_FRIEND"
+
+@interface FriendsController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
+
+@property (strong, retain) IBOutlet UITableView* friendsTable;
+@property (strong, nonatomic) NSMutableArray* tableArray;
+@property (strong, nonatomic) UIAlertView* addfriendalert;
+@property (strong, nonatomic) UIAlertView* loading;
+
+@property (strong, nonatomic) Networking* friendRequest;
+
+-(IBAction)doAddFriend:(id)sender;
 
 @end

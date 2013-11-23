@@ -10,6 +10,9 @@
 #import "CameraOverlay.h"
 #import "iPadOverlay.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "Networking.h"
+
+#define REEL_SEND "Reel_Request"
 
 @interface CameraController : UIViewController <UIImagePickerControllerDelegate,
 UINavigationControllerDelegate>
@@ -28,12 +31,16 @@ UINavigationControllerDelegate>
 @property(nonatomic, strong) UIImage *frameImage;
 
 @property(nonatomic, strong) IBOutlet UIImageView *photoStrip;
+@property(nonatomic, strong) IBOutlet UISwipeGestureRecognizer* takeReel;
 
-@property(nonatomic, strong) IBOutlet UIBarButtonItem *takeReel;
 @property(nonatomic, strong) IBOutlet UIBarButtonItem *sendReel;
+//@property(nonatomic, strong) IBOutlet UIBarButtonItem *sendReel;
 @property(nonatomic, strong) IBOutlet UIBarButtonItem *saveReel;
 
 @property(nonatomic, strong) NSURL *moviePath;
+
+@property(nonatomic, strong) Networking *sendReelRequest;
+@property(nonatomic, strong) UIAlertView *alert;
 
 - (void)recordPressed;
 - (void)recordFinished;

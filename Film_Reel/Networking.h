@@ -8,13 +8,29 @@
 
 #import <Foundation/Foundation.h>
 #import "NetworkManager.h"
+#import "User.h"
 
-@interface Networking : NSObject
+#define SERVER_ADDRESS "http://192.168.1.237:8080/filmreel/"
+
+#define LOGIN_REQUEST "Login"
+#define FETCH_REQUEST "Fetch"
+#define UPDATE_REQUEST "Update"
+#define SIGNUP_REQUEST "Signup"
+#define REEL_SEND "Reel_Request"
+
+#define ADDRESS_FAIL_ERROR "Server or request address was incorrect"
+#define SERVER_CONNECT_ERROR "Failed to connect to the server"
+
+@interface Networking : NSObject <NSXMLParserDelegate>
 
 @property(nonatomic, strong, readwrite) NSURLConnection * connection;
 @property(nonatomic, strong) NSMutableData * data;
+@property(nonatomic, strong) NSXMLParser* parser;
+@property(nonatomic, strong) NSString* requestType;
+@property(nonatomic, strong) User* userObject;
+@property(nonatomic, strong) NSMutableString* currentObject;
 
-- (void) startReceive: (NSString*) defaultURL;
+- (void) startReceive: (NSString*) defaultURL withType: (NSString*) typeOfRequest;
 - (BOOL)isReceiving;
 - (void) receiveDidStart;
 - (void) receiveDidStopWithStatus: (NSString *) status;

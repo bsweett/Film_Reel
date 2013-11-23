@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import "Networking.h"
+
+#define FETCH_REQUEST "Fetch"
+#define UPDATE_REQUEST "Update"
 
 @interface ProfileController : UIViewController <UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -21,6 +25,10 @@
 @property (strong, retain) IBOutlet UIButton *cancel;
 @property (strong, retain) IBOutlet UIButton *imageButton;
 @property (strong, retain) IBOutlet UIImageView * displaypicture;
+
+@property (strong, nonatomic) UIAlertView * loading;
+@property (strong, nonatomic) UIAlertView* error;
+@property (strong, nonatomic) Networking* updateOrFetch;
 
 @property (strong,retain) NSString* saveBio;
 @property (strong,retain) NSString* saveName;

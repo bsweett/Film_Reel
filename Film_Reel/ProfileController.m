@@ -23,6 +23,10 @@
 @synthesize imageButton;
 @synthesize displaypicture;
 
+@synthesize loading;
+@synthesize error;
+@synthesize updateOrFetch;
+
 @synthesize saveBio;
 @synthesize saveLocation;
 @synthesize saveName;
@@ -54,16 +58,74 @@
     name.delegate = self;
     location.delegate = self;
     email.delegate = self;
-	// Do any additional setup after loading the view.
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@"AddressFailed" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@"FailStatus" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@"FETCH_COMPLETE" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@"UPDATE" object:nil];
     
-    // Get current logged in instance of the user
-    // Wont Save State of the application need to post to server on update and pull down on view didload
+    updateOrFetch = [[Networking alloc] init];
+    
+    // Build URL
+    // NEED TO PASS TOKEN OF CURRENT LOGGED IN USER
+    NSString* request = [self buildFetchRequest:@""];
+    
+    // NOTE:: Comment this out to bypass networking
+    [updateOrFetch startReceive:request withType:@FETCH_REQUEST];
+    
+    // Set up alert dialog
+    loading = [[UIAlertView alloc] initWithTitle:nil message:@"Loading..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+    
+    // Animate it
+    if([updateOrFetch isReceiving] == TRUE)
+    {
+        [loading show];
+    }
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+// Handles all Networking errors that come from Networking.m
+-(void) didGetNetworkError: (NSNotification*) notif
+{
+    if([[notif name] isEqualToString:@"AddressFailed"])
+    {
+        NSLog(@"Wrong Address\n");
+        
+        [loading setMessage:@ADDRESS_FAIL_ERROR];
+        [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
+    }
+    if([[notif name] isEqualToString:@"FailStatus"])
+    {
+        NSLog(@"Failed to connect\n");
+
+        [loading setMessage:@SERVER_CONNECT_ERROR];
+        [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
+    }
+}
+
+-(void) dismissErrors:(UIAlertView*) alert
+{
+    [alert dismissWithClickedButtonIndex:0 animated:YES];
+}
+
+// Handles Succussful fetching of profile
+// May want to pass the something through notification to check which request was actually made
+-(void) didSucceedRequest: (NSNotification*) notif
+{
+    if([[notif name] isEqualToString:@"UPDATE"])
+    {
+        NSLog(@"Profile action succeed\n");
+        [loading dismissWithClickedButtonIndex:0 animated:YES];
+        //[self performSegueWithIdentifier:@"done" sender:self];
+    }
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -134,7 +196,7 @@
     }
 }
 
-// Allow them to pic an image for their profile
+// Allow them to pick an image for their profile
 -(IBAction)doImageTap:(id)sender
 {
     UIImagePickerController * picker = [[UIImagePickerController alloc] init];
@@ -179,12 +241,58 @@
 // get ready to pass the update to the server
 -(void) prepareForUpdate
 {
-    /*
+    
     NSString* updatedName = name.text;
     NSString* updatedLocation = location.text;
     NSString* updatedBio = bio.text;
-    UIImage* updatedPic = displaypicture.image;
-    */
+    
+    // For now dp wont be updated
+    //UIImage* updatedPic = displaypicture.image;
+    
+    NSString* request = [self buildProfileUpdateRequest:updatedName withLocation:updatedLocation withBio:updatedBio];
+    
+    [updateOrFetch startReceive:request withType:@UPDATE_REQUEST];
+    
+    if ([updateOrFetch isReceiving] == TRUE)
+    {
+        [loading show];
+    }
+}
+
+// This is the template for building future URLRequests
+// NOTE:: SERVER_ADDRESS is hardcoded in Networking.h
+- (NSString*) buildProfileUpdateRequest: (NSString*) username withLocation: (NSString*) geolocation withBio: (NSString*) about
+{
+    NSMutableString* updateProfile = [[NSMutableString alloc] initWithString:@SERVER_ADDRESS];
+    [updateProfile appendString:@"updateUser?"];
+    
+    NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"name=%@" , username];
+    NSMutableString* parameter2 = [[NSMutableString alloc] initWithFormat: @"&location=%@" , geolocation];
+    NSMutableString* parameter3 = [[NSMutableString alloc] initWithFormat: @"&bio=%@" , about];
+    
+    [updateProfile appendString:parameter1];
+    [updateProfile appendString:parameter2];
+    [updateProfile appendString:parameter3];
+    
+    NSLog(@"Update Profile request:: %@", updateProfile);
+    
+    return updateProfile;
+}
+
+// This is the template for building future URLRequests
+// NOTE:: SERVER_ADDRESS is hardcoded in Networking.h
+- (NSString*) buildFetchRequest: (NSString*) token
+{
+    NSMutableString* fetchProfile = [[NSMutableString alloc] initWithString:@SERVER_ADDRESS];
+    [fetchProfile appendString:@"fetchProfile?"];
+    
+    NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"token=%@" , token];
+    
+    [fetchProfile appendString:parameter1];
+    
+    NSLog(@"Fetch Profile request:: %@", fetchProfile);
+    
+    return fetchProfile;
 }
 
 @end
