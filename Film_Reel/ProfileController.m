@@ -165,6 +165,7 @@
         
     } else  if([[edit currentTitle] isEqualToString:@"Save"])
     {
+
         [edit setTitle:@"Edit" forState:UIControlStateNormal];
         bio.editable = NO;
         name.editable = NO;
@@ -174,7 +175,16 @@
         imageButton.enabled = NO;
         imageButton.hidden = YES;
         
-        [self prepareForUpdate];
+        // Validate new Username
+        if([self validateUserNameWithString:name.text] == TRUE)
+        {
+            [self prepareForUpdate];
+        }
+        else
+        {
+            error = [[UIAlertView alloc] initWithTitle:nil message:@"Username can only contain letters and numbers (4-30)\n" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [error show];
+        }
     }
 }
 
@@ -194,6 +204,19 @@
         // undo changes
         [self resetViews];
     }
+}
+
+// Make sure new username conforms to our signup rules
+- (BOOL)validateUserNameWithString:(NSString*)username
+{
+    if( username.length >= MIN_ENTRY_SIZE && username.length <= MAX_USERNAME_ENTRY )
+    {
+        NSString *nameRegex = @"[A-Z0-9a-z]*";
+        NSPredicate *nameTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", nameRegex];
+        return [nameTest evaluateWithObject:username];
+    }
+    
+    return FALSE;
 }
 
 // Allow them to pick an image for their profile
@@ -249,7 +272,9 @@
     // For now dp wont be updated
     //UIImage* updatedPic = displaypicture.image;
     
-    NSString* request = [self buildProfileUpdateRequest:updatedName withLocation:updatedLocation withBio:updatedBio];
+    
+    NSString* request = [self buildProfileUpdateRequest:@"" withUserName:updatedName withLocation:updatedLocation withBio:updatedBio];
+    // Need to pass current logged in users token -------^
     
     [updateOrFetch startReceive:request withType:@UPDATE_REQUEST];
     
@@ -261,18 +286,20 @@
 
 // This is the template for building future URLRequests
 // NOTE:: SERVER_ADDRESS is hardcoded in Networking.h
-- (NSString*) buildProfileUpdateRequest: (NSString*) username withLocation: (NSString*) geolocation withBio: (NSString*) about
+- (NSString*) buildProfileUpdateRequest: (NSString*) token withUserName: (NSString*) username withLocation: (NSString*) geolocation withBio: (NSString*) about
 {
     NSMutableString* updateProfile = [[NSMutableString alloc] initWithString:@SERVER_ADDRESS];
-    [updateProfile appendString:@"updateUser?"];
+    [updateProfile appendString:@"update?"];
     
-    NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"name=%@" , username];
-    NSMutableString* parameter2 = [[NSMutableString alloc] initWithFormat: @"&location=%@" , geolocation];
-    NSMutableString* parameter3 = [[NSMutableString alloc] initWithFormat: @"&bio=%@" , about];
+    NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"token=%@" , token];
+    NSMutableString* parameter2 = [[NSMutableString alloc] initWithFormat: @"&name=%@" , username];
+    NSMutableString* parameter3 = [[NSMutableString alloc] initWithFormat: @"&location=%@" , geolocation];
+    NSMutableString* parameter4 = [[NSMutableString alloc] initWithFormat: @"&bio=%@" , about];
     
     [updateProfile appendString:parameter1];
     [updateProfile appendString:parameter2];
     [updateProfile appendString:parameter3];
+    [updateProfile appendString:parameter4];
     
     NSLog(@"Update Profile request:: %@", updateProfile);
     
