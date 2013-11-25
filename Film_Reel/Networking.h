@@ -10,7 +10,7 @@
 #import "NetworkManager.h"
 #import "User.h"
 
-#define SERVER_ADDRESS "http://192.168.1.237:8080/filmreel/"
+#define SERVER_ADDRESS "http://192.168.1.25:8080/filmreel/"
 
 #define LOGIN_REQUEST "Login"
 #define FETCH_REQUEST "Fetch"
