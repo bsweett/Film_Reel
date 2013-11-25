@@ -14,3 +14,45 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 #endif
+
+// Server/app attributes
+#define SERVER_ADDRESS      "http://192.168.1.237:8080/filmreel/"
+#define REEL_ALBUM_NAME     "My Reels"
+
+// Validation
+#define MIN_EMAIL_ENTRY     3
+#define MAX_EMAIL_ENTRY     254
+#define MIN_ENTRY_SIZE      4
+#define MAX_USERNAME_ENTRY  30
+#define MIN_PASS_ENTRY      8
+#define MAX_PASSWORD_ENTRY  20
+
+// Request Types
+#define LOGIN_REQUEST   "login"
+#define FETCH_REQUEST   "fetch"
+#define UPDATE_REQUEST  "update"
+#define SIGNUP_REQUEST  "signup"
+#define REEL_SEND       "send_reel"
+#define ADD_FRIEND      "add_friend"
+#define INBOX_REQUEST   "inbox"
+
+// Nofitication Names
+#define LOGIN_SUCCESS   "login_success"
+#define SIGNUP_SUCCESS  "signup_success"
+#define FETCH_SUCCESS   "fetch_profile_success"
+#define UPDATE_SUCCESS  "updating_profile_success"
+#define REEL_SUCCESS    "reel_sent"
+#define INBOX_SUCCESS   "inbox_got"
+#define FRIEND_SUCCESS  "friend_sent"
+
+#define FAIL_STATUS     "general_fail"
+#define ADDRESS_FAIL    "address_fail"
+
+#define CAMERA_START    "startRecord"
+#define CAMERA_STOP     "stopRecord"
+#define CAMERA_CLOSE    "closeCamera"
+
+// Common Error Messages
+#define ADDRESS_FAIL_ERROR      "Server or request address was incorrect"
+#define SERVER_CONNECT_ERROR    "Failed to connect to the server"
+#define REEL_MISSING_ERROR      "No Reel has been taken"

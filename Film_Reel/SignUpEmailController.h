@@ -9,15 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "Networking.h"
 
-#define MIN_EMAIL_ENTRY 3
-#define MAX_EMAIL_ENTRY 254
-#define MIN_ENTRY_SIZE 4
-#define MAX_USERNAME_ENTRY 30
-#define MIN_PASS_ENTRY 8
-#define MAX_PASSWORD_ENTRY 20
-
-#define SIGNUP_REQUEST "Signup"
-
 @interface SignUpEmailController : UIViewController <UIAlertViewDelegate>
 
 // Types

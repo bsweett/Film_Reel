@@ -43,14 +43,14 @@
     [super viewDidLoad];
     
     // Camera Notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordPressed) name:@"startRecord" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordFinished) name:@"stopRecord" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closeCamera) name:@"closeCamera" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordPressed) name:@CAMERA_START object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordFinished) name:@CAMERA_STOP object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closeCamera) name:@CAMERA_CLOSE object:nil];
     
     // Networking Notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSucceedRequest:) name:@"REEL_SENT" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@"AddressFailed" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@"FailStatus" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSucceedRequest:) name:@REEL_SUCCESS object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -64,7 +64,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 // Sends reel
@@ -83,7 +82,6 @@
       
         NSString* request = [self buildSendRequest:@"" withFriend:@"" withImageName:@""];
         
-        NSLog(@"Ready to Send\n");
         [sendReelRequest startReceive:request withType:@REEL_SEND];
         
         if([sendReelRequest isReceiving] == TRUE)
@@ -93,7 +91,7 @@
     }
     else
     {
-        alert = [[UIAlertView alloc] initWithTitle:nil message:@"No Reel has be taken" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+        alert = [[UIAlertView alloc] initWithTitle:nil message:@REEL_MISSING_ERROR delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
         [alert show];
         [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:2];
     }
@@ -124,7 +122,7 @@
         }];
     } else
     {
-        alert = [[UIAlertView alloc] initWithTitle:nil message:@"No Reel has be taken" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+        alert = [[UIAlertView alloc] initWithTitle:nil message:@REEL_MISSING_ERROR delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
         [alert show];
         [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:2];
     }
@@ -134,9 +132,8 @@
 // Handles Succussful Server connection
 -(void) didSucceedRequest: (NSNotification*) notif
 {
-    if([[notif name] isEqualToString:@"REEL_SENT"])
+    if([[notif name] isEqualToString:@REEL_SUCCESS])
     {
-        NSLog(@"Sent to Server\n");
         [alert setMessage:@"Message Sent"];
         [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
     }
@@ -145,17 +142,14 @@
 // Handles all Networking errors that come from Networking.m
 -(void) didGetNetworkError: (NSNotification*) notif
 {
-    if([[notif name] isEqualToString:@"AddressFailed"])
+    if([[notif name] isEqualToString:@ADDRESS_FAIL])
     {
-        NSLog(@"Wrong Address\n");
-        
         [alert setMessage:@ADDRESS_FAIL_ERROR];
         [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
     }
-    if([[notif name] isEqualToString:@"FailStatus"])
+    if([[notif name] isEqualToString:@FAIL_STATUS])
     {
-        NSLog(@"Failed to connect\n");
-        [alert setMessage:@"Failed to Connect to Server"];
+        [alert setMessage:@SERVER_CONNECT_ERROR];
         [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
     }
 }

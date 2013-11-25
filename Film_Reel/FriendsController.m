@@ -36,9 +36,9 @@
     [tableArray addObject:@"Person"];
     
     friendRequest = [[Networking alloc] init];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@"AddressFailed" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@"FailStatus" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@"INVITE_SENT" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@FRIEND_SUCCESS object:nil];
 	// Do any additional setup after loading the view.
 }
 
@@ -60,9 +60,12 @@
     if(buttonIndex == 1)
     {
         NSLog(@"%@", [addfriendalert textFieldAtIndex:0].text);
-        NSString* req = [self buildAddRequest:[addfriendalert textFieldAtIndex:0].text];
+        
+        NSString* req = [self buildAddRequest:[addfriendalert textFieldAtIndex:0].text withName: @""];
+                                                            //Add token name----------------------^
+        
         loading = [[UIAlertView alloc] initWithTitle:nil message:@"Sending request..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-        [friendRequest startReceive:req withType:@ADD_REQUEST];
+        [friendRequest startReceive:req withType:@ADD_FRIEND];
         
         if([friendRequest isReceiving])
         {
@@ -78,9 +81,8 @@
 // Handles Succussful acount creation
 -(void) didSucceedRequest: (NSNotification*) notif
 {
-    if([[notif name] isEqualToString:@"INVITE_SENT"])
+    if([[notif name] isEqualToString:@FRIEND_SUCCESS])
     {
-        NSLog(@"YAYAYAYAYA!!! It worked\n");
         [loading setMessage:@"Request Sent"];
         [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
         [self.friendsTable reloadData];
@@ -90,16 +92,13 @@
 // Handles all Networking errors that come from Networking.m
 -(void) didGetNetworkError: (NSNotification*) notif
 {
-    if([[notif name] isEqualToString:@"AddressFailed"])
+    if([[notif name] isEqualToString:@ADDRESS_FAIL])
     {
-        NSLog(@"Wrong Address\n");
-        
         [loading setMessage:@ADDRESS_FAIL_ERROR];
         [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
     }
-    if([[notif name] isEqualToString:@"FailStatus"])
+    if([[notif name] isEqualToString:@FAIL_STATUS])
     {
-        NSLog(@"Failed to connect\n");
         [loading setMessage:@SERVER_CONNECT_ERROR];
         [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
     }
@@ -113,14 +112,16 @@
 
 // This is the template for building future URLRequests
 // NOTE:: SERVER_ADDRESS is hardcoded in Networking.h
-- (NSString*) buildAddRequest: (NSString*) name
+- (NSString*) buildAddRequest: (NSString*) friendToAdd withName: (NSString*) thisUser
 {
     NSMutableString* add = [[NSMutableString alloc] initWithString:@SERVER_ADDRESS];
     [add appendString:@"add?"];
     
-    NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"name=%@" , name];
+    NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"name=%@" , thisUser];
+    NSMutableString* parameter2 = [[NSMutableString alloc] initWithFormat:@"&friend=%@", friendToAdd];
     
     [add appendString:parameter1];
+    [add appendString:parameter2];
     
     NSLog(@"Add friend request:: %@", add);
     

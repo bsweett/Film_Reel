@@ -48,7 +48,7 @@
     if( ! succuss)
     {
         // Update with error status
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"AddressFailed" object:self];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@ADDRESS_FAIL object:self];
     } else {
         request = [NSURLRequest requestWithURL:address cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
         assert(request != nil);
@@ -86,30 +86,29 @@
             if([requestType isEqualToString: @LOGIN_REQUEST])
             {
                 [self isValidLoginRequest:localToken];
-                [[NSNotificationCenter defaultCenter]postNotificationName:@"SucceedStatus" object:nil];
+                [[NSNotificationCenter defaultCenter]postNotificationName:@LOGIN_SUCCESS object:nil];
             }
             else if([requestType isEqualToString: @SIGNUP_REQUEST])
             {
-                [[NSNotificationCenter defaultCenter]postNotificationName:@"SIGN_UP" object:nil];
+                [[NSNotificationCenter defaultCenter]postNotificationName:@SIGNUP_SUCCESS object:nil];
             }
             else if([requestType isEqualToString: @FETCH_REQUEST])
             {
-                [[NSNotificationCenter defaultCenter]postNotificationName:@"FETCH_COMPLETE" object:nil];
+                [[NSNotificationCenter defaultCenter]postNotificationName:@FETCH_SUCCESS object:nil];
             }
             else if([requestType isEqualToString: @UPDATE_REQUEST])
             {
-                [[NSNotificationCenter defaultCenter]postNotificationName:@"UPDATE" object:nil];
+                [[NSNotificationCenter defaultCenter]postNotificationName:@UPDATE_SUCCESS object:nil];
             }
             else if([requestType isEqualToString: @REEL_SEND])
             {
-                [[NSNotificationCenter defaultCenter]postNotificationName:@"REEL_SENT" object:nil];
+                [[NSNotificationCenter defaultCenter]postNotificationName:@REEL_SUCCESS object:nil];
             }
         }
     }
     else
     {
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"FailStatus" object:nil];
-        NSLog(@"Sent Fail notification\n");
+        [[NSNotificationCenter defaultCenter]postNotificationName:@FAIL_STATUS object:nil];
     }
 }
 
