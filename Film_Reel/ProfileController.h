@@ -10,6 +10,9 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "Networking.h"
 
+#define MIN_ENTRY_SIZE 4
+#define MAX_USERNAME_ENTRY 30
+
 #define FETCH_REQUEST "Fetch"
 #define UPDATE_REQUEST "Update"
 

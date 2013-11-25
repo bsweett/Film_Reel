@@ -136,6 +136,14 @@
     {
         
     }
+    else if ([localToken isEqualToString:@"UserAlreadyExists"])
+    {
+        
+    }
+    else
+    {
+        
+    }
 }
 
 - (void)stopReceiveWithStatus:(NSString *)statusString
