@@ -70,6 +70,7 @@
     NSString * email = emailField.text;
     NSString * username = userField.text;
     NSString * password = passField.text;
+    NSString * confirmPassword = passConfirm.text;
     NSString * errorTitle = @"Error";
     NSMutableString * errorMessage = [[NSMutableString alloc] init];
     
@@ -90,13 +91,13 @@
         {
             [errorMessage appendString: @"Username can only contain letters and numbers (MAX 30)\n"];
         }
-        if  ( [self validatePasswordWithString:password] == FALSE )
+        if  ( [self validatePasswordWithString:password withCPass:confirmPassword] == FALSE )
         {
             [errorMessage appendString: @"Password must be between 8 and 18 characters and match in both fields\n"];
         }
         
         // If everything is the correct format
-        if([self validateEmailWithString:email] == TRUE && [self validateUserNameWithString:username] == TRUE && [self validatePasswordWithString:username] == TRUE)
+        if([self validateEmailWithString:email] == TRUE && [self validateUserNameWithString:username] == TRUE && [self validatePasswordWithString:password withCPass:confirmPassword] == TRUE)
         {
             titlebar.backBarButtonItem.enabled = NO;
             
@@ -246,10 +247,11 @@
     return FALSE;
 }
 
-- (BOOL)validatePasswordWithString:(NSString*)pass
+- (BOOL)validatePasswordWithString:(NSString *)pass withCPass:(NSString *)cpass
 {
-    if(![pass isEqualToString:passConfirm.text])
+    if(![pass isEqualToString:cpass])
     {
+        NSLog(@"Passwords didnt match");
         return FALSE;
     }
     if( pass.length >= MIN_PASS_ENTRY && pass.length <= MAX_PASSWORD_ENTRY )
