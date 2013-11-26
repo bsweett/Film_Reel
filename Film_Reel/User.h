@@ -20,6 +20,7 @@
 @property (strong, nonatomic) NSMutableArray * friendsList;
 @property (nonatomic) NSInteger * friendCount;
 @property (strong, nonatomic) NSString * token;
+@property (strong, nonatomic) NSString * message;
 
 // Getters
 - (NSMutableString*) getUserName;
@@ -32,6 +33,7 @@
 - (NSMutableString*) getImagePath;
 - (NSMutableArray*) getFriendList;
 - (NSInteger*) getFriendCount;
+- (NSString*) getMessage;
 
 // Setters
 - (void) setUserName: (NSMutableString*) name;
@@ -42,6 +44,7 @@
 - (void) setPassword:(NSMutableString *)password;
 - (void) setImagePath: (NSMutableString *) image;
 - (void) setUpImageFromData: (NSData*) data;
+- (void) setMessage:(NSString *)mess;
 - (void) incrementCount;
 - (void) decrementCount;
 

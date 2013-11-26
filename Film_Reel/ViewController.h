@@ -8,15 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "Networking.h"
+#import "User.h"
 
-#define MIN_ENTRY_SIZE 4
-#define MIN_PASS_ENTRY 8
-#define MAX_USERNAME_ENTRY 29
-#define MAX_PASSWORD_ENTRY 18
-
-#define LOGIN_REQUEST "Login"
-
-@interface ViewController : UIViewController <UIAlertViewDelegate>
+@interface ViewController : UIViewController <UIAlertViewDelegate> {
+    //AppDelegate* app;
+}
 
 @property(nonatomic, strong) IBOutlet UIButton *loginButton;
 @property(nonatomic, strong) IBOutlet UIButton *createButton;
@@ -25,6 +21,7 @@
 @property(nonatomic, strong) UIAlertView* error;
 @property(nonatomic, strong) UIActivityIndicatorView* indicator;
 @property(nonatomic, strong) Networking* loginrequest;
+@property(nonatomic, strong) User* currentUser;
 
 // Validatation
 - (BOOL)validateUserNameWithString:(NSString*)username;

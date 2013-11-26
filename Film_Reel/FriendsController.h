@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "Networking.h"
 
-#define ADD_REQUEST "ADD_FRIEND"
-
 @interface FriendsController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
 
 @property (strong, retain) IBOutlet UITableView* friendsTable;
@@ -21,5 +19,8 @@
 @property (strong, nonatomic) Networking* friendRequest;
 
 -(IBAction)doAddFriend:(id)sender;
+-(void) didSucceedRequest: (NSNotification*) notif;
+-(void) didGetNetworkError: (NSNotification*) notif;
+
 
 @end

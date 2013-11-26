@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
 #import "AppDelegate.h"
+//User* currentUser;
 
 int main(int argc, char * argv[])
 {

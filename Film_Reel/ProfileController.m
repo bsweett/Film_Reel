@@ -62,10 +62,10 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@"AddressFailed" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@"FailStatus" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@"FETCH_COMPLETE" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@"UPDATE" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@FETCH_SUCCESS object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@UPDATE_SUCCESS object:nil];
     
     updateOrFetch = [[Networking alloc] init];
     
@@ -95,17 +95,13 @@
 // Handles all Networking errors that come from Networking.m
 -(void) didGetNetworkError: (NSNotification*) notif
 {
-    if([[notif name] isEqualToString:@"AddressFailed"])
+    if([[notif name] isEqualToString:@ADDRESS_FAIL])
     {
-        NSLog(@"Wrong Address\n");
-        
         [loading setMessage:@ADDRESS_FAIL_ERROR];
         [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
     }
-    if([[notif name] isEqualToString:@"FailStatus"])
+    if([[notif name] isEqualToString:@FAIL_STATUS])
     {
-        NSLog(@"Failed to connect\n");
-
         [loading setMessage:@SERVER_CONNECT_ERROR];
         [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
     }
@@ -120,11 +116,16 @@
 // May want to pass the something through notification to check which request was actually made
 -(void) didSucceedRequest: (NSNotification*) notif
 {
-    if([[notif name] isEqualToString:@"UPDATE"])
+    if([[notif name] isEqualToString:@UPDATE_SUCCESS])
     {
-        NSLog(@"Profile action succeed\n");
         [loading dismissWithClickedButtonIndex:0 animated:YES];
-        //[self performSegueWithIdentifier:@"done" sender:self];
+        
+    }
+    
+    if([[notif name] isEqualToString:@FETCH_SUCCESS])
+    {
+        [loading dismissWithClickedButtonIndex:0 animated:YES];
+        
     }
 }
 

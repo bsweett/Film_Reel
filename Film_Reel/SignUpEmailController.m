@@ -42,9 +42,10 @@
     [userField setAutocorrectionType:UITextAutocorrectionTypeNo];
     [passField setAutocorrectionType:UITextAutocorrectionTypeNo];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@"AddressFailed" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@"FailStatus" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@"SIGN_UP" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@USER_ALREADY_EXISTS object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@SIGNUP_SUCCESS object:nil];
 	// Do any additional setup after loading the view.
 }
 
@@ -154,19 +155,16 @@
 // Handles all Networking errors that come from Networking.m
 -(void) didGetNetworkError: (NSNotification*) notif
 {
-    if([[notif name] isEqualToString:@"AddressFailed"])
+    if([[notif name] isEqualToString:@ADDRESS_FAIL])
     {
-        NSLog(@"Wrong Address\n");
-       
         [indicator stopAnimating];
         error = [[UIAlertView alloc] initWithTitle:nil message:@ADDRESS_FAIL_ERROR delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
         [error show];
         [self performSelector:@selector(dismissErrors:) withObject:error afterDelay:3];
         titlebar.backBarButtonItem.enabled = YES;
     }
-    if([[notif name] isEqualToString:@"FailStatus"])
+    if([[notif name] isEqualToString:@FAIL_STATUS])
     {
-        NSLog(@"Failed to connect\n");
         [indicator stopAnimating];
         error = [[UIAlertView alloc] initWithTitle:nil message:@SERVER_CONNECT_ERROR delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
         [error show];
@@ -184,11 +182,17 @@
 // Handles Succussful acount creation
 -(void) didSucceedRequest: (NSNotification*) notif
 {
-    if([[notif name] isEqualToString:@"SIGN_UP"])
+    if([[notif name] isEqualToString:@SIGNUP_SUCCESS])
     {
-        NSLog(@"YAYAYAYAYA!!! It worked\n");
         [indicator stopAnimating];
         [self performSegueWithIdentifier:@"done" sender:self];
+    }
+    
+    if([[notif name] isEqualToString:@USER_ALREADY_EXISTS])
+    {
+        [indicator stopAnimating];
+        error = [[UIAlertView alloc] initWithTitle:@"User Already Exists" message:@"Email and/or Username is already used" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [error show];
     }
 }
 

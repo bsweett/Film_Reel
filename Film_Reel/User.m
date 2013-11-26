@@ -26,6 +26,7 @@
 @synthesize imagePath;
 @synthesize friendsList;
 @synthesize friendCount;
+@synthesize message;
 
 // Constructor -------------------------------------------------------------------
 -(id) init
@@ -57,6 +58,7 @@
 - (NSMutableString*) getImagePath { return imagePath;      }
 - (NSMutableArray*) getFriendList { return friendsList;    }
 - (NSInteger*) getFriendCount     { return friendCount;    }
+- (NSString*) getMessage          { return message;        }
 
 // Set Values --------------------------------------------------------------------
 - (void) setUserName:  (NSMutableString*) name     { userName = name;               }
@@ -66,6 +68,7 @@
 - (void) setUserBio:   (NSMutableString*) bio      { userBio = bio;                 }
 - (void) setPassword:  (NSMutableString *)pass     { password = pass;               }
 - (void) setImagePath: (NSMutableString *) image   { imagePath = image;             }
+- (void) setMessage:   (NSString *)mess            { message = mess;                }
 - (void) incrementCount                            { friendCount = friendCount + 1; }
 - (void) decrementCount                            { friendCount = friendCount - 1; }
 
