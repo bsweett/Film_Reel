@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "Networking.h"
+#import "User.h"
 
-@interface ViewController : UIViewController <UIAlertViewDelegate>
+@interface ViewController : UIViewController <UIAlertViewDelegate> {
+    //AppDelegate* app;
+}
 
 @property(nonatomic, strong) IBOutlet UIButton *loginButton;
 @property(nonatomic, strong) IBOutlet UIButton *createButton;
@@ -18,6 +21,7 @@
 @property(nonatomic, strong) UIAlertView* error;
 @property(nonatomic, strong) UIActivityIndicatorView* indicator;
 @property(nonatomic, strong) Networking* loginrequest;
+@property(nonatomic, strong) User* currentUser;
 
 // Validatation
 - (BOOL)validateUserNameWithString:(NSString*)username;

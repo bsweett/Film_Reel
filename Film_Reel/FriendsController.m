@@ -50,7 +50,7 @@
 
 -(IBAction)doAddFriend:(id)sender
 {
-    addfriendalert = [[UIAlertView alloc] initWithTitle:@"Add a Friend" message:@"Enter a username to add: " delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Add", nil];
+    addfriendalert = [[UIAlertView alloc] initWithTitle:@"Add a Friend" message:@"Enter a email to add: " delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Add", nil];
     addfriendalert.alertViewStyle = UIAlertViewStylePlainTextInput;
     [addfriendalert show];
 }
@@ -61,20 +61,29 @@
     {
         NSLog(@"%@", [addfriendalert textFieldAtIndex:0].text);
         
-        NSString* req = [self buildAddRequest:[addfriendalert textFieldAtIndex:0].text withName: @""];
-                                                            //Add token name----------------------^
-        
-        loading = [[UIAlertView alloc] initWithTitle:nil message:@"Sending request..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-        [friendRequest startReceive:req withType:@ADD_FRIEND];
-        
-        if([friendRequest isReceiving])
+        if([self validateEmailWithString:[addfriendalert textFieldAtIndex:0].text])
         {
-            [loading show];
+            NSString* req = [self buildAddRequest:[addfriendalert textFieldAtIndex:0].text withToken: @""];
+            //Add token name----------------------^
+            
+            loading = [[UIAlertView alloc] initWithTitle:nil message:@"Sending request..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+            [friendRequest startReceive:req withType:@ADD_FRIEND];
+            
+            if([friendRequest isReceiving])
+            {
+                [loading show];
+            }
+            
+            
+            [tableArray addObject:([addfriendalert textFieldAtIndex:0].text)];
+            [self.friendsTable reloadData];
+        } else
+        {
+            [self dismissErrors:addfriendalert];
+            addfriendalert = [[UIAlertView alloc] initWithTitle:nil message:@"Invalid Email" delegate:self cancelButtonTitle:@"" otherButtonTitles:@"", nil];
+            [addfriendalert show];
+            [self performSelector:@selector(dismissErrors:) withObject:addfriendalert afterDelay:3];
         }
-        
-        
-        [tableArray addObject:([addfriendalert textFieldAtIndex:0].text)];
-        [self.friendsTable reloadData];
     }
 }
 
@@ -112,13 +121,13 @@
 
 // This is the template for building future URLRequests
 // NOTE:: SERVER_ADDRESS is hardcoded in Networking.h
-- (NSString*) buildAddRequest: (NSString*) friendToAdd withName: (NSString*) thisUser
+- (NSString*) buildAddRequest: (NSString*) friendToAdd withToken: (NSString*) thisUser
 {
     NSMutableString* add = [[NSMutableString alloc] initWithString:@SERVER_ADDRESS];
     [add appendString:@"add?"];
     
-    NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"name=%@" , thisUser];
-    NSMutableString* parameter2 = [[NSMutableString alloc] initWithFormat:@"&friend=%@", friendToAdd];
+    NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"token=%@" , thisUser];
+    NSMutableString* parameter2 = [[NSMutableString alloc] initWithFormat:@"&femail=%@", friendToAdd];
     
     [add appendString:parameter1];
     [add appendString:parameter2];
@@ -126,6 +135,18 @@
     NSLog(@"Add friend request:: %@", add);
     
     return add;
+}
+
+- (BOOL)validateEmailWithString:(NSString*)emailaddress
+{
+    if(emailaddress.length >= MIN_EMAIL_ENTRY && emailaddress.length <= MAX_EMAIL_ENTRY)
+    {
+        NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+        NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+        return [emailTest evaluateWithObject:emailaddress];
+    }
+    
+    return FALSE;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

@@ -44,6 +44,7 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@USER_ALREADY_EXISTS object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@SIGNUP_SUCCESS object:nil];
 	// Do any additional setup after loading the view.
 }
@@ -185,6 +186,13 @@
     {
         [indicator stopAnimating];
         [self performSegueWithIdentifier:@"done" sender:self];
+    }
+    
+    if([[notif name] isEqualToString:@USER_ALREADY_EXISTS])
+    {
+        [indicator stopAnimating];
+        error = [[UIAlertView alloc] initWithTitle:@"User Already Exists" message:@"Email and/or Username is already used" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [error show];
     }
 }
 

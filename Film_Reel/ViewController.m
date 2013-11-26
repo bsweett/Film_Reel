@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 
-
 @interface ViewController () <UITextFieldDelegate>
 
 @end
@@ -23,6 +22,7 @@
 @synthesize indicator;
 @synthesize loginButton;
 @synthesize createButton;
+@synthesize currentUser;
 
 - (void)viewDidLoad
 {
@@ -40,6 +40,7 @@
     // NOTE:: Should have another notification that tells user if the information they entered doesnt exist (no password or username matching)
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@USER_NOT_FOUND object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@LOGIN_SUCCESS object:nil];
 }
 
@@ -127,10 +128,8 @@
 // Handles all Networking errors that come from Networking.m
 -(void) didGetNetworkError: (NSNotification*) notif
 {
-    if([[notif name] isEqualToString:@"AddressFailed"])
+    if([[notif name] isEqualToString:@ADDRESS_FAIL])
     {
-        NSLog(@"Wrong Address\n");
-        
         [indicator stopAnimating];
         error = [[UIAlertView alloc] initWithTitle:nil message:@ADDRESS_FAIL_ERROR delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
         [error show];
@@ -138,9 +137,8 @@
         createButton.enabled = YES;
         loginButton.enabled = YES;
     }
-    if([[notif name] isEqualToString:@"FailStatus"])
+    if([[notif name] isEqualToString:@FAIL_STATUS])
     {
-        NSLog(@"Failed to connect\n");
         [indicator stopAnimating];
         error = [[UIAlertView alloc] initWithTitle:nil message:@SERVER_CONNECT_ERROR delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
         [error show];
@@ -159,12 +157,24 @@
 // Handles Succussful acount creation
 -(void) didSucceedRequest: (NSNotification*) notif
 {
-    if([[notif name] isEqualToString:@"SucceedStatus"])
+    if([[notif name] isEqualToString:@LOGIN_SUCCESS])
     {
-        NSLog(@"LOGGED IN WE ARE!!!\n");
+        NSDictionary* userDictionary = [notif userInfo];
+        currentUser = [userDictionary valueForKey:@CURRENT_USER];
+        
+        [[UIApplication sharedApplication] delegate];
+        //Set token to token in app delegate
+        
+        NSLog(@"Current User Token:: %@", [currentUser getToken]);
         [indicator stopAnimating];
-        [[NSNotificationCenter defaultCenter] removeObserver:@"SucceedStatus"];
         [self performSegueWithIdentifier:@"loggedIn" sender:self];
+    }
+    
+    if([[notif name] isEqualToString:@USER_NOT_FOUND])
+    {
+        [indicator stopAnimating];
+        error = [[UIAlertView alloc] initWithTitle:nil message:@"Username or password incorrect" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+        [self performSelector:@selector(dismissErrors:) withObject:error afterDelay:3];
     }
 }
 

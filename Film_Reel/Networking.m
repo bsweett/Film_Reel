@@ -50,7 +50,7 @@
         // Update with error status
         [[NSNotificationCenter defaultCenter]postNotificationName:@ADDRESS_FAIL object:self];
     } else {
-        request = [NSURLRequest requestWithURL:address cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
+        request = [NSURLRequest requestWithURL:address cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20];
         assert(request != nil);
         
         self.connection = [NSURLConnection connectionWithRequest:request delegate:self];
@@ -79,26 +79,36 @@
         status = @"Succeed";
         [[NetworkManager sharedInstance] didStopNetworkOperation];
         
-        if(userObject != nil && [userObject getToken] != nil)
+        parser = [[NSXMLParser alloc] initWithData:data];
+        [parser setDelegate:self];
+        [parser parse];
+        
+        if(userObject != nil && [userObject getMessage] != nil)
         {
-            NSString* localToken = [userObject getToken];
+            
+            NSString* localMessage = [userObject getMessage];
             // check what type of request it is
-            if([requestType isEqualToString: @LOGIN_REQUEST])
+            if([localMessage isEqualToString:@"Fail"])
             {
-                [self isValidLoginRequest:localToken];
-                [[NSNotificationCenter defaultCenter]postNotificationName:@LOGIN_SUCCESS object:nil];
+                // This is a fault in the request address
+                // Should never happen
+                [[NSNotificationCenter defaultCenter]postNotificationName:@FAIL_STATUS object:nil];
+            }
+            else if([requestType isEqualToString: @LOGIN_REQUEST])
+            {
+                [self isValidLoginRequest:localMessage];
             }
             else if([requestType isEqualToString: @SIGNUP_REQUEST])
             {
-                [[NSNotificationCenter defaultCenter]postNotificationName:@SIGNUP_SUCCESS object:nil];
+                [self isValidSignUpRequest: localMessage];
             }
             else if([requestType isEqualToString: @FETCH_REQUEST])
             {
-                [[NSNotificationCenter defaultCenter]postNotificationName:@FETCH_SUCCESS object:nil];
+                [self isValidFetchRequest:localMessage];
             }
             else if([requestType isEqualToString: @UPDATE_REQUEST])
             {
-                [[NSNotificationCenter defaultCenter]postNotificationName:@UPDATE_SUCCESS object:nil];
+                [self isValidUpdateRequest:localMessage];
             }
             else if([requestType isEqualToString: @REEL_SEND])
             {
@@ -112,36 +122,55 @@
     }
 }
 
-- (void) isValidLoginRequest: (NSString*) localToken
+- (void) isValidLoginRequest: (NSString*) localMessage
 {
-    if([localToken isEqualToString:@"Fail"])
+    if ([localMessage isEqualToString:@"NoUserFound"])
     {
-        // Invalid parameter request
+        NSLog(@"Message:: %@", [userObject getMessage]);
+        [userObject setMessage: nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@USER_NOT_FOUND object:nil];
     }
-    else if ([localToken isEqualToString:@"NoUserFound"])
+    else    // Pass user object
     {
-        // Login by username and password failed
-    }
-    else // check validToken
-    {
-        
+        NSDictionary* userDictionary = [NSDictionary dictionaryWithObject:userObject forKey:@CURRENT_USER];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@LOGIN_SUCCESS object:nil userInfo:userDictionary];
     }
 }
 
-- (void) isValidSignUpRequest
+- (void) isValidSignUpRequest: (NSString*) localMessage
 {
-    NSString* localToken = [userObject getToken];
-    if([localToken isEqualToString:@"Fail"])
+    if ([localMessage isEqualToString:@"UserAlreadyExists"])
     {
-        
+        [userObject setMessage:nil];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@USER_ALREADY_EXISTS object:nil];
     }
-    else if ([localToken isEqualToString:@"UserAlreadyExists"])
+    else
+    {
+        [[NSNotificationCenter defaultCenter]postNotificationName:@SIGNUP_SUCCESS object:nil];
+    }
+}
+
+- (void) isValidFetchRequest: (NSString*) localMessage
+{
+    if([localMessage isEqualToString:@""])
     {
         
     }
     else
     {
-        
+        [[NSNotificationCenter defaultCenter]postNotificationName:@FETCH_SUCCESS object:nil];
+    }
+}
+
+- (void) isValidUpdateRequest: (NSString*) localMessage
+{
+    if([localMessage isEqualToString:@""])
+    {
+     
+    }
+    else
+    {
+        [[NSNotificationCenter defaultCenter]postNotificationName:@UPDATE_SUCCESS object:nil];
     }
 }
 
@@ -183,17 +212,12 @@
 // causes the image to be displayed.
 {
     assert(theConnection == self.connection);
-    
+    NSLog(@"Did stop\n");
     [self stopReceiveWithStatus:nil];
-    parser = [[NSXMLParser alloc] initWithData:data];
-    [parser setDelegate:self];
-    [parser parse];
-    
-    
-    
-       // Data is finished loading update accordingly
-    
 }
+
+//-----------------------------
+// Parser
 
 - (void)parser:(NSXMLParser*)parser didStartElement:(NSString *)elementName namespaceURI:(NSString*)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary*)attributeDict
 {
@@ -203,7 +227,8 @@
         NSLog(@"found User Element");
     }
     
-    if([elementName isEqualToString:@"token"])
+    // Dictonary would be better
+    if([elementName isEqualToString:@"message"] || [elementName isEqualToString:@"token"])
     {
         currentObject = [[NSMutableString alloc] init];
     }
@@ -211,6 +236,7 @@
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
+    NSLog(@"found end: %@", elementName);
     if([elementName isEqualToString:@"name"])
     {
         [userObject setUserName: currentObject];
@@ -226,6 +252,7 @@
     if([elementName isEqualToString:@"token"])
     {
         [userObject setToken: currentObject];
+        NSLog(@"Token === %@", [userObject getToken]);
     }
     if([elementName isEqualToString:@"userbio"])
     {
@@ -239,11 +266,16 @@
     {
         [userObject setImagePath: currentObject];
     }
+    if([elementName isEqualToString:@"message"])
+    {
+        [userObject setMessage:currentObject];
+        NSLog(@"Message:: %@", [userObject getMessage]);
+    }
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
-    [currentObject appendString:string];
+    [currentObject appendString:[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
 }
 
 

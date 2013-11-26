@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "ViewController.h"
+#import "Networking.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) ViewController*onResume;
+@property (strong, nonatomic) UIWindow* window;
+@property (strong, nonatomic) NSString* token;
 
 @end
