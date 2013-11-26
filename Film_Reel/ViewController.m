@@ -162,7 +162,9 @@
         NSDictionary* userDictionary = [notif userInfo];
         currentUser = [userDictionary valueForKey:@CURRENT_USER];
         
-        [[UIApplication sharedApplication] delegate];
+        AppDelegate* shared = [AppDelegate appDelegate];
+        
+        shared.token = currentUser.getToken;
         //Set token to token in app delegate
         
         NSLog(@"Current User Token:: %@", [currentUser getToken]);

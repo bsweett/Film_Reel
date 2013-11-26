@@ -10,7 +10,28 @@
 
 @implementation AppDelegate
 
-@synthesize window,token;
+@synthesize window;
+@synthesize token;
+@synthesize validToken;
+
++(AppDelegate *) appDelegate
+{
+    return (AppDelegate *) [[UIApplication sharedApplication] delegate];
+}
+
+- (NSString*) buildTokenLoginRequest: (NSString*) tokenToCheck
+{
+    NSMutableString* valid = [[NSMutableString alloc] initWithString:@SERVER_ADDRESS];
+    [valid appendString:@"tokenlogin?"];
+    
+    NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"token=%@" , tokenToCheck];
+    
+    [valid appendString:parameter1];
+    
+    NSLog(@"TokenLogin request:: %@", valid);
+    
+    return valid;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -27,8 +48,12 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     NSUserDefaults* currentLoggedIn = [NSUserDefaults standardUserDefaults];
-    NSLog(@"Token from background %@", token);
-    //[currentLoggedIn setObject:currentUser forKey:@CURRENT_USER];
+    if(token != nil)
+    {
+        NSLog(@"Token into background %@", token);
+        [currentLoggedIn setObject:token forKey:@CURRENT_USER];
+        [currentLoggedIn synchronize];
+    }
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
@@ -41,6 +66,22 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+    NSUserDefaults* currentLoggedIn = [NSUserDefaults standardUserDefaults];
+    token = [currentLoggedIn objectForKey:@CURRENT_USER];
+    
+    
+    if(token != nil)
+    {
+    validToken = [[Networking alloc] init];
+    NSLog(@"Token after background %@", token);
+    //NSString* request = [self buildTokenLoginRequest:token];
+    //[validToken startReceive:request withType:@VALID_REQUEST];
+    }
+    else
+    {
+        
+    }
+    
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 

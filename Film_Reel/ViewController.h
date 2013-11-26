@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Networking.h"
 #import "User.h"
+#import "AppDelegate.h"
 
 @interface ViewController : UIViewController <UIAlertViewDelegate> {
     //AppDelegate* app;

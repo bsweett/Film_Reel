@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="Hue-4f-fnc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="Hue-4f-fnc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -386,7 +386,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="emailField" destination="oRq-WI-QOQ" id="Z1l-Ra-gH9"/>
-                        <outlet property="passConfirm" destination="Fs2-8g-dUi" id="7T8-nY-R3I"/>
+                        <outlet property="passConfirm" destination="Fs2-8g-dUi" id="nc7-sd-7AL"/>
                         <outlet property="passField" destination="Lhx-yx-hFh" id="Rxs-aQ-NL6"/>
                         <outlet property="titlebar" destination="N4N-wF-xuL" id="Tzn-Wb-AaK"/>
                         <outlet property="userField" destination="SRh-9d-CsB" id="oMs-yj-Q7F"/>
@@ -726,15 +726,10 @@
         <image name="ProfileTab" width="24" height="24"/>
         <image name="TakeReelTab" width="25" height="19"/>
         <image name="button14-20110808201840-00014.png" width="250" height="99"/>
-        <image name="button14-20110808201840-00014.png" width="250" height="99"/>
         <image name="completeimage.png" width="200" height="198"/>
         <image name="default.png" width="128" height="128"/>
         <image name="star.png" width="30" height="30"/>
-        <image name="star.png" width="30" height="30"/>
-        <image name="star.png" width="30" height="30"/>
-        <image name="star.png" width="30" height="30"/>
         <image name="stargrey.png" width="30" height="30"/>
-        <image name="takereelbutton.png" width="100" height="89"/>
         <image name="takereelbutton.png" width="100" height="89"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

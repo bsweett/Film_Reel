@@ -14,5 +14,8 @@
 
 @property (strong, nonatomic) UIWindow* window;
 @property (strong, nonatomic) NSString* token;
+@property (strong, nonatomic) Networking* validToken;
+
++ (AppDelegate *)appDelegate;
 
 @end

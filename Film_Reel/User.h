@@ -42,7 +42,6 @@
 - (void) setPassword:(NSMutableString *)password;
 - (void) setImagePath: (NSMutableString *) image;
 - (void) setUpImageFromData: (NSData*) data;
-- (void) setMessage:(NSString *)mess;
 - (void) incrementCount;
 - (void) decrementCount;
 

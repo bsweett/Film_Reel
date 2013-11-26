@@ -16,7 +16,7 @@
 #endif
 
 // Server/app attributes
-#define SERVER_ADDRESS      "http://172.20.10.2:8080/filmreel/"
+#define SERVER_ADDRESS      "http://192.168.1.237:8080/filmreel/"
 #define REEL_ALBUM_NAME     "My Reels"
 #define CURRENT_USER        "current_user"
 
@@ -36,6 +36,7 @@
 #define REEL_SEND       "send_reel"
 #define ADD_FRIEND      "add_friend"
 #define INBOX_REQUEST   "inbox"
+#define VALID_REQUEST   "valid_token"
 
 // Nofitication Names
 #define LOGIN_SUCCESS   "login_success"

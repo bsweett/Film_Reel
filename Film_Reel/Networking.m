@@ -127,7 +127,6 @@
     if ([localMessage isEqualToString:@"NoUserFound"])
     {
         NSLog(@"Message no user found: %@", [dataReceived objectForKey:@"message"]);
-        [userObject setMessage: nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@USER_NOT_FOUND object:nil];
     }
     else    // Pass user object
