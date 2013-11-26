@@ -14,6 +14,8 @@
 
 @implementation SignUpCompleteController
 
+@synthesize createdUser;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -34,6 +36,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+// When login is press set the token
+// Until then they are not logged in
+-(IBAction) doLogIn:(id) sender
+{
+    AppDelegate* shared = [AppDelegate appDelegate];
+    shared.token = createdUser.getToken;
 }
 
 @end

@@ -46,11 +46,13 @@
 #define REEL_SUCCESS    "reel_sent"
 #define INBOX_SUCCESS   "inbox_got"
 #define FRIEND_SUCCESS  "friend_sent"
+#define VALID_SUCCESS   "valid_token_success"
 
 #define FAIL_STATUS             "general_fail"
 #define ADDRESS_FAIL            "address_fail"
 #define USER_ALREADY_EXISTS     "user_already_exists"
 #define USER_NOT_FOUND          "user_not_found"
+#define INVALID_TOKEN           "invalid_token"
 
 #define CAMERA_START    "startRecord"
 #define CAMERA_STOP     "stopRecord"

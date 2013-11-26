@@ -273,6 +273,7 @@
                     <navigationItem key="navigationItem" title="Account Created!" id="7Hb-oY-UO5">
                         <barButtonItem key="rightBarButtonItem" title="Log In" id="1LL-qr-awp">
                             <connections>
+                                <action selector="doLogIn:" destination="D5n-EC-wU3" id="p9i-nI-mlR"/>
                                 <segue destination="gnj-Bp-upt" kind="modal" id="P1n-ES-8Kz"/>
                             </connections>
                         </barButtonItem>
@@ -738,6 +739,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="scF-fN-z6X"/>
+        <segue reference="P1n-ES-8Kz"/>
     </inferredMetricsTieBreakers>
 </document>

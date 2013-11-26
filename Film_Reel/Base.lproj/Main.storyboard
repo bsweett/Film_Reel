@@ -201,6 +201,7 @@
                     <navigationItem key="navigationItem" title="Complete" id="4xn-5v-yfs">
                         <barButtonItem key="rightBarButtonItem" title="Login" id="Rsd-zc-Tke">
                             <connections>
+                                <action selector="doLogIn:" destination="43b-AY-tq5" id="SOC-ZV-Zdn"/>
                                 <segue destination="hlb-GM-SJL" kind="modal" id="onh-vw-Nri"/>
                             </connections>
                         </barButtonItem>

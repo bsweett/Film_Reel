@@ -60,22 +60,32 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    //[onResume lockscreen];
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+    /*
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@USER_ALREADY_EXISTS object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@SIGNUP_SUCCESS object:nil];
+    */
+     
     NSUserDefaults* currentLoggedIn = [NSUserDefaults standardUserDefaults];
     token = [currentLoggedIn objectForKey:@CURRENT_USER];
     
-    
     if(token != nil)
     {
-    validToken = [[Networking alloc] init];
-    NSLog(@"Token after background %@", token);
-    //NSString* request = [self buildTokenLoginRequest:token];
-    //[validToken startReceive:request withType:@VALID_REQUEST];
+        validToken = [[Networking alloc] init];
+        NSLog(@"Token after background %@", token);
+        NSString* request = [self buildTokenLoginRequest:token];
+        [validToken startReceive:request withType:@VALID_REQUEST];
+        
+        if([validToken isReceiving])
+        {
+            
+        }
     }
     else
     {
@@ -89,5 +99,39 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+// Handles all Networking errors that come from Networking.m
+-(void) didGetNetworkError: (NSNotification*) notif
+{
+    if([[notif name] isEqualToString:@ADDRESS_FAIL])
+    {
+
+    }
+    if([[notif name] isEqualToString:@FAIL_STATUS])
+    {
+     
+    }
+}
+
+// Dismiss dialogs when done
+-(void) dismissErrors:(UIAlertView*) alert
+{
+    [alert dismissWithClickedButtonIndex:0 animated:YES];
+}
+
+// Handles Succussful acount creation
+-(void) didSucceedRequest: (NSNotification*) notif
+{
+    if([[notif name] isEqualToString:@SIGNUP_SUCCESS])
+    {
+
+    }
+    
+    if([[notif name] isEqualToString:@USER_ALREADY_EXISTS])
+    {
+
+    }
+}
+
 
 @end
