@@ -234,6 +234,40 @@
         currentObject = [[NSMutableString alloc]init];
         NSLog(@"found User Element");
     }
+    
+    if([elementName isEqualToString:@"name"])
+    {
+        currentObject = [[NSMutableString alloc]init];
+    }
+    if([elementName isEqualToString:@"email"])
+    {
+       currentObject = [[NSMutableString alloc]init];
+    }
+    if([elementName isEqualToString:@"location"])
+    {
+       currentObject = [[NSMutableString alloc]init];
+    }
+    if([elementName isEqualToString:@"token"])
+    {
+       currentObject = [[NSMutableString alloc]init];
+    }
+    if([elementName isEqualToString:@"userbio"])
+    {
+        currentObject = [[NSMutableString alloc]init];
+    }
+    if([elementName isEqualToString:@"password"])
+    {
+        currentObject = [[NSMutableString alloc]init];
+    }
+    if([elementName isEqualToString:@"imagepath"])
+    {
+        currentObject = [[NSMutableString alloc]init];
+    }
+    if([elementName isEqualToString:@"message"])
+    {
+       currentObject = [[NSMutableString alloc]init];
+    }
+
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
