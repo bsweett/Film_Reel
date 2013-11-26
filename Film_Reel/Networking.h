@@ -29,6 +29,7 @@
 @property(nonatomic, strong) NSString* requestType;
 @property(nonatomic, strong) User* userObject;
 @property(nonatomic, strong) NSMutableString* currentObject;
+@property(nonatomic, strong) NSMutableDictionary *dataReceived;
 
 - (void) startReceive: (NSString*) defaultURL withType: (NSString*) typeOfRequest;
 - (BOOL)isReceiving;

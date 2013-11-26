@@ -14,7 +14,7 @@
 @synthesize data;
 @synthesize parser;
 @synthesize requestType;
-
+@synthesize dataReceived;
 @synthesize userObject;
 @synthesize currentObject;
 
@@ -83,10 +83,10 @@
         [parser setDelegate:self];
         [parser parse];
         
-        if(userObject != nil && [userObject getMessage] != nil)
+        if(dataReceived != nil)
         {
+            NSString *localMessage = [dataReceived objectForKey:@"message"];
             
-            NSString* localMessage = [userObject getMessage];
             // check what type of request it is
             if([localMessage isEqualToString:@"Fail"])
             {
@@ -96,9 +96,7 @@
             }
             else if([requestType isEqualToString: @LOGIN_REQUEST])
             {
-                [self isValidLoginRequest:localToken];
-                [[NSNotificationCenter defaultCenter]postNotificationName:@"SucceedStatus" object:nil];
-                NSLog(@"SucceedStatus");
+                [self isValidLoginRequest:localMessage];
             }
             else if([requestType isEqualToString: @SIGNUP_REQUEST])
             {
@@ -223,16 +221,17 @@
 
 - (void)parser:(NSXMLParser*)parser didStartElement:(NSString *)elementName namespaceURI:(NSString*)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary*)attributeDict
 {
+    if([elementName isEqualToString:@"data"])
+    {
+        dataReceived = [[NSMutableDictionary alloc] init];
+        NSLog(@"found Data Element");
+    }
+    
     if([elementName isEqualToString:@"user"])
     {
         userObject = [[User alloc] init];
+        dataReceived = [[NSMutableDictionary alloc] init];
         NSLog(@"found User Element");
-    }
-    
-    // Dictonary would be better
-    if([elementName isEqualToString:@"message"] || [elementName isEqualToString:@"token"])
-    {
-        currentObject = [[NSMutableString alloc] init];
     }
 }
 
@@ -241,37 +240,44 @@
     NSLog(@"found end: %@", elementName);
     if([elementName isEqualToString:@"name"])
     {
-        [userObject setUserName: currentObject];
+        [dataReceived setObject:currentObject forKey:elementName];
     }
     if([elementName isEqualToString:@"email"])
     {
-        [userObject setEmail: currentObject];
+        [dataReceived setObject:currentObject forKey:elementName];
     }
     if([elementName isEqualToString:@"location"])
     {
-        [userObject setLocation: currentObject];
+        [dataReceived setObject:currentObject forKey:elementName];
     }
     if([elementName isEqualToString:@"token"])
     {
-        [userObject setToken: currentObject];
-        NSLog(@"Token === %@", [userObject getToken]);
+        [dataReceived setObject:currentObject forKey:elementName];
     }
     if([elementName isEqualToString:@"userbio"])
     {
-        [userObject setUserBio: currentObject];
+        [dataReceived setObject:currentObject forKey:elementName];
     }
     if([elementName isEqualToString:@"password"])
     {
-        [userObject setPassword: currentObject];
+        [dataReceived setObject:currentObject forKey:elementName];
     }
     if([elementName isEqualToString:@"imagepath"])
     {
-        [userObject setImagePath: currentObject];
+        [dataReceived setObject:currentObject forKey:elementName];
     }
     if([elementName isEqualToString:@"message"])
     {
-        [userObject setMessage:currentObject];
-        NSLog(@"Message:: %@", [userObject getMessage]);
+        [dataReceived setObject:currentObject forKey:elementName];
+    }
+    if([elementName isEqualToString:@"user"]) {
+        [userObject setUserName:[dataReceived objectForKey:@"name"]];
+        [userObject setPassword:[dataReceived objectForKey:@"password"]];
+        [userObject setToken:[dataReceived objectForKey:@"token"]];
+        [userObject setUserBio:[dataReceived objectForKey:@"userbio"]];
+        [userObject setLocation:[dataReceived objectForKey:@"location"]];
+        [userObject setEmail:[dataReceived objectForKey:@"email"]];
+        [dataReceived setObject:userObject forKey:@"user"];
     }
 }
 
