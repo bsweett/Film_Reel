@@ -34,6 +34,6 @@
 // Validatations
 - (BOOL)validateEmailWithString:(NSString*)emailaddress;
 - (BOOL)validateUserNameWithString:(NSString*)user;
-- (BOOL)validatePasswordWithString:(NSString*)pass;
+- (BOOL)validatePasswordWithString:(NSString*)pass withCPass: (NSString*) cpass;
 
 @end
