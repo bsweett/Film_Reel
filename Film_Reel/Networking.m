@@ -87,6 +87,7 @@
             {
                 [self isValidLoginRequest:localToken];
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"SucceedStatus" object:nil];
+                NSLog(@"SucceedStatus");
             }
             else if([requestType isEqualToString: @SIGNUP_REQUEST])
             {
