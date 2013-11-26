@@ -94,6 +94,10 @@
                 // Should never happen
                 [[NSNotificationCenter defaultCenter]postNotificationName:@FAIL_STATUS object:nil];
             }
+            else if([requestType isEqualToString:@VALID_REQUEST])
+            {
+                [self isValidTokeLoginRequest:localMessage];
+            }
             else if([requestType isEqualToString: @LOGIN_REQUEST])
             {
                 [self isValidLoginRequest:localMessage];
@@ -145,7 +149,8 @@
     }
     else
     {
-        [[NSNotificationCenter defaultCenter]postNotificationName:@SIGNUP_SUCCESS object:nil];
+        NSDictionary* userDictionary = [NSDictionary dictionaryWithObject:userObject forKey:@CURRENT_USER];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@SIGNUP_SUCCESS object:nil userInfo:userDictionary];
     }
 }
 
@@ -170,6 +175,18 @@
     else
     {
         [[NSNotificationCenter defaultCenter]postNotificationName:@UPDATE_SUCCESS object:nil];
+    }
+}
+
+- (void) isValidTokeLoginRequest: (NSString*) localMessage
+{
+    if([localMessage isEqualToString:@"Invalid"])
+    {
+        [[NSNotificationCenter defaultCenter]postNotificationName:@INVALID_TOKEN object:nil];
+    }
+    else
+    {
+        [[NSNotificationCenter defaultCenter]postNotificationName:@VALID_SUCCESS object:nil];
     }
 }
 

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Networking.h"
+#import "SignUpCompleteController.h"
+#import "User.h"
 
 @interface SignUpEmailController : UIViewController <UIAlertViewDelegate>
 
@@ -20,6 +22,7 @@
 @property(nonatomic, strong) UIAlertView* error;
 @property(nonatomic, strong) UIActivityIndicatorView *indicator;
 @property(nonatomic, strong) Networking * userRequest;
+@property (nonatomic, strong) User* newlyMadeUser;
 
 // Actions
 -(IBAction)doNextButton:(id)sender;

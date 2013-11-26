@@ -16,7 +16,7 @@
 #endif
 
 // Server/app attributes
-#define SERVER_ADDRESS      "http://172.20.10.2:8080/filmreel/"
+#define SERVER_ADDRESS      "http://192.168.1.237:8080/filmreel/"
 #define REEL_ALBUM_NAME     "My Reels"
 #define CURRENT_USER        "current_user"
 
@@ -36,6 +36,7 @@
 #define REEL_SEND       "send_reel"
 #define ADD_FRIEND      "add_friend"
 #define INBOX_REQUEST   "inbox"
+#define VALID_REQUEST   "valid_token"
 
 // Nofitication Names
 #define LOGIN_SUCCESS   "login_success"
@@ -45,11 +46,13 @@
 #define REEL_SUCCESS    "reel_sent"
 #define INBOX_SUCCESS   "inbox_got"
 #define FRIEND_SUCCESS  "friend_sent"
+#define VALID_SUCCESS   "valid_token_success"
 
 #define FAIL_STATUS             "general_fail"
 #define ADDRESS_FAIL            "address_fail"
 #define USER_ALREADY_EXISTS     "user_already_exists"
 #define USER_NOT_FOUND          "user_not_found"
+#define INVALID_TOKEN           "invalid_token"
 
 #define CAMERA_START    "startRecord"
 #define CAMERA_STOP     "stopRecord"

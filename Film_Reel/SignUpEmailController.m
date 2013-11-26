@@ -22,6 +22,7 @@
 @synthesize userRequest;
 @synthesize titlebar;
 @synthesize passConfirm;
+@synthesize newlyMadeUser;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -194,6 +195,8 @@
     if([[notif name] isEqualToString:@SIGNUP_SUCCESS])
     {
         [indicator stopAnimating];
+        NSDictionary* userDictionary = [notif userInfo];
+        newlyMadeUser = [userDictionary valueForKey:@CURRENT_USER];
         [self performSegueWithIdentifier:@"done" sender:self];
     }
     
@@ -202,6 +205,17 @@
         [indicator stopAnimating];
         error = [[UIAlertView alloc] initWithTitle:@"User Already Exists" message:@"Email and/or Username is already used" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [error show];
+    }
+}
+
+// Pass token object to complete controller
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"done"])
+    {
+        
+        SignUpCompleteController* destViewController = segue.destinationViewController;
+        destViewController.createdUser = newlyMadeUser;
     }
 }
 
