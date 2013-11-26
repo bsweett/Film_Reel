@@ -266,6 +266,7 @@
     if([elementName isEqualToString:@"message"])
     {
        currentObject = [[NSMutableString alloc]init];
+        NSLog(@"The messsage was: %@", currentObject);
     }
 
 }
