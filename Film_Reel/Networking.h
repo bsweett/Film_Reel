@@ -10,17 +10,6 @@
 #import "NetworkManager.h"
 #import "User.h"
 
-#define SERVER_ADDRESS "http://192.168.1.25:8080/filmreel/"
-
-#define LOGIN_REQUEST "Login"
-#define FETCH_REQUEST "Fetch"
-#define UPDATE_REQUEST "Update"
-#define SIGNUP_REQUEST "Signup"
-#define REEL_SEND "Reel_Request"
-
-#define ADDRESS_FAIL_ERROR "Server or request address was incorrect"
-#define SERVER_CONNECT_ERROR "Failed to connect to the server"
-
 @interface Networking : NSObject <NSXMLParserDelegate>
 
 @property(nonatomic, strong, readwrite) NSURLConnection * connection;

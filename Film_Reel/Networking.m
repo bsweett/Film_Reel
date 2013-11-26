@@ -126,7 +126,7 @@
 {
     if ([localMessage isEqualToString:@"NoUserFound"])
     {
-        NSLog(@"Message:: %@", [userObject getMessage]);
+        NSLog(@"Message no user found: %@", [dataReceived objectForKey:@"message"]);
         [userObject setMessage: nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@USER_NOT_FOUND object:nil];
     }
@@ -141,7 +141,7 @@
 {
     if ([localMessage isEqualToString:@"UserAlreadyExists"])
     {
-        [userObject setMessage:nil];
+        NSLog(@"Message user already exists: %@", [dataReceived objectForKey:@"message"]);
         [[NSNotificationCenter defaultCenter]postNotificationName:@USER_ALREADY_EXISTS object:nil];
     }
     else
@@ -224,6 +224,7 @@
     if([elementName isEqualToString:@"data"])
     {
         dataReceived = [[NSMutableDictionary alloc] init];
+        currentObject = [[NSMutableString alloc]init];
         NSLog(@"found Data Element");
     }
     
@@ -231,6 +232,7 @@
     {
         userObject = [[User alloc] init];
         dataReceived = [[NSMutableDictionary alloc] init];
+        currentObject = [[NSMutableString alloc]init];
         NSLog(@"found User Element");
     }
 }
@@ -277,6 +279,7 @@
         [userObject setUserBio:[dataReceived objectForKey:@"userbio"]];
         [userObject setLocation:[dataReceived objectForKey:@"location"]];
         [userObject setEmail:[dataReceived objectForKey:@"email"]];
+        [userObject setImagePath:[dataReceived objectForKey:@"imagepath"]];
         [dataReceived setObject:userObject forKey:@"user"];
     }
 }

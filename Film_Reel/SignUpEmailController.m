@@ -21,6 +21,7 @@
 @synthesize indicator;
 @synthesize userRequest;
 @synthesize titlebar;
+@synthesize passConfirm;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,9 +39,15 @@
     emailField.delegate = self;
     userField.delegate = self;
     passField.delegate = self;
+    passConfirm.delegate = self;
     [emailField setAutocorrectionType:UITextAutocorrectionTypeNo];
     [userField setAutocorrectionType:UITextAutocorrectionTypeNo];
     [passField setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [passConfirm setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [emailField setReturnKeyType:UIReturnKeyNext];
+    [userField setReturnKeyType:UIReturnKeyNext];
+    [passField setReturnKeyType:UIReturnKeyNext];
+    [passConfirm setReturnKeyType:UIReturnKeyDone];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
@@ -70,6 +77,7 @@
     [emailField resignFirstResponder];
     [userField resignFirstResponder];
     [passField resignFirstResponder];
+    [passConfirm resignFirstResponder];
     
     
     if(![email  isEqual: @""] && ![username  isEqual: @""] && ![password  isEqual: @""])
@@ -84,7 +92,7 @@
         }
         if  ( [self validatePasswordWithString:password] == FALSE )
         {
-            [errorMessage appendString: @"Password must be between 8 and 18 characters\n"];
+            [errorMessage appendString: @"Password must be between 8 and 18 characters and match in both fields\n"];
         }
         
         // If everything is the correct format
@@ -199,8 +207,18 @@
 // Drops keyboard when return key is pressed
 - (BOOL) textFieldShouldReturn:(UITextField*) textField
 {
+    NSInteger nextTag = textField.tag + 1;
+    UIResponder* nextResponder = [textField.superview viewWithTag:nextTag];
+    if (nextResponder) {
+        [nextResponder becomeFirstResponder];
+    } else {
+        [textField resignFirstResponder];
+    }
+    return NO;
+    /*
+    if(textField )
     [textField resignFirstResponder];
-    return YES;
+    return YES;*/
 }
 
 // Validations for Email, Passoword, and Username ------------------------------------------
@@ -230,6 +248,10 @@
 
 - (BOOL)validatePasswordWithString:(NSString*)pass
 {
+    if(![pass isEqualToString:passConfirm.text])
+    {
+        return FALSE;
+    }
     if( pass.length >= MIN_PASS_ENTRY && pass.length <= MAX_PASSWORD_ENTRY )
     {
         NSString *passwordRegex = @"^[a-zA-Z_0-9\\-_,;.:#+*?=!§%&/()@]+";
