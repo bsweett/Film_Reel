@@ -19,9 +19,11 @@
 @property (strong, nonatomic) NSMutableString * imagePath;
 @property (strong, nonatomic) NSMutableArray * friendsList;
 @property (nonatomic) NSInteger * friendCount;
+@property (strong, nonatomic) NSString * token;
 
 // Getters
 - (NSMutableString*) getUserName;
+- (NSString *) getToken;
 - (UIImage *) getDP;
 - (NSMutableString*) getLocation;
 - (NSString*) getEmail;
@@ -33,6 +35,7 @@
 
 // Setters
 - (void) setUserName: (NSMutableString*) name;
+- (void) setToken:(NSString *)validToken;
 - (void) setLocation: (NSMutableString*) place;
 - (void) setEmail: (NSMutableString*) eAddress;
 - (void) setUserBio: (NSMutableString*) bio;

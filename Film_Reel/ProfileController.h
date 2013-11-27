@@ -10,9 +10,6 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "Networking.h"
 
-#define FETCH_REQUEST "Fetch"
-#define UPDATE_REQUEST "Update"
-
 @interface ProfileController : UIViewController <UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 // These local view variables must be mapped to the User object sent from the server at login in
@@ -36,5 +33,7 @@
 @property (strong,retain) UIImage* savedImage;
 @property (nonatomic) int* popular;
 
+-(void) didGetNetworkError: (NSNotification*) notif;
+-(void) didSucceedRequest: (NSNotification*) notif;
 
 @end

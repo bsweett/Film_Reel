@@ -21,6 +21,8 @@
 @synthesize indicator;
 @synthesize userRequest;
 @synthesize titlebar;
+@synthesize passConfirm;
+@synthesize newlyMadeUser;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,13 +40,20 @@
     emailField.delegate = self;
     userField.delegate = self;
     passField.delegate = self;
+    passConfirm.delegate = self;
     [emailField setAutocorrectionType:UITextAutocorrectionTypeNo];
     [userField setAutocorrectionType:UITextAutocorrectionTypeNo];
     [passField setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [passConfirm setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [emailField setReturnKeyType:UIReturnKeyNext];
+    [userField setReturnKeyType:UIReturnKeyNext];
+    [passField setReturnKeyType:UIReturnKeyNext];
+    [passConfirm setReturnKeyType:UIReturnKeyDone];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@"AddressFailed" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@"FailStatus" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@"SIGN_UP" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@USER_ALREADY_EXISTS object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@SIGNUP_SUCCESS object:nil];
 	// Do any additional setup after loading the view.
 }
 
@@ -62,6 +71,7 @@
     NSString * email = emailField.text;
     NSString * username = userField.text;
     NSString * password = passField.text;
+    NSString * confirmPassword = passConfirm.text;
     NSString * errorTitle = @"Error";
     NSMutableString * errorMessage = [[NSMutableString alloc] init];
     
@@ -69,6 +79,7 @@
     [emailField resignFirstResponder];
     [userField resignFirstResponder];
     [passField resignFirstResponder];
+    [passConfirm resignFirstResponder];
     
     
     if(![email  isEqual: @""] && ![username  isEqual: @""] && ![password  isEqual: @""])
@@ -81,13 +92,13 @@
         {
             [errorMessage appendString: @"Username can only contain letters and numbers (MAX 30)\n"];
         }
-        if  ( [self validatePasswordWithString:password] == FALSE )
+        if  ( [self validatePasswordWithString:password withCPass:confirmPassword] == FALSE )
         {
-            [errorMessage appendString: @"Password must be between 8 and 18 characters\n"];
+            [errorMessage appendString: @"Password must be between 8 and 18 characters and match in both fields\n"];
         }
         
         // If everything is the correct format
-        if([self validateEmailWithString:email] == TRUE && [self validateUserNameWithString:username] == TRUE && [self validatePasswordWithString:username] == TRUE)
+        if([self validateEmailWithString:email] == TRUE && [self validateUserNameWithString:username] == TRUE && [self validatePasswordWithString:password withCPass:confirmPassword] == TRUE)
         {
             titlebar.backBarButtonItem.enabled = NO;
             
@@ -154,19 +165,16 @@
 // Handles all Networking errors that come from Networking.m
 -(void) didGetNetworkError: (NSNotification*) notif
 {
-    if([[notif name] isEqualToString:@"AddressFailed"])
+    if([[notif name] isEqualToString:@ADDRESS_FAIL])
     {
-        NSLog(@"Wrong Address\n");
-       
         [indicator stopAnimating];
         error = [[UIAlertView alloc] initWithTitle:nil message:@ADDRESS_FAIL_ERROR delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
         [error show];
         [self performSelector:@selector(dismissErrors:) withObject:error afterDelay:3];
         titlebar.backBarButtonItem.enabled = YES;
     }
-    if([[notif name] isEqualToString:@"FailStatus"])
+    if([[notif name] isEqualToString:@FAIL_STATUS])
     {
-        NSLog(@"Failed to connect\n");
         [indicator stopAnimating];
         error = [[UIAlertView alloc] initWithTitle:nil message:@SERVER_CONNECT_ERROR delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
         [error show];
@@ -184,19 +192,48 @@
 // Handles Succussful acount creation
 -(void) didSucceedRequest: (NSNotification*) notif
 {
-    if([[notif name] isEqualToString:@"SIGN_UP"])
+    if([[notif name] isEqualToString:@SIGNUP_SUCCESS])
     {
-        NSLog(@"YAYAYAYAYA!!! It worked\n");
         [indicator stopAnimating];
+        NSDictionary* userDictionary = [notif userInfo];
+        newlyMadeUser = [userDictionary valueForKey:@CURRENT_USER];
         [self performSegueWithIdentifier:@"done" sender:self];
+    }
+    
+    if([[notif name] isEqualToString:@USER_ALREADY_EXISTS])
+    {
+        [indicator stopAnimating];
+        error = [[UIAlertView alloc] initWithTitle:@"User Already Exists" message:@"Email and/or Username is already used" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [error show];
+    }
+}
+
+// Pass token object to complete controller
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"done"])
+    {
+        
+        SignUpCompleteController* destViewController = segue.destinationViewController;
+        destViewController.createdUser = newlyMadeUser;
     }
 }
 
 // Drops keyboard when return key is pressed
 - (BOOL) textFieldShouldReturn:(UITextField*) textField
 {
+    NSInteger nextTag = textField.tag + 1;
+    UIResponder* nextResponder = [textField.superview viewWithTag:nextTag];
+    if (nextResponder) {
+        [nextResponder becomeFirstResponder];
+    } else {
+        [textField resignFirstResponder];
+    }
+    return NO;
+    /*
+    if(textField )
     [textField resignFirstResponder];
-    return YES;
+    return YES;*/
 }
 
 // Validations for Email, Passoword, and Username ------------------------------------------
@@ -224,8 +261,13 @@
     return FALSE;
 }
 
-- (BOOL)validatePasswordWithString:(NSString*)pass
+- (BOOL)validatePasswordWithString:(NSString *)pass withCPass:(NSString *)cpass
 {
+    if(![pass isEqualToString:cpass])
+    {
+        NSLog(@"Passwords didnt match");
+        return FALSE;
+    }
     if( pass.length >= MIN_PASS_ENTRY && pass.length <= MAX_PASSWORD_ENTRY )
     {
         NSString *passwordRegex = @"^[a-zA-Z_0-9\\-_,;.:#+*?=!§%&/()@]+";

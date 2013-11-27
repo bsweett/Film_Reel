@@ -62,10 +62,10 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@"AddressFailed" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@"FailStatus" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@"FETCH_COMPLETE" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@"UPDATE" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@FETCH_SUCCESS object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@UPDATE_SUCCESS object:nil];
     
     updateOrFetch = [[Networking alloc] init];
     
@@ -95,17 +95,13 @@
 // Handles all Networking errors that come from Networking.m
 -(void) didGetNetworkError: (NSNotification*) notif
 {
-    if([[notif name] isEqualToString:@"AddressFailed"])
+    if([[notif name] isEqualToString:@ADDRESS_FAIL])
     {
-        NSLog(@"Wrong Address\n");
-        
         [loading setMessage:@ADDRESS_FAIL_ERROR];
         [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
     }
-    if([[notif name] isEqualToString:@"FailStatus"])
+    if([[notif name] isEqualToString:@FAIL_STATUS])
     {
-        NSLog(@"Failed to connect\n");
-
         [loading setMessage:@SERVER_CONNECT_ERROR];
         [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
     }
@@ -120,11 +116,16 @@
 // May want to pass the something through notification to check which request was actually made
 -(void) didSucceedRequest: (NSNotification*) notif
 {
-    if([[notif name] isEqualToString:@"UPDATE"])
+    if([[notif name] isEqualToString:@UPDATE_SUCCESS])
     {
-        NSLog(@"Profile action succeed\n");
         [loading dismissWithClickedButtonIndex:0 animated:YES];
-        //[self performSegueWithIdentifier:@"done" sender:self];
+        
+    }
+    
+    if([[notif name] isEqualToString:@FETCH_SUCCESS])
+    {
+        [loading dismissWithClickedButtonIndex:0 animated:YES];
+        
     }
 }
 
@@ -165,6 +166,7 @@
         
     } else  if([[edit currentTitle] isEqualToString:@"Save"])
     {
+
         [edit setTitle:@"Edit" forState:UIControlStateNormal];
         bio.editable = NO;
         name.editable = NO;
@@ -174,7 +176,16 @@
         imageButton.enabled = NO;
         imageButton.hidden = YES;
         
-        [self prepareForUpdate];
+        // Validate new Username
+        if([self validateUserNameWithString:name.text] == TRUE)
+        {
+            [self prepareForUpdate];
+        }
+        else
+        {
+            error = [[UIAlertView alloc] initWithTitle:nil message:@"Username can only contain letters and numbers (4-30)\n" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [error show];
+        }
     }
 }
 
@@ -194,6 +205,19 @@
         // undo changes
         [self resetViews];
     }
+}
+
+// Make sure new username conforms to our signup rules
+- (BOOL)validateUserNameWithString:(NSString*)username
+{
+    if( username.length >= MIN_ENTRY_SIZE && username.length <= MAX_USERNAME_ENTRY )
+    {
+        NSString *nameRegex = @"[A-Z0-9a-z]*";
+        NSPredicate *nameTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", nameRegex];
+        return [nameTest evaluateWithObject:username];
+    }
+    
+    return FALSE;
 }
 
 // Allow them to pick an image for their profile
@@ -249,7 +273,9 @@
     // For now dp wont be updated
     //UIImage* updatedPic = displaypicture.image;
     
-    NSString* request = [self buildProfileUpdateRequest:updatedName withLocation:updatedLocation withBio:updatedBio];
+    
+    NSString* request = [self buildProfileUpdateRequest:@"" withUserName:updatedName withLocation:updatedLocation withBio:updatedBio];
+    // Need to pass current logged in users token -------^
     
     [updateOrFetch startReceive:request withType:@UPDATE_REQUEST];
     
@@ -261,18 +287,20 @@
 
 // This is the template for building future URLRequests
 // NOTE:: SERVER_ADDRESS is hardcoded in Networking.h
-- (NSString*) buildProfileUpdateRequest: (NSString*) username withLocation: (NSString*) geolocation withBio: (NSString*) about
+- (NSString*) buildProfileUpdateRequest: (NSString*) token withUserName: (NSString*) username withLocation: (NSString*) geolocation withBio: (NSString*) about
 {
     NSMutableString* updateProfile = [[NSMutableString alloc] initWithString:@SERVER_ADDRESS];
-    [updateProfile appendString:@"updateUser?"];
+    [updateProfile appendString:@"update?"];
     
-    NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"name=%@" , username];
-    NSMutableString* parameter2 = [[NSMutableString alloc] initWithFormat: @"&location=%@" , geolocation];
-    NSMutableString* parameter3 = [[NSMutableString alloc] initWithFormat: @"&bio=%@" , about];
+    NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"token=%@" , token];
+    NSMutableString* parameter2 = [[NSMutableString alloc] initWithFormat: @"&name=%@" , username];
+    NSMutableString* parameter3 = [[NSMutableString alloc] initWithFormat: @"&location=%@" , geolocation];
+    NSMutableString* parameter4 = [[NSMutableString alloc] initWithFormat: @"&bio=%@" , about];
     
     [updateProfile appendString:parameter1];
     [updateProfile appendString:parameter2];
     [updateProfile appendString:parameter3];
+    [updateProfile appendString:parameter4];
     
     NSLog(@"Update Profile request:: %@", updateProfile);
     

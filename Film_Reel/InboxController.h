@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Networking.h"
 
 @interface InboxController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, retain) IBOutlet UITableView * indox;
 @property (strong, retain) NSMutableArray* tablearray;
+@property (strong, nonatomic) UIAlertView* loading;
+@property (strong, nonatomic) Networking* inboxUpdate;
 
 
 @end

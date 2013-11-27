@@ -8,15 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Networking.h"
-
-#define MIN_EMAIL_ENTRY 3
-#define MAX_EMAIL_ENTRY 254
-#define MIN_ENTRY_SIZE 4
-#define MAX_USERNAME_ENTRY 30
-#define MIN_PASS_ENTRY 8
-#define MAX_PASSWORD_ENTRY 20
-
-#define SIGNUP_REQUEST "Signup"
+#import "SignUpCompleteController.h"
+#import "User.h"
 
 @interface SignUpEmailController : UIViewController <UIAlertViewDelegate>
 
@@ -25,9 +18,11 @@
 @property(nonatomic, strong) IBOutlet UITextField *userField;
 @property(nonatomic, strong) IBOutlet UITextField *passField;
 @property(nonatomic, strong) IBOutlet UINavigationItem *titlebar;
+@property (strong, nonatomic) IBOutlet UITextField *passConfirm;
 @property(nonatomic, strong) UIAlertView* error;
 @property(nonatomic, strong) UIActivityIndicatorView *indicator;
 @property(nonatomic, strong) Networking * userRequest;
+@property (nonatomic, strong) User* newlyMadeUser;
 
 // Actions
 -(IBAction)doNextButton:(id)sender;
@@ -42,6 +37,6 @@
 // Validatations
 - (BOOL)validateEmailWithString:(NSString*)emailaddress;
 - (BOOL)validateUserNameWithString:(NSString*)user;
-- (BOOL)validatePasswordWithString:(NSString*)pass;
+- (BOOL)validatePasswordWithString:(NSString*)pass withCPass: (NSString*) cpass;
 
 @end

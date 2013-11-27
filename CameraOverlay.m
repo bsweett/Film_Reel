@@ -52,12 +52,12 @@
                                             repeats:YES];
     remainingCount = 10;
     cancelButton.hidden = TRUE;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"startRecord" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@CAMERA_START object:nil];
 }
 
 -(IBAction)cancelButtonPushed:(id)sender
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"closeCamera" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@CAMERA_CLOSE object:nil];
 }
 
 -(void)countDown {
@@ -70,7 +70,7 @@
     if (--remainingCount == -1) {
         [timer invalidate];
         [countDownText setHidden:TRUE];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"stopRecord" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@CAMERA_STOP object:nil];
     }
 }
 

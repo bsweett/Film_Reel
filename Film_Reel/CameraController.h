@@ -12,8 +12,6 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "Networking.h"
 
-#define REEL_SEND "Reel_Request"
-
 @interface CameraController : UIViewController <UIImagePickerControllerDelegate,
 UINavigationControllerDelegate>
 
@@ -34,7 +32,6 @@ UINavigationControllerDelegate>
 @property(nonatomic, strong) IBOutlet UISwipeGestureRecognizer* takeReel;
 
 @property(nonatomic, strong) IBOutlet UIBarButtonItem *sendReel;
-//@property(nonatomic, strong) IBOutlet UIBarButtonItem *sendReel;
 @property(nonatomic, strong) IBOutlet UIBarButtonItem *saveReel;
 
 @property(nonatomic, strong) NSURL *moviePath;

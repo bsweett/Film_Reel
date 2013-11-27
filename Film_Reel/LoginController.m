@@ -176,7 +176,10 @@
     {
         [indicator stopAnimating];
         error = [[UIAlertView alloc] initWithTitle:nil message:@"Username or password incorrect" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+        [error show];
         [self performSelector:@selector(dismissErrors:) withObject:error afterDelay:3];
+        loginButton.enabled = YES;
+        createButton.enabled = YES;
     }
 }
 
