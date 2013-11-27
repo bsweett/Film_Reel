@@ -11,7 +11,7 @@
 #import "User.h"
 #import "AppDelegate.h"
 
-@interface ViewController : UIViewController <UIAlertViewDelegate> {
+@interface LoginController : UIViewController <UIAlertViewDelegate> {
     //AppDelegate* app;
 }
 

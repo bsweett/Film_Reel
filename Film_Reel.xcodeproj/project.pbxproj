@@ -29,8 +29,8 @@
 		B5C9038C18032D5500448CE6 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C9038B18032D5500448CE6 /* User.m */; };
 		B5E0CAE918130DD80037EA3A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5E0CAE718130DD80037EA3A /* Main.storyboard */; };
 		B5E0CAEA18130DD80037EA3A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5E0CAE718130DD80037EA3A /* Main.storyboard */; };
-		B5E0CAED18130E120037EA3A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E0CAEC18130E120037EA3A /* ViewController.m */; };
-		B5E0CAEE18130E120037EA3A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E0CAEC18130E120037EA3A /* ViewController.m */; };
+		B5E0CAED18130E120037EA3A /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E0CAEC18130E120037EA3A /* LoginController.m */; };
+		B5E0CAEE18130E120037EA3A /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E0CAEC18130E120037EA3A /* LoginController.m */; };
 		B5F4919618087E6E00F03C19 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F4919518087E6E00F03C19 /* CoreMedia.framework */; };
 		B5F4919818087E7700F03C19 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F4919718087E7700F03C19 /* CoreVideo.framework */; };
 		B5F4919A18087E7F00F03C19 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F4919918087E7F00F03C19 /* AVFoundation.framework */; };
@@ -94,8 +94,8 @@
 		B5C9038A18032D5500448CE6 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		B5C9038B18032D5500448CE6 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		B5E0CAE818130DD80037EA3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B5E0CAEB18130E120037EA3A /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		B5E0CAEC18130E120037EA3A /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B5E0CAEB18130E120037EA3A /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
+		B5E0CAEC18130E120037EA3A /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
 		B5F4919518087E6E00F03C19 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		B5F4919718087E7700F03C19 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		B5F4919918087E7F00F03C19 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -250,8 +250,8 @@
 			children = (
 				F6BB9BD6184155D9005FE438 /* Iphone */,
 				F6BB9BD5184155BF005FE438 /* Ipad */,
-				B5E0CAEB18130E120037EA3A /* ViewController.h */,
-				B5E0CAEC18130E120037EA3A /* ViewController.m */,
+				B5E0CAEB18130E120037EA3A /* LoginController.h */,
+				B5E0CAEC18130E120037EA3A /* LoginController.m */,
 				F6189FB61813942C00D1F0FA /* TabBarViewController.h */,
 				F6189FB71813942C00D1F0FA /* TabBarViewController.m */,
 				F6189F7918131BF300D1F0FA /* CameraController.h */,
@@ -460,7 +460,7 @@
 				F6189F7B18131BF300D1F0FA /* CameraController.m in Sources */,
 				B506DB1A1800806C004991A4 /* AppDelegate.m in Sources */,
 				F6189F8418131DB500D1F0FA /* ProfileController.m in Sources */,
-				B5E0CAED18130E120037EA3A /* ViewController.m in Sources */,
+				B5E0CAED18130E120037EA3A /* LoginController.m in Sources */,
 				B56E78F0181A1F2B008AE8D5 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,
 				F6189F8718131DC700D1F0FA /* FriendsController.m in Sources */,
 				B506DB161800806C004991A4 /* main.m in Sources */,
@@ -473,7 +473,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5E0CAEE18130E120037EA3A /* ViewController.m in Sources */,
+				B5E0CAEE18130E120037EA3A /* LoginController.m in Sources */,
 				B506DB351800806C004991A4 /* Film_ReelTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

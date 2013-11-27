@@ -20,7 +20,6 @@
 
 - (id) init
 {
-    
     self = [super init];
     
     if(self)
@@ -204,7 +203,6 @@
 // A delegate method called by the NSURLConnection as data arrives.
 {
     assert(theConnection == self.connection);
-    
     // Process the data you received here
     [data appendData:theData];
     
