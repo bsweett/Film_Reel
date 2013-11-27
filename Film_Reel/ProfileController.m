@@ -60,7 +60,6 @@
     name.delegate = self;
     location.delegate = self;
     email.delegate = self;
-    
     AppDelegate* shared = [AppDelegate appDelegate];
     currentUsersToken = shared.token;
 }
