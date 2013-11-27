@@ -13,7 +13,7 @@
 #import "Networking.h"
 
 @interface CameraController : UIViewController <UIImagePickerControllerDelegate,
-UINavigationControllerDelegate>
+UINavigationControllerDelegate, UIGestureRecognizerDelegate>
 
 @property(nonatomic, strong) UIImagePickerController *cameraUI;
 @property CameraOverlay *cameraOverlay;
@@ -29,9 +29,9 @@ UINavigationControllerDelegate>
 @property(nonatomic, strong) UIImage *frameImage;
 
 @property(nonatomic, strong) IBOutlet UIImageView *photoStrip;
-@property(nonatomic, strong) IBOutlet UISwipeGestureRecognizer* takeReel;
 
-@property(nonatomic, strong) IBOutlet UIBarButtonItem *sendReel;
+@property(nonatomic, strong) IBOutlet UIBarButtonItem *takeReel;
+
 @property(nonatomic, strong) IBOutlet UIBarButtonItem *saveReel;
 
 @property(nonatomic, strong) NSURL *moviePath;
@@ -39,6 +39,10 @@ UINavigationControllerDelegate>
 @property(nonatomic, strong) Networking *sendReelRequest;
 @property(nonatomic, strong) UIAlertView *alert;
 
+- (IBAction)takeReelPressed:(id)sender;
+- (IBAction)saveReelPressed:(id)sender;
+- (void)handleSwipeRight:(UITapGestureRecognizer *)recognizer;
+- (void)handleSwipeLeft:(UITapGestureRecognizer *)recognizer;
 - (void)recordPressed;
 - (void)recordFinished;
 
