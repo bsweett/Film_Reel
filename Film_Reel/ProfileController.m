@@ -312,7 +312,7 @@
 - (NSString*) buildFetchRequest: (NSString*) token
 {
     NSMutableString* fetchProfile = [[NSMutableString alloc] initWithString:@SERVER_ADDRESS];
-    [fetchProfile appendString:@"fetchProfile?"];
+    [fetchProfile appendString:@"getuserdata?"];
     
     NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"token=%@" , token];
     
