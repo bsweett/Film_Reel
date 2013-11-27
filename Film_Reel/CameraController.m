@@ -21,11 +21,10 @@
 @implementation CameraController
 
 @synthesize image1, image2, image3, image4, image5, combinedImage, stripImage, frameImage;
-@synthesize takeReel, sendReel, saveReel;
+@synthesize takeReel, saveReel;
 @synthesize cameraUI, cameraOverlay, iPadoverlay;
 @synthesize moviePath;
 @synthesize photoStrip;
-
 @synthesize sendReelRequest;
 @synthesize alert;
 
@@ -56,9 +55,16 @@
 - (void) viewDidAppear:(BOOL)animated
 {
     // Set up Gestures
-    takeReel = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe)];
-    [takeReel setDirection:(UISwipeGestureRecognizerDirectionUp)];
-    [self.view addGestureRecognizer:takeReel];
+    UISwipeGestureRecognizer * recognizerLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeLeft:)];
+    [recognizerLeft setDelegate:self];
+    [self.view addGestureRecognizer:recognizerLeft];
+    [recognizerLeft setDirection:(UISwipeGestureRecognizerDirectionLeft)];
+    
+
+    UISwipeGestureRecognizer * recognizerRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeRight:)];
+    [recognizerRight setDelegate:self];
+    [self.view addGestureRecognizer:recognizerRight];
+    [recognizerRight setDirection:(UISwipeGestureRecognizerDirectionRight)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -67,8 +73,20 @@
 }
 
 // Sends reel
--(IBAction)sendReelPressed:(id)sender
+-(IBAction)takeReelPressed:(id)sender
 {
+   [self startCameraControllerFromViewController: self usingDelegate: self];
+}
+
+-(void) handleSwipeRight:(UITapGestureRecognizer *)recognizer
+{
+    NSLog(@"Swipe Left");
+    [self startCameraControllerFromViewController: self usingDelegate: self];
+}
+// Swipe up to take a new reel
+-(void) handleSwipeLeft:(UITapGestureRecognizer *)recognizer
+{
+     NSLog(@"Swipe Right");
     sendReelRequest = [[Networking alloc] init];
     alert = [[UIAlertView alloc] initWithTitle:nil message:@"Sending..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
     
@@ -79,7 +97,7 @@
     if(frameImage != NULL)
     {
         //NSData* tosend = UIImagePNGRepresentation(frameImage);
-      
+        
         NSString* request = [self buildSendRequest:@"" withFriend:@"" withImageName:@""];
         
         [sendReelRequest startReceive:request withType:@REEL_SEND];
@@ -95,17 +113,10 @@
         [alert show];
         [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:2];
     }
-    
-}
-
-// Swipe up to take a new reel
--(void) handleSwipe
-{
-    [self startCameraControllerFromViewController: self usingDelegate: self];
 }
 
 // Saves Reel to local photo album
--(IBAction)saveReel:(id)sender {
+-(IBAction)saveReelPressed:(id)sender {
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
     
     if(frameImage != NULL)

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="51k-iN-JKb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="51k-iN-JKb">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
         <!--Login Controller - Log In To Film Reel-->
@@ -448,7 +448,7 @@
             </objects>
             <point key="canvasLocation" x="714" y="51"/>
         </scene>
-        <!--Camera Controller - Current Reel-->
+        <!--Camera Controller-->
         <scene sceneID="90Y-Sb-uYA">
             <objects>
                 <viewController id="be7-Pz-a3I" customClass="CameraController" sceneMemberID="viewController">
@@ -544,11 +544,32 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Swipe up" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfc-3B-Ikm">
-                                <rect key="frame" x="120" y="489" width="81" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Swipe Right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jN-d1-6lo">
+                                <rect key="frame" x="243" y="489" width="93" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <color key="textColor" red="0.43521018569999997" green="0.70263330980000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Swipe Left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Os2-13-uHc">
+                                <rect key="frame" x="9" y="489" width="93" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="To Send" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOw-3G-9L0">
+                                <rect key="frame" x="258" y="503" width="62" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="To Retake" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fsA-hl-WMX">
+                                <rect key="frame" x="12" y="503" width="62" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -562,9 +583,6 @@
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="takeReelPressed:" destination="be7-Pz-a3I" eventType="touchUpInside" id="ahs-ME-bso"/>
-                                </connections>
                             </button>
                         </barButtonItem>
                         <barButtonItem style="plain" id="qcq-te-JKI">
@@ -574,21 +592,18 @@
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="sendReelPressed:" destination="be7-Pz-a3I" eventType="touchUpInside" id="ygx-UH-WIA"/>
-                                </connections>
                             </button>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Current Reel" id="bNh-yu-J6d">
-                        <barButtonItem key="leftBarButtonItem" title="Send" id="G0e-p6-Gcu">
+                    <navigationItem key="navigationItem" id="bNh-yu-J6d">
+                        <barButtonItem key="leftBarButtonItem" title="Save Reel" id="G0e-p6-Gcu">
                             <connections>
-                                <action selector="sendReelPressed:" destination="be7-Pz-a3I" id="7o2-Af-2T0"/>
+                                <action selector="saveReelPressed:" destination="be7-Pz-a3I" id="WHr-Of-mdZ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="7QR-49-5g4">
+                        <barButtonItem key="rightBarButtonItem" title="Take Reel" id="7QR-49-5g4">
                             <connections>
-                                <action selector="saveReel:" destination="be7-Pz-a3I" id="ANu-Ok-BVU"/>
+                                <action selector="takeReelPressed:" destination="be7-Pz-a3I" id="G1h-8n-UYU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -596,14 +611,13 @@
                     <connections>
                         <outlet property="image1" destination="yDI-Zy-5wx" id="eC1-Lv-VH8"/>
                         <outlet property="photoStrip" destination="yDI-Zy-5wx" id="tnC-Um-PaH"/>
-                        <outlet property="saveReel" destination="7QR-49-5g4" id="kne-Rt-En2"/>
-                        <outlet property="sendReel" destination="7QR-49-5g4" id="GgD-Aa-hXT"/>
-                        <outlet property="takeReel" destination="G0e-p6-Gcu" id="WOr-9g-teX"/>
+                        <outlet property="saveReel" destination="G0e-p6-Gcu" id="5io-wu-ATR"/>
+                        <outlet property="takeReel" destination="7QR-49-5g4" id="bII-Vu-kVH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GSn-xi-tgp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1798" y="51"/>
+            <point key="canvasLocation" x="1870" y="51"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cRy-or-r5k">
@@ -670,8 +684,12 @@
         <image name="ProfileTab" width="24" height="24"/>
         <image name="TakeReelTab" width="25" height="19"/>
         <image name="button14-20110808201840-00014.png" width="250" height="99"/>
+        <image name="button14-20110808201840-00014.png" width="250" height="99"/>
         <image name="completeimage.png" width="200" height="198"/>
         <image name="default.png" width="128" height="128"/>
+        <image name="star.png" width="30" height="30"/>
+        <image name="star.png" width="30" height="30"/>
+        <image name="star.png" width="30" height="30"/>
         <image name="star.png" width="30" height="30"/>
         <image name="stargrey.png" width="30" height="30"/>
     </resources>
