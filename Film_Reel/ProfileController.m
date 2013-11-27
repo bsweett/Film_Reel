@@ -33,6 +33,7 @@
 @synthesize savedImage;
 
 @synthesize currentUsersToken;
+@synthesize userdata;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -125,17 +126,41 @@
 {
     if([[notif name] isEqualToString:@USER_NOT_FOUND])
     {
-        
+        [loading setMessage:@USER_ERROR];
+        [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
     }
     
     if([[notif name] isEqualToString:@UPDATE_SUCCESS])
     {
+        NSDictionary* userDictionary = [notif userInfo];
+        userdata = [userDictionary valueForKey:@CURRENT_USER];
         [loading dismissWithClickedButtonIndex:0 animated:YES];
-        
     }
     
     if([[notif name] isEqualToString:@FETCH_SUCCESS])
     {
+        NSDictionary* userDictionary = [notif userInfo];
+        userdata = [userDictionary valueForKey:@CURRENT_USER];
+        [[self bio] setText: userdata.getUserBio];
+        [[self name] setText: userdata.getUserName];
+        [[self location] setText:userdata.getLocation];
+        [[self email] setText: userdata.getEmail];
+        
+        // Reformat all text
+        if([[UIDevice currentDevice].model isEqualToString:@"iPad"])
+        {
+            [[self name] setFont:[UIFont systemFontOfSize:20]];
+            [[self name] setTextColor:[[UIColor alloc] initWithRed:0.050980396570000003 green:0.5411764979 blue:0.77647066119999997 alpha:1]];
+            [[self bio] setFont:[UIFont systemFontOfSize:14]];
+            [[self location] setFont:[UIFont systemFontOfSize:14]];
+            [[self email] setFont:[UIFont systemFontOfSize:14]];
+        }
+        else
+        {
+            // iPhone Formating 
+        }
+        
+        //saveImage =....
         [loading dismissWithClickedButtonIndex:0 animated:YES];
         
     }
@@ -189,7 +214,7 @@
         imageButton.hidden = YES;
         
         // Validate new Username
-        if([self validateUserNameWithString:name.text] == TRUE)
+        if([self validateUserNameWithString:(name.text)] == TRUE)
         {
             [self prepareForUpdate];
         }
@@ -268,10 +293,10 @@
 // reset the local values when they hit cancel
 -(void) resetViews
 {
-    bio.text = saveBio;
-    location.text = saveLocation;
-    name.text = saveName;
-    displaypicture.image = savedImage;
+    [[self bio] setText: saveBio];
+    [[self location] setText:saveLocation];
+    [[self name] setText:saveName];
+    [[self displaypicture] setImage: savedImage];
 }
 
 // get ready to pass the update to the server
@@ -314,7 +339,7 @@
     [updateProfile appendString:parameter3];
     [updateProfile appendString:parameter4];
     
-    NSLog(@"Update Profile request:: %@", updateProfile);
+    NSLog(@"REQUEST INFO:: Update Profile -- %@", updateProfile);
     
     return [updateProfile stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
@@ -330,7 +355,7 @@
     
     [fetchProfile appendString:parameter1];
     
-    NSLog(@"Fetch Profile request:: %@", fetchProfile);
+    NSLog(@"REQUEST INFO:: Get User Data -- %@", fetchProfile);
     
     return [fetchProfile stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "Networking.h"
+#import "User.h"
 #import "AppDelegate.h"
 
 @interface ProfileController : UIViewController <UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
@@ -29,6 +30,7 @@
 @property (strong, nonatomic) Networking* updateOrFetch;
 
 @property (strong, nonatomic) NSString* currentUsersToken;
+@property (strong, nonatomic) User* userdata;
 
 @property (strong,retain) NSString* saveBio;
 @property (strong,retain) NSString* saveName;

@@ -31,7 +31,14 @@
 
 // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
 // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-- (void)applicationWillResignActive:(UIApplication *)application {}
+- (void)applicationWillResignActive:(UIApplication *)application
+{
+    // Clear the console
+    for(int i = 0; i < 25; i++)
+    {
+        NSLog(@" ");
+    }
+}
 
 // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
 // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
@@ -40,7 +47,7 @@
     NSUserDefaults* currentLoggedIn = [NSUserDefaults standardUserDefaults];
     if(token != nil)
     {
-        NSLog(@"Token into background %@", token);
+        NSLog(@"TOKEN INFO:: Token into background %@", token);
         [currentLoggedIn setObject:token forKey:@CURRENT_USER];
         [currentLoggedIn synchronize];
     }
@@ -62,6 +69,9 @@
         main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     }
     
+    startingview = [main instantiateInitialViewController];
+    self.window.rootViewController = startingview;
+    
     // Add our notifications observers
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
@@ -76,7 +86,7 @@
     if(token != nil)
     {
         validToken = [[Networking alloc] init];
-        NSLog(@"Token after background %@", token);
+        NSLog(@"TOKEN INFO:: Token after background %@", token);
         NSString* request = [self buildTokenLoginRequest:token];
         [validToken startReceive:request withType:@VALID_REQUEST];
         
@@ -94,7 +104,7 @@
         // Send them to login screen to get another token
         startingview = [main instantiateInitialViewController];
         self.window.rootViewController = startingview;
-        NSLog(@"ERROR:: Token was returned Null from the NSUSERDEFAULTS\n");
+        NSLog(@"TOKEN ERROR:: Token was returned Null from the NSUSERDEFAULTS\n");
     }
 }
 
@@ -111,16 +121,9 @@
     
     [valid appendString:parameter1];
     
-    NSLog(@"INFO:: TokenLogin request:: %@", valid);
+    NSLog(@"TOKEN INFO:: TokenLogin request:: %@", valid);
     
-    NSString *encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
-                                                                                  NULL,
-                                                                                  (CFStringRef)valid,
-                                                                                  NULL,
-                                                                                  (CFStringRef)@"!*'();:@&=+$,/?%#[]",
-                                                                                  kCFStringEncodingUTF8 ));
-    
-    return encodedString;
+    return valid;
 }
 
 // Handles all Networking errors
@@ -148,17 +151,17 @@
 {
     if([[notif name] isEqualToString:@VALID_SUCCESS])
     {
-        NSLog(@"INFO:: Token has been devalidate by server\n");
         bypassLogin= [main instantiateViewControllerWithIdentifier:@"bypass"];
         self.window.rootViewController = bypassLogin;
+        NSLog(@"TOKEN INFO:: Token has been confirmed by server - ALLOW BYPASS\n");
     }
     
     if([[notif name] isEqualToString:@INVALID_TOKEN])
     {
-        NSLog(@"INFO:: Token has been devalidate by server\n");
         startingview = [main instantiateInitialViewController];
         self.window.rootViewController = startingview;
         token = nil;
+        NSLog(@"TOKEN INFO:: Token has been devalidate by server\n");
     }
 }
 

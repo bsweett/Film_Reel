@@ -41,7 +41,7 @@
     requestType = typeOfRequest;
     
     assert(self.connection == nil);
-    address = [[NetworkManager sharedInstance] smartURLForString: defaultURL];
+    address = [[NetworkManager sharedInstance] smartURLForString:defaultURL];
     succuss = (address != nil);
     
     if( ! succuss)
@@ -66,7 +66,7 @@
 
 - (void) receiveDidStart
 {
-    NSLog(@"Did Start\n");
+    NSLog(@"CONNECTION OPENED\n");
     //Update UI with Status
     [[NetworkManager sharedInstance] didStartNetworkOperation];
 }
@@ -129,7 +129,7 @@
 {
     if ([localMessage isEqualToString:@"NoUserFound"])
     {
-        NSLog(@"Message no user found: %@", [dataReceived objectForKey:@"message"]);
+        NSLog(@"PARSER INFO:: Message no user found: %@", [dataReceived objectForKey:@"message"]);
         [[NSNotificationCenter defaultCenter] postNotificationName:@USER_NOT_FOUND object:nil];
     }
     else    // Pass user object
@@ -143,7 +143,7 @@
 {
     if ([localMessage isEqualToString:@"UserAlreadyExists"])
     {
-        NSLog(@"Message user already exists: %@", [dataReceived objectForKey:@"message"]);
+        NSLog(@"PARSER INFO:: Message user already exists: %@", [dataReceived objectForKey:@"message"]);
         [[NSNotificationCenter defaultCenter]postNotificationName:@USER_ALREADY_EXISTS object:nil];
     }
     else
@@ -217,7 +217,7 @@
     assert(theConnection == self.connection);
     
     NSString * message = [error localizedDescription];
-    NSLog(@"Error:: %@", message);
+    NSLog(@"CONNECTION ERROR:: %@", message);
     [self stopReceiveWithStatus:message];
 }
 
@@ -227,7 +227,7 @@
 // causes the image to be displayed.
 {
     assert(theConnection == self.connection);
-    NSLog(@"Did stop\n");
+    NSLog(@"CONNECTION CLOSED\n");
     [self stopReceiveWithStatus:nil];
 }
 
@@ -240,7 +240,7 @@
     {
         dataReceived = [[NSMutableDictionary alloc] init];
         currentObject = [[NSMutableString alloc]init];
-        NSLog(@"found Data Element");
+        NSLog(@"PARSER INFO: Found Data Element");
     }
     
     if([elementName isEqualToString:@"user"])
@@ -248,7 +248,7 @@
         userObject = [[User alloc] init];
         dataReceived = [[NSMutableDictionary alloc] init];
         currentObject = [[NSMutableString alloc]init];
-        NSLog(@"found User Element");
+        NSLog(@"PARSER INFO: Found User Element");
     }
     
     if([elementName isEqualToString:@"name"])
@@ -289,7 +289,7 @@
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
-    NSLog(@"found end: %@", elementName);
+    NSLog(@"PARSER INFO:: Found end of: %@", elementName);
     if([elementName isEqualToString:@"name"])
     {
         [dataReceived setObject:currentObject forKey:elementName];

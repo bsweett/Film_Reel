@@ -124,7 +124,7 @@
     
     [inbox appendString:parameter1];
     
-    NSLog(@"Inbox request:: %@", inbox);
+    NSLog(@"REQUEST INFO:: Get Inbox -- %@", inbox);
     
     return [inbox stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];;
 }

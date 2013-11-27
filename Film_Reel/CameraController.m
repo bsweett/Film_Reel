@@ -400,7 +400,7 @@
     [send appendString:parameter2];
     [send appendString:parameter3];
     
-    NSLog(@"Send Reel request:: %@", send);
+    NSLog(@"REQUEST INFO:: Send Reel -- %@", send);
     
     return send;
 }

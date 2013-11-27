@@ -1,0 +1,13 @@
+Updated encoding
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	modified:   Film_Reel.xcodeproj/project.xcworkspace/xcuserdata/Ben.xcuserdatad/UserInterfaceState.xcuserstate
+#	modified:   Film_Reel/AppDelegate.m
+#	modified:   Film_Reel/Film_Reel-Info.plist
+#	modified:   Film_Reel/Networking.m
+#	modified:   Film_Reel/ProfileController.m
+#
