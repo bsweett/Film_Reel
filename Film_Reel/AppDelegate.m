@@ -113,7 +113,14 @@
     
     NSLog(@"INFO:: TokenLogin request:: %@", valid);
     
-    return [valid stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];;
+    NSString *encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
+                                                                                  NULL,
+                                                                                  (CFStringRef)valid,
+                                                                                  NULL,
+                                                                                  (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+                                                                                  kCFStringEncodingUTF8 ));
+    
+    return encodedString;
 }
 
 // Handles all Networking errors

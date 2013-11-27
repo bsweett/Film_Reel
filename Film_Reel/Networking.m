@@ -155,13 +155,14 @@
 
 - (void) isValidFetchRequest: (NSString*) localMessage
 {
-    if([localMessage isEqualToString:@""])
+    if([localMessage isEqualToString:@"NoUserFound"])
     {
-        
+        [[NSNotificationCenter defaultCenter]postNotificationName:@USER_NOT_FOUND object:nil];
     }
     else
     {
-        [[NSNotificationCenter defaultCenter]postNotificationName:@FETCH_SUCCESS object:nil];
+        NSDictionary* userDictionary = [NSDictionary dictionaryWithObject:userObject forKey:@CURRENT_USER];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@FETCH_SUCCESS object:nil userInfo:userDictionary];
     }
 }
 
