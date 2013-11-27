@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 Ben Sweett (100846396) and Brayden Girard (100852106). All rights reserved.
 //
 
-#import "ViewController.h"
+#import "LoginController.h"
 
-@interface ViewController () <UITextFieldDelegate>
+@interface LoginController () <UITextFieldDelegate>
 
 @end
 
 
-@implementation ViewController
+@implementation LoginController
 
 @synthesize usernameField;
 @synthesize passwordField;
