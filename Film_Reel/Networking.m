@@ -268,7 +268,7 @@
     {
        currentObject = [[NSMutableString alloc]init];
     }
-    if([elementName isEqualToString:@"userbio"])
+    if([elementName isEqualToString:@"bio"])
     {
         currentObject = [[NSMutableString alloc]init];
     }
@@ -276,7 +276,7 @@
     {
         currentObject = [[NSMutableString alloc]init];
     }
-    if([elementName isEqualToString:@"imagepath"])
+    if([elementName isEqualToString:@"image"])
     {
         currentObject = [[NSMutableString alloc]init];
     }
@@ -307,7 +307,7 @@
     {
         [dataReceived setObject:currentObject forKey:elementName];
     }
-    if([elementName isEqualToString:@"userbio"])
+    if([elementName isEqualToString:@"bio"])
     {
         [dataReceived setObject:currentObject forKey:elementName];
     }
@@ -315,7 +315,7 @@
     {
         [dataReceived setObject:currentObject forKey:elementName];
     }
-    if([elementName isEqualToString:@"imagepath"])
+    if([elementName isEqualToString:@"image"])
     {
         [dataReceived setObject:currentObject forKey:elementName];
     }
@@ -327,10 +327,10 @@
         [userObject setUserName:[dataReceived objectForKey:@"name"]];
         [userObject setPassword:[dataReceived objectForKey:@"password"]];
         [userObject setToken:[dataReceived objectForKey:@"token"]];
-        [userObject setUserBio:[dataReceived objectForKey:@"userbio"]];
+        [userObject setUserBio:[dataReceived objectForKey:@"bio"]];
         [userObject setLocation:[dataReceived objectForKey:@"location"]];
         [userObject setEmail:[dataReceived objectForKey:@"email"]];
-        [userObject setImagePath:[dataReceived objectForKey:@"imagepath"]];
+        [userObject setImagePath:[dataReceived objectForKey:@"image"]];
         [dataReceived setObject:userObject forKey:@"user"];
     }
 }
