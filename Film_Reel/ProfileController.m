@@ -66,10 +66,13 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@FETCH_SUCCESS object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@UPDATE_SUCCESS object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@USER_NOT_FOUND object:nil];
+    
     
     updateOrFetch = [[Networking alloc] init];
     
@@ -119,6 +122,11 @@
 // May want to pass the something through notification to check which request was actually made
 -(void) didSucceedRequest: (NSNotification*) notif
 {
+    if([[notif name] isEqualToString:@USER_NOT_FOUND])
+    {
+        
+    }
+    
     if([[notif name] isEqualToString:@UPDATE_SUCCESS])
     {
         [loading dismissWithClickedButtonIndex:0 animated:YES];
