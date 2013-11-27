@@ -134,7 +134,7 @@
     
     NSLog(@"Add friend request:: %@", add);
     
-    return add;
+    return [add stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
 - (BOOL)validateEmailWithString:(NSString*)emailaddress

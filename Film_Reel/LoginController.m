@@ -122,7 +122,7 @@
     
     NSLog(@"Login request:: %@", login);
     
-    return login;
+    return [login stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
 // Handles all Networking errors that come from Networking.m

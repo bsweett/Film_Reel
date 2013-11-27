@@ -159,7 +159,7 @@
     
     NSLog(@"Create Account request:: %@", signup);
     
-    return signup;
+    return [signup stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
 // Handles all Networking errors that come from Networking.m

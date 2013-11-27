@@ -111,9 +111,9 @@
     
     [valid appendString:parameter1];
     
-    NSLog(@"TokenLogin request:: %@", valid);
+    NSLog(@"INFO:: TokenLogin request:: %@", valid);
     
-    return valid;
+    return [valid stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];;
 }
 
 // Handles all Networking errors
@@ -141,12 +141,14 @@
 {
     if([[notif name] isEqualToString:@VALID_SUCCESS])
     {
+        NSLog(@"INFO:: Token has been devalidate by server\n");
         bypassLogin= [main instantiateViewControllerWithIdentifier:@"bypass"];
         self.window.rootViewController = bypassLogin;
     }
     
     if([[notif name] isEqualToString:@INVALID_TOKEN])
     {
+        NSLog(@"INFO:: Token has been devalidate by server\n");
         startingview = [main instantiateInitialViewController];
         self.window.rootViewController = startingview;
         token = nil;

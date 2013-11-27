@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "Networking.h"
+#import "AppDelegate.h"
 
 @interface ProfileController : UIViewController <UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -26,6 +27,8 @@
 @property (strong, nonatomic) UIAlertView * loading;
 @property (strong, nonatomic) UIAlertView* error;
 @property (strong, nonatomic) Networking* updateOrFetch;
+
+@property (strong, nonatomic) NSString* currentUsersToken;
 
 @property (strong,retain) NSString* saveBio;
 @property (strong,retain) NSString* saveName;

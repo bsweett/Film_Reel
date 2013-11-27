@@ -126,7 +126,7 @@
     
     NSLog(@"Inbox request:: %@", inbox);
     
-    return inbox;
+    return [inbox stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];;
 }
 
 @end

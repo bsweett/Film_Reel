@@ -32,6 +32,8 @@
 @synthesize saveName;
 @synthesize savedImage;
 
+@synthesize currentUsersToken;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -58,6 +60,9 @@
     name.delegate = self;
     location.delegate = self;
     email.delegate = self;
+    
+    AppDelegate* shared = [AppDelegate appDelegate];
+    currentUsersToken = shared.token;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -70,8 +75,7 @@
     updateOrFetch = [[Networking alloc] init];
     
     // Build URL
-    // NEED TO PASS TOKEN OF CURRENT LOGGED IN USER
-    NSString* request = [self buildFetchRequest:@""];
+    NSString* request = [self buildFetchRequest:currentUsersToken];
     
     // NOTE:: Comment this out to bypass networking
     [updateOrFetch startReceive:request withType:@FETCH_REQUEST];
@@ -304,7 +308,7 @@
     
     NSLog(@"Update Profile request:: %@", updateProfile);
     
-    return updateProfile;
+    return [updateProfile stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
 // This is the template for building future URLRequests
@@ -312,7 +316,7 @@
 - (NSString*) buildFetchRequest: (NSString*) token
 {
     NSMutableString* fetchProfile = [[NSMutableString alloc] initWithString:@SERVER_ADDRESS];
-    [fetchProfile appendString:@"fetchProfile?"];
+    [fetchProfile appendString:@"getuserdata?"];
     
     NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"token=%@" , token];
     
@@ -320,7 +324,7 @@
     
     NSLog(@"Fetch Profile request:: %@", fetchProfile);
     
-    return fetchProfile;
+    return [fetchProfile stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
 @end
