@@ -122,7 +122,7 @@
     
     NSLog(@"Login request:: %@", login);
     
-    return [login stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return login;
 }
 
 // Handles all Networking errors that come from Networking.m
@@ -176,10 +176,7 @@
     {
         [indicator stopAnimating];
         error = [[UIAlertView alloc] initWithTitle:nil message:@"Username or password incorrect" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-        [error show];
         [self performSelector:@selector(dismissErrors:) withObject:error afterDelay:3];
-        loginButton.enabled = YES;
-        createButton.enabled = YES;
     }
 }
 
