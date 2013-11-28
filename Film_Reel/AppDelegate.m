@@ -113,13 +113,13 @@
     
     NSLog(@"INFO:: TokenLogin request:: %@", valid);
     
+    
     NSString *encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
                                                                                   NULL,
                                                                                   (CFStringRef)valid,
                                                                                   NULL,
                                                                                   (CFStringRef)@"!*'();:@&=+$,/?%#[]",
                                                                                   kCFStringEncodingUTF8 ));
-    
     return encodedString;
 }
 
