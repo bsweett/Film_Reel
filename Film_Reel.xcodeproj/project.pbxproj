@@ -329,10 +329,10 @@
 		F6BB9BD6184155D9005FE438 /* Iphone */ = {
 			isa = PBXGroup;
 			children = (
+				B5E0CAE718130DD80037EA3A /* Main.storyboard */,
 				F6B016C11814722800DC974C /* CameraOverlay.h */,
 				F6B016C21814722800DC974C /* CameraOverlay.m */,
 				F6B016C31814722800DC974C /* CameraOverlay.xib */,
-				B5E0CAE718130DD80037EA3A /* Main.storyboard */,
 			);
 			name = Iphone;
 			sourceTree = "<group>";

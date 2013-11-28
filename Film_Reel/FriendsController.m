@@ -19,6 +19,7 @@
 @synthesize friendRequest;
 @synthesize loading;
 @synthesize addfriendalert;
+@synthesize userdata;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -96,6 +97,19 @@
         [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
         [self.friendsTable reloadData];
     }
+    if([[notif name] isEqualToString:@USER_NOT_FOUND])
+    {
+        [loading setMessage:@USER_ERROR];
+        [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
+    }
+    
+    if([[notif name] isEqualToString:@UPDATE_SUCCESS])
+    {
+        NSDictionary* userDictionary = [notif userInfo];
+        userdata = [userDictionary valueForKey:@CURRENT_USER];
+        [loading dismissWithClickedButtonIndex:0 animated:YES];
+    }
+    
 }
 
 // Handles all Networking errors that come from Networking.m

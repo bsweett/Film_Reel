@@ -37,6 +37,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
+    NSLog(@"Hello!!!");
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         bio.editable = NO;
@@ -56,7 +57,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+     NSLog(@"Goodbye!!!");
     bio.delegate = self;
     name.delegate = self;
     location.delegate = self;
@@ -67,7 +68,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    
+    NSLog(@"NAy!!!");
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@FETCH_SUCCESS object:nil];
@@ -144,6 +145,10 @@
         [[self name] setText: userdata.getUserName];
         [[self location] setText:userdata.getLocation];
         [[self email] setText: userdata.getEmail];
+        
+        NSData* data=[userdata.imagePath dataUsingEncoding:NSUTF8StringEncoding];
+        UIImage *image = [[UIImage alloc] initWithData:data];
+        [[self displaypicture] setImage:image];
         
         // Reformat all text
         if([[UIDevice currentDevice].model isEqualToString:@"iPad"])
@@ -307,10 +312,10 @@
     NSString* updatedBio = bio.text;
     
     // For now dp wont be updated
-    //UIImage* updatedPic = displaypicture.image;
+    NSData *imageData = UIImageJPEGRepresentation(displaypicture.image, 1.0);
+    NSString *encodedImage = [imageData base64Encoding];
     
-    
-    NSString* request = [self buildProfileUpdateRequest:@"" withUserName:updatedName withLocation:updatedLocation withBio:updatedBio];
+    NSString* request = [self buildProfileUpdateRequest:currentUsersToken withUserName:updatedName withImage:encodedImage withLocation:updatedLocation withBio:updatedBio];
     // Need to pass current logged in users token -------^
     
     [updateOrFetch startReceive:request withType:@UPDATE_REQUEST];
@@ -323,20 +328,22 @@
 
 // This is the template for building future URLRequests
 // NOTE:: SERVER_ADDRESS is hardcoded in Networking.h
-- (NSString*) buildProfileUpdateRequest: (NSString*) token withUserName: (NSString*) username withLocation: (NSString*) geolocation withBio: (NSString*) about
+- (NSString*) buildProfileUpdateRequest: (NSString*) token withUserName: (NSString*) username withImage: (NSString*) image withLocation: (NSString*) geolocation withBio: (NSString*) about
 {
     NSMutableString* updateProfile = [[NSMutableString alloc] initWithString:@SERVER_ADDRESS];
-    [updateProfile appendString:@"update?"];
+    [updateProfile appendString:@"saveuserdata?"];
     
     NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"token=%@" , token];
     NSMutableString* parameter2 = [[NSMutableString alloc] initWithFormat: @"&name=%@" , username];
-    NSMutableString* parameter3 = [[NSMutableString alloc] initWithFormat: @"&location=%@" , geolocation];
-    NSMutableString* parameter4 = [[NSMutableString alloc] initWithFormat: @"&bio=%@" , about];
+    NSMutableString* parameter3 = [[NSMutableString alloc] initWithFormat: @"&image=%@" , image];
+    NSMutableString* parameter4 = [[NSMutableString alloc] initWithFormat: @"&location=%@" , geolocation];
+    NSMutableString* parameter5 = [[NSMutableString alloc] initWithFormat: @"&bio=%@" , about];
     
     [updateProfile appendString:parameter1];
     [updateProfile appendString:parameter2];
     [updateProfile appendString:parameter3];
     [updateProfile appendString:parameter4];
+    [updateProfile appendString:parameter5];
     
     NSLog(@"REQUEST INFO:: Update Profile -- %@", updateProfile);
     

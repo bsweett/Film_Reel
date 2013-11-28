@@ -121,16 +121,9 @@
     
     [valid appendString:parameter1];
     
-    NSLog(@"INFO:: TokenLogin request:: %@", valid);
+    NSLog(@"TOKEN INFO:: TokenLogin request:: %@", valid);
     
-    
-    NSString *encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
-                                                                                  NULL,
-                                                                                  (CFStringRef)valid,
-                                                                                  NULL,
-                                                                                  (CFStringRef)@"!*'();:@&=+$,/?%#[]",
-                                                                                  kCFStringEncodingUTF8 ));
-    return encodedString;
+    return valid;
 }
 
 // Handles all Networking errors

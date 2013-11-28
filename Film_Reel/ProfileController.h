@@ -16,14 +16,19 @@
 
 // These local view variables must be mapped to the User object sent from the server at login in
 
-@property (strong, retain) IBOutlet UITextView* name;
-@property (strong, retain) IBOutlet UITextView* email;
-@property (strong, retain) IBOutlet UITextView* bio;
-@property (strong, retain) IBOutlet UITextView* location;
-@property (strong, retain) IBOutlet UIButton *edit;
-@property (strong, retain) IBOutlet UIButton *cancel;
-@property (strong, retain) IBOutlet UIButton *imageButton;
-@property (strong, retain) IBOutlet UIImageView * displaypicture;
+
+
+@property (strong, nonatomic) IBOutlet UITextView *name;
+@property (strong, nonatomic) IBOutlet UITextView *email;
+@property (strong, nonatomic) IBOutlet UITextView *bio;
+@property (strong, nonatomic) IBOutlet UITextView *location;
+@property (strong, nonatomic) IBOutlet UIButton *cancel;
+@property (strong, nonatomic) IBOutlet UIButton *edit;
+@property (strong, nonatomic) IBOutlet UIButton *imageButton;
+@property (strong, nonatomic) IBOutlet UIImageView *displaypicture;
+
+
+
 
 @property (strong, nonatomic) UIAlertView * loading;
 @property (strong, nonatomic) UIAlertView* error;
@@ -40,5 +45,10 @@
 
 -(void) didGetNetworkError: (NSNotification*) notif;
 -(void) didSucceedRequest: (NSNotification*) notif;
+
+- (IBAction)doEdit:(id)sender;
+- (IBAction)doCancel:(id)sender;
+- (IBAction)doImageTap:(id)sender;
+
 
 @end

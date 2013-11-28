@@ -15,7 +15,7 @@
 @property (strong, nonatomic) NSMutableArray* tableArray;
 @property (strong, nonatomic) UIAlertView* addfriendalert;
 @property (strong, nonatomic) UIAlertView* loading;
-
+@property (strong, nonatomic) User *userdata;
 @property (strong, nonatomic) Networking* friendRequest;
 
 -(IBAction)doAddFriend:(id)sender;
