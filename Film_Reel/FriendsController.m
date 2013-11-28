@@ -132,7 +132,7 @@
     [add appendString:parameter1];
     [add appendString:parameter2];
     
-    NSLog(@"Add friend request:: %@", add);
+    NSLog(@"REQUEST INFO:: Add friend -- %@", add);
     
     return [add stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }

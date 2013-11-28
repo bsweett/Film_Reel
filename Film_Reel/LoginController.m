@@ -120,7 +120,7 @@
     [login appendString:parameter1];
     [login appendString:parameter2];
     
-    NSLog(@"Login request:: %@", login);
+    NSLog(@"REQUEST INFO:: Login -- %@", login);
     
     return [login stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
@@ -167,7 +167,7 @@
         shared.token = currentUser.getToken;
         //Set token to token in app delegate
         
-        NSLog(@"Current User Token:: %@", [currentUser getToken]);
+        NSLog(@"INFO:: Current User Token:: %@", [currentUser getToken]);
         [indicator stopAnimating];
         [self performSegueWithIdentifier:@"loggedIn" sender:self];
     }

@@ -157,7 +157,7 @@
     [signup appendString:parameter2];
     [signup appendString:parameter3];
     
-    NSLog(@"Create Account request:: %@", signup);
+    NSLog(@"REQUEST INFO:: Create Account --  %@", signup);
     
     return [signup stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
@@ -213,7 +213,6 @@
 {
     if([segue.identifier isEqualToString:@"done"])
     {
-        
         SignUpCompleteController* destViewController = segue.destinationViewController;
         destViewController.createdUser = newlyMadeUser;
     }
@@ -230,10 +229,6 @@
         [textField resignFirstResponder];
     }
     return NO;
-    /*
-    if(textField )
-    [textField resignFirstResponder];
-    return YES;*/
 }
 
 // Validations for Email, Passoword, and Username ------------------------------------------
@@ -265,7 +260,6 @@
 {
     if(![pass isEqualToString:cpass])
     {
-        NSLog(@"Passwords didnt match");
         return FALSE;
     }
     if( pass.length >= MIN_PASS_ENTRY && pass.length <= MAX_PASSWORD_ENTRY )

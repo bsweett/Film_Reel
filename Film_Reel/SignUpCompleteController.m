@@ -44,7 +44,7 @@
 {
     AppDelegate* shared = [AppDelegate appDelegate];
     shared.token = createdUser.getToken;
-    NSLog(@"INFO:: Token on Log in: %@", shared.token);
+    NSLog(@"TOKEN INFO:: Token on Log in: %@", shared.token);
 }
 
 @end
