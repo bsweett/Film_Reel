@@ -57,24 +57,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-     NSLog(@"Goodbye!!!");
-    bio.delegate = self;
-    name.delegate = self;
-    location.delegate = self;
-    email.delegate = self;
-    AppDelegate* shared = [AppDelegate appDelegate];
-    currentUsersToken = shared.token;
-}
-
--(void)viewDidAppear:(BOOL)animated
-{
-    NSLog(@"NAy!!!");
+    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@FETCH_SUCCESS object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@UPDATE_SUCCESS object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@USER_NOT_FOUND object:nil];
     
+    bio.delegate = self;
+    name.delegate = self;
+    location.delegate = self;
+    email.delegate = self;
+    AppDelegate* shared = [AppDelegate appDelegate];
+    currentUsersToken = shared.token;
     
     updateOrFetch = [[Networking alloc] init];
     
@@ -92,6 +87,11 @@
     {
         [loading show];
     }
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+  
 }
 
 - (void)didReceiveMemoryWarning
@@ -145,11 +145,16 @@
         [[self name] setText: userdata.getUserName];
         [[self location] setText:userdata.getLocation];
         [[self email] setText: userdata.getEmail];
+        if([userdata.imagePath isEqualToString:@"unknown"]) {
+            userdata.displayPicture = [[UIImage alloc] initWithContentsOfFile:@"default.png"];
+            [[self displaypicture] setImage:userdata.displayPicture];
+        }
         
-        NSData* data=[userdata.imagePath dataUsingEncoding:NSUTF8StringEncoding];
-        UIImage *image = [[UIImage alloc] initWithData:data];
-        [[self displaypicture] setImage:image];
-        
+        else {
+            UIImage *image = [self decodeBase64ToImage:userdata.imagePath];
+            userdata.displayPicture = image;
+            [[self displaypicture] setImage:userdata.displayPicture];
+        }
         // Reformat all text
         if([[UIDevice currentDevice].model isEqualToString:@"iPad"])
         {
@@ -273,8 +278,8 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    self.displaypicture.image = chosenImage;
+    userdata.displayPicture = info[UIImagePickerControllerEditedImage];;
+    [[self displaypicture] setImage:userdata.displayPicture];
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
@@ -311,9 +316,8 @@
     NSString* updatedLocation = location.text;
     NSString* updatedBio = bio.text;
     
-    // For now dp wont be updated
-    NSData *imageData = UIImageJPEGRepresentation(displaypicture.image, 1.0);
-    NSString *encodedImage = [imageData base64Encoding];
+
+    NSString *encodedImage = [self encodeToBase64String:userdata.displayPicture];
     
     NSString* request = [self buildProfileUpdateRequest:currentUsersToken withUserName:updatedName withImage:encodedImage withLocation:updatedLocation withBio:updatedBio];
     // Need to pass current logged in users token -------^
@@ -364,6 +368,15 @@
     NSLog(@"REQUEST INFO:: Get User Data -- %@", fetchProfile);
     
     return [fetchProfile stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+}
+
+- (NSString *)encodeToBase64String:(UIImage *)image {
+    return [UIImageJPEGRepresentation(image, 0.0) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+}
+
+- (UIImage *)decodeBase64ToImage:(NSString *)strEncodeData {
+    NSData *data = [[NSData alloc]initWithBase64EncodedString:strEncodeData options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    return [UIImage imageWithData:data];
 }
 
 @end
