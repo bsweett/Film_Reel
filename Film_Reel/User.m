@@ -41,6 +41,7 @@
         userBio = [[NSMutableString alloc] initWithCapacity:MAX_BIO_SIZE];
         friendCount = 0;
         friendsList = [[NSMutableArray alloc] initWithCapacity:MAX_FRIENDS_SIZE];
+        token = @"";
     }
     
     return self;

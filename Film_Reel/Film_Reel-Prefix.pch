@@ -16,9 +16,15 @@
 #endif
 
 // Server/app attributes
-#define SERVER_ADDRESS      "http://192.168.1.51:8080/filmreel/"
-#define REEL_ALBUM_NAME     "My Reels"
-#define CURRENT_USER        "current_user"
+#define SERVER_ADDRESS          "http://192.168.1.51:8080/filmreel/"
+#define REEL_ALBUM_NAME         "My Reels"
+#define CURRENT_USER            "current_user"
+#define CURRENT_USER_NAME       "current_user_name"
+#define CURRENT_USER_BIO        "current_user_bio"
+#define CURRENT_USER_LOCATION   "current_user_location"
+#define CURRENT_USER_PASSWORD   "current_user_password"
+#define CURRENT_USER_EMAIL      "current_user_email"
+#define CURRENT_USER_TOKEN      "current_user_token"
 
 // Validation
 #define MIN_EMAIL_ENTRY     3
@@ -30,7 +36,6 @@
 
 // Request Types
 #define LOGIN_REQUEST   "login"
-#define FETCH_REQUEST   "fetch"
 #define UPDATE_REQUEST  "update"
 #define SIGNUP_REQUEST  "signup"
 #define REEL_SEND       "send_reel"
@@ -41,7 +46,6 @@
 // Nofitication Names
 #define LOGIN_SUCCESS   "login_success"
 #define SIGNUP_SUCCESS  "signup_success"
-#define FETCH_SUCCESS   "fetch_profile_success"
 #define UPDATE_SUCCESS  "updating_profile_success"
 #define REEL_SUCCESS    "reel_sent"
 #define INBOX_SUCCESS   "inbox_got"

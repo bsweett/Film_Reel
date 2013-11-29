@@ -7,13 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TabBarViewController.h"
+#import "LoginController.h"
 #import "User.h"
 #import "AppDelegate.h"
 
 @interface SignUpCompleteController : UIViewController
-
-@property (strong, nonatomic) User* createdUser;
 
 -(IBAction) doLogIn:(id) sender;
 

@@ -164,8 +164,8 @@
         
         AppDelegate* shared = [AppDelegate appDelegate];
         
-        shared.token = currentUser.getToken;
-        //Set token to token in app delegate
+        //Set App User
+        [shared setAppUser: currentUser];
         
         NSLog(@"INFO:: Current User Token:: %@", [currentUser getToken]);
         [indicator stopAnimating];

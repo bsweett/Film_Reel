@@ -45,11 +45,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordPressed) name:@CAMERA_START object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordFinished) name:@CAMERA_STOP object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closeCamera) name:@CAMERA_CLOSE object:nil];
-    
-    // Networking Notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSucceedRequest:) name:@REEL_SUCCESS object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -83,29 +78,14 @@
     NSLog(@"Swipe Left");
     [self startCameraControllerFromViewController: self usingDelegate: self];
 }
-// Swipe up to take a new reel
+
 -(void) handleSwipeLeft:(UITapGestureRecognizer *)recognizer
 {
      NSLog(@"Swipe Right");
-    sendReelRequest = [[Networking alloc] init];
-    alert = [[UIAlertView alloc] initWithTitle:nil message:@"Sending..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-    
-    
-    // Have the current token be accessed for the sender
-    // Need to pick a friend some how?
-    // Need to send image some how?
+
     if(frameImage != NULL)
     {
-        //NSData* tosend = UIImagePNGRepresentation(frameImage);
-        
-        NSString* request = [self buildSendRequest:@"" withFriend:@"" withImageName:@""];
-        
-        [sendReelRequest startReceive:request withType:@REEL_SEND];
-        
-        if([sendReelRequest isReceiving] == TRUE)
-        {
-            [alert show];
-        }
+        [self performSegueWithIdentifier:@"send" sender:self];
     }
     else
     {
@@ -113,6 +93,23 @@
         [alert show];
         [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:2];
     }
+}
+
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Pass image as text
+    NSString* imageAsText = [self encodeToBase64String:frameImage];
+    SelectFriendController* destViewController = segue.destinationViewController;
+    destViewController.imageToSend = imageAsText;
+}
+
+- (NSString *)encodeToBase64String:(UIImage *)image {
+    return [UIImageJPEGRepresentation(image, 0.0) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+}
+
+- (UIImage *)decodeBase64ToImage:(NSString *)strEncodeData {
+    NSData *data = [[NSData alloc]initWithBase64EncodedString:strEncodeData options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    return [UIImage imageWithData:data];
 }
 
 // Saves Reel to local photo album
@@ -140,31 +137,6 @@
     
 }
 
-// Handles Succussful Server connection
--(void) didSucceedRequest: (NSNotification*) notif
-{
-    if([[notif name] isEqualToString:@REEL_SUCCESS])
-    {
-        [alert setMessage:@"Message Sent"];
-        [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
-    }
-}
-
-// Handles all Networking errors that come from Networking.m
--(void) didGetNetworkError: (NSNotification*) notif
-{
-    if([[notif name] isEqualToString:@ADDRESS_FAIL])
-    {
-        [alert setMessage:@ADDRESS_FAIL_ERROR];
-        [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
-    }
-    if([[notif name] isEqualToString:@FAIL_STATUS])
-    {
-        [alert setMessage:@SERVER_CONNECT_ERROR];
-        [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
-    }
-}
-    
 -(void)dismissErrors: (UIAlertView*)x{
 	[x dismissWithClickedButtonIndex:-1 animated:YES];
 }
@@ -383,26 +355,6 @@
 // Close the camera view
 -(void) closeCamera {
     [cameraUI dismissViewControllerAnimated:NO completion:nil];
-}
-
-// This is the template for building future URLRequests
-// NOTE:: SERVER_ADDRESS is hardcoded in Networking.h
-- (NSString*) buildSendRequest: (NSString*) sender withFriend: (NSString*) receiver withImageName: (NSString*) imageName
-{
-    NSMutableString* send = [[NSMutableString alloc] initWithString:@SERVER_ADDRESS];
-    [send appendString:@"send?"];
-    
-    NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"from=%@" , sender];
-    NSMutableString* parameter2 = [[NSMutableString alloc] initWithFormat: @"&to=%@" , receiver];
-    NSMutableString* parameter3 = [[NSMutableString alloc] initWithFormat: @"&image=%@" , imageName];
-    
-    [send appendString:parameter1];
-    [send appendString:parameter2];
-    [send appendString:parameter3];
-    
-    NSLog(@"REQUEST INFO:: Send Reel -- %@", send);
-    
-    return send;
 }
 
 @end

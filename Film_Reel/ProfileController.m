@@ -25,7 +25,7 @@
 
 @synthesize loading;
 @synthesize error;
-@synthesize updateOrFetch;
+@synthesize Update;
 
 @synthesize saveBio;
 @synthesize saveLocation;
@@ -61,7 +61,6 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@FETCH_SUCCESS object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@UPDATE_SUCCESS object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@USER_NOT_FOUND object:nil];
     
@@ -70,24 +69,43 @@
     location.delegate = self;
     email.delegate = self;
     AppDelegate* shared = [AppDelegate appDelegate];
-    currentUsersToken = shared.token;
+    userdata = shared.appUser;
     
-    updateOrFetch = [[Networking alloc] init];
+    Update = [[Networking alloc] init];
     
-    // Build URL
-    NSString* request = [self buildFetchRequest:currentUsersToken];
+    [[self bio] setText: userdata.getUserBio];
+    [[self name] setText: userdata.getUserName];
+    [[self location] setText:userdata.getLocation];
+    [[self email] setText: userdata.getEmail];
     
-    // NOTE:: Comment this out to bypass networking
-    [updateOrFetch startReceive:request withType:@FETCH_REQUEST];
-    
-    // Set up alert dialog
-    loading = [[UIAlertView alloc] initWithTitle:nil message:@"Loading..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-    
-    // Animate it
-    if([updateOrFetch isReceiving] == TRUE)
+    // Reformat all text
+    if([[UIDevice currentDevice].model isEqualToString:@"iPad"])
     {
-        [loading show];
+        [[self name] setFont:[UIFont systemFontOfSize:20]];
+        [[self name] setTextColor:[[UIColor alloc] initWithRed:0.050980396570000003 green:0.5411764979 blue:0.77647066119999997 alpha:1]];
+        [[self bio] setFont:[UIFont systemFontOfSize:14]];
+        [[self location] setFont:[UIFont systemFontOfSize:14]];
+        [[self email] setFont:[UIFont systemFontOfSize:14]];
     }
+    else
+    {
+        // iPhone Formating
+    }
+    
+    //Code for image sending
+    /*
+     if([userdata.imagePath isEqualToString:@"unknown"]) {
+     userdata.displayPicture = [[UIImage alloc] initWithContentsOfFile:@"default.png"];
+     [[self displaypicture] setImage:userdata.displayPicture];
+     }
+     
+     else {
+     UIImage *image = [self decodeBase64ToImage:userdata.imagePath];
+     userdata.displayPicture = image;
+     [[self displaypicture] setImage:userdata.displayPicture];
+     }
+     
+     */
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -135,50 +153,11 @@
     {
         NSDictionary* userDictionary = [notif userInfo];
         userdata = [userDictionary valueForKey:@CURRENT_USER];
+        
+        AppDelegate* shared = [AppDelegate appDelegate];
+        [shared setAppUser:userdata];
+        
         [loading dismissWithClickedButtonIndex:0 animated:YES];
-    }
-    
-    if([[notif name] isEqualToString:@FETCH_SUCCESS])
-    {
-        NSDictionary* userDictionary = [notif userInfo];
-        userdata = [userDictionary valueForKey:@CURRENT_USER];
-        [[self bio] setText: userdata.getUserBio];
-        [[self name] setText: userdata.getUserName];
-        [[self location] setText:userdata.getLocation];
-        [[self email] setText: userdata.getEmail];
-        
-        //Code for image sending
-        /*
-        if([userdata.imagePath isEqualToString:@"unknown"]) {
-            userdata.displayPicture = [[UIImage alloc] initWithContentsOfFile:@"default.png"];
-            [[self displaypicture] setImage:userdata.displayPicture];
-        }
-        
-        else {
-            UIImage *image = [self decodeBase64ToImage:userdata.imagePath];
-            userdata.displayPicture = image;
-            [[self displaypicture] setImage:userdata.displayPicture];
-        }
-         
-         */
-        
-        // Reformat all text
-        if([[UIDevice currentDevice].model isEqualToString:@"iPad"])
-        {
-            [[self name] setFont:[UIFont systemFontOfSize:20]];
-            [[self name] setTextColor:[[UIColor alloc] initWithRed:0.050980396570000003 green:0.5411764979 blue:0.77647066119999997 alpha:1]];
-            [[self bio] setFont:[UIFont systemFontOfSize:14]];
-            [[self location] setFont:[UIFont systemFontOfSize:14]];
-            [[self email] setFont:[UIFont systemFontOfSize:14]];
-        }
-        else
-        {
-            // iPhone Formating 
-        }
-        
-        //saveImage =....
-        [loading dismissWithClickedButtonIndex:0 animated:YES];
-        
     }
 }
 
@@ -318,7 +297,7 @@
 // get ready to pass the update to the server
 -(void) prepareForUpdate
 {
-    
+    loading = [[UIAlertView alloc] initWithTitle:nil message:@"Updating" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
     NSString* updatedName = name.text;
     NSString* updatedLocation = location.text;
     NSString* updatedBio = bio.text;
@@ -331,12 +310,12 @@
     //Temp for now normally would get display picture as above
     NSString *tempImage = @"default";
     
-    NSString* request = [self buildProfileUpdateRequest:currentUsersToken withUserName:updatedName withImage:tempImage withLocation:updatedLocation withBio:updatedBio];
+    NSString* request = [self buildProfileUpdateRequest:[userdata getToken] withUserName:updatedName withImage:tempImage withLocation:updatedLocation withBio:updatedBio];
     // Need to pass current logged in users token -------^
     
-    [updateOrFetch startReceive:request withType:@UPDATE_REQUEST];
+    [Update startReceive:request withType:@UPDATE_REQUEST];
     
-    if ([updateOrFetch isReceiving] == TRUE)
+    if ([Update isReceiving] == TRUE)
     {
         [loading show];
     }
@@ -363,22 +342,6 @@
     NSLog(@"REQUEST INFO:: Update Profile -- %@", updateProfile);
     
     return [updateProfile stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-}
-
-// This is the template for building future URLRequests
-// NOTE:: SERVER_ADDRESS is hardcoded in Networking.h
-- (NSString*) buildFetchRequest: (NSString*) token
-{
-    NSMutableString* fetchProfile = [[NSMutableString alloc] initWithString:@SERVER_ADDRESS];
-    [fetchProfile appendString:@"getuserdata?"];
-    
-    NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"token=%@" , token];
-    
-    [fetchProfile appendString:parameter1];
-    
-    NSLog(@"REQUEST INFO:: Get User Data -- %@", fetchProfile);
-    
-    return [fetchProfile stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
 - (NSString *)encodeToBase64String:(UIImage *)image {

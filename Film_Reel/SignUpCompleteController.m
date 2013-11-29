@@ -14,8 +14,6 @@
 
 @implementation SignUpCompleteController
 
-@synthesize createdUser;
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -38,13 +36,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-// When login is press set the token
-// Until then they are not logged in
+// When login is press send them back to the login page
 -(IBAction) doLogIn:(id) sender
 {
-    AppDelegate* shared = [AppDelegate appDelegate];
-    shared.token = createdUser.getToken;
-    NSLog(@"TOKEN INFO:: Token on Log in: %@", shared.token);
+    [self performSegueWithIdentifier:@"backtomain" sender:self];
 }
 
 @end
