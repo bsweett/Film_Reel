@@ -145,6 +145,9 @@
         [[self name] setText: userdata.getUserName];
         [[self location] setText:userdata.getLocation];
         [[self email] setText: userdata.getEmail];
+        
+        //Code for image sending
+        /*
         if([userdata.imagePath isEqualToString:@"unknown"]) {
             userdata.displayPicture = [[UIImage alloc] initWithContentsOfFile:@"default.png"];
             [[self displaypicture] setImage:userdata.displayPicture];
@@ -155,6 +158,9 @@
             userdata.displayPicture = image;
             [[self displaypicture] setImage:userdata.displayPicture];
         }
+         
+         */
+        
         // Reformat all text
         if([[UIDevice currentDevice].model isEqualToString:@"iPad"])
         {
@@ -316,10 +322,15 @@
     NSString* updatedLocation = location.text;
     NSString* updatedBio = bio.text;
     
-
+    //Code for image sending
+    /*
     NSString *encodedImage = [self encodeToBase64String:userdata.displayPicture];
+    */
     
-    NSString* request = [self buildProfileUpdateRequest:currentUsersToken withUserName:updatedName withImage:encodedImage withLocation:updatedLocation withBio:updatedBio];
+    //Temp for now normally would get display picture as above
+    NSString *tempImage = @"default";
+    
+    NSString* request = [self buildProfileUpdateRequest:currentUsersToken withUserName:updatedName withImage:tempImage withLocation:updatedLocation withBio:updatedBio];
     // Need to pass current logged in users token -------^
     
     [updateOrFetch startReceive:request withType:@UPDATE_REQUEST];
@@ -336,7 +347,6 @@
 {
     NSMutableString* updateProfile = [[NSMutableString alloc] initWithString:@SERVER_ADDRESS];
     [updateProfile appendString:@"saveuserdata?"];
-    
     NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"token=%@" , token];
     NSMutableString* parameter2 = [[NSMutableString alloc] initWithFormat: @"&name=%@" , username];
     NSMutableString* parameter3 = [[NSMutableString alloc] initWithFormat: @"&image=%@" , image];
