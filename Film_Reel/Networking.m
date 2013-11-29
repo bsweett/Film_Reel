@@ -318,6 +318,14 @@
     {
         [dataReceived setObject:currentObject forKey:elementName];
     }
+    if([elementName isEqualToString:@"snap"])
+    {
+        [dataReceived setObject:currentObject forKey:elementName];
+    }
+    if([elementName isEqualToString:@"fname"])
+    {
+        [dataReceived setObject:currentObject forKey:elementName];
+    }
     if([elementName isEqualToString:@"message"])
     {
         [dataReceived setObject:currentObject forKey:elementName];
