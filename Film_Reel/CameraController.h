@@ -10,7 +10,6 @@
 #import "CameraOverlay.h"
 #import "iPadOverlay.h"
 #import <MediaPlayer/MediaPlayer.h>
-#import "Networking.h"
 
 @interface CameraController : UIViewController <UIImagePickerControllerDelegate,
 UINavigationControllerDelegate, UIGestureRecognizerDelegate>

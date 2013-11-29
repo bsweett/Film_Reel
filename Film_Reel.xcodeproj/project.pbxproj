@@ -19,6 +19,7 @@
 		B506DB331800806C004991A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B506DB311800806C004991A4 /* InfoPlist.strings */; };
 		B506DB351800806C004991A4 /* Film_ReelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B506DB341800806C004991A4 /* Film_ReelTests.m */; };
 		B506DB401800857A004991A4 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B506DB3F1800857A004991A4 /* NetworkManager.m */; };
+		B52BBEEE18491EA000C53E67 /* SelectFriendController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52BBEEC18491EA000C53E67 /* SelectFriendController.m */; };
 		B56E78E31819BA5D008AE8D5 /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B56E78E21819BA5D008AE8D5 /* iPad.storyboard */; };
 		B56E78E51819BCD4008AE8D5 /* button14-20110808201840-00014.png in Resources */ = {isa = PBXBuildFile; fileRef = B56E78E41819BCD4008AE8D5 /* button14-20110808201840-00014.png */; };
 		B56E78EB181A00B5008AE8D5 /* iPadOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = B56E78E9181A00B5008AE8D5 /* iPadOverlay.m */; };
@@ -83,6 +84,8 @@
 		B506DB341800806C004991A4 /* Film_ReelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Film_ReelTests.m; sourceTree = "<group>"; };
 		B506DB3E1800857A004991A4 /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		B506DB3F1800857A004991A4 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
+		B52BBEEB18491EA000C53E67 /* SelectFriendController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectFriendController.h; sourceTree = "<group>"; };
+		B52BBEEC18491EA000C53E67 /* SelectFriendController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectFriendController.m; sourceTree = "<group>"; };
 		B56E78E21819BA5D008AE8D5 /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
 		B56E78E41819BCD4008AE8D5 /* button14-20110808201840-00014.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button14-20110808201840-00014.png"; sourceTree = "<group>"; };
 		B56E78E8181A00B5008AE8D5 /* iPadOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadOverlay.h; sourceTree = "<group>"; };
@@ -254,6 +257,8 @@
 				B5E0CAEC18130E120037EA3A /* LoginController.m */,
 				F6189FB61813942C00D1F0FA /* TabBarViewController.h */,
 				F6189FB71813942C00D1F0FA /* TabBarViewController.m */,
+				B52BBEEB18491EA000C53E67 /* SelectFriendController.h */,
+				B52BBEEC18491EA000C53E67 /* SelectFriendController.m */,
 				F6189F7918131BF300D1F0FA /* CameraController.h */,
 				F6189F7A18131BF300D1F0FA /* CameraController.m */,
 				F6189F7F18131DA700D1F0FA /* InboxController.h */,
@@ -455,6 +460,7 @@
 				F6189FB81813942C00D1F0FA /* TabBarViewController.m in Sources */,
 				F6B016C41814722800DC974C /* CameraOverlay.m in Sources */,
 				F6189F8A18131DD800D1F0FA /* SignUpEmailController.m in Sources */,
+				B52BBEEE18491EA000C53E67 /* SelectFriendController.m in Sources */,
 				B506DB401800857A004991A4 /* NetworkManager.m in Sources */,
 				F6189F9618131E3C00D1F0FA /* SignUpCompleteController.m in Sources */,
 				F6189F7B18131BF300D1F0FA /* CameraController.m in Sources */,

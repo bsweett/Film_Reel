@@ -208,16 +208,6 @@
     }
 }
 
-// Pass token object to complete controller
--(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if([segue.identifier isEqualToString:@"done"])
-    {
-        SignUpCompleteController* destViewController = segue.destinationViewController;
-        destViewController.createdUser = newlyMadeUser;
-    }
-}
-
 // Drops keyboard when return key is pressed
 - (BOOL) textFieldShouldReturn:(UITextField*) textField
 {
