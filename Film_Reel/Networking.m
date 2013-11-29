@@ -105,10 +105,6 @@
             {
                 [self isValidSignUpRequest: localMessage];
             }
-            else if([requestType isEqualToString: @FETCH_REQUEST])
-            {
-                [self isValidFetchRequest:localMessage];
-            }
             else if([requestType isEqualToString: @UPDATE_REQUEST])
             {
                 [self isValidUpdateRequest:localMessage];
@@ -148,21 +144,7 @@
     }
     else
     {
-        NSDictionary* userDictionary = [NSDictionary dictionaryWithObject:userObject forKey:@CURRENT_USER];
-        [[NSNotificationCenter defaultCenter]postNotificationName:@SIGNUP_SUCCESS object:nil userInfo:userDictionary];
-    }
-}
-
-- (void) isValidFetchRequest: (NSString*) localMessage
-{
-    if([localMessage isEqualToString:@"NoUserFound"])
-    {
-        [[NSNotificationCenter defaultCenter]postNotificationName:@USER_NOT_FOUND object:nil];
-    }
-    else
-    {
-        NSDictionary* userDictionary = [NSDictionary dictionaryWithObject:userObject forKey:@CURRENT_USER];
-        [[NSNotificationCenter defaultCenter]postNotificationName:@FETCH_SUCCESS object:nil userInfo:userDictionary];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@SIGNUP_SUCCESS object:nil];
     }
 }
 
@@ -282,7 +264,6 @@
     if([elementName isEqualToString:@"message"])
     {
        currentObject = [[NSMutableString alloc]init];
-        NSLog(@"The messsage was: %@", currentObject);
     }
 
 }
@@ -320,6 +301,7 @@
     }
     if([elementName isEqualToString:@"message"])
     {
+        NSLog(@"PARSER INFO:: Server said %@", currentObject);
         [dataReceived setObject:currentObject forKey:elementName];
     }
     if([elementName isEqualToString:@"user"]) {

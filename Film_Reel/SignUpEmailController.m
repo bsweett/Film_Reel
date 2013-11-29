@@ -149,9 +149,9 @@
     NSMutableString* signup = [[NSMutableString alloc] initWithString:@SERVER_ADDRESS];
     [signup appendString:@"create?"];
     
-    NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"email=%@" , email];
-    NSMutableString* parameter2 = [[NSMutableString alloc] initWithFormat: @"&name=%@" , name];
-    NSMutableString* parameter3 = [[NSMutableString alloc] initWithFormat: @"&password=%@" , password];
+    NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"name=%@" , name];
+    NSMutableString* parameter2 = [[NSMutableString alloc] initWithFormat: @"&password=%@" , password];
+    NSMutableString* parameter3 = [[NSMutableString alloc] initWithFormat: @"&email=%@" , email];
     
     [signup appendString:parameter1];
     [signup appendString:parameter2];
@@ -195,8 +195,6 @@
     if([[notif name] isEqualToString:@SIGNUP_SUCCESS])
     {
         [indicator stopAnimating];
-        NSDictionary* userDictionary = [notif userInfo];
-        newlyMadeUser = [userDictionary valueForKey:@CURRENT_USER];
         [self performSegueWithIdentifier:@"done" sender:self];
     }
     

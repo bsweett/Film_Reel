@@ -735,7 +735,7 @@
                         <outlet property="photoStrip" destination="wVU-Z6-qmj" id="Slj-QT-OKS"/>
                         <outlet property="saveReel" destination="2WU-N2-nUK" id="3HE-Ig-SRb"/>
                         <outlet property="takeReel" destination="1Cc-OP-TlI" id="19M-RL-b81"/>
-                        <segue destination="QF4-zA-oTN" kind="push" id="MWI-1W-vj6"/>
+                        <segue destination="QF4-zA-oTN" kind="push" identifier="send" id="MWI-1W-vj6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jb9-6D-5JI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -790,6 +790,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="unU-Ex-Smo"/>
+        <segue reference="Iy2-Eq-kRm"/>
     </inferredMetricsTieBreakers>
 </document>

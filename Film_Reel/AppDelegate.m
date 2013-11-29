@@ -55,10 +55,23 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     NSUserDefaults* currentLoggedIn = [NSUserDefaults standardUserDefaults];
-    if([appUser getToken] != nil)
+    if(appUser.token != nil)
     {
-        NSLog(@"TOKEN INFO:: Token into background %@", [appUser getToken]);
-        [currentLoggedIn setObject:[appUser getToken] forKey:@CURRENT_USER];
+        NSLog(@"TOKEN INFO:: Token into background %@", appUser.token);
+        
+        NSString* storeToken = appUser.token;
+        NSString* storeName = appUser.userName;
+        NSString* storeBio = appUser.userBio;
+        NSString* storeLoc = appUser.location;
+        NSString* storePass = appUser.password;
+        NSString* storeEmail = appUser.email;
+        
+        [currentLoggedIn setObject:storeToken forKey:@CURRENT_USER_TOKEN];
+        [currentLoggedIn setObject:storeName forKey:@CURRENT_USER_NAME];
+        [currentLoggedIn setObject:storePass forKey:@CURRENT_USER_PASSWORD];
+        [currentLoggedIn setObject:storeLoc forKey:@CURRENT_USER_LOCATION];
+        [currentLoggedIn setObject:storeEmail forKey:@CURRENT_USER_EMAIL];
+        [currentLoggedIn setObject:storeBio forKey:@CURRENT_USER_BIO];
         [currentLoggedIn synchronize];
     }
 }
@@ -69,6 +82,8 @@
 // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+    appUser = [[User alloc] init];
+    
     // Check which storybaord to load
     if([[UIDevice currentDevice].model isEqualToString:@"iPad"])
     {
@@ -90,14 +105,21 @@
     
     // Get our user defaults
     NSUserDefaults* currentLoggedIn = [NSUserDefaults standardUserDefaults];
-    appUser = [currentLoggedIn objectForKey:@CURRENT_USER];
+    appUser.token = [currentLoggedIn objectForKey:@CURRENT_USER_TOKEN];
+    appUser.userName = [currentLoggedIn objectForKey:@CURRENT_USER_NAME];
+    appUser.password = [currentLoggedIn objectForKey:@CURRENT_USER_PASSWORD];
+    appUser.location = [currentLoggedIn objectForKey:@CURRENT_USER_LOCATION];
+    appUser.email = [currentLoggedIn objectForKey:@CURRENT_USER_EMAIL];
+    appUser.userBio = [currentLoggedIn objectForKey:@CURRENT_USER_BIO];
+    
+    NSString* token = [appUser getToken];
     
     // Start our request
-    if([appUser getToken] != nil)
+    if(token != nil)
     {
         validToken = [[Networking alloc] init];
-        NSLog(@"TOKEN INFO:: Token after background %@", [appUser getToken]);
-        NSString* request = [self buildTokenLoginRequest:[appUser getToken]];
+        NSLog(@"TOKEN INFO:: Token after background %@", token);
+        NSString* request = [self buildTokenLoginRequest:token];
         [validToken startReceive:request withType:@VALID_REQUEST];
         
         // Might need to tweak this section if networking is slow (Black page?)
