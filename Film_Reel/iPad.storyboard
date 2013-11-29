@@ -735,7 +735,7 @@
                         <outlet property="photoStrip" destination="wVU-Z6-qmj" id="Slj-QT-OKS"/>
                         <outlet property="saveReel" destination="2WU-N2-nUK" id="3HE-Ig-SRb"/>
                         <outlet property="takeReel" destination="1Cc-OP-TlI" id="19M-RL-b81"/>
-                        <segue destination="QF4-zA-oTN" kind="push" identifier="send" id="rV7-4Q-Lzj"/>
+                        <segue destination="QF4-zA-oTN" kind="push" id="MWI-1W-vj6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jb9-6D-5JI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -745,7 +745,7 @@
         <!--Select Friend Controller - Select A Recipient-->
         <scene sceneID="ehp-WI-wIg">
             <objects>
-                <tableViewController id="QF4-zA-oTN" customClass="SelectFriendController" sceneMemberID="viewController">
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="QF4-zA-oTN" customClass="SelectFriendController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="GbD-2n-hR4">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -765,13 +765,11 @@
                             <outlet property="delegate" destination="QF4-zA-oTN" id="7pM-u2-cVl"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Select A Recipient" id="dmq-xJ-jH8">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="8Ba-Tw-kPP"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Select A Recipient" id="dmq-xJ-jH8"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GbQ-YF-hmI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6704" y="-1496"/>
+            <point key="canvasLocation" x="6712" y="-1490"/>
         </scene>
     </scenes>
     <resources>

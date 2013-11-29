@@ -640,9 +640,7 @@
                             <outlet property="delegate" destination="7cg-dy-y1a" id="YAH-EE-5fe"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Select A Recipient" id="Ic4-lG-3p5">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="dE7-ay-NEu"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Select A Recipient" id="Ic4-lG-3p5"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GBH-fZ-7j8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 #import "LoginController.h"
 #import "Networking.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow* window;
-@property (strong, nonatomic) NSString* token;
+@property (strong, nonatomic) User* appUser;
 @property (strong, nonatomic) Networking* validToken;
 @property (strong, nonatomic) UIViewController* startingview;
 @property (strong, nonatomic) UIViewController* bypassLogin;

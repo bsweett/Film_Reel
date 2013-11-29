@@ -13,7 +13,7 @@
 @synthesize window;
 @synthesize startingview;
 @synthesize bypassLogin;
-@synthesize token;
+@synthesize appUser;
 @synthesize validToken;
 @synthesize main;
 
@@ -21,6 +21,16 @@
 +(AppDelegate *) appDelegate
 {
     return (AppDelegate *) [[UIApplication sharedApplication] delegate];
+}
+
+-(User*) getAppUser
+{
+    return appUser;
+}
+
+-(void) setAppUser: (User*) aUser
+{
+    appUser = aUser;
 }
 
 // Override point for customization after application launch.
@@ -45,10 +55,10 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     NSUserDefaults* currentLoggedIn = [NSUserDefaults standardUserDefaults];
-    if(token != nil)
+    if([appUser getToken] != nil)
     {
-        NSLog(@"TOKEN INFO:: Token into background %@", token);
-        [currentLoggedIn setObject:token forKey:@CURRENT_USER];
+        NSLog(@"TOKEN INFO:: Token into background %@", [appUser getToken]);
+        [currentLoggedIn setObject:[appUser getToken] forKey:@CURRENT_USER];
         [currentLoggedIn synchronize];
     }
 }
@@ -80,14 +90,14 @@
     
     // Get our user defaults
     NSUserDefaults* currentLoggedIn = [NSUserDefaults standardUserDefaults];
-    token = [currentLoggedIn objectForKey:@CURRENT_USER];
+    appUser = [currentLoggedIn objectForKey:@CURRENT_USER];
     
     // Start our request
-    if(token != nil)
+    if([appUser getToken] != nil)
     {
         validToken = [[Networking alloc] init];
-        NSLog(@"TOKEN INFO:: Token after background %@", token);
-        NSString* request = [self buildTokenLoginRequest:token];
+        NSLog(@"TOKEN INFO:: Token after background %@", [appUser getToken]);
+        NSString* request = [self buildTokenLoginRequest:[appUser getToken]];
         [validToken startReceive:request withType:@VALID_REQUEST];
         
         // Might need to tweak this section if networking is slow (Black page?)

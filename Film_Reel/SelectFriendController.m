@@ -16,6 +16,7 @@
 
 @synthesize alert;
 @synthesize sendReelRequest;
+@synthesize imageToSend;
 
 @synthesize cellArray;
 
@@ -122,6 +123,20 @@
 }
 */
 
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)path
+{
+    // Determine if row is selectable based on the NSIndexPath.
+    // TODO
+    BOOL rowIsSelectable = FALSE;
+    
+    if (rowIsSelectable)
+    {
+        return path;
+    }
+    
+    return nil;
+}
+
 #pragma mark - Table view delegate
 
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
@@ -134,13 +149,11 @@
     UITableViewCell* cell = [self.cellArray objectAtIndex:indexPath.row];
     NSString* recipient = cell.textLabel.text;
     
-    if(recipient == nil || [recipient isEqualToString:@""])
-    {
-        alert = [[UIAlertView alloc] initWithTitle:nil message:@"Not a User" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
     
-    }
     
-    //
+    // MAKE SURE CELLS ARE NOT SELECTABLE IF THEY ARENT FILLED IN
+    // Fill them in from friendlist
+    // TODO
     
     
     NSString* request = [self buildSendRequest:@"" withFriend:recipient withImageName:@""];

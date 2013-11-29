@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CameraOverlay.h"
 #import "iPadOverlay.h"
+#import "SelectFriendController.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface CameraController : UIViewController <UIImagePickerControllerDelegate,
