@@ -37,18 +37,9 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    NSLog(@"Hello!!!");
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        bio.editable = NO;
-        name.editable = NO;
-        location.editable = NO;
-        email.editable = NO;
-        cancel.enabled = NO;
-        cancel.hidden = YES;
-        imageButton.enabled = NO;
-        imageButton.hidden = YES;
-        [edit setTitle:@"Edit" forState:UIControlStateNormal];
+      
         
     }
     return self;
@@ -57,6 +48,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    bio.editable = NO;
+    name.editable = NO;
+    location.editable = NO;
+    email.editable = NO;
+    cancel.enabled = NO;
+    cancel.hidden = YES;
+    imageButton.enabled = NO;
+    imageButton.hidden = YES;
+    [edit setTitle:@"Edit" forState:UIControlStateNormal];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
