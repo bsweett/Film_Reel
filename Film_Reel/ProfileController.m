@@ -69,7 +69,7 @@
     location.delegate = self;
     email.delegate = self;
     AppDelegate* shared = [AppDelegate appDelegate];
-    currentUsersToken = shared.token;
+    userdata = shared.appUser;
     
     updateOrFetch = [[Networking alloc] init];
     
