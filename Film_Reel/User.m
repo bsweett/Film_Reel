@@ -54,7 +54,7 @@
 - (NSString*) getEmail            { return email;          }
 - (NSMutableString*) getUserBio   { return userBio;        }
 - (NSMutableString*) getPassword  { return password;       }
-- (NSMutableString*) getImagePath { return imagePath;      }
+- (NSString*) getImagePath        { return imagePath;      }
 - (NSMutableArray*) getFriendList { return friendsList;    }
 - (NSInteger*) getFriendCount     { return friendCount;    }
 
@@ -65,7 +65,7 @@
 - (void) setEmail:     (NSMutableString*) eAddress { email = eAddress;              }
 - (void) setUserBio:   (NSMutableString*) bio      { userBio = bio;                 }
 - (void) setPassword:  (NSMutableString *)pass     { password = pass;               }
-- (void) setImagePath: (NSMutableString *) image   { imagePath = image;             }
+- (void) setImagePath: (NSString *) image          { imagePath = image;             }
 - (void) incrementCount                            { friendCount = friendCount + 1; }
 - (void) decrementCount                            { friendCount = friendCount - 1; }
 

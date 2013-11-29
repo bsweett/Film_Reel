@@ -50,5 +50,7 @@
 - (IBAction)doCancel:(id)sender;
 - (IBAction)doImageTap:(id)sender;
 
+- (NSString *)encodeToBase64String:(UIImage *)image;
+- (UIImage *)decodeBase64ToImage:(NSString *)strEncodeData;
 
 @end

@@ -16,7 +16,7 @@
 @property (strong, nonatomic) NSMutableString* location; // dropdown menu?
 @property (strong, nonatomic) NSMutableString * userBio;
 @property (strong, nonatomic) NSMutableString * password;
-@property (strong, nonatomic) NSMutableString * imagePath;
+@property (strong, nonatomic) NSString * imagePath;
 @property (strong, nonatomic) NSMutableArray * friendsList;
 @property (nonatomic) NSInteger * friendCount;
 @property (strong, nonatomic) NSString * token;
@@ -29,7 +29,7 @@
 - (NSString*) getEmail;
 - (NSMutableString*) getUserBio;
 - (NSMutableString*) getPassword;
-- (NSMutableString*) getImagePath;
+- (NSString*) getImagePath;
 - (NSMutableArray*) getFriendList;
 - (NSInteger*) getFriendCount;
 
@@ -40,7 +40,7 @@
 - (void) setEmail: (NSMutableString*) eAddress;
 - (void) setUserBio: (NSMutableString*) bio;
 - (void) setPassword:(NSMutableString *)password;
-- (void) setImagePath: (NSMutableString *) image;
+- (void) setImagePath: (NSString *) image;
 - (void) setUpImageFromData: (NSData*) data;
 - (void) incrementCount;
 - (void) decrementCount;

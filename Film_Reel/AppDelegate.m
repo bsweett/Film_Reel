@@ -136,12 +136,10 @@
     if([[notif name] isEqualToString:@ADDRESS_FAIL])
     {
         self.window.rootViewController = startingview;
-        token = nil;
     }
     if([[notif name] isEqualToString:@FAIL_STATUS])
     {
         self.window.rootViewController = startingview;
-        token = nil;
     }
 }
 
@@ -160,7 +158,6 @@
     {
         startingview = [main instantiateInitialViewController];
         self.window.rootViewController = startingview;
-        token = nil;
         NSLog(@"TOKEN INFO:: Token has been devalidate by server\n");
     }
 }
