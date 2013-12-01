@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 #import "Networking.h"
 
 @interface DetialViewController : UIViewController
@@ -21,9 +22,12 @@
 @property (strong, nonatomic) IBOutlet UIImageView *star3;
 @property (strong, nonatomic) IBOutlet UIImageView *star4;
 @property (strong, nonatomic) IBOutlet UIImageView *star5;
+
 @property (strong, nonatomic) NSString *friendEmail;
+@property (strong, nonatomic) User* friendUser;
 
 @property (strong, nonatomic) Networking* getProfile;
-@property (strong, nonatomic) UIAlertView* loading;
+@property (strong, nonatomic) UIAlertView* error;
+@property (strong, nonatomic) UIActivityIndicatorView* indicator;
 
 @end
