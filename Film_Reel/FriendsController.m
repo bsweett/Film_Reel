@@ -67,9 +67,6 @@
 {
     if(buttonIndex == 1)
     {
-        NSLog(@"%@", [addfriendalert textFieldAtIndex:0].text);
-        
-        //Crashing when email is not valid
         if([self validateEmailWithString:[addfriendalert textFieldAtIndex:0].text])
         {
             NSString* req = [self buildAddRequest:[addfriendalert textFieldAtIndex:0].text withToken: [shared.appUser getToken]];
@@ -85,9 +82,9 @@
         } else
         {
             [self dismissErrors:addfriendalert];
-            addfriendalert = [[UIAlertView alloc] initWithTitle:nil message:@"Invalid Email" delegate:self cancelButtonTitle:@"" otherButtonTitles:@"", nil];
-            [addfriendalert show];
-            [self performSelector:@selector(dismissErrors:) withObject:addfriendalert afterDelay:3];
+            loading = [[UIAlertView alloc] initWithTitle:nil message:@"Invalid Email" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+            [loading show];
+            [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
         }
     }
 }
@@ -176,7 +173,8 @@
     {
         NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
         NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
-        return [emailTest evaluateWithObject:emailaddress];
+        BOOL result = [emailTest evaluateWithObject:emailaddress];
+        return result;
     }
     
     return FALSE;
@@ -185,6 +183,12 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [tableElements count];
+}
+
+// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -200,9 +204,9 @@
         
         cell.textLabel.backgroundColor = [UIColor clearColor];
         cell.textLabel.opaque = NO;
-        cell.textLabel.textColor = [UIColor colorWithRed:0 green:128 blue:225 alpha:1];
+        cell.textLabel.textColor = [UIColor colorWithRed:0.050980396570000003 green:0.5411764979 blue:0.77647066119999997 alpha:1];
         cell.textLabel.highlightedTextColor = [UIColor whiteColor];
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:18];
         
         
         cell.accessoryView=UITableViewCellAccessoryNone;
