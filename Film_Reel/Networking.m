@@ -117,6 +117,10 @@
             {
                 [self isValidFriendRequest:localMessage];
             }
+            else if([requestType isEqualToString: @DATA_REQUEST])
+            {
+                
+            }
         }
     }
     else
@@ -143,13 +147,14 @@
 {
     if ([localMessage isEqualToString:@"NoUserFound"])
     {
-        NSLog(@"PARSER INFO:: Message no user found: %@", [dataReceived objectForKey:@"message"]);
         [[NSNotificationCenter defaultCenter] postNotificationName:@USER_NOT_FOUND object:nil];
     }
-    else if([localMessage isEqualToString:@"AlreadyFriends"]) {
+    else if([localMessage isEqualToString:@"AlreadyFriends"])
+    {
         [[NSNotificationCenter defaultCenter] postNotificationName:@ALREADY_FRIENDS object:nil];
     }
-    else if([localMessage isEqualToString:@"InvalidToken"]) {
+    else if([localMessage isEqualToString:@"InvalidToken"])
+    {
         [[NSNotificationCenter defaultCenter] postNotificationName:@INVALID_TOKEN object:nil];
     }
     else    // Pass user object
@@ -163,7 +168,6 @@
 {
     if ([localMessage isEqualToString:@"UserAlreadyExists"])
     {
-        NSLog(@"PARSER INFO:: Message user already exists: %@", [dataReceived objectForKey:@"message"]);
         [[NSNotificationCenter defaultCenter]postNotificationName:@USER_ALREADY_EXISTS object:nil];
     }
     else
