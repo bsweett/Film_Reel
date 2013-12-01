@@ -43,6 +43,7 @@
 #define INBOX_REQUEST   "inbox"
 #define VALID_REQUEST   "valid_token"
 #define FRIEND_REQUEST  "friend_request"
+#define DATA_REQUEST    "get_friend_data"
 
 // Nofitication Names
 #define LOGIN_SUCCESS   "login_success"
