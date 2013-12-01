@@ -65,6 +65,7 @@
         NSString* storeLoc = appUser.location;
         NSString* storePass = appUser.password;
         NSString* storeEmail = appUser.email;
+        NSMutableDictionary* storeFriends = appUser.getFriendList;
         
         [currentLoggedIn setObject:storeToken forKey:@CURRENT_USER_TOKEN];
         [currentLoggedIn setObject:storeName forKey:@CURRENT_USER_NAME];
@@ -72,6 +73,7 @@
         [currentLoggedIn setObject:storeLoc forKey:@CURRENT_USER_LOCATION];
         [currentLoggedIn setObject:storeEmail forKey:@CURRENT_USER_EMAIL];
         [currentLoggedIn setObject:storeBio forKey:@CURRENT_USER_BIO];
+        [currentLoggedIn setObject:storeFriends forKey:@CURRENT_USER_FRIENDS];
         [currentLoggedIn synchronize];
     }
 }
@@ -107,10 +109,12 @@
     NSUserDefaults* currentLoggedIn = [NSUserDefaults standardUserDefaults];
     appUser.token = [currentLoggedIn objectForKey:@CURRENT_USER_TOKEN];
     appUser.userName = [currentLoggedIn objectForKey:@CURRENT_USER_NAME];
-    appUser.password = [currentLoggedIn objectForKey:@CURRENT_USER_PASSWORD];
+    //Don't store this on the phone, insecure, not needed only need the token.
+    //appUser.password = [currentLoggedIn objectForKey:@CURRENT_USER_PASSWORD];
     appUser.location = [currentLoggedIn objectForKey:@CURRENT_USER_LOCATION];
     appUser.email = [currentLoggedIn objectForKey:@CURRENT_USER_EMAIL];
     appUser.userBio = [currentLoggedIn objectForKey:@CURRENT_USER_BIO];
+    appUser.friendsList = [currentLoggedIn objectForKey:@CURRENT_USER_FRIENDS];
     
     NSString* token = [appUser getToken];
     

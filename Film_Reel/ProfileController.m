@@ -32,7 +32,6 @@
 @synthesize saveName;
 @synthesize savedImage;
 
-@synthesize currentUsersToken;
 @synthesize userdata;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

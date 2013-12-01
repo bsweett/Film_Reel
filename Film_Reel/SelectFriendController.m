@@ -17,8 +17,8 @@
 @synthesize alert;
 @synthesize sendReelRequest;
 @synthesize imageToSend;
-
-@synthesize cellArray;
+@synthesize tableElements;
+@synthesize shared;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -33,7 +33,8 @@
 {
     [super viewDidLoad];
     
-    cellArray = [[NSMutableArray alloc] initWithCapacity:99];
+    tableElements = [[NSArray alloc]init];
+    shared = [AppDelegate appDelegate];
     
     // Networking Notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSucceedRequest:) name:@REEL_SUCCESS object:nil];
@@ -47,6 +48,11 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void) viewDidAppear:(BOOL)animated {
+    tableElements = [[shared.appUser.getFriendList allValues] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    [self.tableView reloadData];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -57,16 +63,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [tableElements count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -75,12 +79,25 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        
+        cell.backgroundColor = [UIColor clearColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+        cell.backgroundView.opaque = NO;
+        
+        cell.textLabel.backgroundColor = [UIColor clearColor];
+        cell.textLabel.opaque = NO;
+        cell.textLabel.textColor = [UIColor colorWithRed:0 green:128 blue:225 alpha:1];
+        cell.textLabel.highlightedTextColor = [UIColor whiteColor];
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
+        
+        
+        cell.accessoryView=UITableViewCellAccessoryNone;
     }
     
     
     // Configure the cell...
     
-    [self.cellArray insertObject:cell atIndex:indexPath.row];
+    cell.textLabel.text = [tableElements objectAtIndex:indexPath.row];
     return cell;
 }
 
@@ -146,8 +163,11 @@
     alert = [[UIAlertView alloc] initWithTitle:nil message:@"Sending..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
     
     //Get senders name
-    UITableViewCell* cell = [self.cellArray objectAtIndex:indexPath.row];
-    NSString* recipient = cell.textLabel.text;
+    UITableViewCell* cell = [self.tableElements objectAtIndex:indexPath.row];
+    
+    //Gets the email address for the local friend
+    //Friends names will be updated locally when a login occurs
+    NSString* recipient = [[shared.appUser.getFriendList allKeysForObject:cell.textLabel.text] objectAtIndex:0];
     
     
     

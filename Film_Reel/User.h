@@ -17,7 +17,7 @@
 @property (strong, nonatomic) NSMutableString * userBio;
 @property (strong, nonatomic) NSMutableString * password;
 @property (strong, nonatomic) NSString * imagePath;
-@property (strong, nonatomic) NSMutableArray * friendsList;
+@property (strong, nonatomic) NSMutableDictionary * friendsList;
 @property (nonatomic) NSInteger * friendCount;
 @property (strong, nonatomic) NSString * token;
 
@@ -30,7 +30,7 @@
 - (NSMutableString*) getUserBio;
 - (NSMutableString*) getPassword;
 - (NSString*) getImagePath;
-- (NSMutableArray*) getFriendList;
+- (NSMutableDictionary*) getFriendList;
 - (NSInteger*) getFriendCount;
 
 // Setters
@@ -46,11 +46,9 @@
 - (void) decrementCount;
 
 // FriendList Methods
-- (BOOL) addFriend: (User *) userToAdd;
-- (BOOL) deleteFriend: (User *) userToRemove;
-- (User *) getUserByName: (NSMutableString*) name;
-- (void) sortFriendList: (User *) toget;
-
+- (void) addFriend:(NSString *)userToAdd withEmail: (NSString *) emailAddress;
+- (void) deleteFriend: (NSString *) userToRemove;
+- (void) updateUserByEmail: (NSString *) emailAddress andNewName: (NSString *) currentName;
 
 
 

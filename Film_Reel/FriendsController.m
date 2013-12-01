@@ -6,6 +6,10 @@
 //  Copyright (c) 2013 Ben Sweett (100846396) and Brayden Girard (100852106). All rights reserved.
 //
 
+//Lets use unidirectional friendship. Much easier to implement
+//When we send a snap to a friend if they do not have that person
+//In their friends list then give them the option to add that person
+
 #import "FriendsController.h"
 
 @interface FriendsController ()
@@ -15,11 +19,12 @@
 @implementation FriendsController
 
 @synthesize friendsTable;
-@synthesize tableArray;
 @synthesize friendRequest;
 @synthesize loading;
 @synthesize addfriendalert;
 @synthesize userdata;
+@synthesize shared;
+@synthesize tableElements;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,8 +38,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    tableArray = [[NSMutableArray alloc] init];
-    [tableArray addObject:@"Person"];
+    
+    shared = [AppDelegate appDelegate];
+
+    tableElements = [[shared.appUser.getFriendList allValues] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     
     friendRequest = [[Networking alloc] init];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
@@ -64,20 +71,16 @@
         
         if([self validateEmailWithString:[addfriendalert textFieldAtIndex:0].text])
         {
-            NSString* req = [self buildAddRequest:[addfriendalert textFieldAtIndex:0].text withToken: @""];
-            //Add token name----------------------^
+            NSString* req = [self buildAddRequest:[addfriendalert textFieldAtIndex:0].text withToken: [shared.appUser getToken]];
             
             loading = [[UIAlertView alloc] initWithTitle:nil message:@"Sending request..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-            [friendRequest startReceive:req withType:@ADD_FRIEND];
+            [friendRequest startReceive:req withType:@FRIEND_REQUEST];
             
             if([friendRequest isReceiving])
             {
                 [loading show];
             }
             
-            
-            [tableArray addObject:([addfriendalert textFieldAtIndex:0].text)];
-            [self.friendsTable reloadData];
         } else
         {
             [self dismissErrors:addfriendalert];
@@ -91,10 +94,20 @@
 // Handles Succussful acount creation
 -(void) didSucceedRequest: (NSNotification*) notif
 {
+
     if([[notif name] isEqualToString:@FRIEND_SUCCESS])
     {
-        [loading setMessage:@"Request Sent"];
+        [loading setMessage:@"Friend Added"];
         [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
+        
+        NSDictionary* userDictionary = [notif userInfo];
+        User *friend = [userDictionary valueForKey:@CURRENT_USER];
+        
+        //Add the friends username to the friends list
+        [shared.appUser addFriend:[friend getUserName] withEmail:[friend getEmail]];
+        
+        tableElements = [[shared.appUser.getFriendList allValues] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+        
         [self.friendsTable reloadData];
     }
     if([[notif name] isEqualToString:@USER_NOT_FOUND])
@@ -103,11 +116,16 @@
         [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
     }
     
-    if([[notif name] isEqualToString:@UPDATE_SUCCESS])
+    if([[notif name] isEqualToString:@ALREADY_FRIENDS])
     {
-        NSDictionary* userDictionary = [notif userInfo];
-        userdata = [userDictionary valueForKey:@CURRENT_USER];
-        [loading dismissWithClickedButtonIndex:0 animated:YES];
+        [loading setMessage:@FRIEND_ALREADY_ERROR];
+        [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
+    }
+    
+    if([[notif name] isEqualToString:@INVALID_TOKEN])
+    {
+        [loading setMessage:@INVALID_TOKEN_ERROR];
+        [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
     }
     
 }
@@ -165,7 +183,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [tableArray count];
+    return [tableElements count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -191,7 +209,7 @@
     }
     
     // Set up the cell...
-    cell.textLabel.text = [tableArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = [tableElements objectAtIndex:indexPath.row];
     
     return cell;
 }

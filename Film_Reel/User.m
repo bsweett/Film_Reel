@@ -40,7 +40,7 @@
         location = [[NSMutableString alloc] initWithCapacity:MAX_LOCATION_SIZE];
         userBio = [[NSMutableString alloc] initWithCapacity:MAX_BIO_SIZE];
         friendCount = 0;
-        friendsList = [[NSMutableArray alloc] initWithCapacity:MAX_FRIENDS_SIZE];
+        friendsList = [[NSMutableDictionary alloc] initWithCapacity:MAX_FRIENDS_SIZE];
         token = @"";
     }
     
@@ -56,7 +56,7 @@
 - (NSMutableString*) getUserBio   { return userBio;        }
 - (NSMutableString*) getPassword  { return password;       }
 - (NSString*) getImagePath        { return imagePath;      }
-- (NSMutableArray*) getFriendList { return friendsList;    }
+- (NSMutableDictionary*) getFriendList { return friendsList;    }
 - (NSInteger*) getFriendCount     { return friendCount;    }
 
 // Set Values --------------------------------------------------------------------
@@ -87,63 +87,31 @@
 }
 
 // These functions handle all the friendList searching, adding, and Removing -----
-- (BOOL) addFriend:(User *)userToAdd
+- (void) addFriend:(NSString *)userToAdd withEmail: (NSString *) emailAddress
 {
-    if(userToAdd != NULL && userName != NULL)
+    if(userToAdd != NULL)
     // We will need to check somewhere else that the user is signed up correctly
     // Here we just add them to the list if the object and name exist
     {
-        [friendsList addObject:userToAdd];
+        [friendsList setObject:userToAdd forKey:emailAddress];
         [self incrementCount];
-        
-        // Update the other users list to have this user on it
-        [userToAdd.friendsList addObject:self];
-        [userToAdd incrementCount];
-        return TRUE;
-    } else
-    // Return False and handle error properly
-    {
-        return FALSE;
     }
 }
 
-- (BOOL) deleteFriend: (User *) userToRemove
+- (void) deleteFriend: (NSString *) userToRemove
 {
-    if(userToRemove != NULL) { // Add check if user is in list
-        [friendsList removeObject:userToRemove];
+        [friendsList removeObjectForKey:userToRemove];
         [self decrementCount];
-        
-        // Update the other users list to remove this user from it
-        [userToRemove.friendsList removeObject:self];
-        [userToRemove decrementCount];
-        return TRUE;
-    } else
-    {
-        return FALSE;
-    }
 }
 
 // Returns NULL if object doesnt exist
-- (User *) getUserByName: (User *) toget
+- (void) updateUserByEmail: (NSString *) emailAddress andNewName: (NSString *) currentName
 {
-    if([self.friendsList containsObject:toget.userName] == TRUE) {
-        int getindex = [self.friendsList containsObject:toget.userName];
-        return [self.friendsList objectAtIndex:getindex];
-    } else {
-        return NULL;
+    if([friendsList objectForKey:emailAddress] != NULL) {
+        if([[friendsList objectForKey:emailAddress] isEqualToString:currentName]) {
+            [friendsList setObject:currentName forKey:emailAddress];
+        }
     }
 }
-
-
-// Sorts friendlist by username
--(void) sortFriendList: (User* ) tosort
-{
-    NSSortDescriptor *sortDescriptor =
-    [NSSortDescriptor sortDescriptorWithKey:@"userName"
-                                  ascending:YES
-                                   selector:@selector(caseInsensitiveCompare:)];
-    [tosort.friendsList sortedArrayUsingDescriptors:@[sortDescriptor]];
-}
-
 
 @end
