@@ -131,9 +131,8 @@
 
 - (void) isValidLoginRequest: (NSString*) localMessage
 {
-    if ([localMessage isEqualToString:@"NoUserFound"])
+    if ([localMessage isEqualToString:@"UserNotFound"])
     {
-        NSLog(@"PARSER INFO:: Message no user found: %@", [dataReceived objectForKey:@"message"]);
         [[NSNotificationCenter defaultCenter] postNotificationName:@USER_NOT_FOUND object:nil];
     }
     else    // Pass user object
@@ -145,7 +144,7 @@
 
 - (void) isValidFriendRequest: (NSString*) localMessage
 {
-    if ([localMessage isEqualToString:@"NoUserFound"])
+    if ([localMessage isEqualToString:@"UserNotFound"])
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:@USER_NOT_FOUND object:nil];
     }
@@ -178,9 +177,9 @@
 
 - (void) isValidUpdateRequest: (NSString*) localMessage
 {
-    if([localMessage isEqualToString:@""])
+    if([localMessage isEqualToString:@"UserNotFound"])
     {
-     
+        [[NSNotificationCenter defaultCenter]postNotificationName:@USER_NOT_FOUND object:nil];
     }
     else
     {
@@ -197,6 +196,19 @@
     else
     {
         [[NSNotificationCenter defaultCenter]postNotificationName:@VALID_SUCCESS object:nil];
+    }
+}
+
+- (void) isValidDataRquest: (NSString*) localMessage
+{
+    if([localMessage isEqualToString:@"UserNotFound"])
+    {
+        [[NSNotificationCenter defaultCenter]postNotificationName:@USER_NOT_FOUND object:nil];
+    }
+    else
+    {
+        NSDictionary* userDictionary = [NSDictionary dictionaryWithObject:userObject forKey:@FRIEND_USER];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@DATA_SUCCESS object:nil userInfo:userDictionary];
     }
 }
 

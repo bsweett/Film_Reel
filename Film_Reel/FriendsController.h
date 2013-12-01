@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 #import "DetialViewController.h"
 
-@interface FriendsController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
+@interface FriendsController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, UINavigationBarDelegate>
 
 @property (strong, retain) IBOutlet UITableView* friendsTable;
 @property (strong, nonatomic) NSMutableArray* tableArray;

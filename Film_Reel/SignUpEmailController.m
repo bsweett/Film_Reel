@@ -119,6 +119,7 @@
             // Animate it
             if([userRequest isReceiving] == TRUE)
             {
+                self.navigationController.navigationBar.userInteractionEnabled=NO;
                 [indicator startAnimating];
             }
 
@@ -171,7 +172,7 @@
         error = [[UIAlertView alloc] initWithTitle:nil message:@ADDRESS_FAIL_ERROR delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
         [error show];
         [self performSelector:@selector(dismissErrors:) withObject:error afterDelay:3];
-        titlebar.backBarButtonItem.enabled = YES;
+        self.navigationController.navigationBar.userInteractionEnabled=YES;
     }
     if([[notif name] isEqualToString:@FAIL_STATUS])
     {
@@ -179,7 +180,7 @@
         error = [[UIAlertView alloc] initWithTitle:nil message:@SERVER_CONNECT_ERROR delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
         [error show];
         [self performSelector:@selector(dismissErrors:) withObject:error afterDelay:3];
-        titlebar.backBarButtonItem.enabled = YES;
+        self.navigationController.navigationBar.userInteractionEnabled=YES;
     }
 }
 
@@ -195,6 +196,7 @@
     if([[notif name] isEqualToString:@SIGNUP_SUCCESS])
     {
         [indicator stopAnimating];
+        self.navigationController.navigationBar.userInteractionEnabled=YES;
         [self performSegueWithIdentifier:@"done" sender:self];
     }
     
@@ -203,6 +205,7 @@
         [indicator stopAnimating];
         error = [[UIAlertView alloc] initWithTitle:@"User Already Exists" message:@"Email and/or Username is already used" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [error show];
+        self.navigationController.navigationBar.userInteractionEnabled=YES;
     }
 }
 

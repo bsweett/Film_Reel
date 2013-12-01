@@ -15,8 +15,11 @@
 @implementation DetialViewController
 
 @synthesize friendEmail;
+@synthesize friendUser;
+
 @synthesize getProfile;
-@synthesize loading;
+@synthesize error;
+@synthesize indicator;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,11 +36,17 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@USER_ALREADY_EXISTS object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@SIGNUP_SUCCESS object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@USER_NOT_FOUND object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@DATA_SUCCESS object:nil];
     
     getProfile = [[Networking alloc] init];
-    loading = [[UIAlertView alloc] initWithTitle:nil message:@"Loading..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+    
+    indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [indicator setFrame:self.view.frame];
+    CGPoint center = self.view.center;
+    indicator.center = center;
+    [indicator.layer setBackgroundColor:[[UIColor colorWithWhite:0.0 alpha:0.30] CGColor]];
+    [self.view addSubview:indicator];
     
     if(friendEmail != nil)
     {
@@ -46,7 +55,8 @@
         
         if([getProfile isReceiving])
         {
-            [loading show];
+            self.navigationController.navigationBar.userInteractionEnabled=NO;
+            [indicator startAnimating];
         }
     }
     else
@@ -61,6 +71,60 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+// Handles all Networking errors that come from Networking.m
+-(void) didGetNetworkError: (NSNotification*) notif
+{
+    if([[notif name] isEqualToString:@ADDRESS_FAIL])
+    {
+        [indicator stopAnimating];
+        error = [[UIAlertView alloc] initWithTitle:nil message:@ADDRESS_FAIL_ERROR delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+        [error show];
+        [self performSelector:@selector(dismissErrors:) withObject:error afterDelay:3];
+         self.navigationController.navigationBar.userInteractionEnabled=YES;
+    }
+    if([[notif name] isEqualToString:@FAIL_STATUS])
+    {
+        [indicator stopAnimating];
+        error = [[UIAlertView alloc] initWithTitle:nil message:@SERVER_CONNECT_ERROR delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+        [error show];
+        [self performSelector:@selector(dismissErrors:) withObject:error afterDelay:3];
+         self.navigationController.navigationBar.userInteractionEnabled=YES;
+    }
+}
+
+// Dismiss dialogs when done
+-(void) dismissErrors:(UIAlertView*) alert
+{
+    [alert dismissWithClickedButtonIndex:0 animated:YES];
+}
+
+// Handles Succussful acount creation
+-(void) didSucceedRequest: (NSNotification*) notif
+{
+    if([[notif name] isEqualToString:@DATA_SUCCESS])
+    {
+        NSDictionary* userDictionary = [notif userInfo];
+        friendUser = [userDictionary valueForKey:@FRIEND_USER];
+        
+        [[self name] setText:[friendUser getUserName]];
+        [[self email] setText:[friendUser getEmail]];
+        [[self bio] setText:[friendUser getUserBio]];
+        [[self location] setText:[friendUser getLocation]];
+        
+        [indicator stopAnimating];
+        self.navigationController.navigationBar.userInteractionEnabled=YES;
+    }
+    
+    if([[notif name] isEqualToString:@USER_NOT_FOUND])
+    {
+        [indicator stopAnimating];
+        error = [[UIAlertView alloc] initWithTitle:nil message:@"User Data not found" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+        [error show];
+        [self performSelector:@selector(dismissErrors:) withObject:error afterDelay:3];
+         self.navigationController.navigationBar.userInteractionEnabled=YES;
+    }
 }
 
 // This is the template for building future URLRequests

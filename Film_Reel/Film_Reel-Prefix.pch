@@ -26,6 +26,7 @@
 #define CURRENT_USER_EMAIL      "current_user_email"
 #define CURRENT_USER_TOKEN      "current_user_token"
 #define CURRENT_USER_FRIENDS    "current_user_friends"
+#define FRIEND_USER             "friend_user"
 
 // Validation
 #define MIN_EMAIL_ENTRY     3
@@ -53,6 +54,7 @@
 #define INBOX_SUCCESS   "inbox_got"
 #define FRIEND_SUCCESS  "friend_sent"
 #define VALID_SUCCESS   "valid_token_success"
+#define DATA_SUCCESS    "got_user_data"
 
 #define FAIL_STATUS             "general_fail"
 #define ADDRESS_FAIL            "address_fail"
