@@ -161,7 +161,7 @@
 {
     
     sendReelRequest = [[Networking alloc] init];
-    [sendReelRequest sendImageToServer];
+
     alert = [[UIAlertView alloc] initWithTitle:nil message:@"Sending..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
     
     //Get senders name
@@ -176,9 +176,9 @@
     // MAKE SURE CELLS ARE NOT SELECTABLE IF THEY ARENT FILLED IN
     // Fill them in from friendlist
     // TODO
-    
-    
-    NSString* request = [self buildSendRequest:currentUserEmail withFriend:recipient withImageName:imageToSend];
+    NSString *imageCleanedNewLine = [imageToSend stringByReplacingOccurrencesOfString:@"\n\n" withString:@"$"];
+    NSString *imageCleanedSpaces =[imageCleanedNewLine stringByReplacingOccurrencesOfString:@" " withString:@"-"];
+    NSString* request = [self buildSendRequest:currentUserEmail withFriend:recipient withImageName:imageCleanedSpaces];
     
     [sendReelRequest startReceive:request withType:@REEL_SEND];
     
