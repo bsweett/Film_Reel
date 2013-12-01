@@ -368,5 +368,23 @@
     }
 }
 
+- (void)sendImageToServer {
+    UIImage *yourImage= [UIImage imageNamed:@"star.png"];
+    NSData *imageData = UIImagePNGRepresentation(yourImage);
+    NSString *postLength = [NSString stringWithFormat:@"%d", [imageData length]];
+    
+    // Init the URLRequest
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"POST"];
+    [request setURL:[NSURL URLWithString:@"http://192.168.1.25:8080/filmreel/send?email=braydeng@icloud.com&femail=bensweett@gmail.com"]];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [request setHTTPBody:imageData];
+    
+    NSURLConnection *imageConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    if (imageConnection) {
+        // response data of the request
+    }
+}
 
 @end
