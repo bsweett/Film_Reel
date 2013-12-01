@@ -113,6 +113,10 @@
             {
                 [[NSNotificationCenter defaultCenter]postNotificationName:@REEL_SUCCESS object:nil];
             }
+            else if([requestType isEqualToString: @FRIEND_REQUEST])
+            {
+                [self isValidFriendRequest:localMessage];
+            }
         }
     }
     else
@@ -132,6 +136,26 @@
     {
         NSDictionary* userDictionary = [NSDictionary dictionaryWithObject:userObject forKey:@CURRENT_USER];
         [[NSNotificationCenter defaultCenter]postNotificationName:@LOGIN_SUCCESS object:nil userInfo:userDictionary];
+    }
+}
+
+- (void) isValidFriendRequest: (NSString*) localMessage
+{
+    if ([localMessage isEqualToString:@"NoUserFound"])
+    {
+        NSLog(@"PARSER INFO:: Message no user found: %@", [dataReceived objectForKey:@"message"]);
+        [[NSNotificationCenter defaultCenter] postNotificationName:@USER_NOT_FOUND object:nil];
+    }
+    else if([localMessage isEqualToString:@"AlreadyFriends"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@ALREADY_FRIENDS object:nil];
+    }
+    else if([localMessage isEqualToString:@"InvalidToken"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@INVALID_TOKEN object:nil];
+    }
+    else    // Pass user object
+    {
+        NSDictionary* userDictionary = [NSDictionary dictionaryWithObject:userObject forKey:@CURRENT_USER];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@FRIEND_SUCCESS object:nil userInfo:userDictionary];
     }
 }
 
@@ -265,6 +289,10 @@
     {
        currentObject = [[NSMutableString alloc]init];
     }
+    if([elementName isEqualToString:@"friends"])
+    {
+        currentObject = [[NSMutableString alloc]init];
+    }
 
 }
 
@@ -299,10 +327,19 @@
     {
         [dataReceived setObject:currentObject forKey:elementName];
     }
+    if([elementName isEqualToString:@"snap"])
+    {
+        [dataReceived setObject:currentObject forKey:elementName];
+    }
     if([elementName isEqualToString:@"message"])
     {
         NSLog(@"PARSER INFO:: Server said %@", currentObject);
         [dataReceived setObject:currentObject forKey:elementName];
+    }
+    if([elementName isEqualToString:@"friends"])
+    {
+        [dataReceived setObject:currentObject forKey:elementName];
+        [self seperateFriends:currentObject andUser:userObject];
     }
     if([elementName isEqualToString:@"user"]) {
         [userObject setUserName:[dataReceived objectForKey:@"name"]];
@@ -319,6 +356,16 @@
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
     [currentObject appendString:[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+}
+
+- (void)seperateFriends:(NSString *)friendsString andUser: (User *)user
+{
+
+    NSArray *friends = [friendsString componentsSeparatedByString:@"-"];
+    
+    for(int i=1; i < [friends count] - 1; i+=2) {
+        [user addFriend:[friends objectAtIndex:i] withEmail:[friends objectAtIndex:i-1]];
+    }
 }
 
 

@@ -15,9 +15,9 @@
 @property(nonatomic, strong) Networking *sendReelRequest;
 @property(nonatomic, strong) UIAlertView *alert;
 @property(nonatomic, strong) NSString* imageToSend;
+@property(nonatomic, strong) NSArray *tableElements;
+@property (strong, nonatomic) AppDelegate* shared;
 
 @property(nonatomic, strong) IBOutlet UIBarButtonItem *Cancel;
-
-@property(nonatomic, strong) NSMutableArray *cellArray;
 
 @end

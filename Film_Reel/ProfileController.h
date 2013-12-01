@@ -28,7 +28,6 @@
 @property (strong, nonatomic) UIAlertView* error;
 @property (strong, nonatomic) Networking* Update;
 
-@property (strong, nonatomic) NSString* currentUsersToken;
 @property (strong, nonatomic) User* userdata;
 
 @property (strong,retain) NSString* saveBio;

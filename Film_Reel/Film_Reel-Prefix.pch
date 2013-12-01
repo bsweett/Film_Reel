@@ -16,7 +16,7 @@
 #endif
 
 // Server/app attributes
-#define SERVER_ADDRESS          "http://192.168.1.237:8080/filmreel/"
+#define SERVER_ADDRESS          "http://192.168.1.25:8080/filmreel/"
 #define REEL_ALBUM_NAME         "My Reels"
 #define CURRENT_USER            "current_user"
 #define CURRENT_USER_NAME       "current_user_name"
@@ -25,6 +25,7 @@
 #define CURRENT_USER_PASSWORD   "current_user_password"
 #define CURRENT_USER_EMAIL      "current_user_email"
 #define CURRENT_USER_TOKEN      "current_user_token"
+#define CURRENT_USER_FRIENDS    "current_user_friends"
 
 // Validation
 #define MIN_EMAIL_ENTRY     3
@@ -39,9 +40,9 @@
 #define UPDATE_REQUEST  "update"
 #define SIGNUP_REQUEST  "signup"
 #define REEL_SEND       "send_reel"
-#define ADD_FRIEND      "add_friend"
 #define INBOX_REQUEST   "inbox"
 #define VALID_REQUEST   "valid_token"
+#define FRIEND_REQUEST  "friend_request"
 
 // Nofitication Names
 #define LOGIN_SUCCESS   "login_success"
@@ -57,6 +58,7 @@
 #define USER_ALREADY_EXISTS     "user_already_exists"
 #define USER_NOT_FOUND          "user_not_found"
 #define INVALID_TOKEN           "invalid_token"
+#define ALREADY_FRIENDS         "already_friends"
 
 #define CAMERA_START    "startRecord"
 #define CAMERA_STOP     "stopRecord"
@@ -67,3 +69,5 @@
 #define SERVER_CONNECT_ERROR    "Failed to connect to the server"
 #define REEL_MISSING_ERROR      "No Reel has been taken"
 #define USER_ERROR              "Current logged in user has not been found"
+#define FRIEND_ALREADY_ERROR    "You are already friends with that user"
+#define INVALID_TOKEN_ERROR     "The token of the currently logged in user is not valid"

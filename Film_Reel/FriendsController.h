@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Networking.h"
+#import "AppDelegate.h"
 
 @interface FriendsController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
 
@@ -17,6 +18,8 @@
 @property (strong, nonatomic) UIAlertView* loading;
 @property (strong, nonatomic) User *userdata;
 @property (strong, nonatomic) Networking* friendRequest;
+@property (strong, nonatomic) AppDelegate* shared;
+@property (strong, nonatomic) NSArray *tableElements;
 
 -(IBAction)doAddFriend:(id)sender;
 -(void) didSucceedRequest: (NSNotification*) notif;
