@@ -188,7 +188,23 @@
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //Get senders name
+    NSString* name = [self.tableElements objectAtIndex:indexPath.row];
+   
+    //Gets the email address for the local friend
+    //Friends names will be updated locally when a login occurs
+    NSString* recipient = [[shared.appUser.getFriendList allKeysForObject:name] objectAtIndex:0];
     
+    [self performSegueWithIdentifier:@"detail" sender:recipient];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString: @"detail"]) {
+        DetialViewController *dest = (DetialViewController *)[segue destinationViewController];
+        //the sender is what you pass into the previous method
+        dest.friendEmail = sender;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

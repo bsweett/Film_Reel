@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="Hue-4f-fnc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="Hue-4f-fnc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -117,7 +117,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="UTL-xD-LwL" kind="relationship" relationship="viewControllers" id="mro-XM-ORN"/>
-                        <segue destination="mKh-sL-BAB" kind="relationship" relationship="viewControllers" id="Sa5-hg-O1b"/>
+                        <segue destination="IhJ-QI-qMx" kind="relationship" relationship="viewControllers" id="Sa5-hg-O1b"/>
                         <segue destination="0gL-6B-yG6" kind="relationship" relationship="viewControllers" id="CTv-uR-Hf1"/>
                         <segue destination="WbC-AW-IyI" kind="relationship" relationship="viewControllers" id="lCg-4e-rzD"/>
                     </connections>
@@ -126,7 +126,7 @@
             </objects>
             <point key="canvasLocation" x="3521" y="-599"/>
         </scene>
-        <!--Friends Controller - Friends-->
+        <!--Friends Controller-->
         <scene sceneID="Dgc-BF-9Eg">
             <objects>
                 <viewController id="mKh-sL-BAB" customClass="FriendsController" sceneMemberID="viewController">
@@ -161,7 +161,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem id="2kB-0t-1tj">
+                                    <navigationItem title="Friends" id="2kB-0t-1tj">
                                         <barButtonItem key="rightBarButtonItem" title="Add Friend" id="MIB-P2-f6E">
                                             <connections>
                                                 <action selector="doAddFriend:" destination="mKh-sL-BAB" id="tvJ-YC-4IM"/>
@@ -173,7 +173,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Friends" image="FriendsTab" id="aA1-Ex-Td8"/>
+                    <navigationItem key="navigationItem" id="ZeE-O6-IGn"/>
                     <connections>
                         <outlet property="friendsTable" destination="x1w-xJ-F07" id="cMw-73-EoB"/>
                         <segue destination="T7a-cU-oxc" kind="push" identifier="detail" id="dDz-fk-oKL"/>
@@ -181,7 +181,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cPa-Rg-3cd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4489" y="-2777"/>
+            <point key="canvasLocation" x="5463" y="-2777"/>
         </scene>
         <!--Inbox Controller - Indox-->
         <scene sceneID="nEt-ek-Iv5">
@@ -848,7 +848,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="suC-6s-zPl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5500" y="-2777"/>
+            <point key="canvasLocation" x="6474" y="-2777"/>
+        </scene>
+        <!--Navigation Controller - Friends-->
+        <scene sceneID="dj9-yw-Q2F">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IhJ-QI-qMx" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Friends" image="FriendsTab" id="aA1-Ex-Td8"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="N6E-qj-Tjf">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="mKh-sL-BAB" kind="relationship" relationship="rootViewController" id="Yja-Ku-wvb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EFx-xo-juS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4489" y="-2777"/>
         </scene>
     </scenes>
     <resources>

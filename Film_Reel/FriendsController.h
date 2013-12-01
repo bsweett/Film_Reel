@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Networking.h"
 #import "AppDelegate.h"
+#import "DetialViewController.h"
 
 @interface FriendsController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
 
