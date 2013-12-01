@@ -139,7 +139,7 @@
     return YES;
 }
 */
-
+/*
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)path
 {
     // Determine if row is selectable based on the NSIndexPath.
@@ -153,7 +153,7 @@
     
     return nil;
 }
-
+*/
 #pragma mark - Table view delegate
 
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
@@ -163,12 +163,12 @@
     alert = [[UIAlertView alloc] initWithTitle:nil message:@"Sending..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
     
     //Get senders name
-    UITableViewCell* cell = [self.tableElements objectAtIndex:indexPath.row];
+    NSString* name = [self.tableElements objectAtIndex:indexPath.row];
     
     //Gets the email address for the local friend
     //Friends names will be updated locally when a login occurs
-    NSString* recipient = [[shared.appUser.getFriendList allKeysForObject:cell.textLabel.text] objectAtIndex:0];
-    
+    NSString* recipient = [[shared.appUser.getFriendList allKeysForObject:name] objectAtIndex:0];
+    NSString* currentUserEmail = [shared.appUser getEmail];
     
     
     // MAKE SURE CELLS ARE NOT SELECTABLE IF THEY ARENT FILLED IN
@@ -176,7 +176,7 @@
     // TODO
     
     
-    NSString* request = [self buildSendRequest:@"" withFriend:recipient withImageName:@""];
+    NSString* request = [self buildSendRequest:currentUserEmail withFriend:recipient withImageName:imageToSend];
     
     [sendReelRequest startReceive:request withType:@REEL_SEND];
     
@@ -213,8 +213,7 @@
     {
         [alert setMessage:@"Message Sent"];
         [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
-        
-        // go back to main camera controller
+        //[self.navigationController popToViewController:destView animated:<#(BOOL)#>];
     }
 }
 
@@ -225,15 +224,13 @@
     {
         [alert setMessage:@ADDRESS_FAIL_ERROR];
         [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
-        
-        // go back to main camera controller
+        //[self.navigationController popViewControllerAnimated:YES];
     }
     if([[notif name] isEqualToString:@FAIL_STATUS])
     {
         [alert setMessage:@SERVER_CONNECT_ERROR];
         [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
-        
-        // go back to main camera controller
+        //[self.navigationController popViewControllerAnimated:YES];
     }
 }
 
