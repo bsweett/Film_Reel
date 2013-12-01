@@ -1,0 +1,77 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif
+
+// Server/app attributes
+<<<<<<< HEAD
+#define SERVER_ADDRESS          "http://192.168.1.237:8080/filmreel/"
+=======
+#define SERVER_ADDRESS          "http://192.168.1.25:8080/filmreel/"
+>>>>>>> 3efb9d58ba389192d82bb772cbb6814812118202
+#define REEL_ALBUM_NAME         "My Reels"
+#define CURRENT_USER            "current_user"
+#define CURRENT_USER_NAME       "current_user_name"
+#define CURRENT_USER_BIO        "current_user_bio"
+#define CURRENT_USER_LOCATION   "current_user_location"
+#define CURRENT_USER_PASSWORD   "current_user_password"
+#define CURRENT_USER_EMAIL      "current_user_email"
+#define CURRENT_USER_TOKEN      "current_user_token"
+#define CURRENT_USER_FRIENDS    "current_user_friends"
+
+// Validation
+#define MIN_EMAIL_ENTRY     3
+#define MAX_EMAIL_ENTRY     254
+#define MIN_ENTRY_SIZE      4
+#define MAX_USERNAME_ENTRY  30
+#define MIN_PASS_ENTRY      8
+#define MAX_PASSWORD_ENTRY  20
+
+// Request Types
+#define LOGIN_REQUEST   "login"
+#define UPDATE_REQUEST  "update"
+#define SIGNUP_REQUEST  "signup"
+#define REEL_SEND       "send_reel"
+#define INBOX_REQUEST   "inbox"
+#define VALID_REQUEST   "valid_token"
+#define FRIEND_REQUEST  "friend_request"
+
+// Nofitication Names
+#define LOGIN_SUCCESS   "login_success"
+#define SIGNUP_SUCCESS  "signup_success"
+#define UPDATE_SUCCESS  "updating_profile_success"
+#define REEL_SUCCESS    "reel_sent"
+#define INBOX_SUCCESS   "inbox_got"
+#define FRIEND_SUCCESS  "friend_sent"
+#define VALID_SUCCESS   "valid_token_success"
+
+#define FAIL_STATUS             "general_fail"
+#define ADDRESS_FAIL            "address_fail"
+#define USER_ALREADY_EXISTS     "user_already_exists"
+#define USER_NOT_FOUND          "user_not_found"
+#define INVALID_TOKEN           "invalid_token"
+#define ALREADY_FRIENDS         "already_friends"
+
+#define CAMERA_START    "startRecord"
+#define CAMERA_STOP     "stopRecord"
+#define CAMERA_CLOSE    "closeCamera"
+
+// Common Error Messages
+#define ADDRESS_FAIL_ERROR      "Server or request address was incorrect"
+#define SERVER_CONNECT_ERROR    "Failed to connect to the server"
+#define REEL_MISSING_ERROR      "No Reel has been taken"
+#define USER_ERROR              "Current logged in user has not been found"
+#define FRIEND_ALREADY_ERROR    "You are already friends with that user"
+#define INVALID_TOKEN_ERROR     "The token of the currently logged in user is not valid"
