@@ -339,6 +339,7 @@
     if([elementName isEqualToString:@"friends"])
     {
         [dataReceived setObject:currentObject forKey:elementName];
+        [self seperateFriends:currentObject andUser:userObject];
     }
     if([elementName isEqualToString:@"user"]) {
         [userObject setUserName:[dataReceived objectForKey:@"name"]];
@@ -348,7 +349,6 @@
         [userObject setLocation:[dataReceived objectForKey:@"location"]];
         [userObject setEmail:[dataReceived objectForKey:@"email"]];
         [userObject setImagePath:[dataReceived objectForKey:@"image"]];
-        [self seperateFriends:[dataReceived objectForKey:@"friends"] andUser:userObject];
         [dataReceived setObject:userObject forKey:@"user"];
     }
 }

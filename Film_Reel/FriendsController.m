@@ -69,6 +69,7 @@
     {
         NSLog(@"%@", [addfriendalert textFieldAtIndex:0].text);
         
+        //Crashing when email is not valid
         if([self validateEmailWithString:[addfriendalert textFieldAtIndex:0].text])
         {
             NSString* req = [self buildAddRequest:[addfriendalert textFieldAtIndex:0].text withToken: [shared.appUser getToken]];
