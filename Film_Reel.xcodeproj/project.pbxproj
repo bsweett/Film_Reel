@@ -54,6 +54,7 @@
 		F6B35AF7181569E7006FFFC9 /* takereelbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B35AF5181569E7006FFFC9 /* takereelbutton.png */; };
 		F6BB9BD41841558D005FE438 /* Networking.m in Sources */ = {isa = PBXBuildFile; fileRef = F6BB9BD31841558D005FE438 /* Networking.m */; };
 		F6D12F28181AE61100578906 /* seperator.png in Resources */ = {isa = PBXBuildFile; fileRef = F6D12F27181AE61100578906 /* seperator.png */; };
+		F6F2F6A5184BC35D00DBA868 /* DetialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F2F6A3184BC35D00DBA868 /* DetialViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +131,8 @@
 		F6BB9BD21841558D005FE438 /* Networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Networking.h; sourceTree = "<group>"; };
 		F6BB9BD31841558D005FE438 /* Networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Networking.m; sourceTree = "<group>"; };
 		F6D12F27181AE61100578906 /* seperator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seperator.png; sourceTree = "<group>"; };
+		F6F2F6A2184BC35D00DBA868 /* DetialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetialViewController.h; sourceTree = "<group>"; };
+		F6F2F6A3184BC35D00DBA868 /* DetialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetialViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,6 +275,8 @@
 				F6189F9418131E3C00D1F0FA /* SignUpCompleteController.h */,
 				F6189F9518131E3C00D1F0FA /* SignUpCompleteController.m */,
 				F6189F9718131E8E00D1F0FA /* Images.xcassets */,
+				F6F2F6A2184BC35D00DBA868 /* DetialViewController.h */,
+				F6F2F6A3184BC35D00DBA868 /* DetialViewController.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -466,6 +471,7 @@
 				F6189F7B18131BF300D1F0FA /* CameraController.m in Sources */,
 				B506DB1A1800806C004991A4 /* AppDelegate.m in Sources */,
 				F6189F8418131DB500D1F0FA /* ProfileController.m in Sources */,
+				F6F2F6A5184BC35D00DBA868 /* DetialViewController.m in Sources */,
 				B5E0CAED18130E120037EA3A /* LoginController.m in Sources */,
 				B56E78F0181A1F2B008AE8D5 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,
 				F6189F8718131DC700D1F0FA /* FriendsController.m in Sources */,

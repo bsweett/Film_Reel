@@ -67,11 +67,13 @@
 {
     if(buttonIndex == 1)
     {
-        NSLog(@"%@", [addfriendalert textFieldAtIndex:0].text);
-        
+        NSLog(@"Hello");
+        NSString *inputEmail = [addfriendalert textFieldAtIndex:0].text;
+        NSLog(@"Goodbye:");
         //Crashing when email is not valid
-        if([self validateEmailWithString:[addfriendalert textFieldAtIndex:0].text])
+        if([self validateEmailWithString:inputEmail])
         {
+            NSLog(@"hello i am here");
             NSString* req = [self buildAddRequest:[addfriendalert textFieldAtIndex:0].text withToken: [shared.appUser getToken]];
             
             loading = [[UIAlertView alloc] initWithTitle:nil message:@"Sending request..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
@@ -172,10 +174,13 @@
 
 - (BOOL)validateEmailWithString:(NSString*)emailaddress
 {
+    NSLog(@"The email address is: %@", emailaddress);
+   
     if(emailaddress.length >= MIN_EMAIL_ENTRY && emailaddress.length <= MAX_EMAIL_ENTRY)
     {
         NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
         NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+         NSLog(@"The email test is: %@", emailTest);
         return [emailTest evaluateWithObject:emailaddress];
     }
     
