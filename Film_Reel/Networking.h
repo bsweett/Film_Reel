@@ -29,5 +29,6 @@
 //delegate methods
 - (void)connection:(NSURLConnection *)theConnection didReceiveData:(NSData *)theData;
 
-- (void)sendImageToServer;
+-(void)saveImageToServer;
+
 @end

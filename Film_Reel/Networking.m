@@ -41,7 +41,7 @@
     requestType = typeOfRequest;
     
     assert(self.connection == nil);
-    address = [[NetworkManager sharedInstance] smartURLForString:[self stringByStrippingHTML:defaultURL]];
+    address = [[NetworkManager sharedInstance] smartURLForString:defaultURL];
     succuss = (address != nil);
     
     if( ! succuss)
@@ -402,12 +402,36 @@
     }
 }
 
--(NSString *) stringByStrippingHTML:(NSString *) url
+-(void)saveImageToServer
 {
-    NSRange r;
-    while ((r = [url rangeOfString:@"<[^>]+>" options:NSRegularExpressionSearch]).location != NSNotFound)
-        url = [url stringByReplacingCharactersInRange:r withString:@""];
-    return url;
+    // COnvert Image to NSData
+    NSData *dataImage = UIImageJPEGRepresentation([UIImage imageNamed:@"star.png"], 1.0f);
+    
+    // set your URL Where to Upload Image
+    NSString *urlString = @"Your URL HERE";
+    
+    // set your Image Name
+    NSString *filename = @"YourImageFileName";
+    
+    // Create 'POST' MutableRequest with Data and Other Image Attachment.
+    NSMutableURLRequest* request= [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    NSString *boundary = @"---------------------------14737809831466499882746641449";
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    NSMutableData *postbody = [NSMutableData data];
+    [postbody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [postbody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"userfile\"; filename=\"%@.jpg\"\r\n", filename] dataUsingEncoding:NSUTF8StringEncoding]];
+    [postbody appendData:[[NSString stringWithString:@"Content-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [postbody appendData:[NSData dataWithData:dataImage]];
+    [postbody appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:postbody];
+    
+    // Get Response of Your Request
+    NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSString *responseString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+    NSLog(@"Response  %@",responseString);
 }
 
 @end
