@@ -20,6 +20,9 @@
 @synthesize tableElements;
 @synthesize shared;
 
+@synthesize imageUpload = _imageUpload;
+@synthesize imageUploadEngine = _imageUploadEngine;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -162,30 +165,75 @@
     
     sendReelRequest = [[Networking alloc] init];
 
-    alert = [[UIAlertView alloc] initWithTitle:nil message:@"Sending..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+    alert = [[UIAlertView alloc] initWithTitle:nil
+                                message:@"Sending..."
+                                delegate:self
+                                cancelButtonTitle:nil
+                                otherButtonTitles:nil, nil];
     
     //Get senders name
     NSString* name = [self.tableElements objectAtIndex:indexPath.row];
     
     //Gets the email address for the local friend
     //Friends names will be updated locally when a login occurs
+    __attribute__((unused))
     NSString* recipient = [[shared.appUser.getFriendList allKeysForObject:name] objectAtIndex:0];
+    
+    __attribute__((unused))
     NSString* currentUserEmail = [shared.appUser getEmail];
     
     
     // MAKE SURE CELLS ARE NOT SELECTABLE IF THEY ARENT FILLED IN
     // Fill them in from friendlist
     // TODO
-    NSString *imageCleanedNewLine = [imageToSend stringByReplacingOccurrencesOfString:@"\n\n" withString:@"$"];
-    NSString *imageCleanedSpaces =[imageCleanedNewLine stringByReplacingOccurrencesOfString:@" " withString:@"-"];
-    NSString* request = [self buildSendRequest:currentUserEmail withFriend:recipient withImageName:imageCleanedSpaces];
+    
+    
+    // TODO after upload is complete send a request to the server to pull image from directory
+    [self uploadToServer:imageToSend];
+    
+    /*
+    NSString* request = [self buildSendRequest:currentUserEmail
+                                    withFriend:recipient
+                                    withImageName:imageCleanedSpaces];
     
     [sendReelRequest startReceive:request withType:@REEL_SEND];
     
     if([sendReelRequest isReceiving] == TRUE)
     {
         [alert show];
+    }*/
+}
+
+// Pass image as NSData to this inorder to upload to a directory on server
+- (void) uploadToServer: (NSData*) image;
+{
+    self.imageUploadEngine = [[ImageUploadEngine alloc] initWithHostName:@"posttestserver.com" customHeaderFields:nil];
+    
+    NSMutableDictionary *postParams = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                       @"testApp", @"appID",
+                                       nil];
+    self.imageUpload = [self.imageUploadEngine postDataToServer:postParams path:@"/post.php"];
+    [self.imageUpload addData:image forKey:@"userfl" mimeType:@"image/jpeg" fileName:@"upload.jpg"];
+    
+    [self.imageUpload addCompletionHandler:^(MKNetworkOperation* operation)
+    {
+        NSLog(@"INFO SERVER:: %@", [operation responseString]);
+        /*
+         This is where you handle a successful 200 response
+         */
     }
+    errorHandler:^(MKNetworkOperation *errorOp, NSError* error)
+    {
+        NSLog(@"ERROR SERVER:: %@", error);
+        UIAlertView *serverError = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:[error localizedDescription]
+                                                        delegate:nil
+                                                        cancelButtonTitle:@"Dismiss"
+                                                        otherButtonTitles:nil];
+        [serverError show];
+    }];
+    
+    [self.imageUploadEngine enqueueOperation:self.imageUpload];
 }
 
 // This is the template for building future URLRequests

@@ -98,18 +98,9 @@
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Pass image as text
-    NSString* imageAsText = [self encodeToBase64String:frameImage];
+    NSData *imageAsData = UIImageJPEGRepresentation(frameImage, 0.1);
     SelectFriendController* destViewController = segue.destinationViewController;
-    destViewController.imageToSend = imageAsText;
-}
-
-- (NSString *)encodeToBase64String:(UIImage *)image {
-    return [UIImageJPEGRepresentation(image, 0.0) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-}
-
-- (UIImage *)decodeBase64ToImage:(NSString *)strEncodeData {
-    NSData *data = [[NSData alloc]initWithBase64EncodedString:strEncodeData options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    return [UIImage imageWithData:data];
+    destViewController.imageToSend = imageAsData;
 }
 
 // Saves Reel to local photo album
