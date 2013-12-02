@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "Networking.h"
 #import "AppDelegate.h"
-#import "ImageUploadEngine.h"
 
 @interface SelectFriendController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
@@ -20,8 +19,5 @@
 @property (strong, nonatomic) AppDelegate* shared;
 
 @property(nonatomic, strong) IBOutlet UIBarButtonItem *Cancel;
-
-@property (strong, nonatomic) ImageUploadEngine* imageUploadEngine;
-@property (strong, nonatomic) MKNetworkOperation* imageUpload;
 
 @end

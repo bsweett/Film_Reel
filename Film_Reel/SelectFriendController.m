@@ -20,9 +20,6 @@
 @synthesize tableElements;
 @synthesize shared;
 
-@synthesize imageUpload = _imageUpload;
-@synthesize imageUploadEngine = _imageUploadEngine;
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -188,8 +185,6 @@
     // TODO
     
     
-    // TODO after upload is complete send a request to the server to pull image from directory
-    [self uploadToServer:imageToSend];
     
     /*
     NSString* request = [self buildSendRequest:currentUserEmail
@@ -204,37 +199,6 @@
     }*/
 }
 
-// Pass image as NSData to this inorder to upload to a directory on server
-- (void) uploadToServer: (NSData*) image;
-{
-    self.imageUploadEngine = [[ImageUploadEngine alloc] initWithHostName:@"posttestserver.com" customHeaderFields:nil];
-    
-    NSMutableDictionary *postParams = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       @"testApp", @"appID",
-                                       nil];
-    self.imageUpload = [self.imageUploadEngine postDataToServer:postParams path:@"/post.php"];
-    [self.imageUpload addData:image forKey:@"userfl" mimeType:@"image/jpeg" fileName:@"upload.jpg"];
-    
-    [self.imageUpload addCompletionHandler:^(MKNetworkOperation* operation)
-    {
-        NSLog(@"INFO SERVER:: %@", [operation responseString]);
-        /*
-         This is where you handle a successful 200 response
-         */
-    }
-    errorHandler:^(MKNetworkOperation *errorOp, NSError* error)
-    {
-        NSLog(@"ERROR SERVER:: %@", error);
-        UIAlertView *serverError = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                        message:[error localizedDescription]
-                                                        delegate:nil
-                                                        cancelButtonTitle:@"Dismiss"
-                                                        otherButtonTitles:nil];
-        [serverError show];
-    }];
-    
-    [self.imageUploadEngine enqueueOperation:self.imageUpload];
-}
 
 // This is the template for building future URLRequests
 // NOTE:: SERVER_ADDRESS is hardcoded in Networking.h
