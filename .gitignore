@@ -8,6 +8,7 @@
 *.xcclassmodel/
 # files created by Xcode 4
 xcuserdata/
+.xcodeproj/ !*.xcodeproj/project.pbxpro
 # build products
 *.build/
 build/
