@@ -41,7 +41,7 @@
     requestType = typeOfRequest;
     
     assert(self.connection == nil);
-    address = [[NetworkManager sharedInstance] smartURLForString:defaultURL];
+    address = [[NetworkManager sharedInstance] smartURLForString:[self stringByStrippingHTML:defaultURL]];
     succuss = (address != nil);
     
     if( ! succuss)
@@ -119,7 +119,7 @@
             }
             else if([requestType isEqualToString: @DATA_REQUEST])
             {
-                
+                [self isValidDataRequest:localMessage];
             }
         }
     }
@@ -199,7 +199,7 @@
     }
 }
 
-- (void) isValidDataRquest: (NSString*) localMessage
+- (void) isValidDataRequest: (NSString*) localMessage
 {
     if([localMessage isEqualToString:@"UserNotFound"])
     {
@@ -382,6 +382,13 @@
     for(int i=1; i < [friends count] - 1; i+=2) {
         [user addFriend:[friends objectAtIndex:i] withEmail:[friends objectAtIndex:i-1]];
     }
+}
+
+-(NSString *) stringByStrippingHTML:(NSString *) url {
+    NSRange r;
+    while ((r = [url rangeOfString:@"<[^>]+>" options:NSRegularExpressionSearch]).location != NSNotFound)
+        url = [url stringByReplacingCharactersInRange:r withString:@""];
+    return url;
 }
 
 @end
