@@ -343,13 +343,4 @@
     return [updateProfile stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
-- (NSString *)encodeToBase64String:(UIImage *)image {
-    return [UIImageJPEGRepresentation(image, 0.0) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-}
-
-- (UIImage *)decodeBase64ToImage:(NSString *)strEncodeData {
-    NSData *data = [[NSData alloc]initWithBase64EncodedString:strEncodeData options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    return [UIImage imageWithData:data];
-}
-
 @end
