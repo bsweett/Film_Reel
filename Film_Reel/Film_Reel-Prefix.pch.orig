@@ -20,7 +20,7 @@
 #define SERVER_ADDRESS          "http://192.168.1.237:8080/filmreel/"
 =======
 #define SERVER_ADDRESS          "http://192.168.1.25:8080/filmreel/"
->>>>>>> 3efb9d58ba389192d82bb772cbb6814812118202
+>>>>>>> b44e6484ef8229f344d061fc9389207fb4135002
 #define REEL_ALBUM_NAME         "My Reels"
 #define CURRENT_USER            "current_user"
 #define CURRENT_USER_NAME       "current_user_name"
@@ -29,7 +29,19 @@
 #define CURRENT_USER_PASSWORD   "current_user_password"
 #define CURRENT_USER_EMAIL      "current_user_email"
 #define CURRENT_USER_TOKEN      "current_user_token"
+#define CURRENT_USER_POP        "current_user_pop"
+#define CURRENT_USER_GENDER      "current_user_gender"
 #define CURRENT_USER_FRIENDS    "current_user_friends"
+#define FRIEND_USER             "friend_user"
+#define CACHED_NEW_PASSWORD     "cached_new_password"
+#define CACHED_NEW_USER         "cached_new_user"
+
+// User Maxs
+#define MAX_USER_SIZE 30
+#define MAX_LOCATION_SIZE 15
+#define MAX_BIO_SIZE 160
+#define MAX_FRIENDS_SIZE 99
+#define MAX_EMAIL_SIZE 30
 
 // Validation
 #define MIN_EMAIL_ENTRY     3
@@ -47,6 +59,7 @@
 #define INBOX_REQUEST   "inbox"
 #define VALID_REQUEST   "valid_token"
 #define FRIEND_REQUEST  "friend_request"
+#define DATA_REQUEST    "get_friend_data"
 
 // Nofitication Names
 #define LOGIN_SUCCESS   "login_success"
@@ -56,6 +69,7 @@
 #define INBOX_SUCCESS   "inbox_got"
 #define FRIEND_SUCCESS  "friend_sent"
 #define VALID_SUCCESS   "valid_token_success"
+#define DATA_SUCCESS    "got_user_data"
 
 #define FAIL_STATUS             "general_fail"
 #define ADDRESS_FAIL            "address_fail"
@@ -67,6 +81,8 @@
 #define CAMERA_START    "startRecord"
 #define CAMERA_STOP     "stopRecord"
 #define CAMERA_CLOSE    "closeCamera"
+
+#define AUTO_FILL       "auto_fill"
 
 // Common Error Messages
 #define ADDRESS_FAIL_ERROR      "Server or request address was incorrect"
