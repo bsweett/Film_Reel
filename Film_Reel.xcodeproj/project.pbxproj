@@ -94,8 +94,6 @@
 		B56E78EA181A00B5008AE8D5 /* iPadOverlay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadOverlay.xib; sourceTree = "<group>"; };
 		B56E78EE181A1F2B008AE8D5 /* ALAssetsLibrary+CustomPhotoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALAssetsLibrary+CustomPhotoAlbum.h"; sourceTree = "<group>"; };
 		B56E78EF181A1F2B008AE8D5 /* ALAssetsLibrary+CustomPhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALAssetsLibrary+CustomPhotoAlbum.m"; sourceTree = "<group>"; };
-		B5A655EE184CEEE4008D3CE8 /* ImageUploadEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUploadEngine.h; sourceTree = "<group>"; };
-		B5A655EF184CEEE4008D3CE8 /* ImageUploadEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUploadEngine.m; sourceTree = "<group>"; };
 		B5C26D761811C6F00064F180 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
 		B5C9038A18032D5500448CE6 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		B5C9038B18032D5500448CE6 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
@@ -308,8 +306,6 @@
 				F6BB9BD31841558D005FE438 /* Networking.m */,
 				B506DB3E1800857A004991A4 /* NetworkManager.h */,
 				B506DB3F1800857A004991A4 /* NetworkManager.m */,
-				B5A655EE184CEEE4008D3CE8 /* ImageUploadEngine.h */,
-				B5A655EF184CEEE4008D3CE8 /* ImageUploadEngine.m */,
 			);
 			name = Networking;
 			sourceTree = "<group>";

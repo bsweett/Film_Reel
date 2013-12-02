@@ -209,6 +209,13 @@
     }
 }
 
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    SignUpCompleteController* destViewContorller = segue.destinationViewController;
+    destViewContorller.loginUsername = userField.text;
+    destViewContorller.loginPassword = passField.text;
+}
+
 // Drops keyboard when return key is pressed
 - (BOOL) textFieldShouldReturn:(UITextField*) textField
 {

@@ -16,7 +16,7 @@
 #endif
 
 // Server/app attributes
-#define SERVER_ADDRESS          "http://172.20.10.2:8080/filmreel/"
+#define SERVER_ADDRESS          "http://192.168.1.237:8080/filmreel/"
 #define REEL_ALBUM_NAME         "My Reels"
 #define CURRENT_USER            "current_user"
 #define CURRENT_USER_NAME       "current_user_name"
@@ -29,6 +29,8 @@
 #define CURRENT_USER_GENDER      "current_user_gender"
 #define CURRENT_USER_FRIENDS    "current_user_friends"
 #define FRIEND_USER             "friend_user"
+#define CACHED_NEW_PASSWORD     "cached_new_password"
+#define CACHED_NEW_USER         "cached_new_user"
 
 // User Maxs
 #define MAX_USER_SIZE 30
@@ -75,6 +77,8 @@
 #define CAMERA_START    "startRecord"
 #define CAMERA_STOP     "stopRecord"
 #define CAMERA_CLOSE    "closeCamera"
+
+#define AUTO_FILL       "auto_fill"
 
 // Common Error Messages
 #define ADDRESS_FAIL_ERROR      "Server or request address was incorrect"

@@ -14,6 +14,9 @@
 
 @implementation SignUpCompleteController
 
+@synthesize loginPassword;
+@synthesize loginUsername;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -39,7 +42,12 @@
 // When login is press send them back to the login page
 -(IBAction) doLogIn:(id) sender
 {
-    [self performSegueWithIdentifier:@"backtomain" sender:self];
+    NSDictionary* newUserDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                       loginUsername, @CACHED_NEW_USER,
+                                       loginPassword, @CACHED_NEW_PASSWORD,
+                                       nil];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@AUTO_FILL object:nil userInfo:newUserDictionary];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

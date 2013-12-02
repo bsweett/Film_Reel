@@ -192,7 +192,6 @@
         [self saveValues];
         
         bio.editable = YES;
-        name.editable = YES;
         location.editable = YES;
         cancel.hidden = NO;
         cancel.enabled = YES;
@@ -204,7 +203,6 @@
 
         [edit setTitle:@"Edit" forState:UIControlStateNormal];
         bio.editable = NO;
-        name.editable = NO;
         location.editable = NO;
         cancel.enabled = NO;
         cancel.hidden = YES;
@@ -230,7 +228,6 @@
     {
         [edit setTitle:@"Edit" forState:UIControlStateNormal];
         bio.editable = NO;
-        name.editable = NO;
         location.editable = NO;
         cancel.hidden = YES;
         cancel.enabled = NO;
@@ -284,7 +281,6 @@
 {
     saveBio = bio.text;
     saveLocation = location.text;
-    saveName = name.text;
     savedImage = displaypicture.image;
 }
 
@@ -293,7 +289,6 @@
 {
     [[self bio] setText: saveBio];
     [[self location] setText:saveLocation];
-    [[self name] setText:saveName];
     [[self displaypicture] setImage: savedImage];
 }
 
@@ -301,7 +296,6 @@
 -(void) prepareForUpdate
 {
     loading = [[UIAlertView alloc] initWithTitle:nil message:@"Updating" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-    NSString* updatedName = name.text;
     NSString* updatedLocation = location.text;
     NSString* updatedBio = bio.text;
     
@@ -313,7 +307,7 @@
     //Temp for now normally would get display picture as above
     NSString *tempImage = @"default";
     
-    NSString* request = [self buildProfileUpdateRequest:[userdata getToken] withUserName:updatedName withImage:tempImage withLocation:updatedLocation withBio:updatedBio];
+    NSString* request = [self buildProfileUpdateRequest:[userdata getToken] withImage:tempImage withLocation:updatedLocation withBio:updatedBio];
     // Need to pass current logged in users token -------^
     
     [Update startReceive:request withType:@UPDATE_REQUEST];
@@ -378,18 +372,16 @@
 
 // This is the template for building future URLRequests
 // NOTE:: SERVER_ADDRESS is hardcoded in Networking.h
-- (NSString*) buildProfileUpdateRequest: (NSString*) token withUserName: (NSString*) username withImage: (NSString*) image withLocation: (NSString*) geolocation withBio: (NSString*) about
+- (NSString*) buildProfileUpdateRequest: (NSString*) token withImage: (NSString*) image withLocation: (NSString*) geolocation withBio: (NSString*) about
 {
     NSMutableString* updateProfile = [[NSMutableString alloc] initWithString:@SERVER_ADDRESS];
     [updateProfile appendString:@"saveuserdata?"];
     NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"token=%@" , token];
-    NSMutableString* parameter2 = [[NSMutableString alloc] initWithFormat: @"&name=%@" , username];
     NSMutableString* parameter3 = [[NSMutableString alloc] initWithFormat: @"&image=%@" , image];
     NSMutableString* parameter4 = [[NSMutableString alloc] initWithFormat: @"&location=%@" , geolocation];
     NSMutableString* parameter5 = [[NSMutableString alloc] initWithFormat: @"&bio=%@" , about];
     
     [updateProfile appendString:parameter1];
-    [updateProfile appendString:parameter2];
     [updateProfile appendString:parameter3];
     [updateProfile appendString:parameter4];
     [updateProfile appendString:parameter5];

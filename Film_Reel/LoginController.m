@@ -42,6 +42,7 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@USER_NOT_FOUND object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@LOGIN_SUCCESS object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shouldAutoFillFields:) name:@AUTO_FILL object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -181,6 +182,16 @@
         loginButton.enabled = YES;
         createButton.enabled = YES;
     }
+}
+
+- (void) shouldAutoFillFields: (NSNotification*) notif
+{
+    NSDictionary* newUserDictionary = [notif userInfo];
+    NSString* fillUser = [newUserDictionary valueForKey:@CACHED_NEW_USER];
+    NSString* fillPass = [newUserDictionary valueForKey:@CACHED_NEW_PASSWORD];
+    
+    [[self usernameField] setText:fillUser];
+    [[self passwordField] setText:fillPass];
 }
 
 - (BOOL) textFieldShouldReturn:(UITextField*) textField
