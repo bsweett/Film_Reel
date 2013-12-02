@@ -8,12 +8,6 @@
 
 #import "User.h"
 
-#define MAX_USER_SIZE 30
-#define MAX_LOCATION_SIZE 15
-#define MAX_BIO_SIZE 160
-#define MAX_FRIENDS_SIZE 99
-#define MAX_EMAIL_SIZE 30
-
 @implementation User
 
 @synthesize userName;
@@ -24,6 +18,8 @@
 @synthesize userBio;
 @synthesize password;
 @synthesize imagePath;
+@synthesize gender;
+@synthesize popularity;
 @synthesize friendsList;
 @synthesize friendCount;
 
@@ -42,6 +38,8 @@
         friendCount = 0;
         friendsList = [[NSMutableDictionary alloc] initWithCapacity:MAX_FRIENDS_SIZE];
         token = @"";
+        popularity = 0;
+        gender = [[NSMutableString alloc] initWithCapacity:1];
     }
     
     return self;
@@ -58,6 +56,8 @@
 - (NSString*) getImagePath        { return imagePath;      }
 - (NSMutableDictionary*) getFriendList { return friendsList;    }
 - (NSInteger*) getFriendCount     { return friendCount;    }
+- (NSMutableString*) getPopularity       { return popularity;     }
+- (NSMutableString*) getGender      { return gender;        }
 
 // Set Values --------------------------------------------------------------------
 - (void) setUserName:  (NSMutableString*) name     { userName = name;               }
@@ -69,6 +69,8 @@
 - (void) setImagePath: (NSString *) image          { imagePath = image;             }
 - (void) incrementCount                            { friendCount = friendCount + 1; }
 - (void) decrementCount                            { friendCount = friendCount - 1; }
+- (void) setPopularity:(NSMutableString*)pop            { popularity = pop;              }
+- (void) setGender:    (NSMutableString *)sex      { gender = sex;                  }
 
 
 // Sets up Image from file data provided from server

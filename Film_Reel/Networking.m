@@ -309,6 +309,14 @@
     {
         currentObject = [[NSMutableString alloc]init];
     }
+    if([elementName isEqualToString:@"gender"])
+    {
+        currentObject = [[NSMutableString alloc] init];
+    }
+    if([elementName isEqualToString:@"pop"])
+    {
+        currentObject = [[NSMutableString alloc] init];
+    }
 
 }
 
@@ -339,6 +347,14 @@
     {
         [dataReceived setObject:currentObject forKey:elementName];
     }
+    if([elementName isEqualToString:@"gender"])
+    {
+        [dataReceived setObject:currentObject forKey:elementName];
+    }
+    if([elementName isEqualToString:@"pop"])
+    {
+        [dataReceived setObject:currentObject forKey:elementName];
+    }
     if([elementName isEqualToString:@"image"])
     {
         [dataReceived setObject:currentObject forKey:elementName];
@@ -364,6 +380,8 @@
         [userObject setUserBio:[dataReceived objectForKey:@"bio"]];
         [userObject setLocation:[dataReceived objectForKey:@"location"]];
         [userObject setEmail:[dataReceived objectForKey:@"email"]];
+        [userObject setGender:[dataReceived objectForKey:@"gender"]];
+        [userObject setPopularity:[dataReceived objectForKey:@"pop"]];
         [userObject setImagePath:[dataReceived objectForKey:@"image"]];
         [dataReceived setObject:userObject forKey:@"user"];
     }
@@ -384,7 +402,8 @@
     }
 }
 
--(NSString *) stringByStrippingHTML:(NSString *) url {
+-(NSString *) stringByStrippingHTML:(NSString *) url
+{
     NSRange r;
     while ((r = [url rangeOfString:@"<[^>]+>" options:NSRegularExpressionSearch]).location != NSNotFound)
         url = [url stringByReplacingCharactersInRange:r withString:@""];

@@ -24,6 +24,12 @@
 @property (strong, nonatomic) IBOutlet UIButton *imageButton;
 @property (strong, nonatomic) IBOutlet UIImageView *displaypicture;
 
+@property (strong, nonatomic) IBOutlet UIImageView *star1;
+@property (strong, nonatomic) IBOutlet UIImageView *star2;
+@property (strong, nonatomic) IBOutlet UIImageView *star3;
+@property (strong, nonatomic) IBOutlet UIImageView *star4;
+@property (strong, nonatomic) IBOutlet UIImageView *star5;
+
 @property (strong, nonatomic) UIAlertView * loading;
 @property (strong, nonatomic) UIAlertView* error;
 @property (strong, nonatomic) Networking* Update;

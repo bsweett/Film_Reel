@@ -527,6 +527,11 @@
                         <outlet property="imageButton" destination="cMW-5j-xVe" id="viL-l0-0fG"/>
                         <outlet property="location" destination="At9-D3-xGv" id="pfz-v0-uLo"/>
                         <outlet property="name" destination="Png-p5-9hY" id="2oM-ST-qRq"/>
+                        <outlet property="star1" destination="mqT-je-1F2" id="LDA-Np-MWW"/>
+                        <outlet property="star2" destination="MqD-TP-BjN" id="5bk-H8-036"/>
+                        <outlet property="star3" destination="Kil-ww-AUV" id="P1y-d6-Sgq"/>
+                        <outlet property="star4" destination="AOl-U6-MfA" id="DpK-UA-gLz"/>
+                        <outlet property="star5" destination="6ll-Xj-cDe" id="kaz-Df-cZN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KDt-WM-k27" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -835,6 +840,11 @@
                         <outlet property="bio" destination="esU-l7-167" id="3n9-bk-ijp"/>
                         <outlet property="displayPicture" destination="atz-mL-WRo" id="Fsc-zp-30l"/>
                         <outlet property="email" destination="jDF-3Y-l8S" id="FbK-4g-WRd"/>
+                        <outlet property="friendstar1" destination="ha6-rT-sah" id="QHW-og-dsi"/>
+                        <outlet property="friendstar2" destination="POn-XO-IH3" id="nSw-Ug-tK3"/>
+                        <outlet property="friendstar3" destination="xjh-V8-EOb" id="niD-kP-9YZ"/>
+                        <outlet property="friendstar4" destination="lMi-1b-md2" id="wSt-hb-uNy"/>
+                        <outlet property="friendstar5" destination="hZM-CB-Xfo" id="zkr-4Y-qxG"/>
                         <outlet property="location" destination="P9G-Pd-A4n" id="L7i-sQ-zMO"/>
                         <outlet property="name" destination="e87-c4-Gpx" id="BrM-hx-qBG"/>
                         <outlet property="star1" destination="ha6-rT-sah" id="rFC-6v-UzI"/>

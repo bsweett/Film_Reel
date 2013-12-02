@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="51k-iN-JKb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="51k-iN-JKb">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Login Controller - Log In To Film Reel-->
@@ -348,6 +348,11 @@
                         <outlet property="imageButton" destination="3WF-zH-lKe" id="IGD-Lm-xpP"/>
                         <outlet property="location" destination="AeX-7Q-IdR" id="35J-dS-eV5"/>
                         <outlet property="name" destination="ztA-vs-L6I" id="pA0-Gu-9W5"/>
+                        <outlet property="star1" destination="v1d-G1-Jgf" id="EOq-tl-d9m"/>
+                        <outlet property="star2" destination="SVq-94-QLY" id="Lhi-5v-3Lo"/>
+                        <outlet property="star3" destination="ZNK-W5-p2F" id="coi-pV-0uF"/>
+                        <outlet property="star4" destination="KlK-R4-R9e" id="f4f-gm-ecw"/>
+                        <outlet property="star5" destination="Fy1-52-O5M" id="KwH-RF-cI1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nC4-yZ-vM7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -393,7 +398,6 @@
         <!--Friends Controller - Friends-->
         <scene sceneID="8mI-cB-VPB">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IVF-Mm-PRb" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="aGF-4q-qUW" customClass="FriendsController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RaQ-aJ-A3i"/>
@@ -437,6 +441,7 @@
                         <segue destination="lFG-kp-CkJ" kind="push" identifier="detail" id="QxU-AX-YLG"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IVF-Mm-PRb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1784" y="783"/>
         </scene>
@@ -535,6 +540,11 @@
                         <outlet property="bio" destination="n1I-jK-Q0Q" id="h9b-Gp-efc"/>
                         <outlet property="displayPicture" destination="QNz-Pf-LZM" id="7ZX-Id-gtN"/>
                         <outlet property="email" destination="g9V-bt-VYS" id="zgM-i0-ZMs"/>
+                        <outlet property="friendstar1" destination="fon-ZF-htu" id="sWl-J8-KfF"/>
+                        <outlet property="friendstar2" destination="J7b-mg-Ecp" id="YAX-Yv-txB"/>
+                        <outlet property="friendstar3" destination="3hE-R8-meb" id="97U-hm-xTJ"/>
+                        <outlet property="friendstar4" destination="Zu2-Fe-xmW" id="8mH-hB-yga"/>
+                        <outlet property="friendstar5" destination="52K-s2-qBt" id="Twg-Jy-uNh"/>
                         <outlet property="location" destination="Imp-Kq-bca" id="akx-Ah-D8b"/>
                         <outlet property="name" destination="ors-jD-Oag" id="F3k-k8-ogN"/>
                         <outlet property="star1" destination="fon-ZF-htu" id="jpd-az-LEC"/>

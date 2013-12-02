@@ -23,6 +23,8 @@
 @synthesize imageButton;
 @synthesize displaypicture;
 
+@synthesize star1, star2, star3, star4, star5;
+
 @synthesize loading;
 @synthesize error;
 @synthesize Update;
@@ -90,6 +92,8 @@
     {
         // iPhone Formating
     }
+    
+    [self setPopStars:userdata.getPopularity];
     
     //Code for image sending
     /*
@@ -317,6 +321,58 @@
     if ([Update isReceiving] == TRUE)
     {
         [loading show];
+    }
+}
+
+- (void) setPopStars: (NSMutableString*) popular
+{
+    if([popular isEqualToString:@"1"])
+    {
+        [[self star1] setImage:[UIImage imageNamed:@"star.png"]];
+        [[self star2] setImage:[UIImage imageNamed:@"stargrey.png"]];
+        [[self star3] setImage:[UIImage imageNamed:@"stargrey.png"]];
+        [[self star4] setImage:[UIImage imageNamed:@"stargrey.png"]];
+        [[self star5] setImage:[UIImage imageNamed:@"stargrey.png"]];
+    }
+    else if([popular isEqualToString:@"2"])
+    {
+        [[self star1] setImage:[UIImage imageNamed:@"star.png"]];
+        [[self star2] setImage:[UIImage imageNamed:@"star.png"]];
+        [[self star3] setImage:[UIImage imageNamed:@"stargrey.png"]];
+        [[self star4] setImage:[UIImage imageNamed:@"stargrey.png"]];
+        [[self star5] setImage:[UIImage imageNamed:@"stargrey.png"]];
+    }
+    else if([popular isEqualToString:@"3"])
+    {
+        [[self star1] setImage:[UIImage imageNamed:@"star.png"]];
+        [[self star2] setImage:[UIImage imageNamed:@"star.png"]];
+        [[self star3] setImage:[UIImage imageNamed:@"star.png"]];
+        [[self star4] setImage:[UIImage imageNamed:@"stargrey.png"]];
+        [[self star5] setImage:[UIImage imageNamed:@"stargrey.png"]];
+    }
+    else if([popular isEqualToString:@"4"])
+    {
+        [[self star1] setImage:[UIImage imageNamed:@"star.png"]];
+        [[self star2] setImage:[UIImage imageNamed:@"star.png"]];
+        [[self star3] setImage:[UIImage imageNamed:@"star.png"]];
+        [[self star4] setImage:[UIImage imageNamed:@"star.png"]];
+        [[self star5] setImage:[UIImage imageNamed:@"stargrey.png"]];
+    }
+    else if([popular isEqualToString:@"5"])
+    {
+        [[self star1] setImage:[UIImage imageNamed:@"star.png"]];
+        [[self star2] setImage:[UIImage imageNamed:@"star.png"]];
+        [[self star3] setImage:[UIImage imageNamed:@"star.png"]];
+        [[self star4] setImage:[UIImage imageNamed:@"star.png"]];
+        [[self star5] setImage:[UIImage imageNamed:@"star.png"]];
+    }
+    else
+    {
+        [[self star1] setImage:[UIImage imageNamed:@"stargrey.png"]];
+        [[self star2] setImage:[UIImage imageNamed:@"stargrey.png"]];
+        [[self star3] setImage:[UIImage imageNamed:@"stargrey.png"]];
+        [[self star4] setImage:[UIImage imageNamed:@"stargrey.png"]];
+        [[self star5] setImage:[UIImage imageNamed:@"stargrey.png"]];
     }
 }
 

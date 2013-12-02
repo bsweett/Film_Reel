@@ -16,10 +16,12 @@
 @property (strong, nonatomic) NSMutableString* location; // dropdown menu?
 @property (strong, nonatomic) NSMutableString * userBio;
 @property (strong, nonatomic) NSMutableString * password;
+@property (strong, nonatomic) NSMutableString * gender;
 @property (strong, nonatomic) NSString * imagePath;
 @property (strong, nonatomic) NSMutableDictionary * friendsList;
 @property (nonatomic) NSInteger * friendCount;
 @property (strong, nonatomic) NSString * token;
+@property (strong, nonatomic) NSMutableString* popularity;
 
 // Getters
 - (NSMutableString*) getUserName;
@@ -32,6 +34,8 @@
 - (NSString*) getImagePath;
 - (NSMutableDictionary*) getFriendList;
 - (NSInteger*) getFriendCount;
+- (NSMutableString*) getGender;
+- (NSMutableString*) getPopularity;
 
 // Setters
 - (void) setUserName: (NSMutableString*) name;
@@ -41,7 +45,9 @@
 - (void) setUserBio: (NSMutableString*) bio;
 - (void) setPassword:(NSMutableString *)password;
 - (void) setImagePath: (NSString *) image;
+- (void) setGender:(NSMutableString *) sex;
 - (void) setUpImageFromData: (NSData*) data;
+- (void) setPopularity:(NSMutableString *)popularity;
 - (void) incrementCount;
 - (void) decrementCount;
 

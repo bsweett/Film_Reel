@@ -44,7 +44,7 @@
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Clear the console
-    for(int i = 0; i < 25; i++)
+    for(int i = 0; i < 10; i++)
     {
         NSLog(@" ");
     }
@@ -65,6 +65,8 @@
         NSString* storeLoc = appUser.location;
         NSString* storePass = appUser.password;
         NSString* storeEmail = appUser.email;
+        NSString* storePop = appUser.popularity;
+        NSString* storeGender = appUser.gender;
         NSMutableDictionary* storeFriends = appUser.getFriendList;
         
         [currentLoggedIn setObject:storeToken forKey:@CURRENT_USER_TOKEN];
@@ -73,6 +75,8 @@
         [currentLoggedIn setObject:storeLoc forKey:@CURRENT_USER_LOCATION];
         [currentLoggedIn setObject:storeEmail forKey:@CURRENT_USER_EMAIL];
         [currentLoggedIn setObject:storeBio forKey:@CURRENT_USER_BIO];
+        [currentLoggedIn setObject:storePop forKey:@CURRENT_USER_POP];
+        [currentLoggedIn setObject:storeGender forKey:@CURRENT_USER_GENDER];
         [currentLoggedIn setObject:storeFriends forKey:@CURRENT_USER_FRIENDS];
         [currentLoggedIn synchronize];
     }
@@ -109,8 +113,8 @@
     NSUserDefaults* currentLoggedIn = [NSUserDefaults standardUserDefaults];
     appUser.token = [currentLoggedIn objectForKey:@CURRENT_USER_TOKEN];
     appUser.userName = [currentLoggedIn objectForKey:@CURRENT_USER_NAME];
-    //Don't store this on the phone, insecure, not needed only need the token.
-    //appUser.password = [currentLoggedIn objectForKey:@CURRENT_USER_PASSWORD];
+    appUser.gender = [currentLoggedIn objectForKey:@CURRENT_USER_GENDER];
+    appUser.popularity = [currentLoggedIn objectForKey:@CURRENT_USER_POP];
     appUser.location = [currentLoggedIn objectForKey:@CURRENT_USER_LOCATION];
     appUser.email = [currentLoggedIn objectForKey:@CURRENT_USER_EMAIL];
     appUser.userBio = [currentLoggedIn objectForKey:@CURRENT_USER_BIO];

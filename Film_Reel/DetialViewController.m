@@ -17,6 +17,8 @@
 @synthesize friendEmail;
 @synthesize friendUser;
 
+@synthesize friendstar1, friendstar2, friendstar3, friendstar4, friendstar5;
+
 @synthesize getProfile;
 @synthesize error;
 @synthesize indicator;
@@ -112,6 +114,7 @@
         [[self email] setText:[friendUser getEmail]];
         [[self bio] setText:[friendUser getUserBio]];
         [[self location] setText:[friendUser getLocation]];
+        [self setPopStars:[friendUser getPopularity]];
         
         [indicator stopAnimating];
         self.navigationController.navigationBar.userInteractionEnabled=YES;
@@ -124,6 +127,58 @@
         [error show];
         [self performSelector:@selector(dismissErrors:) withObject:error afterDelay:3];
          self.navigationController.navigationBar.userInteractionEnabled=YES;
+    }
+}
+
+- (void) setPopStars: (NSMutableString*) popular
+{
+    if([popular isEqualToString:@"1"])
+    {
+        [[self friendstar1] setImage:[UIImage imageNamed:@"star.png"]];
+        [[self friendstar2] setImage:[UIImage imageNamed:@"stargrey.png"]];
+        [[self friendstar3] setImage:[UIImage imageNamed:@"stargrey.png"]];
+        [[self friendstar4] setImage:[UIImage imageNamed:@"stargrey.png"]];
+        [[self friendstar5] setImage:[UIImage imageNamed:@"stargrey.png"]];
+    }
+    else if([popular isEqualToString:@"2"])
+    {
+        [[self friendstar1] setImage:[UIImage imageNamed:@"star.png"]];
+        [[self friendstar2] setImage:[UIImage imageNamed:@"star.png"]];
+        [[self friendstar3] setImage:[UIImage imageNamed:@"stargrey.png"]];
+        [[self friendstar4] setImage:[UIImage imageNamed:@"stargrey.png"]];
+        [[self friendstar5] setImage:[UIImage imageNamed:@"stargrey.png"]];
+    }
+    else if([popular isEqualToString:@"3"])
+    {
+        [[self friendstar1] setImage:[UIImage imageNamed:@"star.png"]];
+        [[self friendstar2] setImage:[UIImage imageNamed:@"star.png"]];
+        [[self friendstar3] setImage:[UIImage imageNamed:@"star.png"]];
+        [[self friendstar4] setImage:[UIImage imageNamed:@"stargrey.png"]];
+        [[self friendstar5] setImage:[UIImage imageNamed:@"stargrey.png"]];
+    }
+    else if([popular isEqualToString:@"4"])
+    {
+        [[self friendstar1] setImage:[UIImage imageNamed:@"star.png"]];
+        [[self friendstar2] setImage:[UIImage imageNamed:@"star.png"]];
+        [[self friendstar3] setImage:[UIImage imageNamed:@"star.png"]];
+        [[self friendstar4] setImage:[UIImage imageNamed:@"star.png"]];
+        [[self friendstar5] setImage:[UIImage imageNamed:@"stargrey.png"]];
+    }
+    else if([popular isEqualToString:@"5"])
+    {
+        [[self friendstar1] setImage:[UIImage imageNamed:@"star.png"]];
+        [[self friendstar2] setImage:[UIImage imageNamed:@"star.png"]];
+        [[self friendstar3] setImage:[UIImage imageNamed:@"star.png"]];
+        [[self friendstar4] setImage:[UIImage imageNamed:@"star.png"]];
+        [[self friendstar5] setImage:[UIImage imageNamed:@"star.png"]];
+    }
+    else
+    {
+        [[self friendstar1] setImage:[UIImage imageNamed:@"stargrey.png"]];
+        [[self friendstar2] setImage:[UIImage imageNamed:@"stargrey.png"]];
+        [[self friendstar3] setImage:[UIImage imageNamed:@"stargrey.png"]];
+        [[self friendstar4] setImage:[UIImage imageNamed:@"stargrey.png"]];
+        [[self friendstar5] setImage:[UIImage imageNamed:@"stargrey.png"]];
     }
 }
 

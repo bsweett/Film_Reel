@@ -17,11 +17,11 @@
 @property (strong, nonatomic) IBOutlet UIImageView *displayPicture;
 @property (strong, nonatomic) IBOutlet UITextView *bio;
 @property (strong, nonatomic) IBOutlet UITextView *location;
-@property (strong, nonatomic) IBOutlet UIImageView *star1;
-@property (strong, nonatomic) IBOutlet UIImageView *star2;
-@property (strong, nonatomic) IBOutlet UIImageView *star3;
-@property (strong, nonatomic) IBOutlet UIImageView *star4;
-@property (strong, nonatomic) IBOutlet UIImageView *star5;
+@property (strong, nonatomic) IBOutlet UIImageView *friendstar1;
+@property (strong, nonatomic) IBOutlet UIImageView *friendstar2;
+@property (strong, nonatomic) IBOutlet UIImageView *friendstar3;
+@property (strong, nonatomic) IBOutlet UIImageView *friendstar4;
+@property (strong, nonatomic) IBOutlet UIImageView *friendstar5;
 
 @property (strong, nonatomic) NSString *friendEmail;
 @property (strong, nonatomic) User* friendUser;
