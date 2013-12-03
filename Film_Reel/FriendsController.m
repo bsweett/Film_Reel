@@ -214,8 +214,8 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
-        cell.backgroundColor = [UIColor clearColor];
-        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+        cell.backgroundColor = [UIColor lightGrayColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
         cell.backgroundView.opaque = NO;
         
         cell.textLabel.backgroundColor = [UIColor clearColor];

@@ -11,6 +11,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YNd-Vp-PgS">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="TvV-rf-ozg">
+                        <rect key="frame" x="0.0" y="980" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </toolbar>
                     <connections>
                         <segue destination="Kfq-1T-Z7d" kind="relationship" relationship="rootViewController" id="Iy2-Eq-kRm"/>
                     </connections>
@@ -19,7 +24,7 @@
             </objects>
             <point key="canvasLocation" x="-137" y="-693"/>
         </scene>
-        <!--Login Controller - Welcome to Film Reel-->
+        <!--Login Controller - Login-->
         <scene sceneID="VpO-8v-hvz">
             <objects>
                 <viewController id="Kfq-1T-Z7d" customClass="LoginController" sceneMemberID="viewController">
@@ -35,7 +40,7 @@
                                 <rect key="frame" x="259" y="521" width="250" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <state key="normal" title="Login" backgroundImage="button14-20110808201840-00014.png">
+                                <state key="normal" title="Login" backgroundImage="signup.png">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -44,10 +49,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QLC-HT-LyE">
-                                <rect key="frame" x="259" y="688" width="250" height="100"/>
+                                <rect key="frame" x="279" y="688" width="230" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <state key="normal" title="Create Account" backgroundImage="button14-20110808201840-00014.png">
+                                <state key="normal" backgroundImage="signup.png">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -94,7 +99,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Welcome to Film Reel" id="b0k-mh-Szm"/>
+                    <navigationItem key="navigationItem" title="Login" id="b0k-mh-Szm"/>
                     <connections>
                         <outlet property="passwordField" destination="gH3-Ow-dlo" id="iS5-TZ-M5p"/>
                         <outlet property="usernameField" destination="zbp-wf-KGP" id="lgB-j9-VBT"/>
@@ -889,13 +894,14 @@
         <image name="InboxTab" width="25" height="17"/>
         <image name="ProfileTab" width="24" height="24"/>
         <image name="TakeReelTab" width="25" height="19"/>
-        <image name="button14-20110808201840-00014.png" width="250" height="99"/>
         <image name="completeimage.png" width="200" height="198"/>
         <image name="default.png" width="128" height="128"/>
+        <image name="signup.png" width="118" height="35"/>
         <image name="star.png" width="30" height="30"/>
         <image name="stargrey.png" width="30" height="30"/>
         <image name="takereelbutton.png" width="100" height="89"/>
     </resources>
+    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="lightContent"/>
         <simulatedOrientationMetrics key="orientation"/>
