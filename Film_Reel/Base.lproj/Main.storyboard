@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="51k-iN-JKb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="51k-iN-JKb">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Login Controller - Log In To Film Reel-->
@@ -13,7 +13,7 @@
                         <viewControllerLayoutGuide type="bottom" id="hWt-9F-Nxa"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fak-mx-290">
@@ -103,7 +103,7 @@
                         <viewControllerLayoutGuide type="bottom" id="IYn-qj-Q9n"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="JZK-QQ-WfO">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter an email address" textAlignment="center" minimumFontSize="17" background="inputbox.png" translatesAutoresizingMaskIntoConstraints="NO" id="cLx-H6-hl4">
@@ -777,7 +777,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="51k-iN-JKb" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dwl-4N-Zmm">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="dwl-4N-Zmm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -859,24 +859,10 @@
         <image name="default.png" width="128" height="128"/>
         <image name="film-80.png" width="77" height="80"/>
         <image name="inputbox.png" width="210" height="28"/>
-        <image name="inputbox.png" width="210" height="28"/>
-        <image name="inputbox.png" width="210" height="28"/>
-        <image name="inputbox.png" width="210" height="28"/>
-        <image name="inputbox.png" width="210" height="28"/>
-        <image name="inputbox.png" width="210" height="28"/>
         <image name="login.png" width="119" height="35"/>
         <image name="signup.png" width="118" height="35"/>
         <image name="star.png" width="30" height="30"/>
-        <image name="star.png" width="30" height="30"/>
-        <image name="star.png" width="30" height="30"/>
-        <image name="star.png" width="30" height="30"/>
-        <image name="star.png" width="30" height="30"/>
-        <image name="star.png" width="30" height="30"/>
-        <image name="star.png" width="30" height="30"/>
-        <image name="star.png" width="30" height="30"/>
         <image name="stargrey.png" width="30" height="30"/>
-        <image name="stargrey.png" width="30" height="30"/>
-        <image name="vertical-line.png" width="8" height="544"/>
         <image name="vertical-line.png" width="8" height="544"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

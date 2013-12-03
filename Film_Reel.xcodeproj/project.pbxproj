@@ -34,6 +34,9 @@
 		B5F4919618087E6E00F03C19 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F4919518087E6E00F03C19 /* CoreMedia.framework */; };
 		B5F4919818087E7700F03C19 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F4919718087E7700F03C19 /* CoreVideo.framework */; };
 		B5F4919A18087E7F00F03C19 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F4919918087E7F00F03C19 /* AVFoundation.framework */; };
+		B5FB31F0184E92C200F9986E /* login_ipad_button.png in Resources */ = {isa = PBXBuildFile; fileRef = B5FB31EE184E92C200F9986E /* login_ipad_button.png */; };
+		B5FB31F1184E92C200F9986E /* signup_ipad_button.png in Resources */ = {isa = PBXBuildFile; fileRef = B5FB31EF184E92C200F9986E /* signup_ipad_button.png */; };
+		B5FB31F3184E93D400F9986E /* film-128.png in Resources */ = {isa = PBXBuildFile; fileRef = B5FB31F2184E93D400F9986E /* film-128.png */; };
 		F6189F7B18131BF300D1F0FA /* CameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F7A18131BF300D1F0FA /* CameraController.m */; };
 		F6189F8118131DA700D1F0FA /* InboxController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F8018131DA700D1F0FA /* InboxController.m */; };
 		F6189F8418131DB500D1F0FA /* ProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F8318131DB500D1F0FA /* ProfileController.m */; };
@@ -109,6 +112,9 @@
 		B5F4919518087E6E00F03C19 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		B5F4919718087E7700F03C19 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		B5F4919918087E7F00F03C19 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B5FB31EE184E92C200F9986E /* login_ipad_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_ipad_button.png; sourceTree = "<group>"; };
+		B5FB31EF184E92C200F9986E /* signup_ipad_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signup_ipad_button.png; sourceTree = "<group>"; };
+		B5FB31F2184E93D400F9986E /* film-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "film-128.png"; sourceTree = "<group>"; };
 		F6189F7918131BF300D1F0FA /* CameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraController.h; sourceTree = "<group>"; };
 		F6189F7A18131BF300D1F0FA /* CameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraController.m; sourceTree = "<group>"; };
 		F6189F7F18131DA700D1F0FA /* InboxController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InboxController.h; sourceTree = "<group>"; };
@@ -327,10 +333,13 @@
 		F6189F99181327C300D1F0FA /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B5FB31EE184E92C200F9986E /* login_ipad_button.png */,
+				B5FB31EF184E92C200F9986E /* signup_ipad_button.png */,
 				F6B8C169184E8D6400849FDF /* backbutton.png */,
 				F6B8C16A184E8D6400849FDF /* film-80.png */,
 				F6B8C16B184E8D6400849FDF /* inputbox.png */,
 				F6B8C16C184E8D6400849FDF /* login.png */,
+				B5FB31F2184E93D400F9986E /* film-128.png */,
 				F6B8C16D184E8D6400849FDF /* seperator-iPad.png */,
 				F6B8C16E184E8D6400849FDF /* signup.png */,
 				F6B8C16F184E8D6400849FDF /* vertical-line.png */,
@@ -454,6 +463,7 @@
 				F6189F9818131E8E00D1F0FA /* Images.xcassets in Resources */,
 				F6189FAF181343E000D1F0FA /* completeimage.png in Resources */,
 				B56E78EC181A00B5008AE8D5 /* iPadOverlay.xib in Resources */,
+				B5FB31F3184E93D400F9986E /* film-128.png in Resources */,
 				B5C26D771811C6F00064F180 /* default.png in Resources */,
 				B56E78E31819BA5D008AE8D5 /* iPad.storyboard in Resources */,
 				F6B8C172184E8D6400849FDF /* inputbox.png in Resources */,
@@ -461,11 +471,13 @@
 				B5E0CAE918130DD80037EA3A /* Main.storyboard in Resources */,
 				F6B016C51814722800DC974C /* CameraOverlay.xib in Resources */,
 				F6B8C171184E8D6400849FDF /* film-80.png in Resources */,
+				B5FB31F1184E92C200F9986E /* signup_ipad_button.png in Resources */,
 				F6B8C173184E8D6400849FDF /* login.png in Resources */,
 				F6189FB118134DF800D1F0FA /* star.png in Resources */,
 				F6B35AF7181569E7006FFFC9 /* takereelbutton.png in Resources */,
 				F6CD6DD6184E7C9F00C71E02 /* profile.png in Resources */,
 				F6189FB31813514000D1F0FA /* stargrey.png in Resources */,
+				B5FB31F0184E92C200F9986E /* login_ipad_button.png in Resources */,
 				F6B8C174184E8D6400849FDF /* seperator-iPad.png in Resources */,
 				F6B8C175184E8D6400849FDF /* signup.png in Resources */,
 			);
