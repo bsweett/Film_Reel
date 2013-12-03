@@ -859,24 +859,10 @@
         <image name="default.png" width="128" height="128"/>
         <image name="film-80.png" width="77" height="80"/>
         <image name="inputbox.png" width="210" height="28"/>
-        <image name="inputbox.png" width="210" height="28"/>
-        <image name="inputbox.png" width="210" height="28"/>
-        <image name="inputbox.png" width="210" height="28"/>
-        <image name="inputbox.png" width="210" height="28"/>
-        <image name="inputbox.png" width="210" height="28"/>
         <image name="login.png" width="119" height="35"/>
         <image name="signup.png" width="118" height="35"/>
         <image name="star.png" width="30" height="30"/>
-        <image name="star.png" width="30" height="30"/>
-        <image name="star.png" width="30" height="30"/>
-        <image name="star.png" width="30" height="30"/>
-        <image name="star.png" width="30" height="30"/>
-        <image name="star.png" width="30" height="30"/>
-        <image name="star.png" width="30" height="30"/>
-        <image name="star.png" width="30" height="30"/>
         <image name="stargrey.png" width="30" height="30"/>
-        <image name="stargrey.png" width="30" height="30"/>
-        <image name="vertical-line.png" width="8" height="544"/>
         <image name="vertical-line.png" width="8" height="544"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
