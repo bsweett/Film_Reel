@@ -77,6 +77,7 @@
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Log In To Film Reel" id="usR-KM-Wr9">
                         <barButtonItem key="backBarButtonItem" title="Back" id="BuA-wH-KBo"/>
@@ -105,50 +106,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a email address" textAlignment="center" minimumFontSize="17" background="inputbox.png" translatesAutoresizingMaskIntoConstraints="NO" id="cLx-H6-hl4">
-                                <rect key="frame" x="20" y="64" width="280" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter an email address" textAlignment="center" minimumFontSize="17" background="inputbox.png" translatesAutoresizingMaskIntoConstraints="NO" id="cLx-H6-hl4">
+                                <rect key="frame" x="20" y="80" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a username" textAlignment="center" minimumFontSize="17" background="inputbox.png" translatesAutoresizingMaskIntoConstraints="NO" id="gkI-YI-6eK">
-                                <rect key="frame" x="20" y="145" width="280" height="30"/>
+                                <rect key="frame" x="20" y="152" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a password" textAlignment="center" minimumFontSize="17" background="inputbox.png" translatesAutoresizingMaskIntoConstraints="NO" id="ApO-7q-JcM">
-                                <rect key="frame" x="20" y="226" width="280" height="30"/>
+                                <rect key="frame" x="20" y="225" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter the password again" textAlignment="center" minimumFontSize="17" background="inputbox.png" translatesAutoresizingMaskIntoConstraints="NO" id="j72-bC-DX6">
-                                <rect key="frame" x="20" y="307" width="280" height="30"/>
+                                <rect key="frame" x="20" y="298" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Must be a valid email address." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Gem-bm-We2">
-                                <rect key="frame" x="20" y="102" width="280" height="35"/>
+                                <rect key="frame" x="20" y="109" width="280" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Can only contain letters and numbers." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="4fG-iN-Ws9">
-                                <rect key="frame" x="20" y="183" width="280" height="35"/>
+                                <rect key="frame" x="20" y="182" width="280" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Must be at least eight characters." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fVt-hH-sCO">
-                                <rect key="frame" x="20" y="264" width="280" height="35"/>
+                                <rect key="frame" x="20" y="255" width="280" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Must match password above." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zRw-I3-80e">
-                                <rect key="frame" x="20" y="345" width="280" height="35"/>
+                                <rect key="frame" x="20" y="327" width="280" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -854,11 +855,14 @@
         <image name="InboxTab" width="25" height="17"/>
         <image name="ProfileTab" width="24" height="24"/>
         <image name="TakeReelTab" width="25" height="19"/>
-        <image name="button14-20110808201840-00014.png" width="250" height="99"/>
-        <image name="button14-20110808201840-00014.png" width="250" height="99"/>
         <image name="completeimage.png" width="200" height="198"/>
         <image name="default.png" width="128" height="128"/>
         <image name="film-80.png" width="77" height="80"/>
+        <image name="inputbox.png" width="210" height="28"/>
+        <image name="inputbox.png" width="210" height="28"/>
+        <image name="inputbox.png" width="210" height="28"/>
+        <image name="inputbox.png" width="210" height="28"/>
+        <image name="inputbox.png" width="210" height="28"/>
         <image name="inputbox.png" width="210" height="28"/>
         <image name="login.png" width="119" height="35"/>
         <image name="signup.png" width="118" height="35"/>
@@ -872,6 +876,7 @@
         <image name="star.png" width="30" height="30"/>
         <image name="stargrey.png" width="30" height="30"/>
         <image name="stargrey.png" width="30" height="30"/>
+        <image name="vertical-line.png" width="8" height="544"/>
         <image name="vertical-line.png" width="8" height="544"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

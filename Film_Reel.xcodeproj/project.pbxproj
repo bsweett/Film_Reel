@@ -21,7 +21,6 @@
 		B506DB401800857A004991A4 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B506DB3F1800857A004991A4 /* NetworkManager.m */; };
 		B52BBEEE18491EA000C53E67 /* SelectFriendController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52BBEEC18491EA000C53E67 /* SelectFriendController.m */; };
 		B56E78E31819BA5D008AE8D5 /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B56E78E21819BA5D008AE8D5 /* iPad.storyboard */; };
-		B56E78E51819BCD4008AE8D5 /* button14-20110808201840-00014.png in Resources */ = {isa = PBXBuildFile; fileRef = B56E78E41819BCD4008AE8D5 /* button14-20110808201840-00014.png */; };
 		B56E78EB181A00B5008AE8D5 /* iPadOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = B56E78E9181A00B5008AE8D5 /* iPadOverlay.m */; };
 		B56E78EC181A00B5008AE8D5 /* iPadOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = B56E78EA181A00B5008AE8D5 /* iPadOverlay.xib */; };
 		B56E78F0181A1F2B008AE8D5 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = B56E78EF181A1F2B008AE8D5 /* ALAssetsLibrary+CustomPhotoAlbum.m */; };
@@ -52,6 +51,13 @@
 		F6B016C51814722800DC974C /* CameraOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6B016C31814722800DC974C /* CameraOverlay.xib */; };
 		F6B35AF6181569E7006FFFC9 /* takeareelbuttonhighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B35AF4181569E7006FFFC9 /* takeareelbuttonhighlighted.png */; };
 		F6B35AF7181569E7006FFFC9 /* takereelbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B35AF5181569E7006FFFC9 /* takereelbutton.png */; };
+		F6B8C170184E8D6400849FDF /* backbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B8C169184E8D6400849FDF /* backbutton.png */; };
+		F6B8C171184E8D6400849FDF /* film-80.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B8C16A184E8D6400849FDF /* film-80.png */; };
+		F6B8C172184E8D6400849FDF /* inputbox.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B8C16B184E8D6400849FDF /* inputbox.png */; };
+		F6B8C173184E8D6400849FDF /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B8C16C184E8D6400849FDF /* login.png */; };
+		F6B8C174184E8D6400849FDF /* seperator-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B8C16D184E8D6400849FDF /* seperator-iPad.png */; };
+		F6B8C175184E8D6400849FDF /* signup.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B8C16E184E8D6400849FDF /* signup.png */; };
+		F6B8C176184E8D6400849FDF /* vertical-line.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B8C16F184E8D6400849FDF /* vertical-line.png */; };
 		F6BB9BD41841558D005FE438 /* Networking.m in Sources */ = {isa = PBXBuildFile; fileRef = F6BB9BD31841558D005FE438 /* Networking.m */; };
 		F6CD6DD6184E7C9F00C71E02 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = F6CD6DD5184E7C9F00C71E02 /* profile.png */; };
 		F6D12F28181AE61100578906 /* seperator.png in Resources */ = {isa = PBXBuildFile; fileRef = F6D12F27181AE61100578906 /* seperator.png */; };
@@ -89,7 +95,6 @@
 		B52BBEEB18491EA000C53E67 /* SelectFriendController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectFriendController.h; sourceTree = "<group>"; };
 		B52BBEEC18491EA000C53E67 /* SelectFriendController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectFriendController.m; sourceTree = "<group>"; };
 		B56E78E21819BA5D008AE8D5 /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
-		B56E78E41819BCD4008AE8D5 /* button14-20110808201840-00014.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button14-20110808201840-00014.png"; sourceTree = "<group>"; };
 		B56E78E8181A00B5008AE8D5 /* iPadOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadOverlay.h; sourceTree = "<group>"; };
 		B56E78E9181A00B5008AE8D5 /* iPadOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadOverlay.m; sourceTree = "<group>"; };
 		B56E78EA181A00B5008AE8D5 /* iPadOverlay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadOverlay.xib; sourceTree = "<group>"; };
@@ -129,6 +134,13 @@
 		F6B016C31814722800DC974C /* CameraOverlay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CameraOverlay.xib; path = ../CameraOverlay.xib; sourceTree = "<group>"; };
 		F6B35AF4181569E7006FFFC9 /* takeareelbuttonhighlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = takeareelbuttonhighlighted.png; sourceTree = "<group>"; };
 		F6B35AF5181569E7006FFFC9 /* takereelbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = takereelbutton.png; sourceTree = "<group>"; };
+		F6B8C169184E8D6400849FDF /* backbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backbutton.png; sourceTree = "<group>"; };
+		F6B8C16A184E8D6400849FDF /* film-80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "film-80.png"; sourceTree = "<group>"; };
+		F6B8C16B184E8D6400849FDF /* inputbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inputbox.png; sourceTree = "<group>"; };
+		F6B8C16C184E8D6400849FDF /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
+		F6B8C16D184E8D6400849FDF /* seperator-iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seperator-iPad.png"; sourceTree = "<group>"; };
+		F6B8C16E184E8D6400849FDF /* signup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signup.png; sourceTree = "<group>"; };
+		F6B8C16F184E8D6400849FDF /* vertical-line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vertical-line.png"; sourceTree = "<group>"; };
 		F6BB9BD21841558D005FE438 /* Networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Networking.h; sourceTree = "<group>"; };
 		F6BB9BD31841558D005FE438 /* Networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Networking.m; sourceTree = "<group>"; };
 		F6CD6DD5184E7C9F00C71E02 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
@@ -315,7 +327,13 @@
 		F6189F99181327C300D1F0FA /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				B56E78E41819BCD4008AE8D5 /* button14-20110808201840-00014.png */,
+				F6B8C169184E8D6400849FDF /* backbutton.png */,
+				F6B8C16A184E8D6400849FDF /* film-80.png */,
+				F6B8C16B184E8D6400849FDF /* inputbox.png */,
+				F6B8C16C184E8D6400849FDF /* login.png */,
+				F6B8C16D184E8D6400849FDF /* seperator-iPad.png */,
+				F6B8C16E184E8D6400849FDF /* signup.png */,
+				F6B8C16F184E8D6400849FDF /* vertical-line.png */,
 				F6D12F27181AE61100578906 /* seperator.png */,
 				F6189FAE181343E000D1F0FA /* completeimage.png */,
 				F6B35AF4181569E7006FFFC9 /* takeareelbuttonhighlighted.png */,
@@ -429,6 +447,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6B8C170184E8D6400849FDF /* backbutton.png in Resources */,
 				B506DB141800806C004991A4 /* InfoPlist.strings in Resources */,
 				F6D12F28181AE61100578906 /* seperator.png in Resources */,
 				F6B35AF6181569E7006FFFC9 /* takeareelbuttonhighlighted.png in Resources */,
@@ -436,14 +455,19 @@
 				F6189FAF181343E000D1F0FA /* completeimage.png in Resources */,
 				B56E78EC181A00B5008AE8D5 /* iPadOverlay.xib in Resources */,
 				B5C26D771811C6F00064F180 /* default.png in Resources */,
-				B56E78E51819BCD4008AE8D5 /* button14-20110808201840-00014.png in Resources */,
 				B56E78E31819BA5D008AE8D5 /* iPad.storyboard in Resources */,
+				F6B8C172184E8D6400849FDF /* inputbox.png in Resources */,
+				F6B8C176184E8D6400849FDF /* vertical-line.png in Resources */,
 				B5E0CAE918130DD80037EA3A /* Main.storyboard in Resources */,
 				F6B016C51814722800DC974C /* CameraOverlay.xib in Resources */,
+				F6B8C171184E8D6400849FDF /* film-80.png in Resources */,
+				F6B8C173184E8D6400849FDF /* login.png in Resources */,
 				F6189FB118134DF800D1F0FA /* star.png in Resources */,
 				F6B35AF7181569E7006FFFC9 /* takereelbutton.png in Resources */,
 				F6CD6DD6184E7C9F00C71E02 /* profile.png in Resources */,
 				F6189FB31813514000D1F0FA /* stargrey.png in Resources */,
+				F6B8C174184E8D6400849FDF /* seperator-iPad.png in Resources */,
+				F6B8C175184E8D6400849FDF /* signup.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
