@@ -27,7 +27,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden: YES animated:YES];
     usernameField.delegate = self;
     passwordField.delegate = self;
     [usernameField setAutocorrectionType:UITextAutocorrectionTypeNo];
@@ -38,6 +37,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [self.navigationController setNavigationBarHidden: YES animated:YES];
     // NOTE:: Should have another notification that tells user if the information they entered doesnt exist (no password or username matching)
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
