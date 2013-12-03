@@ -21,10 +21,13 @@
 		B506DB401800857A004991A4 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B506DB3F1800857A004991A4 /* NetworkManager.m */; };
 		B52BBEEE18491EA000C53E67 /* SelectFriendController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52BBEEC18491EA000C53E67 /* SelectFriendController.m */; };
 		B56E78E31819BA5D008AE8D5 /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B56E78E21819BA5D008AE8D5 /* iPad.storyboard */; };
-		B56E78E51819BCD4008AE8D5 /* button14-20110808201840-00014.png in Resources */ = {isa = PBXBuildFile; fileRef = B56E78E41819BCD4008AE8D5 /* button14-20110808201840-00014.png */; };
 		B56E78EB181A00B5008AE8D5 /* iPadOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = B56E78E9181A00B5008AE8D5 /* iPadOverlay.m */; };
 		B56E78EC181A00B5008AE8D5 /* iPadOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = B56E78EA181A00B5008AE8D5 /* iPadOverlay.xib */; };
 		B56E78F0181A1F2B008AE8D5 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = B56E78EF181A1F2B008AE8D5 /* ALAssetsLibrary+CustomPhotoAlbum.m */; };
+		B59E6F07184E6FD50020F828 /* signup.png in Resources */ = {isa = PBXBuildFile; fileRef = B59E6F06184E6FD50020F828 /* signup.png */; };
+		B59E6F09184E724C0020F828 /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = B59E6F08184E724C0020F828 /* login.png */; };
+		B59E6F0B184E737A0020F828 /* inputbox.png in Resources */ = {isa = PBXBuildFile; fileRef = B59E6F0A184E737A0020F828 /* inputbox.png */; };
+		B59E6F0D184E74CE0020F828 /* film-80.png in Resources */ = {isa = PBXBuildFile; fileRef = B59E6F0C184E74CE0020F828 /* film-80.png */; };
 		B5C26D771811C6F00064F180 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C26D761811C6F00064F180 /* default.png */; };
 		B5C26D781811C6F00064F180 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C26D761811C6F00064F180 /* default.png */; };
 		B5C9038C18032D5500448CE6 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C9038B18032D5500448CE6 /* User.m */; };
@@ -35,6 +38,9 @@
 		B5F4919618087E6E00F03C19 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F4919518087E6E00F03C19 /* CoreMedia.framework */; };
 		B5F4919818087E7700F03C19 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F4919718087E7700F03C19 /* CoreVideo.framework */; };
 		B5F4919A18087E7F00F03C19 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F4919918087E7F00F03C19 /* AVFoundation.framework */; };
+		B5FB31E9184E80AC00F9986E /* backbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = B5FB31E8184E80AC00F9986E /* backbutton.png */; };
+		B5FB31EB184E84EF00F9986E /* vertical-line.png in Resources */ = {isa = PBXBuildFile; fileRef = B5FB31EA184E84EF00F9986E /* vertical-line.png */; };
+		B5FB31ED184E85C100F9986E /* seperator-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = B5FB31EC184E85C100F9986E /* seperator-iPad.png */; };
 		F6189F7B18131BF300D1F0FA /* CameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F7A18131BF300D1F0FA /* CameraController.m */; };
 		F6189F8118131DA700D1F0FA /* InboxController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F8018131DA700D1F0FA /* InboxController.m */; };
 		F6189F8418131DB500D1F0FA /* ProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F8318131DB500D1F0FA /* ProfileController.m */; };
@@ -88,12 +94,15 @@
 		B52BBEEB18491EA000C53E67 /* SelectFriendController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectFriendController.h; sourceTree = "<group>"; };
 		B52BBEEC18491EA000C53E67 /* SelectFriendController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectFriendController.m; sourceTree = "<group>"; };
 		B56E78E21819BA5D008AE8D5 /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
-		B56E78E41819BCD4008AE8D5 /* button14-20110808201840-00014.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button14-20110808201840-00014.png"; sourceTree = "<group>"; };
 		B56E78E8181A00B5008AE8D5 /* iPadOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadOverlay.h; sourceTree = "<group>"; };
 		B56E78E9181A00B5008AE8D5 /* iPadOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadOverlay.m; sourceTree = "<group>"; };
 		B56E78EA181A00B5008AE8D5 /* iPadOverlay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadOverlay.xib; sourceTree = "<group>"; };
 		B56E78EE181A1F2B008AE8D5 /* ALAssetsLibrary+CustomPhotoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALAssetsLibrary+CustomPhotoAlbum.h"; sourceTree = "<group>"; };
 		B56E78EF181A1F2B008AE8D5 /* ALAssetsLibrary+CustomPhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALAssetsLibrary+CustomPhotoAlbum.m"; sourceTree = "<group>"; };
+		B59E6F06184E6FD50020F828 /* signup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signup.png; sourceTree = "<group>"; };
+		B59E6F08184E724C0020F828 /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
+		B59E6F0A184E737A0020F828 /* inputbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inputbox.png; sourceTree = "<group>"; };
+		B59E6F0C184E74CE0020F828 /* film-80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "film-80.png"; sourceTree = "<group>"; };
 		B5C26D761811C6F00064F180 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
 		B5C9038A18032D5500448CE6 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		B5C9038B18032D5500448CE6 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
@@ -103,6 +112,9 @@
 		B5F4919518087E6E00F03C19 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		B5F4919718087E7700F03C19 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		B5F4919918087E7F00F03C19 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B5FB31E8184E80AC00F9986E /* backbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backbutton.png; sourceTree = "<group>"; };
+		B5FB31EA184E84EF00F9986E /* vertical-line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vertical-line.png"; sourceTree = "<group>"; };
+		B5FB31EC184E85C100F9986E /* seperator-iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seperator-iPad.png"; sourceTree = "<group>"; };
 		F6189F7918131BF300D1F0FA /* CameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraController.h; sourceTree = "<group>"; };
 		F6189F7A18131BF300D1F0FA /* CameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraController.m; sourceTree = "<group>"; };
 		F6189F7F18131DA700D1F0FA /* InboxController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InboxController.h; sourceTree = "<group>"; };
@@ -313,7 +325,11 @@
 		F6189F99181327C300D1F0FA /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				B56E78E41819BCD4008AE8D5 /* button14-20110808201840-00014.png */,
+				B5FB31EC184E85C100F9986E /* seperator-iPad.png */,
+				B59E6F0C184E74CE0020F828 /* film-80.png */,
+				B59E6F0A184E737A0020F828 /* inputbox.png */,
+				B59E6F08184E724C0020F828 /* login.png */,
+				B59E6F06184E6FD50020F828 /* signup.png */,
 				F6D12F27181AE61100578906 /* seperator.png */,
 				F6189FAE181343E000D1F0FA /* completeimage.png */,
 				F6B35AF4181569E7006FFFC9 /* takeareelbuttonhighlighted.png */,
@@ -321,6 +337,8 @@
 				F6189FB018134DF800D1F0FA /* star.png */,
 				F6189FB21813514000D1F0FA /* stargrey.png */,
 				B5C26D761811C6F00064F180 /* default.png */,
+				B5FB31EA184E84EF00F9986E /* vertical-line.png */,
+				B5FB31E8184E80AC00F9986E /* backbutton.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -427,17 +445,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				B506DB141800806C004991A4 /* InfoPlist.strings in Resources */,
+				B59E6F09184E724C0020F828 /* login.png in Resources */,
 				F6D12F28181AE61100578906 /* seperator.png in Resources */,
 				F6B35AF6181569E7006FFFC9 /* takeareelbuttonhighlighted.png in Resources */,
+				B5FB31EB184E84EF00F9986E /* vertical-line.png in Resources */,
 				F6189F9818131E8E00D1F0FA /* Images.xcassets in Resources */,
 				F6189FAF181343E000D1F0FA /* completeimage.png in Resources */,
+				B5FB31E9184E80AC00F9986E /* backbutton.png in Resources */,
 				B56E78EC181A00B5008AE8D5 /* iPadOverlay.xib in Resources */,
+				B5FB31ED184E85C100F9986E /* seperator-iPad.png in Resources */,
 				B5C26D771811C6F00064F180 /* default.png in Resources */,
-				B56E78E51819BCD4008AE8D5 /* button14-20110808201840-00014.png in Resources */,
+				B59E6F0B184E737A0020F828 /* inputbox.png in Resources */,
 				B56E78E31819BA5D008AE8D5 /* iPad.storyboard in Resources */,
+				B59E6F0D184E74CE0020F828 /* film-80.png in Resources */,
 				B5E0CAE918130DD80037EA3A /* Main.storyboard in Resources */,
 				F6B016C51814722800DC974C /* CameraOverlay.xib in Resources */,
 				F6189FB118134DF800D1F0FA /* star.png in Resources */,
+				B59E6F07184E6FD50020F828 /* signup.png in Resources */,
 				F6B35AF7181569E7006FFFC9 /* takereelbutton.png in Resources */,
 				F6189FB31813514000D1F0FA /* stargrey.png in Resources */,
 			);

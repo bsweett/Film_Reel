@@ -305,7 +305,9 @@
 // Adds a border line between the images
 - (UIImage*)addBorder:(UIImage*)image
 {
+    
     UIImage *seperator = [UIImage imageNamed:@"seperator.png"];
+
     
     CGImageRef imageRef = image.CGImage;
     CGFloat firstWidth = CGImageGetWidth(imageRef);
@@ -317,11 +319,22 @@
     
     CGFloat heightSep = (firstHeight/5);
     
-    [image drawInRect:CGRectMake(0, 0, firstWidth, firstHeight)];
-    [seperator drawInRect:CGRectMake(0,heightSep - 7, 320, 10)];
-    [seperator drawInRect:CGRectMake(0,(heightSep*2) - 7, 320, 10)];
-    [seperator drawInRect:CGRectMake(0,(heightSep*3) - 7, 320, 10)];
-    [seperator drawInRect:CGRectMake(0,(heightSep*4) - 7, 320, 10)];
+    if([[UIDevice currentDevice].model isEqualToString:@"iPad"])
+    {
+        [image drawInRect:CGRectMake(0, 0, firstWidth, firstHeight)];
+        [seperator drawInRect:CGRectMake(0,heightSep - 7, 370, 10)];
+        [seperator drawInRect:CGRectMake(0,(heightSep*2) - 7, 370, 10)];
+        [seperator drawInRect:CGRectMake(0,(heightSep*3) - 7, 370, 10)];
+        [seperator drawInRect:CGRectMake(0,(heightSep*4) - 7, 370, 10)];
+    }
+    else
+    {
+        [image drawInRect:CGRectMake(0, 0, firstWidth, firstHeight)];
+        [seperator drawInRect:CGRectMake(0,heightSep - 7, 320, 10)];
+        [seperator drawInRect:CGRectMake(0,(heightSep*2) - 7, 320, 10)];
+        [seperator drawInRect:CGRectMake(0,(heightSep*3) - 7, 320, 10)];
+        [seperator drawInRect:CGRectMake(0,(heightSep*4) - 7, 320, 10)];
+    }
     
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     

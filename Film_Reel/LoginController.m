@@ -27,6 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.view setBackgroundColor:[[UIColor alloc] initWithRed:0.050980396570000003 green:0.5411764979 blue:0.77647066119999997 alpha:1]];
     usernameField.delegate = self;
     passwordField.delegate = self;
     [usernameField setAutocorrectionType:UITextAutocorrectionTypeNo];
