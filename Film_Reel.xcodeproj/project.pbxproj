@@ -53,6 +53,7 @@
 		F6B35AF6181569E7006FFFC9 /* takeareelbuttonhighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B35AF4181569E7006FFFC9 /* takeareelbuttonhighlighted.png */; };
 		F6B35AF7181569E7006FFFC9 /* takereelbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B35AF5181569E7006FFFC9 /* takereelbutton.png */; };
 		F6BB9BD41841558D005FE438 /* Networking.m in Sources */ = {isa = PBXBuildFile; fileRef = F6BB9BD31841558D005FE438 /* Networking.m */; };
+		F6CD6DD6184E7C9F00C71E02 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = F6CD6DD5184E7C9F00C71E02 /* profile.png */; };
 		F6D12F28181AE61100578906 /* seperator.png in Resources */ = {isa = PBXBuildFile; fileRef = F6D12F27181AE61100578906 /* seperator.png */; };
 		F6F2F6A5184BC35D00DBA868 /* DetialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F2F6A3184BC35D00DBA868 /* DetialViewController.m */; };
 /* End PBXBuildFile section */
@@ -130,6 +131,7 @@
 		F6B35AF5181569E7006FFFC9 /* takereelbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = takereelbutton.png; sourceTree = "<group>"; };
 		F6BB9BD21841558D005FE438 /* Networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Networking.h; sourceTree = "<group>"; };
 		F6BB9BD31841558D005FE438 /* Networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Networking.m; sourceTree = "<group>"; };
+		F6CD6DD5184E7C9F00C71E02 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
 		F6D12F27181AE61100578906 /* seperator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seperator.png; sourceTree = "<group>"; };
 		F6F2F6A2184BC35D00DBA868 /* DetialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetialViewController.h; sourceTree = "<group>"; };
 		F6F2F6A3184BC35D00DBA868 /* DetialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetialViewController.m; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 				F6189FAE181343E000D1F0FA /* completeimage.png */,
 				F6B35AF4181569E7006FFFC9 /* takeareelbuttonhighlighted.png */,
 				F6B35AF5181569E7006FFFC9 /* takereelbutton.png */,
+				F6CD6DD5184E7C9F00C71E02 /* profile.png */,
 				F6189FB018134DF800D1F0FA /* star.png */,
 				F6189FB21813514000D1F0FA /* stargrey.png */,
 				B5C26D761811C6F00064F180 /* default.png */,
@@ -439,6 +442,7 @@
 				F6B016C51814722800DC974C /* CameraOverlay.xib in Resources */,
 				F6189FB118134DF800D1F0FA /* star.png in Resources */,
 				F6B35AF7181569E7006FFFC9 /* takereelbutton.png in Resources */,
+				F6CD6DD6184E7C9F00C71E02 /* profile.png in Resources */,
 				F6189FB31813514000D1F0FA /* stargrey.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

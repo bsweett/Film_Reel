@@ -50,6 +50,8 @@
 {
     [super viewDidLoad];
     
+   // self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"profile.png"]];
+    
     bio.editable = NO;
     name.editable = NO;
     location.editable = NO;
