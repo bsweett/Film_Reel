@@ -36,10 +36,9 @@
 // Override point for customization after application launch.
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    //[[UINavigationBar appearance] setTintColor:[[UIColor alloc] initWithRed:0 green:154 blue:255 alpha:1]];
-    //[[UINavigationBar appearance] setBackIndicatorImage:[UIImage imageNamed:@"backbutton.png"]];
-    //[[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:[UIImage imageNamed:@"backbutton.png"]];
+    [[UINavigationBar appearance] setBarTintColor:[[UIColor alloc] initWithRed:0 green:154 blue:255 alpha:1]];
+    [[UINavigationBar appearance] setBackIndicatorImage:[UIImage imageNamed:@"backbutton.png"]];
+    [[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:[UIImage imageNamed:@"backbutton.png"]];
     return YES;
 }
 
