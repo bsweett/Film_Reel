@@ -32,6 +32,8 @@
 #define CACHED_NEW_PASSWORD     "cached_new_password"
 #define CACHED_NEW_USER         "cached_new_user"
 
+#define BAR_COLOR "009AFF"
+
 // User Maxs
 #define MAX_USER_SIZE 30
 #define MAX_LOCATION_SIZE 15
