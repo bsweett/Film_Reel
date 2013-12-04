@@ -50,7 +50,7 @@
 {
     [super viewDidLoad];
     
-   // self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"profile.png"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"profile.png"]];
     
     bio.editable = NO;
     name.editable = NO;
@@ -92,7 +92,16 @@
     }
     else
     {
-        // iPhone Formating
+        [[self name] setFont:[UIFont systemFontOfSize:22]];
+        name.textAlignment = NSTextAlignmentCenter;
+        [[self name] setTextColor:[UIColor blackColor]];
+        [[self bio] setFont:[UIFont systemFontOfSize:12]];
+        [[self bio] setTextColor:[[UIColor alloc] initWithRed:92.0/255.0 green:92.0/255.0 blue:92.0/255.0 alpha:1]];
+        [[self location] setFont:[UIFont systemFontOfSize:12]];
+        [[self location] setTextColor:[[UIColor alloc] initWithRed:92.0/255.0 green:92.0/255.0 blue:92.0/255.0 alpha:1]];
+        [[self email] setFont:[UIFont systemFontOfSize:18]];
+        email.textAlignment = NSTextAlignmentCenter;
+        [[self email] setTextColor:[UIColor blackColor]];
     }
     
     [self setPopStars:userdata.getPopularity];
