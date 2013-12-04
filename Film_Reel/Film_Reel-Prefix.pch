@@ -16,7 +16,7 @@
 #endif
 
 // Server/app attributes
-#define SERVER_ADDRESS          "http://172.20.10.2:8080/filmreel/"
+#define SERVER_ADDRESS          "http://192.168.1.237:8080/filmreel/"
 #define REEL_ALBUM_NAME         "My Reels"
 #define CURRENT_USER            "current_user"
 #define CURRENT_USER_NAME       "current_user_name"
@@ -31,6 +31,8 @@
 #define FRIEND_USER             "friend_user"
 #define CACHED_NEW_PASSWORD     "cached_new_password"
 #define CACHED_NEW_USER         "cached_new_user"
+
+#define BAR_COLOR "009AFF"
 
 // User Maxs
 #define MAX_USER_SIZE 30

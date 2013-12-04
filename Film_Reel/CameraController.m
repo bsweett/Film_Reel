@@ -322,10 +322,10 @@
     if([[UIDevice currentDevice].model isEqualToString:@"iPad"])
     {
         [image drawInRect:CGRectMake(0, 0, firstWidth, firstHeight)];
-        [seperator drawInRect:CGRectMake(0,heightSep - 7, 370, 10)];
-        [seperator drawInRect:CGRectMake(0,(heightSep*2) - 7, 370, 10)];
-        [seperator drawInRect:CGRectMake(0,(heightSep*3) - 7, 370, 10)];
-        [seperator drawInRect:CGRectMake(0,(heightSep*4) - 7, 370, 10)];
+        [seperator drawInRect:CGRectMake(0,heightSep - 7, 385, 10)];
+        [seperator drawInRect:CGRectMake(0,(heightSep*2) - 7, 385, 10)];
+        [seperator drawInRect:CGRectMake(0,(heightSep*3) - 7, 385, 10)];
+        [seperator drawInRect:CGRectMake(0,(heightSep*4) - 7, 385, 10)];
     }
     else
     {

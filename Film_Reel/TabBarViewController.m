@@ -29,6 +29,12 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    [[UITabBar appearance] setBarTintColor:[UIColor whiteColor]];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                       [UIColor lightGrayColor],
+                                                       NSForegroundColorAttributeName,
+                                                       nil]
+                                             forState:UIControlStateNormal];
     self.selectedIndex = 2;
 }
 

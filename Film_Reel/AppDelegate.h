@@ -20,6 +20,8 @@
 @property (strong, nonatomic) UIViewController* bypassLogin;
 @property (strong, nonatomic) UIStoryboard* main;
 
+
+- (UIColor*)colorWithHexString:(NSString*)hex;
 + (AppDelegate *)appDelegate;
 
 @end
