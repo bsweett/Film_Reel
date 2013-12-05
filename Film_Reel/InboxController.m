@@ -18,6 +18,7 @@
 @synthesize indox;
 @synthesize loading;
 @synthesize inboxUpdate;
+@synthesize updateWheel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,21 +34,29 @@
 {
     [super viewDidLoad];
     tablearray = [[NSMutableArray alloc] init];
-    [tablearray addObject:@"Ben"];
+    updateWheel = [[UIRefreshControl alloc] init];
+    updateWheel.tintColor = [UIColor blackColor];
+    self.updateWheel = updateWheel;
+    [updateWheel addTarget:self action:@selector(grabInbox) forControlEvents:UIControlEventValueChanged];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    inboxUpdate = [[Networking alloc] init];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@INBOX_SUCCESS object:nil];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) grabInbox
+{
+    inboxUpdate = [[Networking alloc] init];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@INBOX_SUCCESS object:nil];
 }
 
 -(void) didSucceedRequest: (NSNotification*) notif

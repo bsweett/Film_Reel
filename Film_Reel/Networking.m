@@ -402,13 +402,10 @@
     }
 }
 
--(void)saveImageToServer
+-(void)saveImageToServer: (NSData*) dataImage withPostType: (NSString*) postType
 {
-    // COnvert Image to NSData
-    NSData *dataImage = UIImageJPEGRepresentation([UIImage imageNamed:@"star.png"], 1.0f);
-    
     // set your URL Where to Upload Image
-    NSString *urlString = @"http://192.168.1.25:8080/filmreel/fileUploadAction";
+    NSString *urlString = @SERVER_ADDRESS"/fileUploadAction";
     
     // set your Image Name
     NSString *filename = @"fileUpload";
@@ -431,7 +428,11 @@
     // Get Response of Your Request
     NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     NSString *responseString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-    NSLog(@"Response  %@",responseString);
+    NSLog(@"SERVER INFO:: Image Upload Response -- %@",responseString);
+    
+    // Put reponse in dictionary and send notifcation
+    NSDictionary* responseDictionary = [NSDictionary dictionaryWithObject:responseString forKey:@POST_RESPONSE];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@RESPONSE_FOR_POST object:nil userInfo:responseDictionary];
 }
 
 @end
