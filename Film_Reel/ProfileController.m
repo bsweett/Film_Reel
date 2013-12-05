@@ -295,11 +295,6 @@
     NSString* updatedLocation = location.text;
     NSString* updatedBio = bio.text;
     
-    //Code for image sending
-    /*
-    NSString *encodedImage = [self encodeToBase64String:userdata.displayPicture];
-    */
-    
     //Temp for now normally would get display picture as above
     NSString *tempImage = @"default";
     

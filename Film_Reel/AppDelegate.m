@@ -140,8 +140,10 @@
         main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     }
     
-    startingview = [main instantiateInitialViewController];
-    self.window.rootViewController = startingview;
+    // Bug sends to login screen when users are using other system apps (presmissions, task bar, etc..)
+    
+    //startingview = [main instantiateInitialViewController];
+    //self.window.rootViewController = startingview;
     
     // Add our notifications observers
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
