@@ -105,21 +105,6 @@
     }
     
     [self setPopStars:userdata.getPopularity];
-    
-    //Code for image sending
-    /*
-     if([userdata.imagePath isEqualToString:@"unknown"]) {
-     userdata.displayPicture = [[UIImage alloc] initWithContentsOfFile:@"default.png"];
-     [[self displaypicture] setImage:userdata.displayPicture];
-     }
-     
-     else {
-     UIImage *image = [self decodeBase64ToImage:userdata.imagePath];
-     userdata.displayPicture = image;
-     [[self displaypicture] setImage:userdata.displayPicture];
-     }
-     
-     */
 }
 
 -(void)viewDidAppear:(BOOL)animated
