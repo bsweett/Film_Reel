@@ -408,10 +408,10 @@
     NSData *dataImage = UIImageJPEGRepresentation([UIImage imageNamed:@"star.png"], 1.0f);
     
     // set your URL Where to Upload Image
-    NSString *urlString = @"Your URL HERE";
+    NSString *urlString = @"http://192.168.1.25:8080/filmreel/fileUploadAction";
     
     // set your Image Name
-    NSString *filename = @"YourImageFileName";
+    NSString *filename = @"fileUpload";
     
     // Create 'POST' MutableRequest with Data and Other Image Attachment.
     NSMutableURLRequest* request= [[NSMutableURLRequest alloc] init];
