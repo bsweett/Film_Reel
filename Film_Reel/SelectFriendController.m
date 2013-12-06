@@ -193,10 +193,10 @@
     
     NSDate* currentTimeStamp = [NSDate date];
     NSDateFormatter * datefromatter = [[NSDateFormatter alloc] init];
-    [datefromatter setDateFormat:@"dd.MM.YY HH:mm:ss"];
+    [datefromatter setDateFormat:@"dd.MM.YY-HH:mm:ss"];
     NSString* dateString = [datefromatter stringFromDate:currentTimeStamp];
     
-    [ImageFileName appendString:@"-"];
+    [ImageFileName appendString:@"@"];
     [ImageFileName appendString:dateString];
     
     NSLog(@"REEL INFO:: created filename for Reel -- %@", ImageFileName);
@@ -230,6 +230,8 @@
         else
         {
             NSLog(@"SERVER ERROR:: Failed to upload reel to server");
+            [alert setMessage:@"Reel failed to upload to server"];
+            [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
         }
     }
     if([[notif name] isEqualToString:@REEL_SUCCESS])
@@ -257,7 +259,7 @@
     
     NSLog(@"REQUEST INFO:: Send Reel -- %@", send);
     
-    return send;
+    return [send stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
 // Handles all Networking errors that come from Networking.m

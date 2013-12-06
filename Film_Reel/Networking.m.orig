@@ -407,6 +407,12 @@
     // set your URL Where to Upload Image
     NSString *urlString = @SERVER_ADDRESS"/fileuploadaction.action";
     
+<<<<<<< HEAD
+=======
+    // set your Image Name
+    NSString *filename = @"brayden@gmail.com/hello/2013";
+    
+>>>>>>> 18741a6231545a08b4257e48b5ea69df432418e0
     // Create 'POST' MutableRequest with Data and Other Image Attachment.
     NSMutableURLRequest* request= [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:urlString]];
@@ -422,17 +428,16 @@
     [postbody appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPBody:postbody];
     
+    NSLog(@"Post BodY ::\n %@", postbody);
+    
     // Get Response of Your Request
     NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     NSString *responseString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
     NSLog(@"SERVER INFO:: Image Upload Response -- %@",responseString);
     
     // Put reponse in dictionary and send notifcation
-    if(responseString != nil)
-    {
-        NSDictionary* responseDictionary = [NSDictionary dictionaryWithObject:responseString forKey:@POST_RESPONSE];
-        [[NSNotificationCenter defaultCenter]postNotificationName:@RESPONSE_FOR_POST object:nil userInfo:responseDictionary];
-    }
+    NSDictionary* responseDictionary = [NSDictionary dictionaryWithObject:responseString forKey:@POST_RESPONSE];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@RESPONSE_FOR_POST object:nil userInfo:responseDictionary];
 }
 
 -(UIImage *) downloadImageFromServer: (NSString *) url {
