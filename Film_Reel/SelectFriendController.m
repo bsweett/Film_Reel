@@ -164,7 +164,6 @@
 {
     
     sendReelRequest = [[Networking alloc] init];
-
     alert = [[UIAlertView alloc] initWithTitle:nil
                                 message:@"Sending..."
                                 delegate:self

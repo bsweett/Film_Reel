@@ -405,7 +405,8 @@
 -(void)saveImageToServer: (NSData*) dataImage withPostType: (NSString*) postType
 {
     // set your URL Where to Upload Image
-    NSString *urlString = @SERVER_ADDRESS"/fileUploadAction";
+    NSString *urlString = @SERVER_ADDRESS"/resultAction.action";
+    NSLog(@"The url for image is: %@", urlString);
     
     // set your Image Name
     NSString *filename = @"fileUpload";
@@ -419,8 +420,8 @@
     [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
     NSMutableData *postbody = [NSMutableData data];
     [postbody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [postbody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"userfile\"; filename=\"%@.jpg\"\r\n", filename] dataUsingEncoding:NSUTF8StringEncoding]];
-    [postbody appendData:[[NSString stringWithString:@"Content-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [postbody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"fileUpload\"; filename=\"%@.jpg\"\r\n", filename] dataUsingEncoding:NSUTF8StringEncoding]];
+    [postbody appendData:[[NSString stringWithString:@"Content-Type: image/jpeg \r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
     [postbody appendData:[NSData dataWithData:dataImage]];
     [postbody appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPBody:postbody];
@@ -435,6 +436,11 @@
     // Put reponse in dictionary and send notifcation
     NSDictionary* responseDictionary = [NSDictionary dictionaryWithObject:responseString forKey:@POST_RESPONSE];
     [[NSNotificationCenter defaultCenter]postNotificationName:@RESPONSE_FOR_POST object:nil userInfo:responseDictionary];
+}
+
+-(UIImage *) downloadImageFromServer: (NSString *) url {
+    NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:url]];
+    return [UIImage imageWithData: imageData];
 }
 
 @end
