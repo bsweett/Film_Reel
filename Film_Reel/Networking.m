@@ -405,11 +405,10 @@
 -(void)saveImageToServer: (NSData*) dataImage withPostType: (NSString*) postType
 {
     // set your URL Where to Upload Image
-    NSString *urlString = @SERVER_ADDRESS"/resultAction.action";
-    NSLog(@"The url for image is: %@", urlString);
+    NSString *urlString = @SERVER_ADDRESS"/fileuploadaction.action";
     
     // set your Image Name
-    NSString *filename = @"fileUpload";
+    NSString *filename = @"brayden@gmail.com/hello/2013";
     
     // Create 'POST' MutableRequest with Data and Other Image Attachment.
     NSMutableURLRequest* request= [[NSMutableURLRequest alloc] init];
