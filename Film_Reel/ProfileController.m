@@ -223,7 +223,7 @@
         imageButton.hidden = YES;
         
         // Update profile picture
-        [Update saveImageToServer:UIImageJPEGRepresentation(displaypicture.image, 0.1f) withPostType:@PROFILE_IMAGE];
+        [Update saveImageToServer:UIImageJPEGRepresentation(displaypicture.image, 0.1f) withFileName:[userdata getEmail]];
         
         
         [self prepareForUpdate];
