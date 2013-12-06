@@ -15,6 +15,7 @@
 @property (strong, retain) NSMutableArray* tablearray;
 @property (strong, nonatomic) UIAlertView* loading;
 @property (strong, nonatomic) Networking* inboxUpdate;
+@property (strong, nonatomic) UIRefreshControl* updateWheel;
 
 
 @end

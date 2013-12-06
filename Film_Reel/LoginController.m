@@ -169,7 +169,34 @@
         //Set App User
         [shared setAppUser: currentUser];
         
-        NSLog(@"INFO:: Current User Token:: %@", [currentUser getToken]);
+        // Store defaults here so token wont be null on first backgrounding
+        NSUserDefaults* currentLoggedIn = [NSUserDefaults standardUserDefaults];
+        if([currentUser getToken] != nil)
+        {
+            NSLog(@"TOKEN INFO:: Token stored at login %@", currentUser.token);
+            
+            NSString* storeToken = currentUser.token;
+            NSString* storeName = currentUser.userName;
+            NSString* storeBio = currentUser.userBio;
+            NSString* storeLoc = currentUser.location;
+            NSString* storePass = currentUser.password;
+            NSString* storeEmail = currentUser.email;
+            NSString* storePop = currentUser.popularity;
+            NSString* storeGender = currentUser.gender;
+            NSMutableDictionary* storeFriends = currentUser.getFriendList;
+            
+            [currentLoggedIn setObject:storeToken forKey:@CURRENT_USER_TOKEN];
+            [currentLoggedIn setObject:storeName forKey:@CURRENT_USER_NAME];
+            [currentLoggedIn setObject:storePass forKey:@CURRENT_USER_PASSWORD];
+            [currentLoggedIn setObject:storeLoc forKey:@CURRENT_USER_LOCATION];
+            [currentLoggedIn setObject:storeEmail forKey:@CURRENT_USER_EMAIL];
+            [currentLoggedIn setObject:storeBio forKey:@CURRENT_USER_BIO];
+            [currentLoggedIn setObject:storePop forKey:@CURRENT_USER_POP];
+            [currentLoggedIn setObject:storeGender forKey:@CURRENT_USER_GENDER];
+            [currentLoggedIn setObject:storeFriends forKey:@CURRENT_USER_FRIENDS];
+            [currentLoggedIn synchronize];
+        }
+        
         [indicator stopAnimating];
         [self performSegueWithIdentifier:@"loggedIn" sender:self];
     }

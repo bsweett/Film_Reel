@@ -64,8 +64,10 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSucceedRequest:) name:@RESPONSE_FOR_POST object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@UPDATE_SUCCESS object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@USER_NOT_FOUND object:nil];
+    
     
     bio.delegate = self;
     name.delegate = self;
@@ -148,6 +150,21 @@
         [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
     }
     
+    if([[notif name] isEqualToString:@RESPONSE_FOR_POST])
+    {
+        NSDictionary* userDictionary = [notif userInfo];
+        NSString* response= [userDictionary valueForKey:@POST_RESPONSE];
+        
+        if([response isEqualToString:@""])
+        {
+            [self prepareForUpdate];
+        }
+        else
+        {
+            NSLog(@"SERVER ERROR:: Could not upload profile picture");
+        }
+    }
+    
     if([[notif name] isEqualToString:@UPDATE_SUCCESS])
     {
         NSDictionary* userDictionary = [notif userInfo];
@@ -205,16 +222,12 @@
         imageButton.enabled = NO;
         imageButton.hidden = YES;
         
-        // Validate new Username
-        if([self validateUserNameWithString:(name.text)] == TRUE)
-        {
-            [self prepareForUpdate];
-        }
-        else
-        {
-            error = [[UIAlertView alloc] initWithTitle:nil message:@"Username can only contain letters and numbers (4-30)\n" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-            [error show];
-        }
+        // Update profile picture
+        [Update saveImageToServer:UIImageJPEGRepresentation(displaypicture.image, 0.1f) withPostType:@PROFILE_IMAGE];
+        
+        
+        [self prepareForUpdate];
+ 
     }
 }
 
@@ -295,16 +308,10 @@
     NSString* updatedLocation = location.text;
     NSString* updatedBio = bio.text;
     
-    //Code for image sending
-    /*
-    NSString *encodedImage = [self encodeToBase64String:userdata.displayPicture];
-    */
-    
     //Temp for now normally would get display picture as above
     NSString *tempImage = @"default";
     
     NSString* request = [self buildProfileUpdateRequest:[userdata getToken] withImage:tempImage withLocation:updatedLocation withBio:updatedBio];
-    // Need to pass current logged in users token -------^
     
     [Update startReceive:request withType:@UPDATE_REQUEST];
     
@@ -365,6 +372,8 @@
         [[self star5] setImage:[UIImage imageNamed:@"stargrey.png"]];
     }
 }
+
+// ????? Why are we sending images to through struts request ?
 
 // This is the template for building future URLRequests
 // NOTE:: SERVER_ADDRESS is hardcoded in Networking.h

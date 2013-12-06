@@ -20,6 +20,8 @@
 @synthesize tableElements;
 @synthesize shared;
 
+@synthesize selectedFriend;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -37,6 +39,7 @@
     shared = [AppDelegate appDelegate];
     
     // Networking Notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSucceedRequest:) name:@RESPONSE_FOR_POST object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSucceedRequest:) name:@REEL_SUCCESS object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
@@ -169,47 +172,31 @@
                                 otherButtonTitles:nil, nil];
     
     //Get senders name
-    NSString* name = [self.tableElements objectAtIndex:indexPath.row];
-    
-    //Gets the email address for the local friend
-    //Friends names will be updated locally when a login occurs
-    __attribute__((unused))
-    NSString* recipient = [[shared.appUser.getFriendList allKeysForObject:name] objectAtIndex:0];
-    
-    __attribute__((unused))
-    NSString* currentUserEmail = [shared.appUser getEmail];
-    
+    selectedFriend = [self.tableElements objectAtIndex:indexPath.row];
     
     // MAKE SURE CELLS ARE NOT SELECTABLE IF THEY ARENT FILLED IN
     // Fill them in from friendlist
     // TODO
     
-    
-    
-    /*
-    NSString* request = [self buildSendRequest:currentUserEmail
-                                    withFriend:recipient
-                                    withImageName:imageCleanedSpaces];
-    
-    [sendReelRequest startReceive:request withType:@REEL_SEND];
-    
-    if([sendReelRequest isReceiving] == TRUE)
-    {
-        [alert show];
-    }*/
+    [sendReelRequest saveImageToServer:imageToSend withPostType:@REEL_IMAGE];
+    [alert show];
 }
 
+- (NSString*) buildImagePath: (NSString*) sender withRecipient: (NSString*) recipient
+{
+    return @"";
+}
 
 // This is the template for building future URLRequests
 // NOTE:: SERVER_ADDRESS is hardcoded in Networking.h
-- (NSString*) buildSendRequest: (NSString*) sender withFriend: (NSString*) receiver withImageName: (NSString*) imageName
+- (NSString*) buildSendRequest: (NSString*) sender withFriend: (NSString*) receiver withImagePath: (NSString*) imagePath
 {
     NSMutableString* send = [[NSMutableString alloc] initWithString:@SERVER_ADDRESS];
     [send appendString:@"send?"];
     
     NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"from=%@" , sender];
     NSMutableString* parameter2 = [[NSMutableString alloc] initWithFormat: @"&to=%@" , receiver];
-    NSMutableString* parameter3 = [[NSMutableString alloc] initWithFormat: @"&image=%@" , imageName];
+    NSMutableString* parameter3 = [[NSMutableString alloc] initWithFormat: @"&image=%@" , imagePath];
     
     [send appendString:parameter1];
     [send appendString:parameter2];
@@ -223,6 +210,25 @@
 // Handles Succussful Server connection
 -(void) didSucceedRequest: (NSNotification*) notif
 {
+    if([[notif name] isEqualToString:@RESPONSE_FOR_POST])
+    {
+        NSDictionary* userDictionary = [notif userInfo];
+        NSString* response = [userDictionary valueForKey:@POST_RESPONSE];
+        
+        if([response isEqualToString:@""])
+        {
+            NSString* recipient = [[shared.appUser.getFriendList allKeysForObject:selectedFriend] objectAtIndex:0];
+            NSString* currentUserEmail = [shared.appUser getEmail];
+            NSString* path = [self buildImagePath:currentUserEmail withRecipient:recipient];
+            
+            NSString* request = [self buildSendRequest:currentUserEmail withFriend:recipient withImagePath:path];
+            //[sendReelRequest startReceive:request withType:@REEL_SEND];
+        }
+        else
+        {
+            NSLog(@"SERVER ERROR:: Failed to upload reel to server");
+        }
+    }
     if([[notif name] isEqualToString:@REEL_SUCCESS])
     {
         [alert setMessage:@"Message Sent"];

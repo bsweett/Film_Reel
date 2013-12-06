@@ -16,7 +16,7 @@
 #endif
 
 // Server/app attributes
-#define SERVER_ADDRESS          "http://192.168.1.25:8080/filmreel/"
+#define SERVER_ADDRESS          "http://192.168.1.237:8080/filmreel/"
 #define REEL_ALBUM_NAME         "My Reels"
 #define CURRENT_USER            "current_user"
 #define CURRENT_USER_NAME       "current_user_name"
@@ -31,6 +31,7 @@
 #define FRIEND_USER             "friend_user"
 #define CACHED_NEW_PASSWORD     "cached_new_password"
 #define CACHED_NEW_USER         "cached_new_user"
+#define POST_RESPONSE           "post_response"
 
 #define BAR_COLOR "009AFF"
 
@@ -59,6 +60,9 @@
 #define FRIEND_REQUEST  "friend_request"
 #define DATA_REQUEST    "get_friend_data"
 
+#define PROFILE_IMAGE   "profile_image"
+#define REEL_IMAGE      "reel_image"
+
 // Nofitication Names
 #define LOGIN_SUCCESS   "login_success"
 #define SIGNUP_SUCCESS  "signup_success"
@@ -68,6 +72,7 @@
 #define FRIEND_SUCCESS  "friend_sent"
 #define VALID_SUCCESS   "valid_token_success"
 #define DATA_SUCCESS    "got_user_data"
+#define RESPONSE_FOR_POST    "image_upload_response"
 
 #define FAIL_STATUS             "general_fail"
 #define ADDRESS_FAIL            "address_fail"

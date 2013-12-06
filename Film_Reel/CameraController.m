@@ -98,7 +98,7 @@
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Pass image as text
-    NSData *imageAsData = UIImageJPEGRepresentation(frameImage, 0.1);
+    NSData *imageAsData = UIImageJPEGRepresentation(frameImage, 1.0f);
     SelectFriendController* destViewController = segue.destinationViewController;
     destViewController.imageToSend = imageAsData;
 }
