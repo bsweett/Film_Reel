@@ -161,7 +161,7 @@
 {
     
     sendReelRequest = [[Networking alloc] init];
-
+    [sendReelRequest saveImageToServer];
     alert = [[UIAlertView alloc] initWithTitle:nil
                                 message:@"Sending..."
                                 delegate:self
