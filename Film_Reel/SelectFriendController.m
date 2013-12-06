@@ -21,6 +21,9 @@
 @synthesize shared;
 
 @synthesize selectedFriend;
+@synthesize sendersEmail;
+@synthesize recepient;
+@synthesize ImageFileName;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -170,40 +173,35 @@
                                 cancelButtonTitle:nil
                                 otherButtonTitles:nil, nil];
     
-    //Get senders name
+    //Get sender and reciepent
     selectedFriend = [self.tableElements objectAtIndex:indexPath.row];
+    recepient = [[shared.appUser.getFriendList allKeysForObject:selectedFriend] objectAtIndex:0];
+    sendersEmail = [shared.appUser getEmail];
     
     // MAKE SURE CELLS ARE NOT SELECTABLE IF THEY ARENT FILLED IN
     // Fill them in from friendlist
-    // TODO
+
     
-    [sendReelRequest saveImageToServer:imageToSend withPostType:@REEL_IMAGE];
+    NSString* fileName = [self buildImageFileName:recepient];
+    [sendReelRequest saveImageToServer:imageToSend withFileName:fileName];
     [alert show];
 }
 
-- (NSString*) buildImagePath: (NSString*) sender withRecipient: (NSString*) recipient
+- (NSString*) buildImageFileName: (NSString*) recipient
 {
-    return @"";
-}
-
-// This is the template for building future URLRequests
-// NOTE:: SERVER_ADDRESS is hardcoded in Networking.h
-- (NSString*) buildSendRequest: (NSString*) sender withFriend: (NSString*) receiver withImagePath: (NSString*) imagePath
-{
-    NSMutableString* send = [[NSMutableString alloc] initWithString:@SERVER_ADDRESS];
-    [send appendString:@"send?"];
+    ImageFileName = [[NSMutableString alloc] initWithString:recepient];
     
-    NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"from=%@" , sender];
-    NSMutableString* parameter2 = [[NSMutableString alloc] initWithFormat: @"&to=%@" , receiver];
-    NSMutableString* parameter3 = [[NSMutableString alloc] initWithFormat: @"&image=%@" , imagePath];
+    NSDate* currentTimeStamp = [NSDate date];
+    NSDateFormatter * datefromatter = [[NSDateFormatter alloc] init];
+    [datefromatter setDateFormat:@"dd.MM.YY HH:mm:ss"];
+    NSString* dateString = [datefromatter stringFromDate:currentTimeStamp];
     
-    [send appendString:parameter1];
-    [send appendString:parameter2];
-    [send appendString:parameter3];
+    [ImageFileName appendString:@"-"];
+    [ImageFileName appendString:dateString];
     
-    NSLog(@"REQUEST INFO:: Send Reel -- %@", send);
+    NSLog(@"REEL INFO:: created filename for Reel -- %@", ImageFileName);
     
-    return send;
+    return ImageFileName;
 }
 
 // Handles Succussful Server connection
@@ -214,14 +212,20 @@
         NSDictionary* userDictionary = [notif userInfo];
         NSString* response = [userDictionary valueForKey:@POST_RESPONSE];
         
-        if([response isEqualToString:@""])
+        if([response isEqualToString:@"Success"])
         {
-            NSString* recipient = [[shared.appUser.getFriendList allKeysForObject:selectedFriend] objectAtIndex:0];
-            NSString* currentUserEmail = [shared.appUser getEmail];
-            NSString* path = [self buildImagePath:currentUserEmail withRecipient:recipient];
             
-            NSString* request = [self buildSendRequest:currentUserEmail withFriend:recipient withImagePath:path];
-            //[sendReelRequest startReceive:request withType:@REEL_SEND];
+            NSLog(@"SERVER INFO:: Upload of reel was successful");
+            if(ImageFileName != nil && sendersEmail != nil && recepient != nil)
+            {
+                NSString* request = [self buildSendRequest:sendersEmail withFriend:recepient withImageFileName:ImageFileName];
+                [sendReelRequest startReceive:request withType:@REEL_SEND];
+            }
+            else
+            {
+                NSLog(@"REEL ERROR:: ImageFileName, sendersEmail, or recepient are null");
+            }
+            
         }
         else
         {
@@ -234,6 +238,26 @@
         [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
         //[self.navigationController popToViewController:destView animated:<#(BOOL)#>];
     }
+}
+
+// This is the template for building future URLRequests
+// NOTE:: SERVER_ADDRESS is hardcoded in Networking.h
+- (NSString*) buildSendRequest: (NSString*) sender withFriend: (NSString*) receiver withImageFileName: (NSString*) imageName
+{
+    NSMutableString* send = [[NSMutableString alloc] initWithString:@SERVER_ADDRESS];
+    [send appendString:@"send?"];
+    
+    NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"from=%@" , sender];
+    NSMutableString* parameter2 = [[NSMutableString alloc] initWithFormat: @"&to=%@" , receiver];
+    NSMutableString* parameter3 = [[NSMutableString alloc] initWithFormat: @"&image=%@" , imageName];
+    
+    [send appendString:parameter1];
+    [send appendString:parameter2];
+    [send appendString:parameter3];
+    
+    NSLog(@"REQUEST INFO:: Send Reel -- %@", send);
+    
+    return send;
 }
 
 // Handles all Networking errors that come from Networking.m
