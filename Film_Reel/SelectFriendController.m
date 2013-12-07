@@ -207,6 +207,7 @@
 // Handles Succussful Server connection
 -(void) didSucceedRequest: (NSNotification*) notif
 {
+    NSLog(@"Notification got called for REEL_SUCCESS");
     if([[notif name] isEqualToString:@RESPONSE_FOR_POST])
     {
         NSDictionary* userDictionary = [notif userInfo];
@@ -236,6 +237,7 @@
     }
     if([[notif name] isEqualToString:@REEL_SUCCESS])
     {
+        NSLog(@"Inside notification if statement");
         [alert setMessage:@"Message Sent"];
         [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
         //[self.navigationController popToViewController:destView animated:<#(BOOL)#>];

@@ -87,7 +87,8 @@
         if(dataReceived != nil)
         {
             NSString *localMessage = [dataReceived objectForKey:@"message"];
-            
+            NSLog(@"The local message is: %@", localMessage);
+            NSLog(@"The request type is: %@", requestType);
             // check what type of request it is
             if([localMessage isEqualToString:@"Fail"])
             {
@@ -113,6 +114,7 @@
             }
             else if([requestType isEqualToString: @REEL_SEND])
             {
+                NSLog(@"Request type is REEL_SEND");
                 [[NSNotificationCenter defaultCenter]postNotificationName:@REEL_SUCCESS object:nil];
             }
             else if([requestType isEqualToString: @FRIEND_REQUEST])
