@@ -226,8 +226,7 @@
     }
     else
     {
-        //NSDictionary* reelDictionary = [NSDictionary dictionaryWithObject:ANARRAY OF REELS forKey:@INBOX_DATA];
-        //[[NSNotificationCenter defaultCenter]postNotificationName:@INBOX_SUCCESS  object:nil userInfo:userDictionary];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@INBOX_SUCCESS  object:nil userInfo:[dataReceived objectForKey:@"reels"]];
     }
 }
 
@@ -337,6 +336,10 @@
     {
         currentObject = [[NSMutableString alloc] init];
     }
+    if([elementName isEqualToString:@"reel"])
+    {
+        currentObject = [[NSMutableString alloc] init];
+    }
     if([elementName isEqualToString:@"pop"])
     {
         currentObject = [[NSMutableString alloc] init];
@@ -383,10 +386,9 @@
     {
         [dataReceived setObject:currentObject forKey:elementName];
     }
-    if([elementName isEqualToString:@"snap"])
+    if([elementName isEqualToString:@"reel"])
     {
         [dataReceived setObject:currentObject forKey:elementName];
-        [self seperateReelData:currentObject andReel:reelObject];
     }
     if([elementName isEqualToString:@"message"])
     {
@@ -410,6 +412,10 @@
         [userObject setImagePath:[dataReceived objectForKey:@"image"]];
         [dataReceived setObject:userObject forKey:@"user"];
     }
+    if([elementName isEqualToString:@"data"])
+    {
+        [dataReceived setObject:[self seperateReelData:[dataReceived objectForKey:@"reel"]] forKey:@"reels"];
+    }
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
@@ -417,14 +423,20 @@
     [currentObject appendString:[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
 }
 
-- (void)seperateReelData:(NSString*)reelString andReel: (Reel*) reelObject
+- (NSMutableArray *)seperateReelData:(NSString*)reelString
 {
     NSArray *reels = [reelString componentsSeparatedByString:@"-"];
+    NSMutableArray *arrayOfReels = [[NSMutableArray alloc] init];
     
     for(int i=1; i < [reels count] -1; i+=2)
     {
-        //[reelArray addObject:<#(id)#>]
+        Reel *reel = [[Reel alloc]init];
+        [reel setSender:[reels objectAtIndex:i-1]];
+        [reel setImagePath:[reels objectAtIndex:i]];
+        [arrayOfReels addObject:reel];
     }
+    
+    return arrayOfReels;
 }
 
 - (void)seperateFriends:(NSString *)friendsString andUser: (User *)user
