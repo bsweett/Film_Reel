@@ -483,7 +483,9 @@
 }
 
 -(UIImage *) downloadImageFromServer: (NSString *) url {
+    NSLog(@"The url is: %@", url);
     NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:url]];
+    NSLog(@"The image data is: %@", imageData);
     return [UIImage imageWithData: imageData];
 }
 
