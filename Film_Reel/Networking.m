@@ -412,7 +412,7 @@
         [userObject setEmail:[dataReceived objectForKey:@"email"]];
         [userObject setGender:[dataReceived objectForKey:@"gender"]];
         [userObject setPopularity:[dataReceived objectForKey:@"pop"]];
-        [userObject setImagePath:[dataReceived objectForKey:@"image"]];
+        [userObject setDisplayPicturePath:[dataReceived objectForKey:@"image"]];
         [dataReceived setObject:userObject forKey:@"user"];
     }
 }
