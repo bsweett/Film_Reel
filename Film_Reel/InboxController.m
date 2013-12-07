@@ -44,6 +44,7 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@EMPTY_INBOX object:nil];
     
     [inboxTable setDelegate:self];
+    [inboxTable setDataSource:self];
     
     inboxUpdate = [[Networking alloc] init];
     
@@ -117,6 +118,11 @@
     [alert dismissWithClickedButtonIndex:0 animated:YES];
 }
 
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [tablearray count];
@@ -145,6 +151,8 @@
     
     // Set up the cell...
     aReelForCell = [tablearray objectAtIndex:indexPath.row];
+    NSLog(@"A Cell is %@", [aReelForCell getSender]);
+    
     
     cell.textLabel.text = @"Reel from: %@", [aReelForCell getSender];
     
