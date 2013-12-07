@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="51k-iN-JKb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="51k-iN-JKb">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Login Controller - Log In To Film Reel-->
@@ -375,7 +375,7 @@
             </objects>
             <point key="canvasLocation" x="719" y="-745"/>
         </scene>
-        <!--Inbox Controller - Inbox-->
+        <!--Inbox Controller-->
         <scene sceneID="yF7-Ix-Yj0">
             <objects>
                 <viewController id="e6X-Kw-yEx" customClass="InboxController" sceneMemberID="viewController">
@@ -393,7 +393,7 @@
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="jci-MU-iZm">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jci-MU-iZm" id="Dbo-Qd-bS6">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -406,7 +406,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Inbox" image="InboxTab" id="MKW-Mu-tFf"/>
+                    <navigationItem key="navigationItem" id="3m7-BC-Zd4"/>
                     <connections>
                         <outlet property="inboxTable" destination="EZw-1U-gPn" id="GcX-s8-3Hn"/>
                         <segue destination="i34-Pq-JtY" kind="push" identifier="reelview" id="K1v-DA-ByF"/>
@@ -414,7 +414,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p5i-7T-enR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1272" y="-750"/>
+            <point key="canvasLocation" x="1798" y="-750"/>
         </scene>
         <!--Reel View-->
         <scene sceneID="XI4-N1-N2q">
@@ -442,7 +442,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MRt-Wy-OXV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1758" y="-750"/>
+            <point key="canvasLocation" x="2284" y="-750"/>
         </scene>
         <!--Friends Controller - Friends-->
         <scene sceneID="8mI-cB-VPB">
@@ -845,7 +845,7 @@
                         <segue destination="sye-qo-Uds" kind="relationship" relationship="viewControllers" id="1Lc-jN-stm"/>
                         <segue destination="zka-G7-N9o" kind="relationship" relationship="viewControllers" id="s4f-j1-on0"/>
                         <segue destination="PkG-5h-swa" kind="relationship" relationship="viewControllers" id="WXy-C4-eSb"/>
-                        <segue destination="e6X-Kw-yEx" kind="relationship" relationship="viewControllers" id="uua-0O-FJv"/>
+                        <segue destination="rL6-KD-Jxd" kind="relationship" relationship="viewControllers" id="uua-0O-FJv"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mUE-hJ-SLd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -889,6 +889,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UOB-bu-dhk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1258" y="783"/>
+        </scene>
+        <!--Navigation Controller - Inbox-->
+        <scene sceneID="xTT-PI-z94">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rL6-KD-Jxd" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Inbox" image="InboxTab" id="MKW-Mu-tFf"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NLW-BM-PfF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="e6X-Kw-yEx" kind="relationship" relationship="rootViewController" id="t2M-bg-PXW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tfJ-sk-rLO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1272" y="-750"/>
         </scene>
     </scenes>
     <resources>

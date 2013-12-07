@@ -130,7 +130,7 @@
                         <segue destination="UTL-xD-LwL" kind="relationship" relationship="viewControllers" id="mro-XM-ORN"/>
                         <segue destination="IhJ-QI-qMx" kind="relationship" relationship="viewControllers" id="Sa5-hg-O1b"/>
                         <segue destination="0gL-6B-yG6" kind="relationship" relationship="viewControllers" id="CTv-uR-Hf1"/>
-                        <segue destination="WbC-AW-IyI" kind="relationship" relationship="viewControllers" id="lCg-4e-rzD"/>
+                        <segue destination="2zt-5X-8Kq" kind="relationship" relationship="viewControllers" id="lCg-4e-rzD"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fOC-Oi-dwq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -188,7 +188,7 @@
             </objects>
             <point key="canvasLocation" x="5460" y="-2755"/>
         </scene>
-        <!--Inbox Controller - Indox-->
+        <!--Inbox Controller-->
         <scene sceneID="nEt-ek-Iv5">
             <objects>
                 <viewController id="WbC-AW-IyI" customClass="InboxController" sceneMemberID="viewController">
@@ -206,7 +206,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="beR-X0-JF7">
-                                        <rect key="frame" x="0.0" y="22" width="768" height="44"/>
+                                        <rect key="frame" x="0.0" y="86" width="768" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="beR-X0-JF7" id="MkY-XE-d8E">
                                             <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
@@ -222,7 +222,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Indox" image="InboxTab" id="gez-F1-o6T"/>
+                    <navigationItem key="navigationItem" id="OBV-zF-eJ4"/>
                     <connections>
                         <outlet property="inboxTable" destination="W4Q-Fa-LDB" id="nE6-ZG-3CB"/>
                         <segue destination="qxk-WD-2qH" kind="push" identifier="reelview" id="ZOz-IV-rlD"/>
@@ -230,7 +230,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Jw-9z-gCe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5163" y="-33"/>
+            <point key="canvasLocation" x="6137" y="-33"/>
         </scene>
         <!--Reel View-->
         <scene sceneID="QrS-ga-cEU">
@@ -258,7 +258,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JN3-ck-Bst" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6030" y="-38"/>
+            <point key="canvasLocation" x="7004" y="-38"/>
         </scene>
         <!--Navigation Controller - Take Reel-->
         <scene sceneID="wBc-fi-Yad">
@@ -919,6 +919,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EFx-xo-juS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4489" y="-2777"/>
+        </scene>
+        <!--Navigation Controller - Indox-->
+        <scene sceneID="MHx-1K-2nK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2zt-5X-8Kq" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Indox" image="InboxTab" id="gez-F1-o6T"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qmh-hE-46F">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="WbC-AW-IyI" kind="relationship" relationship="rootViewController" id="oyC-3l-bN6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bvS-Qf-glQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5163" y="-33"/>
         </scene>
     </scenes>
     <resources>
