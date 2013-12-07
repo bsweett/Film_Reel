@@ -193,7 +193,7 @@
     
     NSDate* currentTimeStamp = [NSDate date];
     NSDateFormatter * datefromatter = [[NSDateFormatter alloc] init];
-    [datefromatter setDateFormat:@"dd.MM.YY-HH:mm:ss"];
+    [datefromatter setDateFormat:@"dd.MM.YY$HH:mm:ss"];
     NSString* dateString = [datefromatter stringFromDate:currentTimeStamp];
     
     [ImageFileName appendString:@"@"];
