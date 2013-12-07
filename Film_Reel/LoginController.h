@@ -16,14 +16,14 @@
     //AppDelegate* app;
 }
 
-@property(nonatomic, strong) IBOutlet UIButton *loginButton;
-@property(nonatomic, strong) IBOutlet UIButton *createButton;
-@property(nonatomic, strong) IBOutlet UITextField *usernameField;
-@property(nonatomic, strong) IBOutlet UITextField *passwordField;
-@property(nonatomic, strong) UIAlertView* error;
-@property(nonatomic, strong) UIActivityIndicatorView* indicator;
-@property(nonatomic, strong) Networking* loginrequest;
-@property(nonatomic, strong) User* currentUser;
+@property (nonatomic, strong) IBOutlet UIButton                *loginButton;
+@property (nonatomic, strong) IBOutlet UIButton                *createButton;
+@property (nonatomic, strong) IBOutlet UITextField             *usernameField;
+@property (nonatomic, strong) IBOutlet UITextField             *passwordField;
+@property (nonatomic, strong) UIAlertView             * error;
+@property (nonatomic, strong) UIActivityIndicatorView * indicator;
+@property (nonatomic, strong) Networking              * loginrequest;
+@property (nonatomic, strong) User                    * currentUser;
 
 // Validatation
 - (BOOL)validateUserNameWithString:(NSString*)username;

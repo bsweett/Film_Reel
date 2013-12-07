@@ -20,6 +20,7 @@
 @synthesize inboxUpdate;
 @synthesize shared;
 @synthesize refreshControl;
+@synthesize aReelForCell;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -78,6 +79,14 @@
     if([[notif name] isEqualToString:@INBOX_SUCCESS])
     {
         NSLog(@"INBOX INFO:: Got Data from Server\n");
+        
+        NSDictionary* userDictionary = [notif userInfo];
+        NSMutableArray* reels = [userDictionary valueForKey:@INBOX_SUCCESS];
+        
+        NSArray *copyArray = [reels mutableCopy];
+        
+        [tablearray addObjectsFromArray:copyArray];
+        
         [refreshControl endRefreshing];
         
         // get data from notification and reload table with it
@@ -136,7 +145,10 @@
     }
     
     // Set up the cell...
-    cell.textLabel.text = [tablearray objectAtIndex:indexPath.row];
+    aReelForCell = [tablearray objectAtIndex:indexPath.row];
+    
+    
+    cell.textLabel.text = [aReelForCell getSender];
     
     return cell;
 }

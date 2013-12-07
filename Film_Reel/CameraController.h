@@ -15,29 +15,27 @@
 @interface CameraController : UIViewController <UIImagePickerControllerDelegate,
 UINavigationControllerDelegate, UIGestureRecognizerDelegate>
 
-@property(nonatomic, strong) UIImagePickerController *cameraUI;
+@property (nonatomic, strong) UIImagePickerController *cameraUI;
 @property CameraOverlay *cameraOverlay;
 @property iPadOverlay* iPadoverlay;
 
-@property(nonatomic, strong) UIImage *image1;
-@property(nonatomic, strong) UIImage *image2;
-@property(nonatomic, strong) UIImage *image3;
-@property(nonatomic, strong) UIImage *image4;
-@property(nonatomic, strong) UIImage *image5;
-@property(nonatomic, strong) UIImage *stripImage;
-@property(nonatomic, strong) UIImage *combinedImage;
-@property(nonatomic, strong) UIImage *frameImage;
+@property (nonatomic, strong) UIImage                 *image1;
+@property (nonatomic, strong) UIImage                 *image2;
+@property (nonatomic, strong) UIImage                 *image3;
+@property (nonatomic, strong) UIImage                 *image4;
+@property (nonatomic, strong) UIImage                 *image5;
+@property (nonatomic, strong) UIImage                 *stripImage;
+@property (nonatomic, strong) UIImage                 *combinedImage;
+@property (nonatomic, strong) UIImage                 *frameImage;
 
-@property(nonatomic, strong) IBOutlet UIImageView *photoStrip;
+@property (nonatomic, strong) IBOutlet UIImageView             *photoStrip;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem         *takeReel;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem         *saveReel;
 
-@property(nonatomic, strong) IBOutlet UIBarButtonItem *takeReel;
+@property (nonatomic, strong) NSURL                   *moviePath;
 
-@property(nonatomic, strong) IBOutlet UIBarButtonItem *saveReel;
-
-@property(nonatomic, strong) NSURL *moviePath;
-
-@property(nonatomic, strong) Networking *sendReelRequest;
-@property(nonatomic, strong) UIAlertView *alert;
+@property (nonatomic, strong) Networking              *sendReelRequest;
+@property (nonatomic, strong) UIAlertView             *alert;
 
 - (IBAction)takeReelPressed:(id)sender;
 - (IBAction)saveReelPressed:(id)sender;

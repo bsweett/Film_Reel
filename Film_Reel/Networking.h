@@ -13,15 +13,15 @@
 
 @interface Networking : NSObject <NSXMLParserDelegate>
 
-@property(nonatomic, strong, readwrite) NSURLConnection * connection;
-@property(nonatomic, strong) NSMutableData * data;
-@property(nonatomic, strong) NSXMLParser* parser;
-@property(nonatomic, strong) NSString* requestType;
-@property(nonatomic, strong) User* userObject;
-@property(nonatomic, strong) Reel* reelObject;
-@property(nonatomic, strong) NSMutableArray* reelArray;
-@property(nonatomic, strong) NSMutableString* currentObject;
-@property(nonatomic, strong) NSMutableDictionary *dataReceived;
+@property (nonatomic, strong, readwrite) NSURLConnection     * connection;
+@property (nonatomic, strong           ) NSMutableData       * data;
+@property (nonatomic, strong           ) NSXMLParser         * parser;
+@property (nonatomic, strong           ) NSString            * requestType;
+@property (nonatomic, strong           ) User                * userObject;
+@property (nonatomic, strong           ) Reel                * reelObject;
+@property (nonatomic, strong           ) NSMutableArray      * reelArray;
+@property (nonatomic, strong           ) NSMutableString     * currentObject;
+@property (nonatomic, strong           ) NSMutableDictionary *dataReceived;
 
 - (void) startReceive: (NSString*) defaultURL withType: (NSString*) typeOfRequest;
 - (BOOL)isReceiving;

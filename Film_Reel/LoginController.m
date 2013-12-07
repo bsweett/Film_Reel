@@ -175,14 +175,14 @@
         {
             NSLog(@"TOKEN INFO:: Token stored at login %@", currentUser.token);
             
-            NSString* storeToken = currentUser.token;
-            NSString* storeName = currentUser.userName;
-            NSString* storeBio = currentUser.userBio;
-            NSString* storeLoc = currentUser.location;
-            NSString* storePass = currentUser.password;
-            NSString* storeEmail = currentUser.email;
-            NSString* storePop = currentUser.popularity;
-            NSString* storeGender = currentUser.gender;
+            NSString* storeToken              = currentUser.token;
+            NSString* storeName               = currentUser.userName;
+            NSString* storeBio                = currentUser.userBio;
+            NSString* storeLoc                = currentUser.location;
+            NSString* storePass               = currentUser.password;
+            NSString* storeEmail              = currentUser.email;
+            NSString* storePop                = currentUser.popularity;
+            NSString* storeGender             = currentUser.gender;
             NSMutableDictionary* storeFriends = currentUser.getFriendList;
             
             [currentLoggedIn setObject:storeToken forKey:@CURRENT_USER_TOKEN];

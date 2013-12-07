@@ -12,15 +12,15 @@
 
 @interface SelectFriendController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property(nonatomic, strong) Networking *sendReelRequest;
-@property(nonatomic, strong) UIAlertView *alert;
-@property(nonatomic, strong) NSArray *tableElements;
-@property(strong, nonatomic) AppDelegate* shared;
+@property (nonatomic, strong) Networking      *sendReelRequest;
+@property (nonatomic, strong) UIAlertView     *alert;
+@property (nonatomic, strong) NSArray         *tableElements;
+@property (strong, nonatomic) AppDelegate     * shared;
 
-@property(nonatomic, strong) NSData* imageToSend;
-@property(strong, nonatomic) NSString* selectedFriend;
-@property(strong, nonatomic) NSString* sendersEmail;
-@property(strong, nonatomic) NSString* recepient;
-@property(strong, nonatomic) NSMutableString* ImageFileName;
+@property (nonatomic, strong) NSData          * imageToSend;
+@property (strong, nonatomic) NSString        * selectedFriend;
+@property (strong, nonatomic) NSString        * sendersEmail;
+@property (strong, nonatomic) NSString        * recepient;
+@property (strong, nonatomic) NSMutableString * ImageFileName;
 
 @end

@@ -37,9 +37,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    emailField.delegate = self;
-    userField.delegate = self;
-    passField.delegate = self;
+    emailField.delegate  = self;
+    userField.delegate   = self;
+    passField.delegate   = self;
     passConfirm.delegate = self;
     [emailField setAutocorrectionType:UITextAutocorrectionTypeNo];
     [userField setAutocorrectionType:UITextAutocorrectionTypeNo];
@@ -72,12 +72,12 @@
 -(IBAction)doNextButton:(id)sender
 {
     // Grab values and alloc network object and error Messages
-    userRequest = [[Networking alloc] init];
-    NSString * email = emailField.text;
-    NSString * username = userField.text;
-    NSString * password = passField.text;
-    NSString * confirmPassword = passConfirm.text;
-    NSString * errorTitle = @"Error";
+    userRequest                    = [[Networking alloc] init];
+    NSString * email               = emailField.text;
+    NSString * username            = userField.text;
+    NSString * password            = passField.text;
+    NSString * confirmPassword     = passConfirm.text;
+    NSString * errorTitle          = @"Error";
     NSMutableString * errorMessage = [[NSMutableString alloc] init];
     
     // Drop keyboard
@@ -218,8 +218,8 @@
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     SignUpCompleteController* destViewContorller = segue.destinationViewController;
-    destViewContorller.loginUsername = userField.text;
-    destViewContorller.loginPassword = passField.text;
+    destViewContorller.loginUsername             = userField.text;
+    destViewContorller.loginPassword             = passField.text;
 }
 
 // Drops keyboard when return key is pressed
@@ -240,7 +240,7 @@
 {
     if(emailaddress.length >= MIN_EMAIL_ENTRY && emailaddress.length <= MAX_EMAIL_ENTRY)
     {
-        NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+        NSString *emailRegex   = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
         NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
         return [emailTest evaluateWithObject:emailaddress];
     }
@@ -252,7 +252,7 @@
 {
     if( username.length >= MIN_ENTRY_SIZE && username.length <= MAX_USERNAME_ENTRY )
     {
-        NSString *nameRegex = @"[A-Z0-9a-z]*";
+        NSString *nameRegex   = @"[A-Z0-9a-z]*";
         NSPredicate *nameTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", nameRegex];
         return [nameTest evaluateWithObject:username];
     }
@@ -269,7 +269,7 @@
     if( pass.length >= MIN_PASS_ENTRY && pass.length <= MAX_PASSWORD_ENTRY )
     {
         NSString *passwordRegex = @"^[a-zA-Z_0-9\\-_,;.:#+*?=!§%&/()@]+";
-        NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", passwordRegex];
+        NSPredicate *emailTest  = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", passwordRegex];
         return [emailTest evaluateWithObject:pass];
     }
     
