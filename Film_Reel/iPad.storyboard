@@ -252,6 +252,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="KMB-73-vLv"/>
+                    <connections>
+                        <outlet property="imageView" destination="RGG-X9-4ak" id="c3Q-RO-ixi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JN3-ck-Bst" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
