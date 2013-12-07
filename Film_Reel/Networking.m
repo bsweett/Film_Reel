@@ -114,7 +114,7 @@
             }
             else if([requestType isEqualToString: @REEL_SEND])
             {
-                NSLog(@"Request type is REEL_SEND");
+                // Needs proper valid method
                 [[NSNotificationCenter defaultCenter]postNotificationName:@REEL_SUCCESS object:nil];
             }
             else if([requestType isEqualToString: @FRIEND_REQUEST])
@@ -127,7 +127,7 @@
             }
             else if([requestType isEqualToString:@INBOX_REQUEST])
             {
-                
+                [self isValidInboxRequest:localMessage];
             }
         }
     }
@@ -390,7 +390,8 @@
     }
     if([elementName isEqualToString:@"reel"])
     {
-        [dataReceived setObject:currentObject forKey:elementName];
+        //[dataReceived setObject:currentObject forKey:elementName];
+        [dataReceived setObject:[self seperateReelData:currentObject] forKey:@INBOX_DATA];
     }
     if([elementName isEqualToString:@"message"])
     {
@@ -413,10 +414,6 @@
         [userObject setPopularity:[dataReceived objectForKey:@"pop"]];
         [userObject setImagePath:[dataReceived objectForKey:@"image"]];
         [dataReceived setObject:userObject forKey:@"user"];
-    }
-    if([elementName isEqualToString:@"data"])
-    {
-        [dataReceived setObject:[self seperateReelData:[dataReceived objectForKey:@"reel"]] forKey:@INBOX_DATA];
     }
 }
 

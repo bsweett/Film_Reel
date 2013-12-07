@@ -87,7 +87,7 @@
         [tablearray addObjectsFromArray:copyArray];
         
         [refreshControl endRefreshing];
-        
+        [inboxTable reloadData];
         // get data from notification and reload table with it
     }
 }
@@ -183,7 +183,7 @@
 - (NSString*) buildInboxRequest: (NSString*) token
 {
     NSMutableString* inbox = [[NSMutableString alloc] initWithString:@SERVER_ADDRESS];
-    [inbox appendString:@"inbox?"];
+    [inbox appendString:@"getinbox?"];
     
     NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"token=%@" , token];
     

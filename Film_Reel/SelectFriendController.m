@@ -240,7 +240,7 @@
         NSLog(@"Inside notification if statement");
         [alert setMessage:@"Message Sent"];
         [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
-        //[self.navigationController popToViewController:destView animated:<#(BOOL)#>];
+        [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
 
