@@ -34,4 +34,5 @@
 
 -(void)saveImageToServer: (NSData*) dataImage withFileName: (NSString*) filename;
 
+-(NSMutableArray *)seperateReelData:(NSString*)reelString;
 @end
