@@ -17,7 +17,7 @@
 @synthesize location;
 @synthesize userBio;
 @synthesize password;
-@synthesize imagePath;
+@synthesize displayPicturePath;
 @synthesize gender;
 @synthesize popularity;
 @synthesize friendsList;
@@ -53,7 +53,7 @@
 - (NSString*) getEmail                 { return email;          }
 - (NSMutableString*) getUserBio        { return userBio;        }
 - (NSMutableString*) getPassword       { return password;       }
-- (NSString*) getImagePath             { return imagePath;      }
+- (NSString*) getDisplayPicturePath    { return displayPicturePath;}
 - (NSMutableDictionary*) getFriendList { return friendsList;    }
 - (NSInteger*) getFriendCount          { return friendCount;    }
 - (NSMutableString*) getPopularity     { return popularity;     }
@@ -66,7 +66,7 @@
 - (void) setEmail:     (NSMutableString*) eAddress { email           = eAddress;        }
 - (void) setUserBio:   (NSMutableString*) bio      { userBio         = bio;             }
 - (void) setPassword:  (NSMutableString *)pass     { password        = pass;            }
-- (void) setImagePath: (NSString *) image          { imagePath       = image;           }
+- (void) setDisplayPicture: (NSString *) image     { displayPicturePath = image;        }
 - (void) incrementCount                            { friendCount     = friendCount + 1; }
 - (void) decrementCount                            { friendCount     = friendCount - 1; }
 - (void) setPopularity:(NSMutableString*)pop       { popularity      = pop;             }

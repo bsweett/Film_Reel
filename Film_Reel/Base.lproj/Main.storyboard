@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="51k-iN-JKb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="51k-iN-JKb">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
         <!--Login Controller - Log In To Film Reel-->
@@ -590,18 +590,13 @@
                         <outlet property="bio" destination="n1I-jK-Q0Q" id="h9b-Gp-efc"/>
                         <outlet property="displayPicture" destination="QNz-Pf-LZM" id="7ZX-Id-gtN"/>
                         <outlet property="email" destination="g9V-bt-VYS" id="zgM-i0-ZMs"/>
-                        <outlet property="friendstar1" destination="fon-ZF-htu" id="sWl-J8-KfF"/>
-                        <outlet property="friendstar2" destination="J7b-mg-Ecp" id="YAX-Yv-txB"/>
-                        <outlet property="friendstar3" destination="3hE-R8-meb" id="97U-hm-xTJ"/>
-                        <outlet property="friendstar4" destination="Zu2-Fe-xmW" id="8mH-hB-yga"/>
-                        <outlet property="friendstar5" destination="52K-s2-qBt" id="Twg-Jy-uNh"/>
+                        <outlet property="friendstar1" destination="fon-ZF-htu" id="O6H-xw-PIY"/>
+                        <outlet property="friendstar2" destination="J7b-mg-Ecp" id="ZK9-ie-ag8"/>
+                        <outlet property="friendstar3" destination="3hE-R8-meb" id="MTA-99-qtM"/>
+                        <outlet property="friendstar4" destination="Zu2-Fe-xmW" id="WFr-DB-7cU"/>
+                        <outlet property="friendstar5" destination="52K-s2-qBt" id="F2h-80-cY9"/>
                         <outlet property="location" destination="Imp-Kq-bca" id="akx-Ah-D8b"/>
                         <outlet property="name" destination="ors-jD-Oag" id="F3k-k8-ogN"/>
-                        <outlet property="star1" destination="fon-ZF-htu" id="jpd-az-LEC"/>
-                        <outlet property="star2" destination="J7b-mg-Ecp" id="yXM-vs-RZj"/>
-                        <outlet property="star3" destination="3hE-R8-meb" id="uz6-Fu-rY5"/>
-                        <outlet property="star4" destination="Zu2-Fe-xmW" id="geE-WT-8V9"/>
-                        <outlet property="star5" destination="52K-s2-qBt" id="nbE-ME-P2x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pWS-I8-8Ha" userLabel="First Responder" sceneMemberID="firstResponder"/>
