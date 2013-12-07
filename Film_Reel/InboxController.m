@@ -146,8 +146,7 @@
     // Set up the cell...
     aReelForCell = [tablearray objectAtIndex:indexPath.row];
     
-    
-    cell.textLabel.text = [aReelForCell getSender];
+    cell.textLabel.text = @"Reel from: %@", [aReelForCell getSender];
     
     return cell;
 }
