@@ -13,8 +13,8 @@
 
 @interface SignUpCompleteController : UIViewController
 
-@property (nonatomic, strong) NSString* loginUsername;
-@property (nonatomic, strong) NSString* loginPassword;
+@property (nonatomic, strong) NSString * loginUsername;
+@property (nonatomic, strong) NSString * loginPassword;
 
 -(IBAction) doLogIn:(id) sender;
 

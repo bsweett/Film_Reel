@@ -13,12 +13,12 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow* window;
-@property (strong, nonatomic) User* appUser;
-@property (strong, nonatomic) Networking* validToken;
-@property (strong, nonatomic) UIViewController* startingview;
-@property (strong, nonatomic) UIViewController* bypassLogin;
-@property (strong, nonatomic) UIStoryboard* main;
+@property (strong, nonatomic) UIWindow         * window;
+@property (strong, nonatomic) User             * appUser;
+@property (strong, nonatomic) Networking       * validToken;
+@property (strong, nonatomic) UIViewController * startingview;
+@property (strong, nonatomic) UIViewController * bypassLogin;
+@property (strong, nonatomic) UIStoryboard     * main;
 
 
 - (UIColor*)colorWithHexString:(NSString*)hex;

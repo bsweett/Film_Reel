@@ -99,14 +99,14 @@
     {
         NSLog(@"TOKEN INFO:: Token into background %@", appUser.token);
         
-        NSString* storeToken = appUser.token;
-        NSString* storeName = appUser.userName;
-        NSString* storeBio = appUser.userBio;
-        NSString* storeLoc = appUser.location;
-        NSString* storePass = appUser.password;
-        NSString* storeEmail = appUser.email;
-        NSString* storePop = appUser.popularity;
-        NSString* storeGender = appUser.gender;
+        NSString* storeToken              = appUser.token;
+        NSString* storeName               = appUser.userName;
+        NSString* storeBio                = appUser.userBio;
+        NSString* storeLoc                = appUser.location;
+        NSString* storePass               = appUser.password;
+        NSString* storeEmail              = appUser.email;
+        NSString* storePop                = appUser.popularity;
+        NSString* storeGender             = appUser.gender;
         NSMutableDictionary* storeFriends = appUser.getFriendList;
         
         [currentLoggedIn setObject:storeToken forKey:@CURRENT_USER_TOKEN];
@@ -153,16 +153,15 @@
     
     // Get our user defaults
     NSUserDefaults* currentLoggedIn = [NSUserDefaults standardUserDefaults];
-    appUser.token = [currentLoggedIn objectForKey:@CURRENT_USER_TOKEN];
-    appUser.userName = [currentLoggedIn objectForKey:@CURRENT_USER_NAME];
-    appUser.gender = [currentLoggedIn objectForKey:@CURRENT_USER_GENDER];
-    appUser.popularity = [currentLoggedIn objectForKey:@CURRENT_USER_POP];
-    appUser.location = [currentLoggedIn objectForKey:@CURRENT_USER_LOCATION];
-    appUser.email = [currentLoggedIn objectForKey:@CURRENT_USER_EMAIL];
-    appUser.userBio = [currentLoggedIn objectForKey:@CURRENT_USER_BIO];
-    appUser.friendsList = [currentLoggedIn objectForKey:@CURRENT_USER_FRIENDS];
-    
-    NSString* token = [appUser getToken];
+    appUser.token                   = [currentLoggedIn objectForKey:@CURRENT_USER_TOKEN];
+    appUser.userName                = [currentLoggedIn objectForKey:@CURRENT_USER_NAME];
+    appUser.gender                  = [currentLoggedIn objectForKey:@CURRENT_USER_GENDER];
+    appUser.popularity              = [currentLoggedIn objectForKey:@CURRENT_USER_POP];
+    appUser.location                = [currentLoggedIn objectForKey:@CURRENT_USER_LOCATION];
+    appUser.email                   = [currentLoggedIn objectForKey:@CURRENT_USER_EMAIL];
+    appUser.userBio                 = [currentLoggedIn objectForKey:@CURRENT_USER_BIO];
+    appUser.friendsList             = [currentLoggedIn objectForKey:@CURRENT_USER_FRIENDS];
+    NSString* token                 = [appUser getToken];
     
     // Start our request
     if(token != nil)
@@ -175,7 +174,7 @@
         // Might need to tweak this section if networking is slow (Black page?)
         if([validToken isReceiving])
         {
-            UIView *view=[[UIView alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
+            UIView *view   = [[UIView alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
             UIImage* image = [UIImage imageNamed:@"LaunchImage-700-Portrait"];
             [view setBackgroundColor:[UIColor colorWithPatternImage:image]];
         }

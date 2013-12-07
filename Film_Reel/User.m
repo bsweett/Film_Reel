@@ -30,47 +30,47 @@
     
     if(self)
     {
-        userName = [[NSMutableString alloc] initWithCapacity:MAX_USER_SIZE];
-        displayPicture= [[UIImage alloc] init];
-        email = [[NSMutableString alloc] initWithCapacity:MAX_EMAIL_SIZE];
-        location = [[NSMutableString alloc] initWithCapacity:MAX_LOCATION_SIZE];
-        userBio = [[NSMutableString alloc] initWithCapacity:MAX_BIO_SIZE];
-        friendCount = 0;
-        friendsList = [[NSMutableDictionary alloc] initWithCapacity:MAX_FRIENDS_SIZE];
-        token = @"";
-        popularity = 0;
-        gender = [[NSMutableString alloc] initWithCapacity:1];
+        userName       = [[NSMutableString alloc] initWithCapacity:MAX_USER_SIZE];
+        displayPicture = [[UIImage alloc] init];
+        email          = [[NSMutableString alloc] initWithCapacity:MAX_EMAIL_SIZE];
+        location       = [[NSMutableString alloc] initWithCapacity:MAX_LOCATION_SIZE];
+        userBio        = [[NSMutableString alloc] initWithCapacity:MAX_BIO_SIZE];
+        friendCount    = 0;
+        friendsList    = [[NSMutableDictionary alloc] initWithCapacity:MAX_FRIENDS_SIZE];
+        token          = @"";
+        popularity     = 0;
+        gender         = [[NSMutableString alloc] initWithCapacity:1];
     }
     
     return self;
 }
 
 // Get Values --------------------------------------------------------------------
-- (NSMutableString*) getUserName  { return userName;       }
-- (NSString *) getToken           { return token;          }
-- (UIImage *) getDP               { return displayPicture; }
-- (NSMutableString*) getLocation  { return location;       }
-- (NSString*) getEmail            { return email;          }
-- (NSMutableString*) getUserBio   { return userBio;        }
-- (NSMutableString*) getPassword  { return password;       }
-- (NSString*) getImagePath        { return imagePath;      }
+- (NSMutableString*) getUserName       { return userName;       }
+- (NSString *) getToken                { return token;          }
+- (UIImage *) getDP                    { return displayPicture; }
+- (NSMutableString*) getLocation       { return location;       }
+- (NSString*) getEmail                 { return email;          }
+- (NSMutableString*) getUserBio        { return userBio;        }
+- (NSMutableString*) getPassword       { return password;       }
+- (NSString*) getImagePath             { return imagePath;      }
 - (NSMutableDictionary*) getFriendList { return friendsList;    }
-- (NSInteger*) getFriendCount     { return friendCount;    }
-- (NSMutableString*) getPopularity       { return popularity;     }
-- (NSMutableString*) getGender      { return gender;        }
+- (NSInteger*) getFriendCount          { return friendCount;    }
+- (NSMutableString*) getPopularity     { return popularity;     }
+- (NSMutableString*) getGender         { return gender;         }
 
 // Set Values --------------------------------------------------------------------
-- (void) setUserName:  (NSMutableString*) name     { userName = name;               }
-- (void) setToken:     (NSString *)validToken      { token = validToken;            }
-- (void) setLocation:  (NSMutableString*) place    { location = place;              }
-- (void) setEmail:     (NSMutableString*) eAddress { email = eAddress;              }
-- (void) setUserBio:   (NSMutableString*) bio      { userBio = bio;                 }
-- (void) setPassword:  (NSMutableString *)pass     { password = pass;               }
-- (void) setImagePath: (NSString *) image          { imagePath = image;             }
-- (void) incrementCount                            { friendCount = friendCount + 1; }
-- (void) decrementCount                            { friendCount = friendCount - 1; }
-- (void) setPopularity:(NSMutableString*)pop            { popularity = pop;              }
-- (void) setGender:    (NSMutableString *)sex      { gender = sex;                  }
+- (void) setUserName:  (NSMutableString*) name     { userName        = name;            }
+- (void) setToken:     (NSString *)validToken      { token           = validToken;      }
+- (void) setLocation:  (NSMutableString*) place    { location        = place;           }
+- (void) setEmail:     (NSMutableString*) eAddress { email           = eAddress;        }
+- (void) setUserBio:   (NSMutableString*) bio      { userBio         = bio;             }
+- (void) setPassword:  (NSMutableString *)pass     { password        = pass;            }
+- (void) setImagePath: (NSString *) image          { imagePath       = image;           }
+- (void) incrementCount                            { friendCount     = friendCount + 1; }
+- (void) decrementCount                            { friendCount     = friendCount - 1; }
+- (void) setPopularity:(NSMutableString*)pop       { popularity      = pop;             }
+- (void) setGender:    (NSMutableString *)sex      { gender          = sex;             }
 
 
 // Sets up Image from file data provided from server
@@ -78,11 +78,11 @@
 {
     if(data != NULL)
     {
-        UIImage * dp = [[UIImage alloc] initWithData:data];
+        UIImage * dp   = [[UIImage alloc] initWithData:data];
         displayPicture = dp;
     } else
     {
-        NSString *thePath = [[NSBundle mainBundle] pathForResource:@"default" ofType:@"png"];
+        NSString *thePath   = [[NSBundle mainBundle] pathForResource:@"default" ofType:@"png"];
         UIImage* errorImage = [[UIImage alloc] initWithContentsOfFile:thePath];
         displayPicture = errorImage;
     }

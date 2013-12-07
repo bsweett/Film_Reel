@@ -13,12 +13,9 @@
     int remainingCount;
 }
 
-@property(nonatomic, strong) IBOutlet UIImageView *takeReelImage;
-
-@property(nonatomic, strong) IBOutlet UITextView *countDownText;
-
-@property(nonatomic, strong) IBOutlet UIButton *cancelButton;
-
-@property(nonatomic, strong) NSTimer *timer;
+@property (nonatomic, strong) IBOutlet UIImageView *takeReelImage;
+@property (nonatomic, strong) IBOutlet UITextView  *countDownText;
+@property (nonatomic, strong) IBOutlet UIButton    *cancelButton;
+@property (nonatomic, strong) NSTimer     *timer;
 
 @end

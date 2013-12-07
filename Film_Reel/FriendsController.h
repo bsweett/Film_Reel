@@ -13,14 +13,14 @@
 
 @interface FriendsController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, UINavigationBarDelegate>
 
-@property (strong, retain) IBOutlet UITableView* friendsTable;
-@property (strong, nonatomic) NSMutableArray* tableArray;
-@property (strong, nonatomic) UIAlertView* addfriendalert;
-@property (strong, nonatomic) UIAlertView* loading;
-@property (strong, nonatomic) User *userdata;
-@property (strong, nonatomic) Networking* friendRequest;
-@property (strong, nonatomic) AppDelegate* shared;
-@property (strong, nonatomic) NSArray *tableElements;
+@property (strong, retain   ) IBOutlet UITableView    * friendsTable;
+@property (strong, nonatomic) NSMutableArray * tableArray;
+@property (strong, nonatomic) UIAlertView    * addfriendalert;
+@property (strong, nonatomic) UIAlertView    * loading;
+@property (strong, nonatomic) User           *userdata;
+@property (strong, nonatomic) Networking     * friendRequest;
+@property (strong, nonatomic) AppDelegate    * shared;
+@property (strong, nonatomic) NSArray        *tableElements;
 
 -(IBAction)doAddFriend:(id)sender;
 -(void) didSucceedRequest: (NSNotification*) notif;

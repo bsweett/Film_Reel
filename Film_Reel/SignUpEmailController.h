@@ -14,15 +14,15 @@
 @interface SignUpEmailController : UIViewController <UIAlertViewDelegate>
 
 // Types
-@property(nonatomic, strong) IBOutlet UITextField *emailField;
-@property(nonatomic, strong) IBOutlet UITextField *userField;
-@property(nonatomic, strong) IBOutlet UITextField *passField;
-@property(nonatomic, strong) IBOutlet UINavigationItem *titlebar;
-@property (strong, nonatomic) IBOutlet UITextField *passConfirm;
-@property(nonatomic, strong) UIAlertView* error;
-@property(nonatomic, strong) UIActivityIndicatorView *indicator;
-@property(nonatomic, strong) Networking * userRequest;
-@property (nonatomic, strong) User* newlyMadeUser;
+@property (nonatomic, strong) IBOutlet UITextField             *emailField;
+@property (nonatomic, strong) IBOutlet UITextField             *userField;
+@property (nonatomic, strong) IBOutlet UITextField             *passField;
+@property (nonatomic, strong) IBOutlet UINavigationItem        *titlebar;
+@property (strong, nonatomic) IBOutlet UITextField             *passConfirm;
+@property (nonatomic, strong) UIAlertView             * error;
+@property (nonatomic, strong) UIActivityIndicatorView *indicator;
+@property (nonatomic, strong) Networking              * userRequest;
+@property (nonatomic, strong) User                    * newlyMadeUser;
 
 // Actions
 -(IBAction)doNextButton:(id)sender;

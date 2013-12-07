@@ -10,8 +10,8 @@
 
 @interface Reel : NSObject
 
-@property(strong, nonatomic) NSString *sender;
-@property(strong, nonatomic) NSString *imagePath;
+@property (strong, nonatomic) NSString *sender;
+@property (strong, nonatomic) NSString *imagePath;
 
 -(void)setSender:(NSString *)s;
 -(void)setImagePath:(NSString *)i;

@@ -10,18 +10,18 @@
 
 @interface User : NSObject
 
-@property (strong, nonatomic) NSMutableString * userName;
-@property (strong, nonatomic) UIImage * displayPicture;
-@property (strong, nonatomic) NSMutableString * email;
-@property (strong, nonatomic) NSMutableString* location; // dropdown menu?
-@property (strong, nonatomic) NSMutableString * userBio;
-@property (strong, nonatomic) NSMutableString * password;
-@property (strong, nonatomic) NSMutableString * gender;
-@property (strong, nonatomic) NSString * imagePath;
+@property (strong, nonatomic) NSMutableString     * userName;
+@property (strong, nonatomic) UIImage             * displayPicture;
+@property (strong, nonatomic) NSMutableString     * email;
+@property (strong, nonatomic) NSMutableString     * location; // dropdown menu?
+@property (strong, nonatomic) NSMutableString     * userBio;
+@property (strong, nonatomic) NSMutableString     * password;
+@property (strong, nonatomic) NSMutableString     * gender;
+@property (strong, nonatomic) NSString            * imagePath;
 @property (strong, nonatomic) NSMutableDictionary * friendsList;
-@property (nonatomic) NSInteger * friendCount;
-@property (strong, nonatomic) NSString * token;
-@property (strong, nonatomic) NSMutableString* popularity;
+@property (nonatomic        ) NSInteger           * friendCount;
+@property (strong, nonatomic) NSString            * token;
+@property (strong, nonatomic) NSMutableString     * popularity;
 
 // Getters
 - (NSMutableString*) getUserName;
