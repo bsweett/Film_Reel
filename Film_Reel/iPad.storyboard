@@ -188,7 +188,7 @@
             </objects>
             <point key="canvasLocation" x="5460" y="-2755"/>
         </scene>
-        <!--Inbox Controller-->
+        <!--Inbox Controller - Inbox-->
         <scene sceneID="nEt-ek-Iv5">
             <objects>
                 <viewController id="WbC-AW-IyI" customClass="InboxController" sceneMemberID="viewController">
@@ -222,7 +222,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="OBV-zF-eJ4"/>
+                    <navigationItem key="navigationItem" title="Inbox" id="OBV-zF-eJ4"/>
                     <connections>
                         <outlet property="inboxTable" destination="W4Q-Fa-LDB" id="nE6-ZG-3CB"/>
                         <segue destination="qxk-WD-2qH" kind="push" identifier="reelview" id="ZOz-IV-rlD"/>
@@ -232,7 +232,7 @@
             </objects>
             <point key="canvasLocation" x="6137" y="-33"/>
         </scene>
-        <!--Reel View-->
+        <!--Reel View - Reel View-->
         <scene sceneID="QrS-ga-cEU">
             <objects>
                 <viewController id="qxk-WD-2qH" customClass="ReelView" sceneMemberID="viewController">
@@ -251,7 +251,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="KMB-73-vLv"/>
+                    <navigationItem key="navigationItem" title="Reel View" id="KMB-73-vLv"/>
                     <connections>
                         <outlet property="imageView" destination="RGG-X9-4ak" id="c3Q-RO-ixi"/>
                     </connections>
@@ -890,11 +890,6 @@
                         <outlet property="friendstar5" destination="hZM-CB-Xfo" id="zkr-4Y-qxG"/>
                         <outlet property="location" destination="P9G-Pd-A4n" id="L7i-sQ-zMO"/>
                         <outlet property="name" destination="e87-c4-Gpx" id="BrM-hx-qBG"/>
-                        <outlet property="star1" destination="ha6-rT-sah" id="rFC-6v-UzI"/>
-                        <outlet property="star2" destination="POn-XO-IH3" id="FBx-fD-Rc0"/>
-                        <outlet property="star3" destination="xjh-V8-EOb" id="5xg-7R-er9"/>
-                        <outlet property="star4" destination="lMi-1b-md2" id="igw-Y3-c6k"/>
-                        <outlet property="star5" destination="hZM-CB-Xfo" id="G3V-0K-iNd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="suC-6s-zPl" userLabel="First Responder" sceneMemberID="firstResponder"/>
