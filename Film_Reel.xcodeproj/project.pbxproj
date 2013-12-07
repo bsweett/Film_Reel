@@ -26,6 +26,7 @@
 		B56E78F0181A1F2B008AE8D5 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = B56E78EF181A1F2B008AE8D5 /* ALAssetsLibrary+CustomPhotoAlbum.m */; };
 		B5C26D771811C6F00064F180 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C26D761811C6F00064F180 /* default.png */; };
 		B5C26D781811C6F00064F180 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C26D761811C6F00064F180 /* default.png */; };
+		B5C2C3A01853A217007B5A8C /* ReelView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C2C39F1853A217007B5A8C /* ReelView.m */; };
 		B5C9038C18032D5500448CE6 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C9038B18032D5500448CE6 /* User.m */; };
 		B5E0CAE918130DD80037EA3A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5E0CAE718130DD80037EA3A /* Main.storyboard */; };
 		B5E0CAEA18130DD80037EA3A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5E0CAE718130DD80037EA3A /* Main.storyboard */; };
@@ -109,6 +110,8 @@
 		B56E78EE181A1F2B008AE8D5 /* ALAssetsLibrary+CustomPhotoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALAssetsLibrary+CustomPhotoAlbum.h"; sourceTree = "<group>"; };
 		B56E78EF181A1F2B008AE8D5 /* ALAssetsLibrary+CustomPhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALAssetsLibrary+CustomPhotoAlbum.m"; sourceTree = "<group>"; };
 		B5C26D761811C6F00064F180 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
+		B5C2C39E1853A217007B5A8C /* ReelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReelView.h; sourceTree = "<group>"; };
+		B5C2C39F1853A217007B5A8C /* ReelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReelView.m; sourceTree = "<group>"; };
 		B5C9038A18032D5500448CE6 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		B5C9038B18032D5500448CE6 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		B5E0CAE818130DD80037EA3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -308,6 +311,8 @@
 				F6189F9718131E8E00D1F0FA /* Images.xcassets */,
 				F6F2F6A2184BC35D00DBA868 /* DetialViewController.h */,
 				F6F2F6A3184BC35D00DBA868 /* DetialViewController.m */,
+				B5C2C39E1853A217007B5A8C /* ReelView.h */,
+				B5C2C39F1853A217007B5A8C /* ReelView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -529,6 +534,7 @@
 				F6189F8A18131DD800D1F0FA /* SignUpEmailController.m in Sources */,
 				B52BBEEE18491EA000C53E67 /* SelectFriendController.m in Sources */,
 				B506DB401800857A004991A4 /* NetworkManager.m in Sources */,
+				B5C2C3A01853A217007B5A8C /* ReelView.m in Sources */,
 				F6189F9618131E3C00D1F0FA /* SignUpCompleteController.m in Sources */,
 				F6189F7B18131BF300D1F0FA /* CameraController.m in Sources */,
 				B506DB1A1800806C004991A4 /* AppDelegate.m in Sources */,

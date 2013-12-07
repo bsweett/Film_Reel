@@ -80,8 +80,7 @@
     {
         NSLog(@"INBOX INFO:: Got Data from Server\n");
         
-        NSDictionary* userDictionary = [notif userInfo];
-        NSMutableArray* reels = [userDictionary valueForKey:@INBOX_SUCCESS];
+        NSMutableArray* reels = [[notif userInfo] valueForKey:@INBOX_DATA];
         
         NSArray *copyArray = [reels mutableCopy];
         
