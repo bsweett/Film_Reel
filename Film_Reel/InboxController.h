@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Networking.h"
 #import "AppDelegate.h"
+#import "Reel.h"
 
 @interface InboxController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
@@ -18,6 +19,7 @@
 @property (strong, nonatomic) Networking* inboxUpdate;
 @property (strong, nonatomic) AppDelegate* shared;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (strong,nonatomic) Reel* aReelForCell;
 
 
 @end
