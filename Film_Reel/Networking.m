@@ -414,7 +414,7 @@
     }
     if([elementName isEqualToString:@"data"])
     {
-        [dataReceived setObject:[self seperateReelData:[dataReceived objectForKey:@"reel"]] forKey:@"reels"];
+        [dataReceived setObject:[self seperateReelData:[dataReceived objectForKey:@"reel"]] forKey:@INBOX_DATA];
     }
 }
 
