@@ -17,7 +17,8 @@
 @synthesize dataReceived;
 @synthesize userObject;
 @synthesize currentObject;
-//@synthesize reelObject;
+@synthesize reelObject;
+@synthesize reelArray;
 
 - (id) init
 {
@@ -280,6 +281,7 @@
     {
         dataReceived = [[NSMutableDictionary alloc] init];
         currentObject = [[NSMutableString alloc]init];
+        reelArray = [[NSMutableArray alloc] init];
         NSLog(@"PARSER INFO: Found Data Element");
     }
     
@@ -293,7 +295,7 @@
     
     if([elementName isEqualToString:@"snap"])
     {
-        //reelObject = [[Reel alloc]init];
+        reelObject = [[Reel alloc]init];
     }
     if([elementName isEqualToString:@"name"])
     {
@@ -384,7 +386,7 @@
     if([elementName isEqualToString:@"snap"])
     {
         [dataReceived setObject:currentObject forKey:elementName];
-        //[self seperateReelData:currentObject andReel:reelObject];
+        [self seperateReelData:currentObject andReel:reelObject];
     }
     if([elementName isEqualToString:@"message"])
     {
@@ -415,17 +417,15 @@
     [currentObject appendString:[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
 }
 
-/*
-- (void)seperateReelData:(NSString*)reelString andUser: (Reel*) reelObject
+- (void)seperateReelData:(NSString*)reelString andReel: (Reel*) reelObject
 {
     NSArray *reels = [reelString componentsSeparatedByString:@"-"];
     
     for(int i=1; i < [reels count] -1; i+=2)
     {
-        
+        //[reelArray addObject:<#(id)#>]
     }
 }
- */
 
 - (void)seperateFriends:(NSString *)friendsString andUser: (User *)user
 {

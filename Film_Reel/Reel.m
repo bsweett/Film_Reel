@@ -13,18 +13,22 @@
 @synthesize sender;
 @synthesize imagePath;
 
--(void)setSender:(NSString *)s {
+-(void)setSender:(NSString *)s
+{
     sender = s;
 }
--(void)setImagePath:(NSString *)i {
+-(void)setImagePath:(NSString *)i
+{
     imagePath = i;
 }
 
--(NSString *) getSender {
+-(NSString *) getSender
+{
     return sender;
 }
 
--(NSString *) getImagePath {
+-(NSString *) getImagePath
+{
     return imagePath;
 }
 

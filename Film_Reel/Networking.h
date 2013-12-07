@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "NetworkManager.h"
 #import "User.h"
-//#import "Reel.h"
+#import "Reel.h"
 
 @interface Networking : NSObject <NSXMLParserDelegate>
 
@@ -18,7 +18,8 @@
 @property(nonatomic, strong) NSXMLParser* parser;
 @property(nonatomic, strong) NSString* requestType;
 @property(nonatomic, strong) User* userObject;
-//@property(nonatomic, strong) Reel* reelObject;
+@property(nonatomic, strong) Reel* reelObject;
+@property(nonatomic, strong) NSMutableArray* reelArray;
 @property(nonatomic, strong) NSMutableString* currentObject;
 @property(nonatomic, strong) NSMutableDictionary *dataReceived;
 
