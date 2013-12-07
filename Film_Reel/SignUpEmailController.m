@@ -200,7 +200,6 @@
 {
     if([[notif name] isEqualToString:@SIGNUP_SUCCESS])
     {
-        sleep(4);
         [indicator stopAnimating];
         self.navigationController.navigationBar.userInteractionEnabled=YES;
         [self performSegueWithIdentifier:@"done" sender:self];

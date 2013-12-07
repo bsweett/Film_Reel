@@ -1,0 +1,12 @@
+fixed table view controller issue
+updated storyboard to contain a nav controller for detail view
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# HEAD detached from a9232bb
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	modified:   Film_Reel/Base.lproj/Main.storyboard
+#	modified:   Film_Reel/InboxController.m
+#	modified:   Film_Reel/iPad.storyboard
+#
