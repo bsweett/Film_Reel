@@ -226,7 +226,7 @@
     }
     else
     {
-        [[NSNotificationCenter defaultCenter]postNotificationName:@INBOX_SUCCESS  object:nil userInfo:[dataReceived objectForKey:@"reels"]];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@INBOX_SUCCESS  object:nil userInfo:[dataReceived objectForKey:@INBOX_DATA]];
     }
 }
 
