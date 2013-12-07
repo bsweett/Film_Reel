@@ -14,6 +14,11 @@
 
 @implementation ReelView
 
+@synthesize currentReel;
+@synthesize imageView;
+@synthesize downloadPath;
+@synthesize networking;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -26,7 +31,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    networking = [[Networking alloc]init];
+	downloadPath = [currentReel getImagePath];
+    [imageView setImage:[networking downloadImageFromServer:downloadPath]];
 }
 
 - (void)didReceiveMemoryWarning

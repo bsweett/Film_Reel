@@ -33,6 +33,8 @@
 - (void)connection:(NSURLConnection *)theConnection didReceiveData:(NSData *)theData;
 
 -(void)saveImageToServer: (NSData*) dataImage withFileName: (NSString*) filename;
+-(UIImage *) downloadImageFromServer: (NSString *) url;
 
 -(NSMutableArray *)seperateReelData:(NSString*)reelString;
+
 @end

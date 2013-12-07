@@ -165,7 +165,7 @@
     if ([[segue identifier] isEqualToString: @"reelview"]) {
         ReelView *dest = (ReelView *)[segue destinationViewController];
         //the sender is what you pass into the previous method
-        dest.reel = sender;
+        dest.currentReel = sender;
     }
 }
 

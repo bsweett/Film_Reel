@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Reel.h"
+#import "Networking.h"
 
 @interface ReelView : UIViewController
 
 @property (nonatomic, strong) IBOutlet UIImageView* imageView;
 @property (nonatomic, strong) Reel* currentReel;
+@property (nonatomic, strong) NSString *downloadPath;
+@property (nonatomic, strong) Networking *networking;
 
 @end

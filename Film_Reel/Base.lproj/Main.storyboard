@@ -416,10 +416,10 @@
             </objects>
             <point key="canvasLocation" x="1272" y="-750"/>
         </scene>
-        <!--View Controller-->
+        <!--Reel View-->
         <scene sceneID="XI4-N1-N2q">
             <objects>
-                <viewController id="i34-Pq-JtY" sceneMemberID="viewController">
+                <viewController id="i34-Pq-JtY" customClass="ReelView" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kmi-Ef-FNi"/>
                         <viewControllerLayoutGuide type="bottom" id="5ns-WC-isv"/>
@@ -427,9 +427,18 @@
                     <view key="view" contentMode="scaleToFill" id="YSf-LN-Gfu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WT6-GV-xs4">
+                                <rect key="frame" x="71" y="45" width="179" height="477"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="66Z-YN-H9f"/>
+                    <connections>
+                        <outlet property="imageView" destination="WT6-GV-xs4" id="bcb-h7-dow"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MRt-Wy-OXV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
