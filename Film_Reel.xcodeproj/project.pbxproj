@@ -37,6 +37,7 @@
 		B5FB31F0184E92C200F9986E /* login_ipad_button.png in Resources */ = {isa = PBXBuildFile; fileRef = B5FB31EE184E92C200F9986E /* login_ipad_button.png */; };
 		B5FB31F1184E92C200F9986E /* signup_ipad_button.png in Resources */ = {isa = PBXBuildFile; fileRef = B5FB31EF184E92C200F9986E /* signup_ipad_button.png */; };
 		B5FB31F3184E93D400F9986E /* film-128.png in Resources */ = {isa = PBXBuildFile; fileRef = B5FB31F2184E93D400F9986E /* film-128.png */; };
+		F60C3C851852BD7000316C85 /* Reel.m in Sources */ = {isa = PBXBuildFile; fileRef = F60C3C841852BD7000316C85 /* Reel.m */; };
 		F6189F7B18131BF300D1F0FA /* CameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F7A18131BF300D1F0FA /* CameraController.m */; };
 		F6189F8118131DA700D1F0FA /* InboxController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F8018131DA700D1F0FA /* InboxController.m */; };
 		F6189F8418131DB500D1F0FA /* ProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F8318131DB500D1F0FA /* ProfileController.m */; };
@@ -119,6 +120,8 @@
 		B5FB31EE184E92C200F9986E /* login_ipad_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_ipad_button.png; sourceTree = "<group>"; };
 		B5FB31EF184E92C200F9986E /* signup_ipad_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signup_ipad_button.png; sourceTree = "<group>"; };
 		B5FB31F2184E93D400F9986E /* film-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "film-128.png"; sourceTree = "<group>"; };
+		F60C3C831852BD7000316C85 /* Reel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reel.h; sourceTree = "<group>"; };
+		F60C3C841852BD7000316C85 /* Reel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reel.m; sourceTree = "<group>"; };
 		F6189F7918131BF300D1F0FA /* CameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraController.h; sourceTree = "<group>"; };
 		F6189F7A18131BF300D1F0FA /* CameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraController.m; sourceTree = "<group>"; };
 		F6189F7F18131DA700D1F0FA /* InboxController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InboxController.h; sourceTree = "<group>"; };
@@ -323,6 +326,8 @@
 			children = (
 				B5C9038A18032D5500448CE6 /* User.h */,
 				B5C9038B18032D5500448CE6 /* User.m */,
+				F60C3C831852BD7000316C85 /* Reel.h */,
+				F60C3C841852BD7000316C85 /* Reel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -516,6 +521,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F60C3C851852BD7000316C85 /* Reel.m in Sources */,
 				F6189F8118131DA700D1F0FA /* InboxController.m in Sources */,
 				B5C9038C18032D5500448CE6 /* User.m in Sources */,
 				F6189FB81813942C00D1F0FA /* TabBarViewController.m in Sources */,

@@ -416,7 +416,7 @@
     [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
     NSMutableData *postbody = [NSMutableData data];
     [postbody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [postbody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"fileUpload\"; filename=\"%@.jpg\"\r\n", filename] dataUsingEncoding:NSUTF8StringEncoding]];
+    [postbody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"fileUpload\"; filename=\"%@.jpg\"\r\n", @"testimage"] dataUsingEncoding:NSUTF8StringEncoding]];
     [postbody appendData:[[NSString stringWithString:@"Content-Type: image/jpeg \r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
     [postbody appendData:[NSData dataWithData:dataImage]];
     [postbody appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
