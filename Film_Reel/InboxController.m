@@ -157,6 +157,27 @@
     [inboxUpdate startReceive:requestURL withType:@INBOX_REQUEST];
 }
 
+
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString: @"reelview"]) {
+        ReelView *dest = (ReelView *)[segue destinationViewController];
+        //the sender is what you pass into the previous method
+        dest.reel = sender;
+    }
+}
+
+// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //Get the reel
+    Reel *reel = [self.tablearray objectAtIndex:indexPath.row];
+
+    
+    [self performSegueWithIdentifier:@"reelview" sender:reel];
+}
+
 // This is the template for building future URLRequests
 // NOTE:: SERVER_ADDRESS is hardcoded in Networking.h
 - (NSString*) buildInboxRequest: (NSString*) token

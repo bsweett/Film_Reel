@@ -10,6 +10,7 @@
 #import "Networking.h"
 #import "AppDelegate.h"
 #import "Reel.h"
+#import "ReelView.h"
 
 @interface InboxController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 

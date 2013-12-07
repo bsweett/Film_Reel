@@ -409,11 +409,31 @@
                     <tabBarItem key="tabBarItem" title="Inbox" image="InboxTab" id="MKW-Mu-tFf"/>
                     <connections>
                         <outlet property="inboxTable" destination="EZw-1U-gPn" id="GcX-s8-3Hn"/>
+                        <segue destination="i34-Pq-JtY" kind="push" identifier="reelview" id="K1v-DA-ByF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p5i-7T-enR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1272" y="-750"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="XI4-N1-N2q">
+            <objects>
+                <viewController id="i34-Pq-JtY" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kmi-Ef-FNi"/>
+                        <viewControllerLayoutGuide type="bottom" id="5ns-WC-isv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YSf-LN-Gfu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="66Z-YN-H9f"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MRt-Wy-OXV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1758" y="-750"/>
         </scene>
         <!--Friends Controller - Friends-->
         <scene sceneID="8mI-cB-VPB">
