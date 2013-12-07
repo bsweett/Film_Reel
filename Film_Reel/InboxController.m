@@ -135,16 +135,17 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
-        cell.backgroundColor = [UIColor clearColor];
-        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+        cell.backgroundColor = [UIColor lightGrayColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
         cell.backgroundView.opaque = NO;
         
         cell.textLabel.backgroundColor = [UIColor clearColor];
         cell.textLabel.opaque = NO;
-        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.textLabel.textColor = [UIColor colorWithRed:0.050980396570000003 green:0.5411764979 blue:0.77647066119999997 alpha:1];
         cell.textLabel.highlightedTextColor = [UIColor whiteColor];
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
-
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:18];
+        
+        
         cell.accessoryView=UITableViewCellAccessoryNone;
         
     }
@@ -154,7 +155,7 @@
     NSLog(@"A Cell is %@", [aReelForCell getSender]);
     
     
-    cell.textLabel.text = @"Reel from: %@", [aReelForCell getSender];
+    cell.textLabel.text = [aReelForCell getSender];
     
     return cell;
 }
