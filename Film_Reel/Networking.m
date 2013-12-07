@@ -452,7 +452,8 @@
 -(void)saveImageToServer: (NSData*) dataImage withFileName: (NSString*) filename
 {
     // set your URL Where to Upload Image
-    NSString *urlString = @SERVER_ADDRESS"/fileuploadaction.action";
+    //If shit hits the fan put a forward slash infron of the string below
+    NSString *urlString = @SERVER_ADDRESS"fileuploadaction.action";
     
     // Create 'POST' MutableRequest with Data and Other Image Attachment.
     NSMutableURLRequest* request= [[NSMutableURLRequest alloc] init];
@@ -483,9 +484,12 @@
 }
 
 -(UIImage *) downloadImageFromServer: (NSString *) url {
-    NSLog(@"The url is: %@", url);
-    NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:url]];
-    NSLog(@"The image data is: %@", imageData);
+  
+    NSMutableString *urlAddress = [[NSMutableString alloc]initWithString:@SERVER_UPLOAD_ADDRESS];
+    [urlAddress appendString:url];
+    [urlAddress appendString:@".jpg"];
+      NSLog(@"The url is: %@", urlAddress);
+    NSData * imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:urlAddress]];
     return [UIImage imageWithData: imageData];
 }
 
