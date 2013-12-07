@@ -18,6 +18,9 @@
 // Server/app attributes
 #define SERVER_ADDRESS          "http://192.168.1.25:8080/filmreel/"
 #define REEL_ALBUM_NAME         "My Reels"
+#define BAR_COLOR               "009AFF"
+
+// Dictionary Keys
 #define CURRENT_USER            "current_user"
 #define CURRENT_USER_NAME       "current_user_name"
 #define CURRENT_USER_BIO        "current_user_bio"
@@ -32,8 +35,7 @@
 #define CACHED_NEW_PASSWORD     "cached_new_password"
 #define CACHED_NEW_USER         "cached_new_user"
 #define POST_RESPONSE           "post_response"
-
-#define BAR_COLOR "009AFF"
+#define INBOX_DATA              "reel_list"
 
 // User Maxs
 #define MAX_USER_SIZE 30
@@ -42,7 +44,7 @@
 #define MAX_FRIENDS_SIZE 99
 #define MAX_EMAIL_SIZE 30
 
-// Validation
+// Validation Lengths
 #define MIN_EMAIL_ENTRY     3
 #define MAX_EMAIL_ENTRY     254
 #define MIN_ENTRY_SIZE      4
@@ -64,14 +66,14 @@
 #define REEL_IMAGE      "reel_image"
 
 // Nofitication Names
-#define LOGIN_SUCCESS   "login_success"
-#define SIGNUP_SUCCESS  "signup_success"
-#define UPDATE_SUCCESS  "updating_profile_success"
-#define REEL_SUCCESS    "reel_sent"
-#define INBOX_SUCCESS   "inbox_got"
-#define FRIEND_SUCCESS  "friend_sent"
-#define VALID_SUCCESS   "valid_token_success"
-#define DATA_SUCCESS    "got_user_data"
+#define LOGIN_SUCCESS       "login_success"
+#define SIGNUP_SUCCESS      "signup_success"
+#define UPDATE_SUCCESS      "updating_profile_success"
+#define REEL_SUCCESS        "reel_sent"
+#define INBOX_SUCCESS       "inbox_got"
+#define FRIEND_SUCCESS      "friend_sent"
+#define VALID_SUCCESS       "valid_token_success"
+#define DATA_SUCCESS        "got_user_data"
 #define RESPONSE_FOR_POST    "image_upload_response"
 
 #define FAIL_STATUS             "general_fail"
@@ -80,6 +82,7 @@
 #define USER_NOT_FOUND          "user_not_found"
 #define INVALID_TOKEN           "invalid_token"
 #define ALREADY_FRIENDS         "already_friends"
+#define EMPTY_INBOX             "no_new_mail"
 
 #define CAMERA_START    "startRecord"
 #define CAMERA_STOP     "stopRecord"

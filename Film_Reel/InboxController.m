@@ -16,9 +16,10 @@
 
 @synthesize tablearray;
 @synthesize inboxTable;
-@synthesize loading;
+@synthesize error;
 @synthesize inboxUpdate;
 @synthesize shared;
+@synthesize refreshControl;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,11 +37,17 @@
     
     shared = [AppDelegate appDelegate];
     
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@INBOX_SUCCESS object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@EMPTY_INBOX object:nil];
+    
     [inboxTable setDelegate:self];
     
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    inboxUpdate = [[Networking alloc] init];
     
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
     [inboxTable addSubview:refreshControl];
     
     tablearray = [[NSMutableArray alloc] init];
@@ -57,20 +64,23 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) grabInbox
-{
-    inboxUpdate = [[Networking alloc] init];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@INBOX_SUCCESS object:nil];
-}
-
 -(void) didSucceedRequest: (NSNotification*) notif
 {
+    
+    // If no new mail just stop refreshing dont need to notify user
+    if([[notif name] isEqualToString:@EMPTY_INBOX])
+    {
+        [refreshControl endRefreshing];
+        NSLog(@"INBOX INFO:: No new messages\n");
+    }
+    
+    // If new mail is found add it to the table array and update
     if([[notif name] isEqualToString:@INBOX_SUCCESS])
     {
-        NSLog(@"Profile action succeed\n");
-        [loading dismissWithClickedButtonIndex:0 animated:YES];
+        NSLog(@"INBOX INFO:: Got Data from Server\n");
+        [refreshControl endRefreshing];
+        
+        // get data from notification and reload table with it
     }
 }
 
@@ -79,13 +89,17 @@
 {
     if([[notif name] isEqualToString:@ADDRESS_FAIL_ERROR])
     {
-        [loading setMessage:@ADDRESS_FAIL_ERROR];
-        [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
+        [refreshControl endRefreshing];
+        error = [[UIAlertView alloc] initWithTitle:nil message:@ADDRESS_FAIL_ERROR delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+        [error show];
+        [self performSelector:@selector(dismissErrors:) withObject:error afterDelay:3];
     }
     if([[notif name] isEqualToString:@ADDRESS_FAIL])
     {
-        [loading setMessage:@SERVER_CONNECT_ERROR];
-        [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
+        [refreshControl endRefreshing];
+        error = [[UIAlertView alloc] initWithTitle:nil message:@SERVER_CONNECT_ERROR delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+        [error show];
+        [self performSelector:@selector(dismissErrors:) withObject:error afterDelay:3];
     }
 }
 
@@ -127,12 +141,10 @@
     return cell;
 }
 
-- (void)refresh:(UIRefreshControl *)refreshControl {
-    
+- (void)refresh
+{
     NSString* requestURL = [self buildInboxRequest:shared.appUser.token];
     [inboxUpdate startReceive:requestURL withType:@INBOX_REQUEST];
-    
-    [refreshControl endRefreshing];
 }
 
 // This is the template for building future URLRequests

@@ -17,6 +17,7 @@
 @synthesize dataReceived;
 @synthesize userObject;
 @synthesize currentObject;
+//@synthesize reelObject;
 
 - (id) init
 {
@@ -121,6 +122,10 @@
             {
                 [self isValidDataRequest:localMessage];
             }
+            else if([requestType isEqualToString:@INBOX_REQUEST])
+            {
+                
+            }
         }
     }
     else
@@ -212,6 +217,19 @@
     }
 }
 
+- (void) isValidInboxRequest: (NSString*) localMessage
+{
+    if([localMessage isEqualToString:@"NoNewMail"])
+    {
+        [[NSNotificationCenter defaultCenter]postNotificationName:@EMPTY_INBOX object:nil];
+    }
+    else
+    {
+        //NSDictionary* reelDictionary = [NSDictionary dictionaryWithObject:ANARRAY OF REELS forKey:@INBOX_DATA];
+        //[[NSNotificationCenter defaultCenter]postNotificationName:@INBOX_SUCCESS  object:nil userInfo:userDictionary];
+    }
+}
+
 - (void)stopReceiveWithStatus:(NSString *)statusString
 {
     if (self.connection != nil) {
@@ -273,6 +291,10 @@
         NSLog(@"PARSER INFO: Found User Element");
     }
     
+    if([elementName isEqualToString:@"snap"])
+    {
+        //reelObject = [[Reel alloc]init];
+    }
     if([elementName isEqualToString:@"name"])
     {
         currentObject = [[NSMutableString alloc]init];
@@ -362,6 +384,7 @@
     if([elementName isEqualToString:@"snap"])
     {
         [dataReceived setObject:currentObject forKey:elementName];
+        //[self seperateReelData:currentObject andReel:reelObject];
     }
     if([elementName isEqualToString:@"message"])
     {
@@ -392,12 +415,25 @@
     [currentObject appendString:[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
 }
 
+/*
+- (void)seperateReelData:(NSString*)reelString andUser: (Reel*) reelObject
+{
+    NSArray *reels = [reelString componentsSeparatedByString:@"-"];
+    
+    for(int i=1; i < [reels count] -1; i+=2)
+    {
+        
+    }
+}
+ */
+
 - (void)seperateFriends:(NSString *)friendsString andUser: (User *)user
 {
 
     NSArray *friends = [friendsString componentsSeparatedByString:@"-"];
     
-    for(int i=1; i < [friends count] - 1; i+=2) {
+    for(int i=1; i < [friends count] - 1; i+=2)
+    {
         [user addFriend:[friends objectAtIndex:i] withEmail:[friends objectAtIndex:i-1]];
     }
 }
