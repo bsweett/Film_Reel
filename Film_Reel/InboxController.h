@@ -14,9 +14,10 @@
 
 @property (strong, retain) IBOutlet UITableView * inboxTable;
 @property (strong, retain) NSMutableArray* tablearray;
-@property (strong, nonatomic) UIAlertView* loading;
+@property (strong, nonatomic) UIAlertView* error;
 @property (strong, nonatomic) Networking* inboxUpdate;
 @property (strong, nonatomic) AppDelegate* shared;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 
 @end
