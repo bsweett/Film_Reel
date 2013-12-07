@@ -407,6 +407,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Inbox" image="InboxTab" id="MKW-Mu-tFf"/>
+                    <connections>
+                        <outlet property="inboxTable" destination="EZw-1U-gPn" id="GcX-s8-3Hn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p5i-7T-enR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -15,10 +15,10 @@
 @implementation InboxController
 
 @synthesize tablearray;
-@synthesize indox;
+@synthesize inboxTable;
 @synthesize loading;
 @synthesize inboxUpdate;
-@synthesize updateWheel;
+@synthesize shared;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,11 +33,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    shared = [AppDelegate appDelegate];
+    
+    [inboxTable setDelegate:self];
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    
+    [inboxTable addSubview:refreshControl];
+    
     tablearray = [[NSMutableArray alloc] init];
-    updateWheel = [[UIRefreshControl alloc] init];
-    updateWheel.tintColor = [UIColor blackColor];
-    self.updateWheel = updateWheel;
-    [updateWheel addTarget:self action:@selector(grabInbox) forControlEvents:UIControlEventValueChanged];
     
 }
 
@@ -111,7 +117,6 @@
         cell.textLabel.highlightedTextColor = [UIColor whiteColor];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
 
-        
         cell.accessoryView=UITableViewCellAccessoryNone;
         
     }
@@ -120,6 +125,14 @@
     cell.textLabel.text = [tablearray objectAtIndex:indexPath.row];
     
     return cell;
+}
+
+- (void)refresh:(UIRefreshControl *)refreshControl {
+    
+    NSString* requestURL = [self buildInboxRequest:shared.appUser.token];
+    [inboxUpdate startReceive:requestURL withType:@INBOX_REQUEST];
+    
+    [refreshControl endRefreshing];
 }
 
 // This is the template for building future URLRequests

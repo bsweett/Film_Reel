@@ -251,7 +251,7 @@
     
     NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"from=%@" , sender];
     NSMutableString* parameter2 = [[NSMutableString alloc] initWithFormat: @"&to=%@" , receiver];
-    NSMutableString* parameter3 = [[NSMutableString alloc] initWithFormat: @"&image=%@" , imageName];
+    NSMutableString* parameter3 = [[NSMutableString alloc] initWithFormat: @"&imagelocation=%@" , imageName];
     
     [send appendString:parameter1];
     [send appendString:parameter2];

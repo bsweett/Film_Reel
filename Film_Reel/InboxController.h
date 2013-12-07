@@ -8,14 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "Networking.h"
+#import "AppDelegate.h"
 
 @interface InboxController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (strong, retain) IBOutlet UITableView * indox;
+@property (strong, retain) IBOutlet UITableView * inboxTable;
 @property (strong, retain) NSMutableArray* tablearray;
 @property (strong, nonatomic) UIAlertView* loading;
 @property (strong, nonatomic) Networking* inboxUpdate;
-@property (strong, nonatomic) UIRefreshControl* updateWheel;
+@property (strong, nonatomic) AppDelegate* shared;
 
 
 @end
