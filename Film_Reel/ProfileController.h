@@ -19,13 +19,16 @@
 @property (strong, nonatomic) IBOutlet UITextView  *email;
 @property (strong, nonatomic) IBOutlet UITextView  *bio;
 @property (strong, nonatomic) IBOutlet UITextView  *location;
-@property (strong, nonatomic) IBOutlet UIButton    *cancel;
-@property (strong, nonatomic) IBOutlet UIButton    *edit;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem    *cancel;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem    *edit;
 @property (strong, nonatomic) IBOutlet UIButton    *imageButton;
 @property (strong, nonatomic) IBOutlet UIImageView *displaypicture;
 @property (strong, nonatomic) IBOutlet UITextView  *reelCount;
 @property (strong, nonatomic) IBOutlet UIImageView *male;
 @property (strong, nonatomic) IBOutlet UIImageView *female;
+@property (strong, nonatomic) IBOutlet UINavigationItem *navigationItem;
+@property NSInteger maleHighlighted;
+@property NSInteger femaleHighlighted;
 
 @property (strong, nonatomic) IBOutlet UIImageView *star1;
 @property (strong, nonatomic) IBOutlet UIImageView *star2;

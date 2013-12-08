@@ -22,6 +22,7 @@
 @synthesize cancel;
 @synthesize imageButton;
 @synthesize displaypicture;
+@synthesize navigationItem;
 @synthesize reelCount;
 
 @synthesize star1, star2, star3, star4, star5;
@@ -37,6 +38,8 @@
 @synthesize male;
 @synthesize female;
 @synthesize shared;
+@synthesize maleHighlighted;
+@synthesize femaleHighlighted;
 
 @synthesize userdata;
     
@@ -66,12 +69,14 @@
     name.editable = NO;
     location.editable = NO;
     email.editable = NO;
-    reelCount.editable = NO;
-    cancel.enabled = NO;
-    cancel.hidden = YES;
+    
+    [[navigationItem leftBarButtonItem]setTitle:nil];
+    [[navigationItem leftBarButtonItem]setEnabled:FALSE];
+    
     imageButton.enabled = NO;
     imageButton.hidden = YES;
-    [edit setTitle:@"Edit" forState:UIControlStateNormal];
+    male.userInteractionEnabled = NO;
+    female.userInteractionEnabled = NO;
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
@@ -111,14 +116,14 @@
     }
     else
     {
-        [[self name] setFont:[UIFont systemFontOfSize:22]];
+        [[self name] setFont:[UIFont systemFontOfSize:30]];
         name.textAlignment = NSTextAlignmentCenter;
         [[self name] setTextColor:[UIColor blackColor]];
         [[self bio] setFont:[UIFont systemFontOfSize:12]];
         [[self bio] setTextColor:[[UIColor alloc] initWithRed:92.0/255.0 green:92.0/255.0 blue:92.0/255.0 alpha:1]];
         [[self location] setFont:[UIFont systemFontOfSize:12]];
         [[self location] setTextColor:[[UIColor alloc] initWithRed:92.0/255.0 green:92.0/255.0 blue:92.0/255.0 alpha:1]];
-        [[self email] setFont:[UIFont systemFontOfSize:18]];
+        [[self email] setFont:[UIFont systemFontOfSize:12]];
         email.textAlignment = NSTextAlignmentCenter;
         [[self email] setTextColor:[UIColor blackColor]];
     }
@@ -138,6 +143,7 @@
 }
     
 - (void)malePushed:(UIGestureRecognizer*) recognizer {
+    NSLog(@"pushed male");
     if(male.highlighted == FALSE)
     {
         male.highlighted = TRUE;
@@ -147,6 +153,7 @@
 }
 
 - (void)femalePushed:(UIGestureRecognizer*) recognizer {
+    NSLog(@"pushed femail");
     if(female.highlighted == FALSE)
     {
         female.highlighted = TRUE;
@@ -202,11 +209,6 @@
     
     if([[notif name] isEqualToString:@UPDATE_SUCCESS])
     {
-        NSDictionary* userDictionary = [notif userInfo];
-        userdata = [userDictionary valueForKey:@CURRENT_USER];
-        
-        [shared setAppUser:userdata];
-        
         [loading dismissWithClickedButtonIndex:0 animated:YES];
     }
 }
@@ -232,29 +234,31 @@
 
 -(IBAction)doEdit:(id)sender
 {
-    if([[edit currentTitle] isEqualToString:@"Edit"])
+    if([[[navigationItem rightBarButtonItem]title] isEqualToString:@"Edit"])
     {
-        [edit setTitle:@"Save" forState:UIControlStateNormal];
-        
+        [[navigationItem rightBarButtonItem] setTitle:@"Save"];
         [self saveValues];
         
         bio.editable = YES;
         location.editable = YES;
-        cancel.hidden = NO;
-        cancel.enabled = YES;
-        imageButton.hidden = NO;
+        [[navigationItem leftBarButtonItem]setTitle:@"Cancel"];
+        [[navigationItem leftBarButtonItem]setEnabled:TRUE];        imageButton.hidden = NO;
         imageButton.enabled = YES;
+        male.userInteractionEnabled = YES;
+        female.userInteractionEnabled = YES;
         
-    } else  if([[edit currentTitle] isEqualToString:@"Save"])
+    } else  if([[[navigationItem rightBarButtonItem]title] isEqualToString:@"Save"])
     {
 
-        [edit setTitle:@"Edit" forState:UIControlStateNormal];
+        [[navigationItem rightBarButtonItem] setTitle:@"Edit"];
         bio.editable = NO;
         location.editable = NO;
-        cancel.enabled = NO;
-        cancel.hidden = YES;
+        [[navigationItem leftBarButtonItem]setTitle:nil];
+        [[navigationItem leftBarButtonItem]setEnabled:FALSE];
         imageButton.enabled = NO;
         imageButton.hidden = YES;
+        male.userInteractionEnabled = NO;
+        female.userInteractionEnabled = NO;
         
         // Update profile picture
         [Update saveImageToServer:UIImageJPEGRepresentation(displaypicture.image, 0.1f) withFileName:[userdata getEmail]];
@@ -267,15 +271,17 @@
 
 -(IBAction)doCancel:(id)sender
 {
-    if([[edit currentTitle] isEqualToString:@"Save"])
+    if([[[navigationItem rightBarButtonItem]title] isEqualToString:@"Save"])
     {
-        [edit setTitle:@"Edit" forState:UIControlStateNormal];
+        [[navigationItem rightBarButtonItem] setTitle:@"Edit"];
         bio.editable = NO;
         location.editable = NO;
-        cancel.hidden = YES;
-        cancel.enabled = NO;
+        [[navigationItem leftBarButtonItem]setTitle:nil];
+        [[navigationItem leftBarButtonItem]setEnabled:FALSE];
         imageButton.enabled = NO;
         imageButton.hidden = YES;
+        male.userInteractionEnabled = NO;
+        female.userInteractionEnabled = NO;
         
         // undo changes
         [self resetViews];
@@ -326,6 +332,18 @@
     saveLocation = location.text;
     savedImage = displaypicture.image;
     
+    if(male.highlighted == TRUE) {
+        maleHighlighted = 1;
+    }
+    else if(femaleHighlighted == TRUE) {
+        femaleHighlighted = 1;
+    }
+    else {
+        femaleHighlighted = 0;
+        maleHighlighted = 0;
+    }
+
+    
 }
 
 // reset the local values when they hit cancel
@@ -334,6 +352,20 @@
     [[self bio] setText: saveBio];
     [[self location] setText:saveLocation];
     [[self displaypicture] setImage: savedImage];
+    
+    if(maleHighlighted == 1) {
+        male.highlighted = TRUE;
+        femaleHighlighted = FALSE;
+    }
+    else if(femaleHighlighted == 1) {
+        femaleHighlighted = TRUE;
+        maleHighlighted = FALSE;
+    }
+    else {
+        maleHighlighted = FALSE;
+        femaleHighlighted = FALSE;
+    }
+
 }
 
 // get ready to pass the update to the server
@@ -343,6 +375,10 @@
     NSString* updatedLocation = location.text;
     NSString* updatedBio = bio.text;
     NSString* updatedGender = userdata.getGender;
+    
+    [shared.appUser setLocation:[NSMutableString stringWithString:updatedLocation]];
+    [shared.appUser setUserBio:[NSMutableString stringWithString:updatedBio]];
+    [shared.appUser setGender: [NSMutableString stringWithString:updatedGender]];
 
     NSString* request = [self buildProfileUpdateRequest:[userdata getToken] withLocation:updatedLocation withBio:updatedBio withGender:updatedGender withPath:userdata.getEmail];
     
@@ -429,6 +465,11 @@
     NSLog(@"REQUEST INFO:: Update Profile -- %@", updateProfile);
     
     return [updateProfile stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+}
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
 
 @end
