@@ -60,6 +60,7 @@
 {
     addfriendalert = [[UIAlertView alloc] initWithTitle:@"Add a Friend" message:@"Enter a email to add: " delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Add", nil];
     addfriendalert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    //addfriendalert
     [addfriendalert show];
 }
 

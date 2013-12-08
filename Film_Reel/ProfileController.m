@@ -57,6 +57,7 @@
 {
     [super viewDidLoad];
     
+    // Make gender images into gesture buttons
     UITapGestureRecognizer *maleTap =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(malePushed:)];
     [maleTap setNumberOfTapsRequired:1];
     [male addGestureRecognizer:maleTap];
@@ -65,40 +66,51 @@
     [femaleTap setNumberOfTapsRequired:1];
     [female addGestureRecognizer:femaleTap];
     
-    bio.editable = NO;
-    name.editable = NO;
+    // Editable Traits
+    bio.editable      = NO;
+    name.editable     = NO;
     location.editable = NO;
-    email.editable = NO;
+    email.editable    = NO;
     
+    // Keyboard Color
+    bio.keyboardAppearance      = UIKeyboardAppearanceDark;
+    location.keyboardAppearance = UIKeyboardAppearanceDark;
+    
+    // Hide Cancel Button
     [[navigationItem leftBarButtonItem]setTitle:nil];
     [[navigationItem leftBarButtonItem]setEnabled:FALSE];
     
-    imageButton.enabled = NO;
-    imageButton.hidden = YES;
-    male.userInteractionEnabled = NO;
+    // Disable Interaction with Gender
+    imageButton.enabled           = NO;
+    imageButton.hidden            = YES;
+    male.userInteractionEnabled   = NO;
     female.userInteractionEnabled = NO;
     
+    // Setup Observers for notification
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSucceedRequest:) name:@RESPONSE_FOR_POST object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@UPDATE_SUCCESS object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@USER_NOT_FOUND object:nil];
     
-    
-    bio.delegate = self;
-    name.delegate = self;
+    // Set Delegates and get userdata
+    bio.delegate      = self;
+    name.delegate     = self;
     location.delegate = self;
-    email.delegate = self;
-    shared = [AppDelegate appDelegate];
-    userdata = shared.appUser;
+    email.delegate    = self;
+    shared            = [AppDelegate appDelegate];
+    userdata          = shared.appUser;
     
+    // Init Networking
     Update = [[Networking alloc] init];
     
+    // Set up values for profile feilds
     [[self bio] setText: userdata.getUserBio];
     [[self name] setText: userdata.getUserName];
     [[self location] setText:userdata.getLocation];
     [[self email] setText: userdata.getEmail];
     
+    // Assign a BOOL to save if as gender
     if([userdata.getGender isEqualToString:@"M"]) {
         male.highlighted = TRUE;
     }
@@ -106,7 +118,7 @@
         female.highlighted = FALSE;
     }
     
-    // Reformat all text
+    // Reformat all text based on device
     if([[UIDevice currentDevice].model isEqualToString:@"iPad"])
     {
         [[self name] setFont:[UIFont systemFontOfSize:32]];
@@ -128,6 +140,7 @@
         [[self email] setTextColor:[UIColor blackColor]];
     }
     
+    // Setup popularity view
     [self setPopStars:userdata.getPopularity];
 }
 
