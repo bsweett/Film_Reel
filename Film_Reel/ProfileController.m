@@ -344,11 +344,8 @@
     NSString* updatedLocation = location.text;
     NSString* updatedBio = bio.text;
     NSString* updatedGender = userdata.getGender;
-    
-    //Temp for now normally would get display picture as above
-    NSString *tempImage = @"default";
-    
-    NSString* request = [self buildProfileUpdateRequest:[userdata getToken] withImage:tempImage withLocation:updatedLocation withBio:updatedBio withGender:updatedGender];
+
+    NSString* request = [self buildProfileUpdateRequest:[userdata getToken] withLocation:updatedLocation withBio:updatedBio withGender:updatedGender withPath:userdata.getEmail];
     
     [Update startReceive:request withType:@UPDATE_REQUEST];
     
@@ -414,21 +411,21 @@
 
 // This is the template for building future URLRequests
 // NOTE:: SERVER_ADDRESS is hardcoded in Networking.h
-- (NSString*) buildProfileUpdateRequest: (NSString*) token withImage: (NSString*) image withLocation: (NSString*) geolocation withBio: (NSString*) about withGender: (NSString*) gender
+- (NSString*) buildProfileUpdateRequest: (NSString*) token withLocation: (NSString*) geolocation withBio: (NSString*) about withGender: (NSString*) gender withPath: (NSString *) path
 {
     NSMutableString* updateProfile = [[NSMutableString alloc] initWithString:@SERVER_ADDRESS];
     [updateProfile appendString:@"saveuserdata?"];
     NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"token=%@" , token];
-    NSMutableString* parameter3 = [[NSMutableString alloc] initWithFormat: @"&image=%@" , image];
-    NSMutableString* parameter4 = [[NSMutableString alloc] initWithFormat: @"&location=%@" , geolocation];
-    NSMutableString* parameter5 = [[NSMutableString alloc] initWithFormat: @"&bio=%@" , about];
-    NSMutableString* parameter6 = [[NSMutableString alloc] initWithFormat: @"&gender=%@", gender];
+    NSMutableString* parameter2 = [[NSMutableString alloc] initWithFormat: @"&location=%@" , geolocation];
+    NSMutableString* parameter3 = [[NSMutableString alloc] initWithFormat: @"&bio=%@" , about];
+    NSMutableString* parameter4 = [[NSMutableString alloc] initWithFormat: @"&gender=%@", gender];
+    NSMutableString* parameter5 = [[NSMutableString alloc] initWithFormat: @"&path=%@", gender];
     
     [updateProfile appendString:parameter1];
+    [updateProfile appendString:parameter2];
     [updateProfile appendString:parameter3];
     [updateProfile appendString:parameter4];
     [updateProfile appendString:parameter5];
-    [updateProfile appendString:parameter6];
     
     NSLog(@"REQUEST INFO:: Update Profile -- %@", updateProfile);
     
