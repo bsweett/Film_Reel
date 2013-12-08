@@ -144,6 +144,18 @@
             [[self email] setTextColor:[UIColor blackColor]];
         }
         
+        UIImage* friendsPic = [getProfile downloadImageFromServer:[friendUser getDisplayPicturePath]];
+        
+        if(friendsPic != nil)
+        {
+            [[self displayPicture] setImage: friendsPic];
+        }
+        else
+        {
+            [[self displayPicture] setImage: [UIImage imageNamed:@"default.png"]];
+            NSLog(@"FRIEND INFO:: Could not load profile image from server");
+        }
+        
         [indicator stopAnimating];
         self.navigationController.navigationBar.userInteractionEnabled=YES;
     }
@@ -154,6 +166,8 @@
         error = [[UIAlertView alloc] initWithTitle:nil message:@"User Data not found" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
         [error show];
         [self performSelector:@selector(dismissErrors:) withObject:error afterDelay:3];
+        
+        NSLog(@"SERVER ERROR:: A friends user data was not returned from the server");
          self.navigationController.navigationBar.userInteractionEnabled=YES;
     }
 }
@@ -212,12 +226,12 @@
 
 // This is the template for building future URLRequests
 // NOTE:: SERVER_ADDRESS is hardcoded in Networking.h
-- (NSString*) buildFriendDataRequest: (NSString*) email
+- (NSString*) buildFriendDataRequest: (NSString*) anEmail
 {
     NSMutableString* friendData = [[NSMutableString alloc] initWithString:@SERVER_ADDRESS];
     [friendData appendString:@"getfrienddata?"];
     
-    NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"email=%@" , email];
+    NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"email=%@" , anEmail];
     
     [friendData appendString:parameter1];
     
