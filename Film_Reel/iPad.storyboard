@@ -483,7 +483,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="default.png" translatesAutoresizingMaskIntoConstraints="NO" id="y63-GJ-V25">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="default.png" translatesAutoresizingMaskIntoConstraints="NO" id="y63-GJ-V25">
                                 <rect key="frame" x="269" y="154" width="247" height="196"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -548,7 +548,7 @@
                     <connections>
                         <outlet property="bio" destination="55f-o6-5tf" id="DDK-vO-jvJ"/>
                         <outlet property="cancel" destination="nO5-iH-ywP" id="ql2-qT-Cjh"/>
-                        <outlet property="displaypicture" destination="y63-GJ-V25" id="JIJ-LU-60M"/>
+                        <outlet property="displaypicture" destination="y63-GJ-V25" id="Cvx-Cc-beH"/>
                         <outlet property="edit" destination="9UG-P0-eZc" id="5EX-5b-n2y"/>
                         <outlet property="email" destination="zih-Xg-5LE" id="KlO-vB-bkt"/>
                         <outlet property="female" destination="mZv-vG-s5R" id="bmS-eV-qjW"/>
@@ -971,7 +971,6 @@
         <image name="takereelbutton.png" width="100" height="89"/>
         <image name="vertical-line.png" width="8" height="544"/>
     </resources>
-    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="lightContent"/>
         <simulatedOrientationMetrics key="orientation"/>

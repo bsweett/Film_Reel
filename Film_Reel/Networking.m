@@ -398,7 +398,6 @@
     }
     if([elementName isEqualToString:@"reel"])
     {
-        //[dataReceived setObject:currentObject forKey:elementName];
         [dataReceived setObject:[self seperateReelData:currentObject] forKey:@INBOX_DATA];
     }
     if([elementName isEqualToString:@"message"])
