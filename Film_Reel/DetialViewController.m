@@ -17,6 +17,11 @@
 @synthesize friendEmail;
 @synthesize friendUser;
 
+@synthesize name;
+@synthesize email;
+@synthesize location;
+@synthesize bio;
+
 @synthesize friendstar1, friendstar2, friendstar3, friendstar4, friendstar5;
 
 @synthesize getProfile;
@@ -115,6 +120,29 @@
         [[self bio] setText:[friendUser getUserBio]];
         [[self location] setText:[friendUser getLocation]];
         [self setPopStars:[friendUser getPopularity]];
+        
+        name.textAlignment = NSTextAlignmentCenter;
+        email.textAlignment = NSTextAlignmentCenter;
+        
+        // Reformat all text
+        if([[UIDevice currentDevice].model isEqualToString:@"iPad"])
+        {
+            [[self name] setFont:[UIFont systemFontOfSize:32]];
+            [[self bio] setFont:[UIFont systemFontOfSize:20]];
+            [[self location] setFont:[UIFont systemFontOfSize:20]];
+            [[self email] setFont:[UIFont systemFontOfSize:22]];
+        }
+        else
+        {
+            [[self name] setFont:[UIFont systemFontOfSize:22]];
+            [[self name] setTextColor:[UIColor blackColor]];
+            [[self bio] setFont:[UIFont systemFontOfSize:12]];
+            [[self bio] setTextColor:[[UIColor alloc] initWithRed:92.0/255.0 green:92.0/255.0 blue:92.0/255.0 alpha:1]];
+            [[self location] setFont:[UIFont systemFontOfSize:12]];
+            [[self location] setTextColor:[[UIColor alloc] initWithRed:92.0/255.0 green:92.0/255.0 blue:92.0/255.0 alpha:1]];
+            [[self email] setFont:[UIFont systemFontOfSize:18]];
+            [[self email] setTextColor:[UIColor blackColor]];
+        }
         
         [indicator stopAnimating];
         self.navigationController.navigationBar.userInteractionEnabled=YES;
