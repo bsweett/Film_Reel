@@ -208,12 +208,14 @@
     
     if([[UIDevice currentDevice].model isEqualToString:@"iPad"]) {
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(screenWidth/4,74, screenWidth/2,865)];
+        [scrollView setBounces:FALSE];
         [scrollView setShowsVerticalScrollIndicator:FALSE];
         [scrollView setContentSize:CGSizeMake(screenWidth/2,scaledHeight)];
         [scrollView addSubview:photoStrip];
         [self.view addSubview:scrollView];
     } else {
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(screenWidth/4,74, screenWidth/2,415)];
+        [scrollView setBounces:FALSE];
         [scrollView setShowsVerticalScrollIndicator:FALSE];
         [scrollView setContentSize:CGSizeMake(screenWidth/2,scaledHeight)];
         [scrollView addSubview:photoStrip];

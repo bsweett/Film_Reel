@@ -16,6 +16,7 @@
 @synthesize appUser;
 @synthesize validToken;
 @synthesize main;
+@synthesize isTokenValid;
 
 // Call this method anytime we need to get the app delegate
 +(AppDelegate *) appDelegate
@@ -95,31 +96,32 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     NSUserDefaults* currentLoggedIn = [NSUserDefaults standardUserDefaults];
-    if(appUser.token != nil)
-    {
-        NSLog(@"TOKEN INFO:: Token into background %@", appUser.token);
+ 
+    NSLog(@"TOKEN INFO:: Token into background %@", appUser.token);
+
+    NSString* storeToken              = appUser.token;
+    NSString* storeName               = appUser.userName;
+    NSString* storeBio                = appUser.userBio;
+    NSString* storeLoc                = appUser.location;
+    NSString* storePass               = appUser.password;
+    NSString* storeEmail              = appUser.email;
+    NSString* storePop                = appUser.popularity;
+    NSString* storeGender             = appUser.gender;
+    NSMutableDictionary* storeFriends = appUser.getFriendList;
         
-        NSString* storeToken              = appUser.token;
-        NSString* storeName               = appUser.userName;
-        NSString* storeBio                = appUser.userBio;
-        NSString* storeLoc                = appUser.location;
-        NSString* storePass               = appUser.password;
-        NSString* storeEmail              = appUser.email;
-        NSString* storePop                = appUser.popularity;
-        NSString* storeGender             = appUser.gender;
-        NSMutableDictionary* storeFriends = appUser.getFriendList;
-        
-        [currentLoggedIn setObject:storeToken forKey:@CURRENT_USER_TOKEN];
-        [currentLoggedIn setObject:storeName forKey:@CURRENT_USER_NAME];
-        [currentLoggedIn setObject:storePass forKey:@CURRENT_USER_PASSWORD];
-        [currentLoggedIn setObject:storeLoc forKey:@CURRENT_USER_LOCATION];
-        [currentLoggedIn setObject:storeEmail forKey:@CURRENT_USER_EMAIL];
-        [currentLoggedIn setObject:storeBio forKey:@CURRENT_USER_BIO];
-        [currentLoggedIn setObject:storePop forKey:@CURRENT_USER_POP];
-        [currentLoggedIn setObject:storeGender forKey:@CURRENT_USER_GENDER];
-        [currentLoggedIn setObject:storeFriends forKey:@CURRENT_USER_FRIENDS];
-        [currentLoggedIn synchronize];
-    }
+    [currentLoggedIn setObject:storeToken forKey:@CURRENT_USER_TOKEN];
+    [currentLoggedIn setObject:storeName forKey:@CURRENT_USER_NAME];
+    [currentLoggedIn setObject:storePass forKey:@CURRENT_USER_PASSWORD];
+    [currentLoggedIn setObject:storeLoc forKey:@CURRENT_USER_LOCATION];
+    [currentLoggedIn setObject:storeEmail forKey:@CURRENT_USER_EMAIL];
+    [currentLoggedIn setObject:storeBio forKey:@CURRENT_USER_BIO];
+    [currentLoggedIn setObject:storePop forKey:@CURRENT_USER_POP];
+    [currentLoggedIn setObject:storeGender forKey:@CURRENT_USER_GENDER];
+    [currentLoggedIn setObject:storeFriends forKey:@CURRENT_USER_FRIENDS];
+    [currentLoggedIn synchronize];
+  
+    
+    
 }
 
 // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
@@ -166,6 +168,7 @@
     // Start our request
     if(token != nil)
     {
+        isTokenValid = @"?";
         validToken = [[Networking alloc] init];
         NSLog(@"TOKEN INFO:: Token after background %@", token);
         NSString* request = [self buildTokenLoginRequest:token];
@@ -228,19 +231,27 @@
 // If token is invalid send back to login screen
 -(void) didSucceedRequest: (NSNotification*) notif
 {
+    
     if([[notif name] isEqualToString:@VALID_SUCCESS])
     {
+        /*
         bypassLogin= [main instantiateViewControllerWithIdentifier:@"bypass"];
         self.window.rootViewController = bypassLogin;
+        */
+        isTokenValid = @"YES";
         NSLog(@"TOKEN INFO:: Token has been confirmed by server - ALLOW BYPASS\n");
     }
     
     if([[notif name] isEqualToString:@INVALID_TOKEN])
     {
+        /*
         startingview = [main instantiateInitialViewController];
         self.window.rootViewController = startingview;
+         */
+        isTokenValid = @"NO";
         NSLog(@"TOKEN INFO:: Token has been devalidate by server\n");
     }
+    
 }
 
 

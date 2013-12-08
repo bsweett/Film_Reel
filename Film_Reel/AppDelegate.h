@@ -19,6 +19,7 @@
 @property (strong, nonatomic) UIViewController * startingview;
 @property (strong, nonatomic) UIViewController * bypassLogin;
 @property (strong, nonatomic) UIStoryboard     * main;
+@property (strong, nonatomic) NSString         *isTokenValid;
 
 
 - (UIColor*)colorWithHexString:(NSString*)hex;

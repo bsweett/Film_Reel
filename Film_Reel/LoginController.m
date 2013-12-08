@@ -23,14 +23,27 @@
 @synthesize loginButton;
 @synthesize createButton;
 @synthesize currentUser;
+@synthesize shared;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    shared = [AppDelegate appDelegate];
+    
+    while([shared.isTokenValid isEqualToString:@"?"]) {
+        
+    }
+    if([shared.isTokenValid isEqualToString:@"YES"]){
+        [self performSegueWithIdentifier:@"loggedIn" sender:nil];
+    }
+ 
     usernameField.delegate = self;
     passwordField.delegate = self;
     [usernameField setAutocorrectionType:UITextAutocorrectionTypeNo];
     [passwordField setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [loginButton setEnabled:TRUE];
+    [createButton setEnabled:TRUE];
     
 	// Do any additional setup after loading the view, typically from a nib.
 }
@@ -44,6 +57,8 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@USER_NOT_FOUND object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@LOGIN_SUCCESS object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shouldAutoFillFields:) name:@AUTO_FILL object:nil];
+    [loginButton setEnabled:TRUE];
+    [createButton setEnabled:TRUE];
 }
 
 - (void)didReceiveMemoryWarning
@@ -164,7 +179,7 @@
         NSDictionary* userDictionary = [notif userInfo];
         currentUser = [userDictionary valueForKey:@CURRENT_USER];
         
-        AppDelegate* shared = [AppDelegate appDelegate];
+        shared = [AppDelegate appDelegate];
         
         //Set App User
         [shared setAppUser: currentUser];

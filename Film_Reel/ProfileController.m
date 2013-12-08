@@ -70,8 +70,8 @@
     location.editable = NO;
     email.editable = NO;
     
-    [[navigationItem leftBarButtonItem]setTitle:nil];
-    [[navigationItem leftBarButtonItem]setEnabled:FALSE];
+   
+    [[navigationItem leftBarButtonItem]setTitle:@"Logout"];
     
     imageButton.enabled = NO;
     imageButton.hidden = YES;
@@ -89,6 +89,8 @@
     name.delegate = self;
     location.delegate = self;
     email.delegate = self;
+    reelCount.delegate = self;
+    
     shared = [AppDelegate appDelegate];
     userdata = shared.appUser;
     
@@ -98,6 +100,8 @@
     [[self name] setText: userdata.getUserName];
     [[self location] setText:userdata.getLocation];
     [[self email] setText: userdata.getEmail];
+    NSLog(@"The reel count is: %@", [shared.appUser getReelCount]);
+    [[self reelCount] setText:[userdata getReelCount]];
     
     if([[shared.appUser getGender] isEqualToString:@"M"]) {
         male.highlighted = TRUE;
@@ -246,7 +250,6 @@
         bio.editable = YES;
         location.editable = YES;
         [[navigationItem leftBarButtonItem]setTitle:@"Cancel"];
-        [[navigationItem leftBarButtonItem]setEnabled:TRUE];
         imageButton.hidden = NO;
         imageButton.enabled = YES;
         male.userInteractionEnabled = YES;
@@ -258,8 +261,7 @@
         [[navigationItem rightBarButtonItem] setTitle:@"Edit"];
         bio.editable = NO;
         location.editable = NO;
-        [[navigationItem leftBarButtonItem]setTitle:nil];
-        [[navigationItem leftBarButtonItem]setEnabled:FALSE];
+        [[navigationItem leftBarButtonItem]setTitle:@"Logout"];
         imageButton.enabled = NO;
         imageButton.hidden = YES;
         male.userInteractionEnabled = NO;
@@ -276,9 +278,10 @@
 
 -(IBAction)doCancel:(id)sender
 {
-    if([[[navigationItem rightBarButtonItem]title] isEqualToString:@"Save"])
+    if([[[navigationItem leftBarButtonItem]title] isEqualToString:@"Cancel"])
     {
         [[navigationItem rightBarButtonItem] setTitle:@"Edit"];
+        [[navigationItem leftBarButtonItem]setTitle:@"Logout"];
         bio.editable = NO;
         location.editable = NO;
         [[navigationItem leftBarButtonItem]setTitle:nil];
@@ -290,6 +293,11 @@
         
         // undo changes
         [self resetViews];
+    }
+    else {
+        NSLog(@"Logout pushed");
+        [shared.appUser setToken:nil];
+        [self.presentingViewController dismissViewControllerAnimated: YES completion:nil];
     }
 }
 
