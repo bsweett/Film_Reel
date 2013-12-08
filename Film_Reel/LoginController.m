@@ -40,6 +40,8 @@
  
     usernameField.delegate = self;
     passwordField.delegate = self;
+    usernameField.keyboardAppearance = UIKeyboardAppearanceDark;
+    passwordField.keyboardAppearance = UIKeyboardAppearanceDark;
     [usernameField setAutocorrectionType:UITextAutocorrectionTypeNo];
     [passwordField setAutocorrectionType:UITextAutocorrectionTypeNo];
     [loginButton setEnabled:TRUE];

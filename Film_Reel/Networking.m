@@ -87,8 +87,7 @@
         if(dataReceived != nil)
         {
             NSString *localMessage = [dataReceived objectForKey:@"message"];
-            NSLog(@"The local message is: %@", localMessage);
-            NSLog(@"The request type is: %@", requestType);
+
             // check what type of request it is
             if([localMessage isEqualToString:@"Fail"])
             {
@@ -398,7 +397,6 @@
     }
     if([elementName isEqualToString:@"reel"])
     {
-        //[dataReceived setObject:currentObject forKey:elementName];
         [dataReceived setObject:[self seperateReelData:currentObject] forKey:@INBOX_DATA];
     }
     if([elementName isEqualToString:@"message"])

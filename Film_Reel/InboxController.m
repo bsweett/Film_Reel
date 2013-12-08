@@ -58,12 +58,18 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [inboxTable reloadData];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+
 }
 
 -(void) didSucceedRequest: (NSNotification*) notif
@@ -152,10 +158,8 @@
     
     // Set up the cell...
     aReelForCell = [tablearray objectAtIndex:indexPath.row];
-    NSLog(@"A Cell is %@", [aReelForCell getSender]);
-    
-    
-    cell.textLabel.text = [aReelForCell getSender];
+    cell.textLabel.text = @"Reel from %@" ,[aReelForCell getSender];
+    cell.imageView.image = [UIImage imageNamed:@"film-80.png"];
     
     return cell;
 }
@@ -182,8 +186,8 @@
 {
     //Get the reel
     Reel *reel = [self.tablearray objectAtIndex:indexPath.row];
-
-    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.tablearray removeObjectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"reelview" sender:reel];
 }
 

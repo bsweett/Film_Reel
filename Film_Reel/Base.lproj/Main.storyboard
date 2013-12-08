@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="51k-iN-JKb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="51k-iN-JKb">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Login Controller - Log In To Film Reel-->
@@ -354,6 +354,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="ProfileTab" id="8Hf-bs-XWY"/>
                     <connections>
+                        <outlet property="background" destination="klU-Gk-kn0" id="oM1-RG-Pg2"/>
                         <outlet property="bio" destination="Jcy-HE-Mez" id="eWF-vV-CnJ"/>
                         <outlet property="displaypicture" destination="L8y-3Z-6jf" id="4gL-Uk-C0m"/>
                         <outlet property="female" destination="cQZ-6c-FfN" id="s52-zW-KmV"/>

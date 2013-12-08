@@ -163,6 +163,9 @@
     appUser.email                   = [currentLoggedIn objectForKey:@CURRENT_USER_EMAIL];
     appUser.userBio                 = [currentLoggedIn objectForKey:@CURRENT_USER_BIO];
     appUser.friendsList             = [currentLoggedIn objectForKey:@CURRENT_USER_FRIENDS];
+    appUser.displayPicturePath      = [currentLoggedIn objectForKey:@CURRENT_USER_IMAGE_PATH];
+    appUser.displayPicture          = [UIImage imageWithData:[currentLoggedIn objectForKey:@CURRENT_USER_IMAGE]];
+    
     NSString* token                 = [appUser getToken];
     
     // Start our request

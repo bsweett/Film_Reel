@@ -46,8 +46,9 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self)
-    {
+    if (self) {
+      
+        
     }
     return self;
 }
@@ -55,11 +56,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self.view sendSubviewToBack:[self background]];
-    displaypicture.userInteractionEnabled = YES;
-    displaypicture.contentMode = UIViewContentModeScaleAspectFill;
-    displaypicture.clipsToBounds = YES;
     
     // Make gender images into gesture buttons
     UITapGestureRecognizer *maleTap =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(malePushed:)];
@@ -80,8 +76,9 @@
     bio.keyboardAppearance      = UIKeyboardAppearanceDark;
     location.keyboardAppearance = UIKeyboardAppearanceDark;
     
-   
-    [[navigationItem leftBarButtonItem]setTitle:@"Logout"];
+    // Hide Cancel Button
+    [[navigationItem leftBarButtonItem]setTitle:nil];
+    [[navigationItem leftBarButtonItem]setEnabled:FALSE];
     
     // Disable Interaction with Gender
     imageButton.enabled           = NO;
@@ -100,11 +97,9 @@
     bio.delegate      = self;
     name.delegate     = self;
     location.delegate = self;
-    email.delegate = self;
-    reelCount.delegate = self;
-    
-    shared = [AppDelegate appDelegate];
-    userdata = shared.appUser;
+    email.delegate    = self;
+    shared            = [AppDelegate appDelegate];
+    userdata          = shared.appUser;
     
     // Init Networking
     Update = [[Networking alloc] init];
@@ -114,20 +109,19 @@
     [[self name] setText: userdata.getUserName];
     [[self location] setText:userdata.getLocation];
     [[self email] setText: userdata.getEmail];
-    NSLog(@"The reel count is: %@", [shared.appUser getReelCount]);
-    [[self reelCount] setText:[userdata getReelCount]];
     
-    // Set up Boolean for Gender saving locally 
-    if([[shared.appUser getGender] isEqualToString:@"M"])
-    {
+<<<<<<< HEAD
+    // Assign a BOOL to save if as gender
+    if([userdata.getGender isEqualToString:@"M"]) {
+=======
+    if([[shared.appUser getGender] isEqualToString:@"M"]) {
+>>>>>>> 8ab06551abd7e693480906d7aae24e251d8aa577
         male.highlighted = TRUE;
     }
-    if([[shared.appUser getGender] isEqualToString:@"F"])
-    {
+    if([[shared.appUser getGender] isEqualToString:@"F"]) {
         female.highlighted = TRUE;
     }
-    if([[shared.appUser getGender] isEqualToString:@"U"])
-    {
+    if([[shared.appUser getGender] isEqualToString:@"U"]) {
         female.highlighted = FALSE;
         male.highlighted = FALSE;
     }
@@ -170,6 +164,7 @@
 }
     
 - (void)malePushed:(UIGestureRecognizer*) recognizer {
+    NSLog(@"pushed male");
     if(male.highlighted == FALSE)
     {
         male.highlighted = TRUE;
@@ -179,6 +174,7 @@
 }
 
 - (void)femalePushed:(UIGestureRecognizer*) recognizer {
+    NSLog(@"pushed femail");
     if(female.highlighted == FALSE)
     {
         female.highlighted = TRUE;
@@ -222,7 +218,7 @@
         NSDictionary* userDictionary = [notif userInfo];
         NSString* response= [userDictionary valueForKey:@POST_RESPONSE];
         
-        if([response isEqualToString:@"Success"])
+        if([response isEqualToString:@""])
         {
             [self prepareForUpdate];
         }
@@ -238,23 +234,19 @@
     }
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
     [super touchesBegan:touches withEvent:event];
 }
 
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
-{
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
     return YES;
 }
-- (void)textViewDidBeginEditing:(UITextView *)textView
-{
-    textView.backgroundColor = [UIColor lightGrayColor];
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    textView.backgroundColor = [UIColor grayColor];
 }
 
-- (BOOL)textViewShouldEndEditing:(UITextView *)textView
-{
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView{
     textView.backgroundColor = [UIColor whiteColor];
     return YES;
 }
@@ -271,6 +263,7 @@
         bio.editable = YES;
         location.editable = YES;
         [[navigationItem leftBarButtonItem]setTitle:@"Cancel"];
+        [[navigationItem leftBarButtonItem]setEnabled:TRUE];
         imageButton.hidden = NO;
         imageButton.enabled = YES;
         male.userInteractionEnabled = YES;
@@ -282,7 +275,8 @@
         [[navigationItem rightBarButtonItem] setTitle:@"Edit"];
         bio.editable = NO;
         location.editable = NO;
-        [[navigationItem leftBarButtonItem]setTitle:@"Logout"];
+        [[navigationItem leftBarButtonItem]setTitle:nil];
+        [[navigationItem leftBarButtonItem]setEnabled:FALSE];
         imageButton.enabled = NO;
         imageButton.hidden = YES;
         male.userInteractionEnabled = NO;
@@ -292,17 +286,16 @@
         [Update saveImageToServer:UIImageJPEGRepresentation(displaypicture.image, 0.1f) withFileName:[userdata getEmail]];
         
         
-        //[self prepareForUpdate];
+        [self prepareForUpdate];
  
     }
 }
 
 -(IBAction)doCancel:(id)sender
 {
-    if([[[navigationItem leftBarButtonItem]title] isEqualToString:@"Cancel"])
+    if([[[navigationItem rightBarButtonItem]title] isEqualToString:@"Save"])
     {
         [[navigationItem rightBarButtonItem] setTitle:@"Edit"];
-        [[navigationItem leftBarButtonItem]setTitle:@"Logout"];
         bio.editable = NO;
         location.editable = NO;
         [[navigationItem leftBarButtonItem]setTitle:nil];
@@ -314,11 +307,6 @@
         
         // undo changes
         [self resetViews];
-    }
-    else {
-        NSLog(@"Logout pushed");
-        [shared.appUser setToken:nil];
-        [self.presentingViewController dismissViewControllerAnimated: YES completion:nil];
     }
 }
 
@@ -347,12 +335,10 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    userdata.displayPicture = info[UIImagePickerControllerEditedImage];;
+    [[self displaypicture] setImage:userdata.displayPicture];
+    
     [picker dismissViewControllerAnimated:YES completion:NULL];
-    
-    [shared.appUser setDisplayPicture: info[UIImagePickerControllerEditedImage]];
-    
-    [self displaypicture].image = [shared.appUser getDP];
-    [self.view bringSubviewToFront:[self displaypicture]];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -425,7 +411,6 @@
     [shared.appUser setLocation:[NSMutableString stringWithString:updatedLocation]];
     [shared.appUser setUserBio:[NSMutableString stringWithString:updatedBio]];
     [shared.appUser setGender: [NSMutableString stringWithString:updatedGender]];
-    [shared.appUser setDisplayPicture:displaypicture.image];
 
     NSString* request = [self buildProfileUpdateRequest:[userdata getToken] withLocation:updatedLocation withBio:updatedBio withGender:updatedGender withPath:userdata.getEmail];
     
