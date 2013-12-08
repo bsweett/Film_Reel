@@ -99,11 +99,15 @@
     [[self location] setText:userdata.getLocation];
     [[self email] setText: userdata.getEmail];
     
-    if([userdata.getGender isEqualToString:@"M"]) {
+    if([[shared.appUser getGender] isEqualToString:@"M"]) {
         male.highlighted = TRUE;
     }
-    if([userdata.getGender isEqualToString:@"F"]) {
+    if([[shared.appUser getGender] isEqualToString:@"F"]) {
+        female.highlighted = TRUE;
+    }
+    if([[shared.appUser getGender] isEqualToString:@"U"]) {
         female.highlighted = FALSE;
+        male.highlighted = FALSE;
     }
     
     // Reformat all text
@@ -242,7 +246,8 @@
         bio.editable = YES;
         location.editable = YES;
         [[navigationItem leftBarButtonItem]setTitle:@"Cancel"];
-        [[navigationItem leftBarButtonItem]setEnabled:TRUE];        imageButton.hidden = NO;
+        [[navigationItem leftBarButtonItem]setEnabled:TRUE];
+        imageButton.hidden = NO;
         imageButton.enabled = YES;
         male.userInteractionEnabled = YES;
         female.userInteractionEnabled = YES;
@@ -335,10 +340,10 @@
     if(male.highlighted == TRUE) {
         maleHighlighted = 1;
     }
-    else if(femaleHighlighted == TRUE) {
+    if(female.highlighted == TRUE) {
         femaleHighlighted = 1;
     }
-    else {
+    if(female.highlighted == FALSE && male.highlighted == FALSE) {
         femaleHighlighted = 0;
         maleHighlighted = 0;
     }
@@ -355,15 +360,15 @@
     
     if(maleHighlighted == 1) {
         male.highlighted = TRUE;
-        femaleHighlighted = FALSE;
+        female.Highlighted = FALSE;
     }
-    else if(femaleHighlighted == 1) {
-        femaleHighlighted = TRUE;
-        maleHighlighted = FALSE;
+    if(femaleHighlighted == 1) {
+        female.highlighted = TRUE;
+        male.highlighted = FALSE;
     }
-    else {
-        maleHighlighted = FALSE;
-        femaleHighlighted = FALSE;
+    if(femaleHighlighted == 0 && maleHighlighted == 0) {
+        male.highlighted = FALSE;
+        female.highlighted = FALSE;
     }
 
 }
@@ -374,7 +379,17 @@
     loading = [[UIAlertView alloc] initWithTitle:nil message:@"Updating" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
     NSString* updatedLocation = location.text;
     NSString* updatedBio = bio.text;
-    NSString* updatedGender = userdata.getGender;
+    NSString* updatedGender;
+    
+    if(male.highlighted == TRUE) {
+        updatedGender = @"M";
+    }
+    if(female.highlighted == TRUE) {
+        updatedGender = @"F";
+    }
+    if(female.highlighted == FALSE && male.highlighted == FALSE) {
+        updatedGender = @"U";
+    }
     
     [shared.appUser setLocation:[NSMutableString stringWithString:updatedLocation]];
     [shared.appUser setUserBio:[NSMutableString stringWithString:updatedBio]];
