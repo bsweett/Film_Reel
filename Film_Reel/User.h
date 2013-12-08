@@ -22,6 +22,7 @@
 @property (nonatomic        ) NSInteger           * friendCount;
 @property (strong, nonatomic) NSString            * token;
 @property (strong, nonatomic) NSMutableString     * popularity;
+@property (strong, nonatomic) NSMutableString     * reelCount;
 
 // Getters
 - (NSMutableString*) getUserName;
@@ -36,7 +37,7 @@
 - (NSInteger*) getFriendCount;
 - (NSMutableString*) getGender;
 - (NSMutableString*) getPopularity;
-
+- (NSMutableString*) getReelCount;
 // Setters
 - (void) setUserName: (NSMutableString*) name;
 - (void) setToken:(NSString *)validToken;
@@ -47,6 +48,7 @@
 - (void) setDisplayPicturePath: (NSString *) image;
 - (void) setGender:(NSMutableString *) sex;
 - (void) setUpImageFromData: (NSData*) data;
+- (void) setReelCount:(NSMutableString *)count;
 - (void) setPopularity:(NSMutableString *)popularity;
 - (void) incrementCount;
 - (void) decrementCount;

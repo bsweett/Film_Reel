@@ -326,6 +326,10 @@
     {
         currentObject = [[NSMutableString alloc]init];
     }
+    if([elementName isEqualToString:@"reelcount"])
+    {
+        currentObject = [[NSMutableString alloc]init];
+    }
     if([elementName isEqualToString:@"message"])
     {
        currentObject = [[NSMutableString alloc]init];
@@ -388,6 +392,10 @@
     {
         [dataReceived setObject:currentObject forKey:elementName];
     }
+    if([elementName isEqualToString:@"reelcount"])
+    {
+        [dataReceived setObject:currentObject forKey:elementName];
+    }
     if([elementName isEqualToString:@"reel"])
     {
         //[dataReceived setObject:currentObject forKey:elementName];
@@ -413,6 +421,7 @@
         [userObject setGender:[dataReceived objectForKey:@"gender"]];
         [userObject setPopularity:[dataReceived objectForKey:@"pop"]];
         [userObject setDisplayPicturePath:[dataReceived objectForKey:@"image"]];
+        [userObject setReelCount:[dataReceived objectForKey:@"reelcount"]];
         [dataReceived setObject:userObject forKey:@"user"];
     }
 }
@@ -465,7 +474,8 @@
     NSMutableData *postbody = [NSMutableData data];
     [postbody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     [postbody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"fileUpload\"; filename=\"%@.jpg\"\r\n", filename] dataUsingEncoding:NSUTF8StringEncoding]];
-    [postbody appendData:[[NSString stringWithString:@"Content-Type: image/jpeg \r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    // If images stop uploading need to put NSString with string back
+    [postbody appendData:[@"Content-Type: image/jpeg \r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     [postbody appendData:[NSData dataWithData:dataImage]];
     [postbody appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPBody:postbody];

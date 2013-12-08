@@ -23,6 +23,9 @@
 @property (strong, nonatomic) IBOutlet UIButton    *edit;
 @property (strong, nonatomic) IBOutlet UIButton    *imageButton;
 @property (strong, nonatomic) IBOutlet UIImageView *displaypicture;
+@property (strong, nonatomic) IBOutlet UITextView  *reelCount;
+@property (strong, nonatomic) IBOutlet UIImageView *male;
+@property (strong, nonatomic) IBOutlet UIImageView *female;
 
 @property (strong, nonatomic) IBOutlet UIImageView *star1;
 @property (strong, nonatomic) IBOutlet UIImageView *star2;
@@ -35,7 +38,7 @@
 @property (strong, nonatomic) Networking  * Update;
 
 @property (strong, nonatomic) User        * userdata;
-
+@property (strong, nonatomic) AppDelegate *shared;
 @property (strong,retain    ) NSString    * saveBio;
 @property (strong,retain    ) NSString    * saveName;
 @property (strong,retain    ) NSString    * saveLocation;

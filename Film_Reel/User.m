@@ -22,6 +22,7 @@
 @synthesize popularity;
 @synthesize friendsList;
 @synthesize friendCount;
+@synthesize reelCount;
 
 // Constructor -------------------------------------------------------------------
 -(id) init
@@ -58,6 +59,7 @@
 - (NSInteger*) getFriendCount          { return friendCount;    }
 - (NSMutableString*) getPopularity     { return popularity;     }
 - (NSMutableString*) getGender         { return gender;         }
+- (NSMutableString*) getReelCount      { return reelCount;      }
 
 // Set Values --------------------------------------------------------------------
 - (void) setUserName:  (NSMutableString*) name     { userName        = name;            }
@@ -71,6 +73,7 @@
 - (void) decrementCount                            { friendCount     = friendCount - 1; }
 - (void) setPopularity:(NSMutableString*)pop       { popularity      = pop;             }
 - (void) setGender:    (NSMutableString *)sex      { gender          = sex;             }
+- (void) setReelCount:(NSMutableString *)count     { reelCount       = count;           }
 
 
 // Sets up Image from file data provided from server

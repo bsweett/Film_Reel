@@ -33,9 +33,12 @@
 @synthesize saveLocation;
 @synthesize saveName;
 @synthesize savedImage;
+@synthesize male;
+@synthesize female;
+@synthesize shared;
 
 @synthesize userdata;
-
+    
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -49,6 +52,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UITapGestureRecognizer *maleTap =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(malePushed:)];
+    [maleTap setNumberOfTapsRequired:1];
+    [male addGestureRecognizer:maleTap];
+    
+    UITapGestureRecognizer *femaleTap =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(femalePushed:)];
+    [femaleTap setNumberOfTapsRequired:1];
+    [female addGestureRecognizer:femaleTap];
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"profile.png"]];
     
@@ -73,7 +84,7 @@
     name.delegate = self;
     location.delegate = self;
     email.delegate = self;
-    AppDelegate* shared = [AppDelegate appDelegate];
+    shared = [AppDelegate appDelegate];
     userdata = shared.appUser;
     
     Update = [[Networking alloc] init];
@@ -82,6 +93,13 @@
     [[self name] setText: userdata.getUserName];
     [[self location] setText:userdata.getLocation];
     [[self email] setText: userdata.getEmail];
+    
+    if([userdata.getGender isEqualToString:@"M"]) {
+        male.highlighted = TRUE;
+    }
+    if([userdata.getGender isEqualToString:@"F"]) {
+        female.highlighted = FALSE;
+    }
     
     // Reformat all text
     if([[UIDevice currentDevice].model isEqualToString:@"iPad"])
@@ -118,6 +136,24 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+    
+- (void)malePushed:(UIGestureRecognizer*) recognizer {
+    if(male.highlighted == FALSE)
+    {
+        male.highlighted = TRUE;
+        female.highlighted = FALSE;
+        userdata.gender = [NSMutableString stringWithFormat:@"M"];
+    }
+}
+
+- (void)femalePushed:(UIGestureRecognizer*) recognizer {
+    if(female.highlighted == FALSE)
+    {
+        female.highlighted = TRUE;
+        male.highlighted = FALSE;
+        userdata.gender = [NSMutableString stringWithFormat:@"F"];
+    }
 }
 
 // Handles all Networking errors that come from Networking.m
@@ -170,7 +206,6 @@
         NSDictionary* userDictionary = [notif userInfo];
         userdata = [userDictionary valueForKey:@CURRENT_USER];
         
-        AppDelegate* shared = [AppDelegate appDelegate];
         [shared setAppUser:userdata];
         
         [loading dismissWithClickedButtonIndex:0 animated:YES];
@@ -291,6 +326,7 @@
     saveBio = bio.text;
     saveLocation = location.text;
     savedImage = displaypicture.image;
+    
 }
 
 // reset the local values when they hit cancel
@@ -307,11 +343,12 @@
     loading = [[UIAlertView alloc] initWithTitle:nil message:@"Updating" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
     NSString* updatedLocation = location.text;
     NSString* updatedBio = bio.text;
+    NSString* updatedGender = userdata.getGender;
     
     //Temp for now normally would get display picture as above
     NSString *tempImage = @"default";
     
-    NSString* request = [self buildProfileUpdateRequest:[userdata getToken] withImage:tempImage withLocation:updatedLocation withBio:updatedBio];
+    NSString* request = [self buildProfileUpdateRequest:[userdata getToken] withImage:tempImage withLocation:updatedLocation withBio:updatedBio withGender:updatedGender];
     
     [Update startReceive:request withType:@UPDATE_REQUEST];
     
@@ -377,7 +414,7 @@
 
 // This is the template for building future URLRequests
 // NOTE:: SERVER_ADDRESS is hardcoded in Networking.h
-- (NSString*) buildProfileUpdateRequest: (NSString*) token withImage: (NSString*) image withLocation: (NSString*) geolocation withBio: (NSString*) about
+- (NSString*) buildProfileUpdateRequest: (NSString*) token withImage: (NSString*) image withLocation: (NSString*) geolocation withBio: (NSString*) about withGender: (NSString*) gender
 {
     NSMutableString* updateProfile = [[NSMutableString alloc] initWithString:@SERVER_ADDRESS];
     [updateProfile appendString:@"saveuserdata?"];
@@ -385,11 +422,13 @@
     NSMutableString* parameter3 = [[NSMutableString alloc] initWithFormat: @"&image=%@" , image];
     NSMutableString* parameter4 = [[NSMutableString alloc] initWithFormat: @"&location=%@" , geolocation];
     NSMutableString* parameter5 = [[NSMutableString alloc] initWithFormat: @"&bio=%@" , about];
+    NSMutableString* parameter6 = [[NSMutableString alloc] initWithFormat: @"&gender=%@", gender];
     
     [updateProfile appendString:parameter1];
     [updateProfile appendString:parameter3];
     [updateProfile appendString:parameter4];
     [updateProfile appendString:parameter5];
+    [updateProfile appendString:parameter6];
     
     NSLog(@"REQUEST INFO:: Update Profile -- %@", updateProfile);
     

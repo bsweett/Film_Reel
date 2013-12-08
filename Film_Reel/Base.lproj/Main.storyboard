@@ -264,6 +264,9 @@
                                     <color key="titleColor" red="0.36078432199999999" green="0.36078432199999999" blue="0.36078432199999999" alpha="1" colorSpace="deviceRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="doImageTap:" destination="sye-qo-Uds" eventType="touchUpInside" id="D64-DM-hdE"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jcy-HE-Mez">
                                 <rect key="frame" x="28" y="210" width="263" height="87"/>
@@ -286,6 +289,9 @@
                                     <color key="titleColor" red="0.36078432199999999" green="0.36078432199999999" blue="0.36078432199999999" alpha="1" colorSpace="deviceRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="doCancel:" destination="sye-qo-Uds" eventType="touchUpInside" id="v5o-qC-G8n"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UsC-5a-ibV">
                                 <rect key="frame" x="285" y="0.0" width="30" height="30"/>
@@ -294,6 +300,9 @@
                                     <color key="titleColor" red="0.36078432199999999" green="0.36078432199999999" blue="0.36078432199999999" alpha="1" colorSpace="deviceRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="doEdit:" destination="sye-qo-Uds" eventType="touchUpInside" id="XWn-jI-FXR"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pdq-Fu-yuw">
                                 <rect key="frame" x="43" y="11" width="240" height="36"/>
@@ -336,11 +345,11 @@
                                 <rect key="frame" x="255" y="447" width="36" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="male-gender-sign.png" translatesAutoresizingMaskIntoConstraints="NO" id="XRc-r6-oBD">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="male-gender-sign-dark.png" highlightedImage="male-gender-sign.png" translatesAutoresizingMaskIntoConstraints="NO" id="XRc-r6-oBD">
                                 <rect key="frame" x="20" y="154" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="female-gender-sign-dark.png" translatesAutoresizingMaskIntoConstraints="NO" id="cQZ-6c-FfN">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="female-gender-sign-dark.png" highlightedImage="female-gender-sign.png" translatesAutoresizingMaskIntoConstraints="NO" id="cQZ-6c-FfN">
                                 <rect key="frame" x="68" y="154" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -361,9 +370,12 @@
                         <outlet property="displaypicture" destination="L8y-3Z-6jf" id="4gL-Uk-C0m"/>
                         <outlet property="edit" destination="UsC-5a-ibV" id="fUJ-Wa-suc"/>
                         <outlet property="email" destination="YR9-ed-zOD" id="lwj-l7-ZiT"/>
+                        <outlet property="female" destination="cQZ-6c-FfN" id="s52-zW-KmV"/>
                         <outlet property="imageButton" destination="Ioi-mT-FuH" id="SBk-Dp-2tb"/>
                         <outlet property="location" destination="Vz1-y2-nZp" id="hh8-6B-x4y"/>
+                        <outlet property="male" destination="XRc-r6-oBD" id="XfJ-SX-wHd"/>
                         <outlet property="name" destination="Pdq-Fu-yuw" id="ELd-ug-Ir7"/>
+                        <outlet property="reelCount" destination="ShG-jG-SAh" id="KCJ-3t-rbW"/>
                         <outlet property="star1" destination="tXc-tA-Pst" id="pnP-CY-YtT"/>
                         <outlet property="star2" destination="UAA-sP-8rX" id="394-Bs-Z3L"/>
                         <outlet property="star3" destination="kl5-uG-1fz" id="J47-jN-SpO"/>
@@ -913,9 +925,11 @@
         <image name="completeimage.png" width="200" height="198"/>
         <image name="default.png" width="128" height="128"/>
         <image name="female-gender-sign-dark.png" width="577" height="868"/>
+        <image name="female-gender-sign.png" width="577" height="868"/>
         <image name="film-80.png" width="77" height="80"/>
         <image name="inputbox.png" width="210" height="28"/>
         <image name="login.png" width="119" height="35"/>
+        <image name="male-gender-sign-dark.png" width="766" height="769"/>
         <image name="male-gender-sign.png" width="766" height="769"/>
         <image name="profile.png" width="668" height="1038"/>
         <image name="signup.png" width="118" height="35"/>
