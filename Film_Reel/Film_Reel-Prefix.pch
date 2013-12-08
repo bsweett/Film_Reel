@@ -16,8 +16,8 @@
 #endif
 
 // Server/app attributes
-#define SERVER_ADDRESS          "http://192.168.1.237:8080/filmreel/"
-#define SERVER_UPLOAD_ADDRESS   "http://192.168.1.237:8080/uploads/"
+#define SERVER_ADDRESS          "http://192.168.1.25:8080/filmreel/"
+#define SERVER_UPLOAD_ADDRESS   "http://192.168.1.25:8080/uploads/"
 #define REEL_ALBUM_NAME         "My Reels"
 #define BAR_COLOR               "009AFF"
 

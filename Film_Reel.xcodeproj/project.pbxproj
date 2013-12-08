@@ -20,6 +20,7 @@
 		B506DB351800806C004991A4 /* Film_ReelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B506DB341800806C004991A4 /* Film_ReelTests.m */; };
 		B506DB401800857A004991A4 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B506DB3F1800857A004991A4 /* NetworkManager.m */; };
 		B52BBEEE18491EA000C53E67 /* SelectFriendController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52BBEEC18491EA000C53E67 /* SelectFriendController.m */; };
+		B54A55301854E7CC008A2D35 /* profile_iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = B54A552F1854E7CC008A2D35 /* profile_iPad.png */; };
 		B56E78E31819BA5D008AE8D5 /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B56E78E21819BA5D008AE8D5 /* iPad.storyboard */; };
 		B56E78EB181A00B5008AE8D5 /* iPadOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = B56E78E9181A00B5008AE8D5 /* iPadOverlay.m */; };
 		B56E78EC181A00B5008AE8D5 /* iPadOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = B56E78EA181A00B5008AE8D5 /* iPadOverlay.xib */; };
@@ -103,6 +104,7 @@
 		B506DB3F1800857A004991A4 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		B52BBEEB18491EA000C53E67 /* SelectFriendController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectFriendController.h; sourceTree = "<group>"; };
 		B52BBEEC18491EA000C53E67 /* SelectFriendController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectFriendController.m; sourceTree = "<group>"; };
+		B54A552F1854E7CC008A2D35 /* profile_iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_iPad.png; sourceTree = "<group>"; };
 		B56E78E21819BA5D008AE8D5 /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
 		B56E78E8181A00B5008AE8D5 /* iPadOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPadOverlay.h; sourceTree = "<group>"; };
 		B56E78E9181A00B5008AE8D5 /* iPadOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPadOverlay.m; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 		F6189F99181327C300D1F0FA /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B54A552F1854E7CC008A2D35 /* profile_iPad.png */,
 				B5FB31EE184E92C200F9986E /* login_ipad_button.png */,
 				B5FB31EF184E92C200F9986E /* signup_ipad_button.png */,
 				F6B8C169184E8D6400849FDF /* backbutton.png */,
@@ -491,6 +494,7 @@
 				B56E78E31819BA5D008AE8D5 /* iPad.storyboard in Resources */,
 				F6B8C172184E8D6400849FDF /* inputbox.png in Resources */,
 				F6B8C176184E8D6400849FDF /* vertical-line.png in Resources */,
+				B54A55301854E7CC008A2D35 /* profile_iPad.png in Resources */,
 				F6B8C180184EA80D00849FDF /* female-gender-sign.png in Resources */,
 				B5E0CAE918130DD80037EA3A /* Main.storyboard in Resources */,
 				F6B016C51814722800DC974C /* CameraOverlay.xib in Resources */,

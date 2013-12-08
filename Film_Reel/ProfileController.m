@@ -22,6 +22,7 @@
 @synthesize cancel;
 @synthesize imageButton;
 @synthesize displaypicture;
+@synthesize reelCount;
 
 @synthesize star1, star2, star3, star4, star5;
 
@@ -61,12 +62,11 @@
     [femaleTap setNumberOfTapsRequired:1];
     [female addGestureRecognizer:femaleTap];
     
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"profile.png"]];
-    
     bio.editable = NO;
     name.editable = NO;
     location.editable = NO;
     email.editable = NO;
+    reelCount.editable = NO;
     cancel.enabled = NO;
     cancel.hidden = YES;
     imageButton.enabled = NO;
@@ -104,11 +104,10 @@
     // Reformat all text
     if([[UIDevice currentDevice].model isEqualToString:@"iPad"])
     {
-        [[self name] setFont:[UIFont systemFontOfSize:20]];
-        [[self name] setTextColor:[[UIColor alloc] initWithRed:0.050980396570000003 green:0.5411764979 blue:0.77647066119999997 alpha:1]];
-        [[self bio] setFont:[UIFont systemFontOfSize:14]];
-        [[self location] setFont:[UIFont systemFontOfSize:14]];
-        [[self email] setFont:[UIFont systemFontOfSize:14]];
+        [[self name] setFont:[UIFont systemFontOfSize:32]];
+        [[self bio] setFont:[UIFont systemFontOfSize:20]];
+        [[self location] setFont:[UIFont systemFontOfSize:20]];
+        [[self email] setFont:[UIFont systemFontOfSize:22]];
     }
     else
     {
