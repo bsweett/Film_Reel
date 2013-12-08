@@ -24,6 +24,7 @@
 @property (nonatomic, strong) UIActivityIndicatorView * indicator;
 @property (nonatomic, strong) Networking              * loginrequest;
 @property (nonatomic, strong) User                    * currentUser;
+@property (nonatomic, strong) AppDelegate * shared;
 
 // Validatation
 - (BOOL)validateUserNameWithString:(NSString*)username;

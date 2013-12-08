@@ -108,6 +108,10 @@
         NSString* storePop                = appUser.popularity;
         NSString* storeGender             = appUser.gender;
         NSMutableDictionary* storeFriends = appUser.getFriendList;
+        NSData  * storeImage              = UIImageJPEGRepresentation(appUser.getDP, 0.1f);
+        NSString* storeImagePath          = appUser.getDisplayPicturePath;
+        
+        
         
         [currentLoggedIn setObject:storeToken forKey:@CURRENT_USER_TOKEN];
         [currentLoggedIn setObject:storeName forKey:@CURRENT_USER_NAME];
@@ -118,6 +122,8 @@
         [currentLoggedIn setObject:storePop forKey:@CURRENT_USER_POP];
         [currentLoggedIn setObject:storeGender forKey:@CURRENT_USER_GENDER];
         [currentLoggedIn setObject:storeFriends forKey:@CURRENT_USER_FRIENDS];
+        [currentLoggedIn setObject:storeImage forKey:@CURRENT_USER_IMAGE];
+        [currentLoggedIn setObject:storeImagePath forKey:@CURRENT_USER_IMAGE_PATH];
         [currentLoggedIn synchronize];
     }
 }
@@ -161,6 +167,9 @@
     appUser.email                   = [currentLoggedIn objectForKey:@CURRENT_USER_EMAIL];
     appUser.userBio                 = [currentLoggedIn objectForKey:@CURRENT_USER_BIO];
     appUser.friendsList             = [currentLoggedIn objectForKey:@CURRENT_USER_FRIENDS];
+    appUser.displayPicturePath      = [currentLoggedIn objectForKey:@CURRENT_USER_IMAGE_PATH];
+    appUser.displayPicture          = [UIImage imageWithData:[currentLoggedIn objectForKey:@CURRENT_USER_IMAGE]];
+    
     NSString* token                 = [appUser getToken];
     
     // Start our request

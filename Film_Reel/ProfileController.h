@@ -15,6 +15,8 @@
 @interface ProfileController : UIViewController <UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 // These local view variables must be mapped to the User object sent from the server at login in
+@property (strong, nonatomic) IBOutlet UIImageView *background;
+
 @property (strong, nonatomic) IBOutlet UITextView  *name;
 @property (strong, nonatomic) IBOutlet UITextView  *email;
 @property (strong, nonatomic) IBOutlet UITextView  *bio;

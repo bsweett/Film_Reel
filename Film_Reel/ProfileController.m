@@ -56,6 +56,11 @@
 {
     [super viewDidLoad];
     
+    [self.view sendSubviewToBack:[self background]];
+    displaypicture.userInteractionEnabled = YES;
+    displaypicture.contentMode = UIViewContentModeScaleAspectFill;
+    displaypicture.clipsToBounds = YES;
+    
     // Make gender images into gesture buttons
     UITapGestureRecognizer *maleTap =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(malePushed:)];
     [maleTap setNumberOfTapsRequired:1];
@@ -108,6 +113,7 @@
     [[self name] setText: userdata.getUserName];
     [[self location] setText:userdata.getLocation];
     [[self email] setText: userdata.getEmail];
+    [[self displaypicture] setImage: userdata.getDP];
     
     // Set up Boolean for Gender saving locally 
     if([[shared.appUser getGender] isEqualToString:@"M"])
@@ -214,7 +220,7 @@
         NSDictionary* userDictionary = [notif userInfo];
         NSString* response= [userDictionary valueForKey:@POST_RESPONSE];
         
-        if([response isEqualToString:@""])
+        if([response isEqualToString:@"Success"])
         {
             [self prepareForUpdate];
         }
@@ -286,7 +292,7 @@
         [Update saveImageToServer:UIImageJPEGRepresentation(displaypicture.image, 0.1f) withFileName:[userdata getEmail]];
         
         
-        [self prepareForUpdate];
+        //[self prepareForUpdate];
  
     }
 }
@@ -335,17 +341,12 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    [shared.appUser setDisplayPicture: info[UIImagePickerControllerEditedImage]];
-    [self displaypicture].image = [shared.appUser getDP];
-    
-    NSLog(@"Done with this");
-    
-    if([self displaypicture].image == nil) {NSLog(@"Something is null");}
-    if([shared.appUser getDP] == nil) { NSLog(@"Image is Null"); }
-    [self.view bringSubviewToFront:[self displaypicture]];
-    
-    
     [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+    [shared.appUser setDisplayPicture: info[UIImagePickerControllerEditedImage]];
+    
+    [self displaypicture].image = [shared.appUser getDP];
+    [self.view bringSubviewToFront:[self displaypicture]];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -418,6 +419,7 @@
     [shared.appUser setLocation:[NSMutableString stringWithString:updatedLocation]];
     [shared.appUser setUserBio:[NSMutableString stringWithString:updatedBio]];
     [shared.appUser setGender: [NSMutableString stringWithString:updatedGender]];
+    [shared.appUser setDisplayPicture:displaypicture.image];
 
     NSString* request = [self buildProfileUpdateRequest:[userdata getToken] withLocation:updatedLocation withBio:updatedBio withGender:updatedGender withPath:userdata.getEmail];
     

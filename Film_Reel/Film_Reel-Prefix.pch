@@ -32,6 +32,9 @@
 #define CURRENT_USER_POP      "current_user_pop"
 #define CURRENT_USER_GENDER   "current_user_gender"
 #define CURRENT_USER_FRIENDS  "current_user_friends"
+#define CURRENT_USER_IMAGE    "current_user_image"
+#define CURRENT_USER_IMAGE_PATH "current_user_image_path"
+
 #define FRIEND_USER           "friend_user"
 #define CACHED_NEW_PASSWORD   "cached_new_password"
 #define CACHED_NEW_USER       "cached_new_user"

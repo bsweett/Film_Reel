@@ -68,7 +68,8 @@
 - (void) setEmail:     (NSMutableString*) eAddress { email           = eAddress;        }
 - (void) setUserBio:   (NSMutableString*) bio      { userBio         = bio;             }
 - (void) setPassword:  (NSMutableString *)pass     { password        = pass;            }
-- (void) setDisplayPicture: (NSString *) image     { displayPicturePath = image;        }
+- (void) setDisplayPicturePath: (NSString *) imagePath  { displayPicturePath = imagePath;}
+- (void) setDisplayPicture:(UIImage *)DP                { displayPicture = DP; }
 - (void) incrementCount                            { friendCount     = friendCount + 1; }
 - (void) decrementCount                            { friendCount     = friendCount - 1; }
 - (void) setPopularity:(NSMutableString*)pop       { popularity      = pop;             }
