@@ -961,45 +961,20 @@
         <image name="FriendsTab" width="30" height="30"/>
         <image name="InboxTab" width="25" height="17"/>
         <image name="ProfileTab" width="24" height="24"/>
-        <image name="ProfileTab" width="24" height="24"/>
         <image name="TakeReelTab" width="25" height="19"/>
         <image name="completeimage.png" width="200" height="198"/>
         <image name="default.png" width="128" height="128"/>
-        <image name="default.png" width="128" height="128"/>
         <image name="female-gender-sign-dark.png" width="577" height="868"/>
-        <image name="female-gender-sign-dark.png" width="577" height="868"/>
-        <image name="female-gender-sign.png" width="577" height="868"/>
         <image name="female-gender-sign.png" width="577" height="868"/>
         <image name="film-128.png" width="123" height="128"/>
         <image name="inputbox.png" width="210" height="28"/>
-        <image name="inputbox.png" width="210" height="28"/>
-        <image name="inputbox.png" width="210" height="28"/>
-        <image name="inputbox.png" width="210" height="28"/>
-        <image name="inputbox.png" width="210" height="28"/>
-        <image name="inputbox.png" width="210" height="28"/>
         <image name="login_ipad_button.png" width="220" height="64"/>
         <image name="male-gender-sign-dark.png" width="766" height="769"/>
-        <image name="male-gender-sign-dark.png" width="766" height="769"/>
         <image name="male-gender-sign.png" width="766" height="769"/>
-        <image name="male-gender-sign.png" width="766" height="769"/>
-        <image name="profile_iPad.png" width="768" height="975"/>
         <image name="profile_iPad.png" width="768" height="975"/>
         <image name="signup_ipad_button.png" width="220" height="64"/>
         <image name="stargrey.png" width="30" height="30"/>
-        <image name="stargrey.png" width="30" height="30"/>
-        <image name="stargrey.png" width="30" height="30"/>
-        <image name="stargrey.png" width="30" height="30"/>
-        <image name="stargrey.png" width="30" height="30"/>
-        <image name="stargrey.png" width="30" height="30"/>
-        <image name="stargrey.png" width="30" height="30"/>
-        <image name="stargrey.png" width="30" height="30"/>
-        <image name="stargrey.png" width="30" height="30"/>
-        <image name="stargrey.png" width="30" height="30"/>
         <image name="takereelbutton.png" width="100" height="89"/>
-        <image name="takereelbutton.png" width="100" height="89"/>
-        <image name="vertical-line.png" width="8" height="544"/>
-        <image name="vertical-line.png" width="8" height="544"/>
-        <image name="vertical-line.png" width="8" height="544"/>
         <image name="vertical-line.png" width="8" height="544"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

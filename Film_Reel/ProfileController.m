@@ -567,5 +567,4 @@
     return [updateProfile stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
-
 @end
