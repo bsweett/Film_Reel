@@ -5,6 +5,10 @@
 //  Created by Ben Sweett on 11/29/2013.
 //  Copyright (c) 2013 Ben Sweett (100846396) and Brayden Girard (100852106). All rights reserved.
 //
+//  This view controller is only accessible from the CameraController / Take a Reel Tab. It contains
+//  a tableview with all of the users friends. If the user selects one this class will upload the
+//  reel and then make a SendReel request to the server with some information.
+//
 
 #import "SelectFriendController.h"
 
@@ -25,65 +29,127 @@
 @synthesize recepient;
 @synthesize ImageFileName;
 
+///////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark View Lifecycle
+#pragma mark -
+///////////////////////////////////////////////////////////////////////////
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
     return self;
 }
 
+
+/**
+ * This method is called when the SelectFriendController is loaded for the first
+ * time. It adds some observers for networking notifications gets the app delegate
+ * and allocates the array of table elements.
+ *
+ */
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     tableElements = [[NSArray alloc]init];
-    shared = [AppDelegate appDelegate];
+    shared        = [AppDelegate appDelegate];
     
-    // Networking Notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSucceedRequest:) name:@RESPONSE_FOR_POST object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSucceedRequest:) name:@REEL_SUCCESS object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didSucceedRequest:)
+                                                 name:@RESPONSE_FOR_POST
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didSucceedRequest:)
+                                                 name:@REEL_SUCCESS
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didGetNetworkError:)
+                                                 name:@ADDRESS_FAIL
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didGetNetworkError:)
+                                                 name:@FAIL_STATUS
+                                               object:nil];
 }
 
-- (void) viewDidAppear:(BOOL)animated {
-    tableElements = [[shared.appUser.getFriendList allValues] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+
+/**
+ * This method is called when the SelectFriendController appears as the view.
+ * It gets all the friends user from the shared user in the app delegate adds 
+ * them to the table array and reloads the table data
+ *
+ * @param animated A BOOL sent from the view that called the transtion
+ */
+- (void) viewDidAppear:(BOOL)animated
+{
+    tableElements = [[shared.appUser.getFriendList allValues]
+                     sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     [self.tableView reloadData];
 }
 
+
+/**
+ * Handles any memory warnings sent from the OS
+ *
+ */
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 1;
-}
+///////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Table View Data Source
+#pragma mark -
+///////////////////////////////////////////////////////////////////////////
 
+/**
+ * A DataSource Method for a tableview returns the number of sections in
+ * a table. We could add Sorting by Aplhabet here to clean up tables with 
+ * lots of users.
+ *
+ * @param tableView The UITableView whose datasource is set to this
+ * @return 1 For now only one section in our tableview
+ */
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView { return 1; }
+
+
+/**
+ * A DataSource Method for a tableview returns the number of rows in a section
+ * in a table. 
+ *
+ * @param tableView The UITableView whose datasource is set to this
+ * @param section A section instance number
+ * @return tableElements count The number of rows in a section.
+ */
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
     return [tableElements count];
 }
 
+
+/**
+ * A DataSource Method for a tableview sets up cells' data and format.
+ *
+ * @param tableView The UITableView whose datasource is set to this
+ * @param indexPath indexPath for a cell
+ * @return cell A cell with a completed layout
+ */
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
+    if (cell == nil)
+    {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
         cell.backgroundColor = [UIColor lightGrayColor];
@@ -96,73 +162,30 @@
         cell.textLabel.highlightedTextColor = [UIColor whiteColor];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
         
-        
         cell.accessoryView=UITableViewCellAccessoryNone;
     }
     
-    
-    // Configure the cell...
-    
     cell.textLabel.text = [tableElements objectAtIndex:indexPath.row];
+    // Could add friends profiles here
+    
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+///////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Table View Delegate
+#pragma mark -
+///////////////////////////////////////////////////////////////////////////
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-/*
-- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)path
-{
-    // Determine if row is selectable based on the NSIndexPath.
-    // TODO
-    BOOL rowIsSelectable = FALSE;
-    
-    if (rowIsSelectable)
-    {
-        return path;
-    }
-    
-    return nil;
-}
-*/
-#pragma mark - Table view delegate
-
-// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
+/**
+ * A Delegate method for the tableView. This is called everytime a user taps on 
+ * a cell that is in the table. It grabs the users email and sends uploads a reel
+ * to the server. Shows an alert while doing this.
+ *
+ * @param tableView The UITableView whose delegate is set to this
+ * @param indexPath indexPath for a cell selected
+ */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -173,45 +196,37 @@
                                 cancelButtonTitle:nil
                                 otherButtonTitles:nil, nil];
     
-    //Get sender and reciepent
+    // Get sender and reciepent
     selectedFriend = [self.tableElements objectAtIndex:indexPath.row];
     recepient = [[shared.appUser.getFriendList allKeysForObject:selectedFriend] objectAtIndex:0];
     sendersEmail = [shared.appUser getEmail];
     
-    // MAKE SURE CELLS ARE NOT SELECTABLE IF THEY ARENT FILLED IN
-    // Fill them in from friendlist
-
-    
+    // Build the filename for image and upload it
     NSString* fileName = [self buildImageFileName:recepient];
     [sendReelRequest saveImageToServer:imageToSend withFileName:fileName];
     [alert show];
 }
 
-- (NSString*) buildImageFileName: (NSString*) recipient
-{
-    ImageFileName = [[NSMutableString alloc] initWithString:recepient];
-    
-    NSDate* currentTimeStamp = [NSDate date];
-    NSDateFormatter * datefromatter = [[NSDateFormatter alloc] init];
-    [datefromatter setDateFormat:@"dd.MM.YY$HH:mm:ss"];
-    NSString* dateString = [datefromatter stringFromDate:currentTimeStamp];
-    
-    [ImageFileName appendString:@"@"];
-    [ImageFileName appendString:dateString];
-    
-    NSLog(@"REEL INFO:: created filename for Reel -- %@", ImageFileName);
-    
-    return ImageFileName;
-}
 
-// Handles Succussful Server connection
+///////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Networking Handlers
+#pragma mark -
+///////////////////////////////////////////////////////////////////////////
+
+/**
+ * Handles a response from the Server. If its a success from a upload it
+ * sends another request and posts some reel information to the inbox on 
+ * the server. If its a success at everything it tells the user the message 
+ * was sent.
+ *
+ * @param notif The Notification that was sent from Networking
+ */
 -(void) didSucceedRequest: (NSNotification*) notif
 {
-    NSLog(@"Notification got called for REEL_SUCCESS");
     if([[notif name] isEqualToString:@RESPONSE_FOR_POST])
     {
-        NSDictionary* userDictionary = [notif userInfo];
-        NSString* response = [userDictionary valueForKey:@POST_RESPONSE];
+        NSString* response = [[notif userInfo] valueForKey:@POST_RESPONSE];
         
         if([response isEqualToString:@"Success"])
         {
@@ -219,7 +234,9 @@
             NSLog(@"SERVER INFO:: Upload of reel was successful");
             if(ImageFileName != nil && sendersEmail != nil && recepient != nil)
             {
-                NSString* request = [self buildSendRequest:sendersEmail withFriend:recepient withImageFileName:ImageFileName];
+                NSString* request = [self buildSendRequest:sendersEmail
+                                                withFriend:recepient
+                                         withImageFileName:ImageFileName];
                 [sendReelRequest startReceive:request withType:@REEL_SEND];
             }
             else
@@ -235,6 +252,7 @@
             [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
         }
     }
+    
     if([[notif name] isEqualToString:@REEL_SUCCESS])
     {
         NSLog(@"Inside notification if statement");
@@ -244,8 +262,77 @@
     }
 }
 
-// This is the template for building future URLRequests
-// NOTE:: SERVER_ADDRESS is hardcoded in Networking.h
+
+/**
+ * Handles any general networking errors from a Network Operation
+ *
+ * @param notif The Notification that was sent from Networking
+ */
+-(void) didGetNetworkError: (NSNotification*) notif
+{
+    if([[notif name] isEqualToString:@ADDRESS_FAIL])
+    {
+        [alert setMessage:@ADDRESS_FAIL_ERROR];
+        [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    if([[notif name] isEqualToString:@FAIL_STATUS])
+    {
+        [alert setMessage:@SERVER_CONNECT_ERROR];
+        [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+
+/**
+ * Simple method of dimissing all alerts without buttons
+ *
+ * @param x The x is passed by the alertView we wish to dismiss
+ */
+-(void)dismissErrors: (UIAlertView*)x { [x dismissWithClickedButtonIndex:-1 animated:YES]; }
+
+
+///////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Building filename and Requests
+#pragma mark -
+///////////////////////////////////////////////////////////////////////////
+
+/**
+ * This function is a filename builder for a reel image that is to be stored on the server
+ * A file name is made of a recievers email and a timestamp
+ *
+ * @param recipient The email of the user that is going to get the reel
+ * @return imageFileName A filename for the image to be saved as
+ */
+- (NSString*) buildImageFileName: (NSString*) recipient
+{
+    ImageFileName                   = [[NSMutableString alloc] initWithString:recepient];
+
+    NSDate* currentTimeStamp        = [NSDate date];
+    NSDateFormatter * datefromatter = [[NSDateFormatter alloc] init];
+    [datefromatter setDateFormat:@"dd.MM.YY$HH:mm:ss"];
+    NSString* dateString            = [datefromatter stringFromDate:currentTimeStamp];
+    
+    [ImageFileName appendString:@"@"];
+    [ImageFileName appendString:dateString];
+    
+    NSLog(@"REEL INFO:: created filename for Reel -- %@", ImageFileName);
+    
+    return ImageFileName;
+}
+
+
+/**
+ * This function is a request Builder for sending reel info. It builds and formats a string for
+ * use in the Networking class.
+ *
+ * @param sender The email of the user sending the reel
+ * @param receiver The email of the user that is receiving the reel
+ * @param imageName The filename of the image that is already stored
+ * @return send A string encoded in UTF8 for sending to our Server as a URL
+ */
 - (NSString*) buildSendRequest: (NSString*) sender withFriend: (NSString*) receiver withImageFileName: (NSString*) imageName
 {
     NSMutableString* send = [[NSMutableString alloc] initWithString:@SERVER_ADDRESS];
@@ -262,27 +349,6 @@
     NSLog(@"REQUEST INFO:: Send Reel -- %@", send);
     
     return [send stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-}
-
-// Handles all Networking errors that come from Networking.m
--(void) didGetNetworkError: (NSNotification*) notif
-{
-    if([[notif name] isEqualToString:@ADDRESS_FAIL])
-    {
-        [alert setMessage:@ADDRESS_FAIL_ERROR];
-        [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
-        //[self.navigationController popViewControllerAnimated:YES];
-    }
-    if([[notif name] isEqualToString:@FAIL_STATUS])
-    {
-        [alert setMessage:@SERVER_CONNECT_ERROR];
-        [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
-        //[self.navigationController popViewControllerAnimated:YES];
-    }
-}
-
--(void)dismissErrors: (UIAlertView*)x{
-	[x dismissWithClickedButtonIndex:-1 animated:YES];
 }
 
 @end

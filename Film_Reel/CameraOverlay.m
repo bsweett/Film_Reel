@@ -1,8 +1,8 @@
 //
-//  iPadOverlay.m
+//  CameraOverlay.m
 //  Film_Reel
 //
-//  Created by Ben Sweett on 10/24/2013.
+//  Created by Brayden Girard on 2013-10-20.
 //  Copyright (c) 2013 Ben Sweett (100846396) and Brayden Girard (100852106). All rights reserved.
 //
 //  This class is used to define the custom view for the ImagePicker and Camera. It sends
@@ -11,15 +11,14 @@
 //  NOTE:: this class is identical to iPadOverlay other than the fact that it maps to a different
 //  xib file. There is probably a better way to do this using only one View Controller that loads
 //  a different xib file based on device.
-//
 
-#import "iPadOverlay.h"
+#import "CameraOverlay.h"
 
-@interface iPadOverlay ()
+@interface CameraOverlay ()
 
 @end
 
-@implementation iPadOverlay
+@implementation CameraOverlay
 
 @synthesize takeReelImage;
 @synthesize countDownText;
@@ -39,7 +38,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self)
+    {
         // Levae empty otherwise will call bad acess on thread
     }
     return self;
@@ -56,6 +56,8 @@
     [super viewDidLoad];
     flipButtonRear.hidden = YES;
     flipButtonFront.hidden = NO;
+    flashOnButton.hidden = NO;
+    flashOffButton.hidden = YES;
     UITapGestureRecognizer *singleTap =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapping:)];
     [singleTap setNumberOfTapsRequired:1];
     [takeReelImage addGestureRecognizer:singleTap];
@@ -79,9 +81,8 @@
 #pragma mark -
 ///////////////////////////////////////////////////////////////////////////
 
-
 /**
- * Single Tap Gesture controller for the Start recording image. Tapping on
+ * Single Tap Gesture controller for the Start recording image. Tapping on 
  * the image calls this method, which will disable all buttons, initialize a
  * timer and send the CAMERA_START Notification
  *
@@ -101,6 +102,8 @@
     cancelButton.hidden = TRUE;
     flipButtonFront.hidden = TRUE;
     flipButtonRear.hidden = TRUE;
+    flashOnButton.hidden = TRUE;
+    flashOffButton.hidden = TRUE;
     [[NSNotificationCenter defaultCenter] postNotificationName:@CAMERA_START object:nil];
 }
 
@@ -185,23 +188,22 @@
  * to the Camera Controller
  *
  */
--(void)countDown {
-    
+-(void)countDown
+{
     [countDownText setText:[NSString stringWithFormat:@"%d", remainingCount]];
     [countDownText setTextColor:[UIColor redColor]];
     [countDownText setFont:[UIFont boldSystemFontOfSize:40.0]];
     [countDownText setTextAlignment:NSTextAlignmentCenter];
     
-    if (--remainingCount == -1) {
+    if (--remainingCount == -1)
+    {
         [timer invalidate];
         [countDownText setHidden:TRUE];
         [[NSNotificationCenter defaultCenter] postNotificationName:@CAMERA_STOP object:nil];
     }
-    
 }
 
 
 
 @end
-
 

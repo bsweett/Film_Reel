@@ -16,8 +16,8 @@
 #endif
 
 // Server/app attributes
-#define SERVER_ADDRESS          "http://192.168.1.25:8080/filmreel/"
-#define SERVER_UPLOAD_ADDRESS   "http://192.168.1.25:8080/uploads/"
+#define SERVER_ADDRESS          "http://192.168.1.237:8080/filmreel/"
+#define SERVER_UPLOAD_ADDRESS   "http://192.168.1.237:8080/uploads/"
 #define REEL_ALBUM_NAME         "My Reels"
 #define BAR_COLOR               "009AFF"
 
@@ -88,9 +88,13 @@
 #define ALREADY_FRIENDS     "already_friends"
 #define EMPTY_INBOX         "no_new_mail"
 
-#define CAMERA_START    "startRecord"
-#define CAMERA_STOP     "stopRecord"
-#define CAMERA_CLOSE    "closeCamera"
+#define CAMERA_START            "startRecord"
+#define CAMERA_STOP             "stopRecord"
+#define CAMERA_CLOSE            "closeCamera"
+#define CAMERA_FLIP_FRONT       "flipCameraFront"
+#define CAMERA_FLIP_REAR        "flipCameraRear"
+#define CAMERA_FLASH_ON         "flashOnCamera"
+#define CAMERA_FLASH_OFF        "flashOffCamera"
 
 #define AUTO_FILL       "auto_fill"
 
