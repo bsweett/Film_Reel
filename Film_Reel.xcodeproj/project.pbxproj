@@ -53,6 +53,8 @@
 		F6189FB5181389C900D1F0FA /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6189FB4181389C900D1F0FA /* MobileCoreServices.framework */; };
 		F6189FB81813942C00D1F0FA /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189FB71813942C00D1F0FA /* TabBarViewController.m */; };
 		F628B205181FFCD10044073D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F628B204181FFCD10044073D /* QuartzCore.framework */; };
+		F69DDFB118552B5700415F7B /* arrowleft.png in Resources */ = {isa = PBXBuildFile; fileRef = F69DDFAF18552B5700415F7B /* arrowleft.png */; };
+		F69DDFB218552B5700415F7B /* arrowright.png in Resources */ = {isa = PBXBuildFile; fileRef = F69DDFB018552B5700415F7B /* arrowright.png */; };
 		F6B016C41814722800DC974C /* CameraOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B016C21814722800DC974C /* CameraOverlay.m */; };
 		F6B016C51814722800DC974C /* CameraOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6B016C31814722800DC974C /* CameraOverlay.xib */; };
 		F6B35AF6181569E7006FFFC9 /* takeareelbuttonhighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B35AF4181569E7006FFFC9 /* takeareelbuttonhighlighted.png */; };
@@ -147,6 +149,8 @@
 		F6189FB61813942C00D1F0FA /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		F6189FB71813942C00D1F0FA /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		F628B204181FFCD10044073D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F69DDFAF18552B5700415F7B /* arrowleft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowleft.png; sourceTree = "<group>"; };
+		F69DDFB018552B5700415F7B /* arrowright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowright.png; sourceTree = "<group>"; };
 		F6B016C11814722800DC974C /* CameraOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraOverlay.h; path = ../CameraOverlay.h; sourceTree = "<group>"; };
 		F6B016C21814722800DC974C /* CameraOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraOverlay.m; path = ../CameraOverlay.m; sourceTree = "<group>"; };
 		F6B016C31814722800DC974C /* CameraOverlay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CameraOverlay.xib; path = ../CameraOverlay.xib; sourceTree = "<group>"; };
@@ -358,6 +362,8 @@
 				B5FB31EF184E92C200F9986E /* signup_ipad_button.png */,
 				F6B8C169184E8D6400849FDF /* backbutton.png */,
 				F6B8C16A184E8D6400849FDF /* film-80.png */,
+				F69DDFAF18552B5700415F7B /* arrowleft.png */,
+				F69DDFB018552B5700415F7B /* arrowright.png */,
 				F6B8C17B184EA2C700849FDF /* profile.png */,
 				F6B8C16B184E8D6400849FDF /* inputbox.png */,
 				F6B8C17D184EA80D00849FDF /* female-gender-sign.png */,
@@ -481,6 +487,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F69DDFB118552B5700415F7B /* arrowleft.png in Resources */,
 				F6B8C170184E8D6400849FDF /* backbutton.png in Resources */,
 				B506DB141800806C004991A4 /* InfoPlist.strings in Resources */,
 				F6D12F28181AE61100578906 /* seperator.png in Resources */,
@@ -505,6 +512,7 @@
 				F6B8C173184E8D6400849FDF /* login.png in Resources */,
 				F6189FB118134DF800D1F0FA /* star.png in Resources */,
 				F6B35AF7181569E7006FFFC9 /* takereelbutton.png in Resources */,
+				F69DDFB218552B5700415F7B /* arrowright.png in Resources */,
 				F6189FB31813514000D1F0FA /* stargrey.png in Resources */,
 				B5FB31F0184E92C200F9986E /* login_ipad_button.png in Resources */,
 				F6B8C174184E8D6400849FDF /* seperator-iPad.png in Resources */,

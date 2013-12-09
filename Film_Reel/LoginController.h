@@ -13,7 +13,7 @@
 #import "AppDelegate.h"
 
 @interface LoginController : UIViewController <UIAlertViewDelegate> {
-    //AppDelegate* app;
+
 }
 
 @property (nonatomic, strong) IBOutlet UIButton                *loginButton;
@@ -24,7 +24,6 @@
 @property (nonatomic, strong) UIActivityIndicatorView * indicator;
 @property (nonatomic, strong) Networking              * loginrequest;
 @property (nonatomic, strong) User                    * currentUser;
-@property (nonatomic, strong) AppDelegate * shared;
 
 // Validatation
 - (BOOL)validateUserNameWithString:(NSString*)username;

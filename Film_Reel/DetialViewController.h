@@ -17,6 +17,9 @@
 @property (strong, nonatomic) IBOutlet UIImageView             *displayPicture;
 @property (strong, nonatomic) IBOutlet UITextView              *bio;
 @property (strong, nonatomic) IBOutlet UITextView              *location;
+@property (strong, nonatomic) IBOutlet UITextView              *reelCount;
+@property (strong, nonatomic) IBOutlet UIImageView             *male;
+@property (strong, nonatomic) IBOutlet UIImageView             *female;
 @property (strong, nonatomic) IBOutlet UIImageView             *friendstar1;
 @property (strong, nonatomic) IBOutlet UIImageView             *friendstar2;
 @property (strong, nonatomic) IBOutlet UIImageView             *friendstar3;

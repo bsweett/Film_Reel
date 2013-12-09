@@ -23,21 +23,11 @@
 @synthesize loginButton;
 @synthesize createButton;
 @synthesize currentUser;
-@synthesize shared;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    shared = [AppDelegate appDelegate];
-    
-    while([shared.isTokenValid isEqualToString:@"?"]) {
-        
-    }
-    if([shared.isTokenValid isEqualToString:@"YES"]){
-        [self performSegueWithIdentifier:@"loggedIn" sender:nil];
-    }
- 
     usernameField.delegate = self;
     passwordField.delegate = self;
     usernameField.keyboardAppearance = UIKeyboardAppearanceDark;
@@ -180,8 +170,7 @@
     {
         NSDictionary* userDictionary = [notif userInfo];
         currentUser = [userDictionary valueForKey:@CURRENT_USER];
-        
-        shared = [AppDelegate appDelegate];
+        AppDelegate *shared = [AppDelegate appDelegate];
         
         //Set App User
         [shared setAppUser: currentUser];

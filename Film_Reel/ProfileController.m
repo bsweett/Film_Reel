@@ -77,10 +77,8 @@
     email.editable    = NO;
     
     // Keyboard Color
-    bio.keyboardAppearance      = UIKeyboardAppearanceDark;
-    location.keyboardAppearance = UIKeyboardAppearanceDark;
     
-   
+    // Hide Cancel Button
     [[navigationItem leftBarButtonItem]setTitle:@"Logout"];
     
     // Disable Interaction with Gender
@@ -114,6 +112,7 @@
     [[self name] setText: userdata.getUserName];
     [[self location] setText:userdata.getLocation];
     [[self email] setText: userdata.getEmail];
+    [[self displaypicture] setImage: userdata.getDP];
     NSLog(@"The reel count is: %@", [shared.appUser getReelCount]);
     [[self reelCount] setText:[userdata getReelCount]];
     

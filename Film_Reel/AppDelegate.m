@@ -108,20 +108,23 @@
     NSString* storePop                = appUser.popularity;
     NSString* storeGender             = appUser.gender;
     NSMutableDictionary* storeFriends = appUser.getFriendList;
+    NSData  * storeImage              = UIImageJPEGRepresentation(appUser.getDP, 0.1f);
+    NSString* storeImagePath          = appUser.getDisplayPicturePath;
         
-    [currentLoggedIn setObject:storeToken forKey:@CURRENT_USER_TOKEN];
-    [currentLoggedIn setObject:storeName forKey:@CURRENT_USER_NAME];
-    [currentLoggedIn setObject:storePass forKey:@CURRENT_USER_PASSWORD];
-    [currentLoggedIn setObject:storeLoc forKey:@CURRENT_USER_LOCATION];
-    [currentLoggedIn setObject:storeEmail forKey:@CURRENT_USER_EMAIL];
-    [currentLoggedIn setObject:storeBio forKey:@CURRENT_USER_BIO];
-    [currentLoggedIn setObject:storePop forKey:@CURRENT_USER_POP];
-    [currentLoggedIn setObject:storeGender forKey:@CURRENT_USER_GENDER];
-    [currentLoggedIn setObject:storeFriends forKey:@CURRENT_USER_FRIENDS];
-    [currentLoggedIn synchronize];
-  
-    
-    
+        
+        
+        [currentLoggedIn setObject:storeToken forKey:@CURRENT_USER_TOKEN];
+        [currentLoggedIn setObject:storeName forKey:@CURRENT_USER_NAME];
+        [currentLoggedIn setObject:storePass forKey:@CURRENT_USER_PASSWORD];
+        [currentLoggedIn setObject:storeLoc forKey:@CURRENT_USER_LOCATION];
+        [currentLoggedIn setObject:storeEmail forKey:@CURRENT_USER_EMAIL];
+        [currentLoggedIn setObject:storeBio forKey:@CURRENT_USER_BIO];
+        [currentLoggedIn setObject:storePop forKey:@CURRENT_USER_POP];
+        [currentLoggedIn setObject:storeGender forKey:@CURRENT_USER_GENDER];
+        [currentLoggedIn setObject:storeFriends forKey:@CURRENT_USER_FRIENDS];
+        [currentLoggedIn setObject:storeImage forKey:@CURRENT_USER_IMAGE];
+        [currentLoggedIn setObject:storeImagePath forKey:@CURRENT_USER_IMAGE_PATH];
+        [currentLoggedIn synchronize];
 }
 
 // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
@@ -237,21 +240,22 @@
     
     if([[notif name] isEqualToString:@VALID_SUCCESS])
     {
-        /*
+        
+   
         bypassLogin= [main instantiateViewControllerWithIdentifier:@"bypass"];
         self.window.rootViewController = bypassLogin;
-        */
-        isTokenValid = @"YES";
+     
+      
         NSLog(@"TOKEN INFO:: Token has been confirmed by server - ALLOW BYPASS\n");
     }
     
     if([[notif name] isEqualToString:@INVALID_TOKEN])
     {
-        /*
+  
         startingview = [main instantiateInitialViewController];
         self.window.rootViewController = startingview;
-         */
-        isTokenValid = @"NO";
+      
+    
         NSLog(@"TOKEN INFO:: Token has been devalidate by server\n");
     }
     
