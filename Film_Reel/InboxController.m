@@ -84,7 +84,11 @@
     [refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
     [inboxTable addSubview:refreshControl];
     
+    
+    
     tablearray = [[NSMutableArray alloc] init];
+    NSUserDefaults* currentLoggedIn = [NSUserDefaults standardUserDefaults];
+    tablearray = [currentLoggedIn objectForKey:@CURRENT_USER_INBOX];
 }
 
 
@@ -100,6 +104,12 @@
     [inboxTable reloadData];
 }
 
+-(void)viewDidDisappear:(BOOL)animated
+{
+    NSUserDefaults* currentLoggedIn = [NSUserDefaults standardUserDefaults];
+    [currentLoggedIn setObject:tablearray forKey:@CURRENT_USER_INBOX];
+    [currentLoggedIn synchronize];
+}
 
 /**
  * Handles any memory warnings sent from the OS
@@ -162,6 +172,7 @@
         NSArray *copyArray    = [reels mutableCopy];
         
         [tablearray addObjectsFromArray:copyArray];
+        
         [refreshControl endRefreshing];
         [inboxTable reloadData];
     }

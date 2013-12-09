@@ -93,6 +93,10 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     NSUserDefaults* currentLoggedIn = [NSUserDefaults standardUserDefaults];
+    
+    if([appUser getDP] == nil) {
+        LogDebug(@"Null in here? ");
+    }
  
     LogInfo(@"TOKEN:: Token into background %@", appUser.token);
 
@@ -160,6 +164,10 @@
     appUser.displayPicturePath      = [currentLoggedIn objectForKey:@CURRENT_USER_IMAGE_PATH];
     appUser.displayPicture          = [UIImage imageWithData:[currentLoggedIn objectForKey:@CURRENT_USER_IMAGE]];
     
+    if([appUser getDP] == nil) {
+        LogDebug(@"Null in here? ");
+    }
+    
     NSString* token                 = [appUser getToken];
     
     // Start our request
@@ -220,6 +228,7 @@
     }
     if([[notif name] isEqualToString:@ADDRESS_FAIL])
     {
+        LogError(@"Request Address was not URL formatted");
         self.window.rootViewController = startingview;
     }
     if([[notif name] isEqualToString:@FAIL_STATUS])
@@ -237,20 +246,27 @@
     {
         
         appUser = [[notif userInfo] valueForKey:@CURRENT_USER];
+        if([appUser getDP] == nil) {
+            LogDebug(@"Null in here? ");
+        }
+        
         bypassLogin= [main instantiateViewControllerWithIdentifier:@"bypass"];
         self.window.rootViewController = bypassLogin;
      
-        NSLog(@"TOKEN INFO:: Token has been confirmed by server - ALLOW BYPASS\n");
+        LogInfo(@"TOKEN:: Token has been confirmed by server - ALLOW BYPASS\n");
     }
     
     if([[notif name] isEqualToString:@INVALID_TOKEN])
     {
   
+        if([appUser getDP] == nil) {
+            LogDebug(@"Null in here? ");
+        }
         startingview = [main instantiateInitialViewController];
         self.window.rootViewController = startingview;
       
     
-        NSLog(@"TOKEN INFO:: Token has been devalidate by server\n");
+        LogInfo(@"TOKEN INFO:: Token has been devalidate by server\n");
     }
     
 }

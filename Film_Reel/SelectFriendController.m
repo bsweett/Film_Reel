@@ -207,6 +207,7 @@
     
     // Build the filename for image and upload it
     NSString* fileName = [self buildImageFileName:recepient];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [sendReelRequest saveImageToServer:imageToSend withFileName:fileName];
     [alert show];
 }

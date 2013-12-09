@@ -207,7 +207,7 @@
     //Gets the email address for the local friend
     //Friends names will be updated locally when a login occurs
     NSString* recipient = [[shared.appUser.getFriendList allKeysForObject:name] objectAtIndex:0];
-    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self performSegueWithIdentifier:@"detail" sender:recipient];
 }
 

@@ -18,8 +18,8 @@
 #import "Logging.h"
 
 // Server/app attributes
-#define SERVER_ADDRESS          "http://192.168.1.237:8080/filmreel/"
-#define SERVER_UPLOAD_ADDRESS   "http://192.168.1.237:8080/uploads/"
+#define SERVER_ADDRESS          "http://198.84.223.135:8080/filmreel/"
+#define SERVER_UPLOAD_ADDRESS   "http://198.84.223.135:8080/uploads/"
 #define REEL_ALBUM_NAME         "My Reels"
 #define BAR_COLOR               "009AFF"
 
@@ -36,6 +36,7 @@
 #define CURRENT_USER_FRIENDS  "current_user_friends"
 #define CURRENT_USER_IMAGE    "current_user_image"
 #define CURRENT_USER_IMAGE_PATH "current_user_image_path"
+#define CURRENT_USER_INBOX      "current_user_inbox"
 
 #define FRIEND_USER           "friend_user"
 #define CACHED_NEW_PASSWORD   "cached_new_password"

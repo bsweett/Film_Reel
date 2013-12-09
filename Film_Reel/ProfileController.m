@@ -118,6 +118,11 @@
     shared = [AppDelegate appDelegate];
     userdata = shared.appUser;
     
+    if(userdata.getDP == nil)
+    {
+        [[self displaypicture]  setImage:[UIImage imageNamed:@"default.png"]];
+    }
+    
     // Init Networking
     Update = [[Networking alloc] init];
     
@@ -126,6 +131,8 @@
     [[self name] setText: userdata.getUserName];
     [[self location] setText:userdata.getLocation];
     [[self email] setText: userdata.getEmail];
+    
+    LogDebug(@"users photo is :: %f", userdata.getDP.size.height);
     [[self displaypicture] setImage: userdata.getDP];
     [[self reelCount] setText:[userdata getReelCount]];
     
