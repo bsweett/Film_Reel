@@ -203,9 +203,9 @@
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString: @"detail"]) {
+    if ([[segue identifier] isEqualToString: @"detail"])
+    {
         DetialViewController *dest = (DetialViewController *)[segue destinationViewController];
-        //the sender is what you pass into the previous method
         dest.friendEmail = sender;
     }
 }

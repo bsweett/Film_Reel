@@ -491,8 +491,8 @@
     }
 }
 
--(UIImage *) downloadImageFromServer: (NSString *) url {
-  
+-(UIImage *) downloadImageFromServer: (NSString *) url
+{  
     NSMutableString *urlAddress = [[NSMutableString alloc]initWithString:@SERVER_UPLOAD_ADDRESS];
     [urlAddress appendString:url];
     [urlAddress appendString:@".jpg"];
