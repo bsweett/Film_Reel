@@ -85,6 +85,7 @@
 #define USER_ALREADY_EXISTS "user_already_exists"
 #define USER_NOT_FOUND      "user_not_found"
 #define INVALID_TOKEN       "invalid_token"
+#define TOKEN_IS_INVALID_ADD_FRIEND "token_add_friend_invalid"
 #define ALREADY_FRIENDS     "already_friends"
 #define EMPTY_INBOX         "no_new_mail"
 

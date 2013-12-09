@@ -66,6 +66,7 @@
  */
 -(void)viewDidAppear:(BOOL)animated
 {
+    [self.navigationController setNavigationBarHidden: YES animated:NO];
     [[NSNotificationCenter defaultCenter]addObserver:self
                                             selector:@selector(didGetNetworkError:)
                                                 name:@ADDRESS_FAIL

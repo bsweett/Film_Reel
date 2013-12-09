@@ -161,7 +161,7 @@
     }
     else if([localMessage isEqualToString:@"InvalidToken"])
     {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@INVALID_TOKEN object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@TOKEN_IS_INVALID_ADD_FRIEND object:nil];
     }
     else    // Pass user object
     {
@@ -491,8 +491,8 @@
     }
 }
 
--(UIImage *) downloadImageFromServer: (NSString *) url {
-  
+-(UIImage *) downloadImageFromServer: (NSString *) url
+{  
     NSMutableString *urlAddress = [[NSMutableString alloc]initWithString:@SERVER_UPLOAD_ADDRESS];
     [urlAddress appendString:url];
     [urlAddress appendString:@".jpg"];

@@ -47,6 +47,7 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@FRIEND_SUCCESS object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@TOKEN_IS_INVALID_ADD_FRIEND object:nil];
 	// Do any additional setup after loading the view.
 }
 
@@ -121,10 +122,11 @@
         [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
     }
     
-    if([[notif name] isEqualToString:@INVALID_TOKEN])
+    if([[notif name] isEqualToString:@TOKEN_IS_INVALID_ADD_FRIEND])
     {
         [loading setMessage:@INVALID_TOKEN_ERROR];
         [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
+        // Kick them from application
     }
     
 }
@@ -201,9 +203,9 @@
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString: @"detail"]) {
+    if ([[segue identifier] isEqualToString: @"detail"])
+    {
         DetialViewController *dest = (DetialViewController *)[segue destinationViewController];
-        //the sender is what you pass into the previous method
         dest.friendEmail = sender;
     }
 }
