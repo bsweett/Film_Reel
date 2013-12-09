@@ -11,12 +11,6 @@
 //
 
 #import "CameraController.h"
-#import "MobileCoreServices/UTCoreTypes.h"
-#import "ALAssetsLibrary+CustomPhotoAlbum.h"
-#import <AVFoundation/AVAssetImageGenerator.h>
-#import <AVFoundation/AVAsset.h>
-#import <CoreMedia/CMTimeRange.h>
-#import <AssetsLibrary/AssetsLibrary.h>
 
 @interface CameraController ()
 @end
