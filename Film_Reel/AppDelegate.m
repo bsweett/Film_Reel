@@ -239,11 +239,10 @@
     if([[notif name] isEqualToString:@VALID_SUCCESS])
     {
         
-   
+        appUser = [[notif userInfo] valueForKey:@CURRENT_USER];
         bypassLogin= [main instantiateViewControllerWithIdentifier:@"bypass"];
         self.window.rootViewController = bypassLogin;
      
-      
         NSLog(@"TOKEN INFO:: Token has been confirmed by server - ALLOW BYPASS\n");
     }
     

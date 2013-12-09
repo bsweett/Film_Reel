@@ -202,7 +202,8 @@
     }
     else
     {
-        [[NSNotificationCenter defaultCenter]postNotificationName:@VALID_SUCCESS object:nil];
+         NSDictionary* userDictionary = [NSDictionary dictionaryWithObject:userObject forKey:@CURRENT_USER];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@VALID_SUCCESS object:nil userInfo:userDictionary];
     }
 }
 
