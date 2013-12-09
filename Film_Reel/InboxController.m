@@ -54,7 +54,10 @@
     [super viewDidLoad];
     
     shared = [AppDelegate appDelegate];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ERROR_STATUS object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                            selector:@selector(didGetNetworkError:)
+                                                name:@ERROR_STATUS
+                                              object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self
                                             selector:@selector(didGetNetworkError:)
                                                 name:@ADDRESS_FAIL
@@ -146,13 +149,13 @@
     if([[notif name] isEqualToString:@EMPTY_INBOX])
     {
         [refreshControl endRefreshing];
-        NSLog(@"INBOX INFO:: No new messages\n");
+        LogInfo(@"INBOX INFO:: No new messages\n");
     }
     
     // If new mail is found add it to the table array and update
     if([[notif name] isEqualToString:@INBOX_SUCCESS])
     {
-        NSLog(@"INBOX INFO:: Got Data from Server\n");
+        LogInfo(@"INBOX INFO:: Got Data from Server\n");
         
         NSMutableArray* reels = [[notif userInfo] valueForKey:@INBOX_DATA];
         NSArray *copyArray    = [reels mutableCopy];
@@ -173,8 +176,9 @@
 {
     if([[notif name] isEqualToString:@ERROR_STATUS])
     {
-        
+        LogError(@"Server threw an exception");
     }
+    
     if([[notif name] isEqualToString:@ADDRESS_FAIL_ERROR])
     {
         [refreshControl endRefreshing];
@@ -216,7 +220,7 @@
     NSMutableString* parameter1 = [[NSMutableString alloc] initWithFormat: @"token=%@" , token];
     [inbox appendString:parameter1];
     
-    NSLog(@"REQUEST INFO:: Get Inbox -- %@", inbox);
+    LogInfo(@"REQUEST:: Get Inbox -- %@", inbox);
     
     return [inbox stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];;
 }
@@ -302,7 +306,7 @@
     
     // Set up the cell
     aReelForCell = [tablearray objectAtIndex:indexPath.row];
-    cell.textLabel.text = @"Reel from %@" ,[aReelForCell getSender];
+    cell.textLabel.text = [NSString stringWithFormat: @"Reel from %@" ,[aReelForCell getSender]];
     cell.imageView.image = [UIImage imageNamed:@"film-80.png"];
     
     return cell;

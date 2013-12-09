@@ -84,7 +84,7 @@
  * ensure that logging is not accidentally left enabled by accident in release builds.
  */
 #ifndef LOGGING_ENABLED
-#	define LOGGING_ENABLED		0
+#	define LOGGING_ENABLED		1
 #endif
 
 /**
@@ -93,7 +93,7 @@
  * For these settings to be effective, LOGGING_ENABLED must also be defined and non-zero.
  */
 #ifndef LOGGING_LEVEL_TRACE
-#	define LOGGING_LEVEL_TRACE		0
+#	define LOGGING_LEVEL_TRACE		1
 #endif
 #ifndef LOGGING_LEVEL_INFO
 #	define LOGGING_LEVEL_INFO		1
@@ -110,7 +110,7 @@
  * in the log entries. This can be set either here or as a compiler build setting.
  */
 #ifndef LOGGING_INCLUDE_CODE_LOCATION
-	#define LOGGING_INCLUDE_CODE_LOCATION	0
+	#define LOGGING_INCLUDE_CODE_LOCATION	1
 #endif
 
 // *********** END OF USER SETTINGS  - Do not change anything below this line ***********

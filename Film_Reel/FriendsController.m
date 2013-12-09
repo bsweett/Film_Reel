@@ -129,7 +129,9 @@
     {
         [loading setMessage:@INVALID_TOKEN_ERROR];
         [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
-        // Kick them from application
+        
+        LogError(@"User trying to get friends has an invalid token");
+        // kick them out
     }
     
 }
@@ -139,7 +141,7 @@
 {
     if([[notif name] isEqualToString:@ERROR_STATUS])
     {
-        
+        LogError(@"Server threw an exception");
     }
     if([[notif name] isEqualToString:@ADDRESS_FAIL])
     {

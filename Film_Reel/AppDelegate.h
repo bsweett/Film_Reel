@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 #import "LoginController.h"
+#import "TabBarViewController.h"
 #import "Networking.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>

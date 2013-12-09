@@ -108,6 +108,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)unwindToThisViewController:(UIStoryboardSegue *)unwindSegue
+{
+    [usernameField setText:@""];
+    [passwordField setText:@""];
+    currentUser.token = nil;
+    NSUserDefaults* currentLoggedIn = [NSUserDefaults standardUserDefaults];
+    [currentLoggedIn setObject:currentUser.token forKey:@CURRENT_USER_TOKEN];
+}
+
 
 ///////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -222,7 +231,7 @@
     [login appendString:parameter1];
     [login appendString:parameter2];
     
-    NSLog(@"REQUEST INFO:: Login -- %@", login);
+    LogInfo(@"REQUEST:: Login -- %@", login);
     
     return [login stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
@@ -237,8 +246,9 @@
 {
     if([[notif name] isEqualToString:@ERROR_STATUS])
     {
-        
+        LogError(@"Server threw an exception");
     }
+    
     if([[notif name] isEqualToString:@ADDRESS_FAIL])
     {
         [indicator stopAnimating];
@@ -301,7 +311,7 @@
         NSUserDefaults* currentLoggedIn = [NSUserDefaults standardUserDefaults];
         if([currentUser getToken] != nil)
         {
-            NSLog(@"TOKEN INFO:: Token stored at login %@", currentUser.token);
+            LogInfo(@"TOKEN:: Token stored at login %@", currentUser.token);
             
             NSString* storeToken              = currentUser.token;
             NSString* storeName               = currentUser.userName;

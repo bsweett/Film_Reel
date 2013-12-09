@@ -57,7 +57,10 @@
     [super viewDidLoad];
     tableElements = [[NSArray alloc]init];
     shared        = [AppDelegate appDelegate];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ERROR_STATUS object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                            selector:@selector(didGetNetworkError:)
+                                                name:@ERROR_STATUS
+                                              object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didSucceedRequest:)
                                                  name:@RESPONSE_FOR_POST
@@ -231,7 +234,7 @@
         if([response isEqualToString:@"Success"])
         {
             
-            NSLog(@"SERVER INFO:: Upload of reel was successful");
+            LogInfo(@"SERVER:: Upload of reel was successful");
             if(ImageFileName != nil && sendersEmail != nil && recepient != nil)
             {
                 NSString* request = [self buildSendRequest:sendersEmail
@@ -241,13 +244,13 @@
             }
             else
             {
-                NSLog(@"REEL ERROR:: ImageFileName, sendersEmail, or recepient are null");
+                LogError(@"REEL ERROR:: ImageFileName, sendersEmail, or recepient are null");
             }
             
         }
         else
         {
-            NSLog(@"SERVER ERROR:: Failed to upload reel to server");
+            LogError(@"SERVER ERROR:: Failed to upload reel to server");
             [alert setMessage:@"Reel failed to upload to server"];
             [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
         }
@@ -255,7 +258,6 @@
     
     if([[notif name] isEqualToString:@REEL_SUCCESS])
     {
-        NSLog(@"Inside notification if statement");
         [alert setMessage:@"Message Sent"];
         [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
         [self.navigationController popToRootViewControllerAnimated:YES];
@@ -272,7 +274,7 @@
 {
     if([[notif name] isEqualToString:@ERROR_STATUS])
     {
-    
+        LogError(@"Server threw an exception");
     }
     if([[notif name] isEqualToString:@ADDRESS_FAIL])
     {
