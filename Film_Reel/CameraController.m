@@ -28,6 +28,14 @@
 @synthesize sendReelRequest;
 @synthesize alert;
 
+@synthesize flashOkForFront, flashOkForRear;
+
+///////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark View Lifecycle
+#pragma mark -
+///////////////////////////////////////////////////////////////////////////
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -45,6 +53,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordPressed) name:@CAMERA_START object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recordFinished) name:@CAMERA_STOP object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closeCamera) name:@CAMERA_CLOSE object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(flipCamera:) name:@CAMERA_FLIP_FRONT object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(flipCamera:) name:@CAMERA_FLIP_REAR object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(flashChanged:) name:@CAMERA_FLASH_ON object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(flashChanged:) name:@CAMERA_FLASH_OFF object:nil];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -67,6 +79,20 @@
     [super didReceiveMemoryWarning];
 }
 
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Pass image as text
+    NSData *imageAsData = UIImageJPEGRepresentation(frameImage, 1.0f);
+    SelectFriendController* destViewController = segue.destinationViewController;
+    destViewController.imageToSend = imageAsData;
+}
+
+///////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Gesture and Button Handlers
+#pragma mark -
+///////////////////////////////////////////////////////////////////////////
+
 // Sends reel
 -(IBAction)takeReelPressed:(id)sender
 {
@@ -75,13 +101,16 @@
 
 -(void) handleSwipeRight:(UITapGestureRecognizer *)recognizer
 {
-    NSLog(@"Swipe Left");
     [self startCameraControllerFromViewController: self usingDelegate: self];
 }
 
+/**
+ * Handles Swiping Gesture 
+ *
+ * @param recognizer The recognizer is sent from right gesture in viewDidAppear
+ */
 -(void) handleSwipeLeft:(UITapGestureRecognizer *)recognizer
 {
-     NSLog(@"Swipe Right");
 
     if(frameImage != NULL)
     {
@@ -95,13 +124,11 @@
     }
 }
 
--(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Pass image as text
-    NSData *imageAsData = UIImageJPEGRepresentation(frameImage, 1.0f);
-    SelectFriendController* destViewController = segue.destinationViewController;
-    destViewController.imageToSend = imageAsData;
-}
+///////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Save Reel To Device
+#pragma mark -
+///////////////////////////////////////////////////////////////////////////
 
 // Saves Reel to local photo album
 -(IBAction)saveReelPressed:(id)sender {
@@ -131,6 +158,12 @@
 -(void)dismissErrors: (UIAlertView*)x{
 	[x dismissWithClickedButtonIndex:-1 animated:YES];
 }
+
+///////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Image Picker Controller
+#pragma mark -
+///////////////////////////////////////////////////////////////////////////
 
 - (BOOL) startCameraControllerFromViewController: (UIViewController*) controller usingDelegate: (id <UIImagePickerControllerDelegate,UINavigationControllerDelegate>) delegate {
     
@@ -164,6 +197,9 @@
         cameraUI.cameraOverlayView = cameraOverlay.view;
     }
     
+    flashOkForFront = YES;
+    flashOkForRear = NO;
+    
     [controller presentViewController:cameraUI animated:NO completion:nil];
     
     return YES;
@@ -183,6 +219,12 @@
 
     
 }
+
+///////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Convert Video into Reel Image
+#pragma mark -
+///////////////////////////////////////////////////////////////////////////
 
 // Takes the video and converts it to a film strip
 -(void)convertVideo
@@ -343,6 +385,12 @@
     return newImage;
 }
 
+///////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Camera Overlay Control Handlers
+#pragma mark -
+///////////////////////////////////////////////////////////////////////////
+
 // When the record button is pressed
 // Start the video and timer
 - (void) recordPressed {
@@ -361,4 +409,75 @@
     [cameraUI dismissViewControllerAnimated:NO completion:nil];
 }
 
+-(void) flipCamera: (NSNotification*) notif
+{
+    
+    if([[notif name] isEqualToString:@CAMERA_FLIP_FRONT])
+    {
+        if([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront])
+        {
+            [cameraUI setCameraDevice:UIImagePickerControllerCameraDeviceFront];
+            flashOkForFront = YES;
+            flashOkForRear = NO;
+        }
+    }
+    else if([[notif name] isEqualToString:@CAMERA_FLIP_REAR])
+    {
+        if([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear])
+        {
+            [cameraUI setCameraDevice:UIImagePickerControllerCameraDeviceRear];
+            flashOkForRear = YES;
+            flashOkForFront = NO;
+        }
+    }
+}
+
+/*
+ FUNCTION
+ 
+
+*/
+-(void) flashChanged: (NSNotification*) notif
+{
+    
+    if([[notif name] isEqualToString:@CAMERA_FLASH_ON])
+    {
+        if(flashOkForFront == YES)
+        {
+            if([UIImagePickerController isFlashAvailableForCameraDevice:UIImagePickerControllerCameraDeviceFront])
+            {
+                cameraUI.cameraFlashMode = UIImagePickerControllerCameraFlashModeOn;
+            }
+        }
+    
+        else if(flashOkForRear == YES)
+        {
+            if([UIImagePickerController isFlashAvailableForCameraDevice:UIImagePickerControllerCameraDeviceRear])
+            {
+                cameraUI.cameraFlashMode = UIImagePickerControllerCameraFlashModeOn;
+            }
+        }
+
+    }
+    
+    if([[notif name] isEqualToString:@CAMERA_FLASH_OFF])
+    {
+        if(flashOkForFront == YES)
+        {
+            if([UIImagePickerController isFlashAvailableForCameraDevice:UIImagePickerControllerCameraDeviceFront])
+            {
+                cameraUI.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+            }
+        }
+        
+        else if(flashOkForRear == YES)
+        {
+            if([UIImagePickerController isFlashAvailableForCameraDevice:UIImagePickerControllerCameraDeviceRear])
+            {
+                cameraUI.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+            }
+        }
+    }
+
+}
 @end

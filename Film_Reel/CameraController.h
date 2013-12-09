@@ -37,6 +37,9 @@ UINavigationControllerDelegate, UIGestureRecognizerDelegate>
 @property (nonatomic, strong) Networking              *sendReelRequest;
 @property (nonatomic, strong) UIAlertView             *alert;
 
+@property (nonatomic) BOOL flashOkForFront;
+@property (nonatomic) BOOL flashOkForRear;
+
 - (IBAction)takeReelPressed:(id)sender;
 - (IBAction)saveReelPressed:(id)sender;
 - (void)handleSwipeRight:(UITapGestureRecognizer *)recognizer;

@@ -8,6 +8,10 @@
             <connections>
                 <outlet property="cancelButton" destination="nWQ-OU-dsu" id="M5e-kc-PEz"/>
                 <outlet property="countDownText" destination="Rjs-Wf-Y4R" id="QUR-Jn-qCi"/>
+                <outlet property="flashOffButton" destination="q2C-44-7O1" id="wyJ-3c-IJJ"/>
+                <outlet property="flashOnButton" destination="UIu-an-Zan" id="7Ne-jk-5ME"/>
+                <outlet property="flipButtonFront" destination="SKD-TF-fy4" id="snx-OB-eOh"/>
+                <outlet property="flipButtonRear" destination="Dqh-QE-P2w" id="pSQ-I4-ow4"/>
                 <outlet property="takeReelImage" destination="IND-Bx-5B4" id="oiN-HF-heA"/>
                 <outlet property="view" destination="oOp-Xb-OaZ" id="i3M-GR-3wT"/>
             </connections>
@@ -38,10 +42,53 @@
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dqh-QE-P2w">
+                    <rect key="frame" x="677" y="933" width="71" height="51"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="reverse.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="flipButtonRearPushed:" destination="-1" eventType="touchUpInside" id="mL2-Di-neP"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SKD-TF-fy4">
+                    <rect key="frame" x="677" y="933" width="71" height="51"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="reverse.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="flipButtonFrontPushed:" destination="-1" eventType="touchUpInside" id="LYW-oB-IKv"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UIu-an-Zan">
+                    <rect key="frame" x="20" y="933" width="55" height="58"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button" image="Flashon.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="flashButtonOnPushed:" destination="-1" eventType="touchUpInside" id="Sif-40-cPg"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q2C-44-7O1">
+                    <rect key="frame" x="20" y="938" width="55" height="53"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button" image="flashoff.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="flashButtonOffPushed:" destination="-1" eventType="touchUpInside" id="3j7-Uy-Qgx"/>
+                    </connections>
+                </button>
             </subviews>
         </view>
     </objects>
     <resources>
+        <image name="Flashon.png" width="79" height="103"/>
+        <image name="flashoff.png" width="80" height="81"/>
+        <image name="reverse.png" width="120" height="96"/>
         <image name="takeareelbuttonhighlighted.png" width="100" height="89"/>
         <image name="takereelbutton.png" width="100" height="89"/>
     </resources>

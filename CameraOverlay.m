@@ -14,7 +14,14 @@
 
 @implementation CameraOverlay
 
-@synthesize takeReelImage, countDownText, timer, cancelButton;
+@synthesize takeReelImage;
+@synthesize countDownText;
+@synthesize timer;
+@synthesize cancelButton;
+@synthesize flipButtonFront;
+@synthesize flipButtonRear;
+@synthesize flashOnButton;
+@synthesize flashOffButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,7 +35,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    flipButtonRear.hidden = YES;
+    flipButtonFront.hidden = NO;
+    flashOnButton.hidden = NO;
+    flashOffButton.hidden = YES;
     UITapGestureRecognizer *singleTap =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapping:)];
     [singleTap setNumberOfTapsRequired:1];
     [takeReelImage addGestureRecognizer:singleTap];
@@ -52,12 +62,44 @@
                                             repeats:YES];
     remainingCount = 10;
     cancelButton.hidden = TRUE;
+    flipButtonFront.hidden = TRUE;
+    flipButtonRear.hidden = TRUE;
+    flashOnButton.hidden = TRUE;
+    flashOffButton.hidden = TRUE;
     [[NSNotificationCenter defaultCenter] postNotificationName:@CAMERA_START object:nil];
 }
 
 -(IBAction)cancelButtonPushed:(id)sender
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@CAMERA_CLOSE object:nil];
+}
+
+-(IBAction)flipButtonFrontPushed:(id)sender
+{
+    flipButtonFront.hidden = YES;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@CAMERA_FLIP_FRONT object:nil];
+    flipButtonRear.hidden = NO;
+}
+
+-(IBAction)flipButtonRearPushed:(id)sender
+{
+    flipButtonRear.hidden = YES;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@CAMERA_FLIP_REAR object:nil];
+    flipButtonFront.hidden = NO;
+}
+
+-(IBAction)flashButtonOnPushed:(id)sender
+{
+    flashOnButton.hidden = YES;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@CAMERA_FLASH_ON object:nil];
+    flashOffButton.hidden = NO;
+}
+
+-(IBAction)flashButtonOffPushed:(id)sender
+{
+    flashOffButton.hidden = YES;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@CAMERA_FLASH_OFF object:nil];
+    flashOnButton.hidden = NO;
 }
 
 -(void)countDown {
