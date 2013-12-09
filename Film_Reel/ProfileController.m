@@ -42,7 +42,13 @@
 @synthesize femaleHighlighted;
 
 @synthesize userdata;
-    
+
+///////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark View Lifecycle
+#pragma mark -
+///////////////////////////////////////////////////////////////////////////
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -52,6 +58,13 @@
     return self;
 }
 
+
+/**
+ * This method is called when the InboxController is loaded for the first
+ * time. It adds some observers for networking notifications gets the app delegate
+ * and allocates the array of table elements. It also sets up the refresh controller
+ *
+ */
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -156,36 +169,49 @@
     [self setPopStars:userdata.getPopularity];
 }
 
+
+/**
+ * This method is called when the SelectFriendController appears as the view.
+ * It gets all the friends user from the shared user in the app delegate adds
+ * them to the table array and reloads the table data
+ *
+ * @param animated A BOOL sent from the view that called the transtion
+ */
 -(void)viewDidAppear:(BOOL)animated
 {
   
 }
 
+
+/**
+ * Handles any memory warnings sent from the OS
+ *
+ */
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
     
-- (void)malePushed:(UIGestureRecognizer*) recognizer {
-    if(male.highlighted == FALSE)
-    {
-        male.highlighted = TRUE;
-        female.highlighted = FALSE;
-        userdata.gender = [NSMutableString stringWithFormat:@"M"];
-    }
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
 
-- (void)femalePushed:(UIGestureRecognizer*) recognizer {
-    if(female.highlighted == FALSE)
-    {
-        female.highlighted = TRUE;
-        male.highlighted = FALSE;
-        userdata.gender = [NSMutableString stringWithFormat:@"F"];
-    }
-}
 
-// Handles all Networking errors that come from Networking.m
+///////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Network Handlers
+#pragma mark -
+///////////////////////////////////////////////////////////////////////////
+
+
+/**
+ * Handles any general networking errors from a Network Operation
+ *
+ * @param notif The Notification that was sent from Networking
+ */
 -(void) didGetNetworkError: (NSNotification*) notif
 {
     if([[notif name] isEqualToString:@ADDRESS_FAIL])
@@ -233,6 +259,30 @@
     if([[notif name] isEqualToString:@UPDATE_SUCCESS])
     {
         [loading dismissWithClickedButtonIndex:0 animated:YES];
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Action Handlers
+#pragma mark -
+///////////////////////////////////////////////////////////////////////////
+
+- (void)malePushed:(UIGestureRecognizer*) recognizer {
+    if(male.highlighted == FALSE)
+    {
+        male.highlighted = TRUE;
+        female.highlighted = FALSE;
+        userdata.gender = [NSMutableString stringWithFormat:@"M"];
+    }
+}
+
+- (void)femalePushed:(UIGestureRecognizer*) recognizer {
+    if(female.highlighted == FALSE)
+    {
+        female.highlighted = TRUE;
+        male.highlighted = FALSE;
+        userdata.gender = [NSMutableString stringWithFormat:@"F"];
     }
 }
 
@@ -316,18 +366,7 @@
     }
 }
 
-// Make sure new username conforms to our signup rules
-- (BOOL)validateUserNameWithString:(NSString*)username
-{
-    if( username.length >= MIN_ENTRY_SIZE && username.length <= MAX_USERNAME_ENTRY )
-    {
-        NSString *nameRegex = @"[A-Z0-9a-z]*";
-        NSPredicate *nameTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", nameRegex];
-        return [nameTest evaluateWithObject:username];
-    }
-    
-    return FALSE;
-}
+
 
 // Allow them to pick an image for their profile
 -(IBAction)doImageTap:(id)sender
@@ -420,6 +459,7 @@
     [shared.appUser setUserBio:[NSMutableString stringWithString:updatedBio]];
     [shared.appUser setGender: [NSMutableString stringWithString:updatedGender]];
     [shared.appUser setDisplayPicture:displaypicture.image];
+    //[shared.appUser setPopularity:<#(NSMutableString *)#>];
 
     NSString* request = [self buildProfileUpdateRequest:[userdata getToken] withLocation:updatedLocation withBio:updatedBio withGender:updatedGender withPath:userdata.getEmail];
     
@@ -483,7 +523,19 @@
     }
 }
 
-// ????? Why are we sending images to through struts request ?
+// Make sure new username conforms to our signup rules
+- (BOOL)validateUserNameWithString:(NSString*)username
+{
+    if( username.length >= MIN_ENTRY_SIZE && username.length <= MAX_USERNAME_ENTRY )
+    {
+        NSString *nameRegex = @"[A-Z0-9a-z]*";
+        NSPredicate *nameTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", nameRegex];
+        return [nameTest evaluateWithObject:username];
+    }
+    
+    return FALSE;
+}
+
 
 // This is the template for building future URLRequests
 // NOTE:: SERVER_ADDRESS is hardcoded in Networking.h
@@ -508,9 +560,5 @@
     return [updateProfile stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
-- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
-}
 
 @end
