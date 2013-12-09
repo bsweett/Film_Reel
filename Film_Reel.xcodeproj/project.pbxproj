@@ -22,6 +22,8 @@
 		B514A395185549A80032290D /* flashoff.png in Resources */ = {isa = PBXBuildFile; fileRef = B514A393185549A80032290D /* flashoff.png */; };
 		B514A396185549A80032290D /* Flashon.png in Resources */ = {isa = PBXBuildFile; fileRef = B514A394185549A80032290D /* Flashon.png */; };
 		B52BBEEE18491EA000C53E67 /* SelectFriendController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52BBEEC18491EA000C53E67 /* SelectFriendController.m */; };
+		B53CFFEB18558D260099279B /* CameraOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = B53CFFE918558D260099279B /* CameraOverlay.m */; };
+		B53CFFEC18558D260099279B /* CameraOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = B53CFFEA18558D260099279B /* CameraOverlay.xib */; };
 		B54A55301854E7CC008A2D35 /* profile_iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = B54A552F1854E7CC008A2D35 /* profile_iPad.png */; };
 		B54A5536185528E0008A2D35 /* reverse.png in Resources */ = {isa = PBXBuildFile; fileRef = B54A5535185528E0008A2D35 /* reverse.png */; };
 		B56E78E31819BA5D008AE8D5 /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B56E78E21819BA5D008AE8D5 /* iPad.storyboard */; };
@@ -56,8 +58,6 @@
 		F6189FB5181389C900D1F0FA /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6189FB4181389C900D1F0FA /* MobileCoreServices.framework */; };
 		F6189FB81813942C00D1F0FA /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189FB71813942C00D1F0FA /* TabBarViewController.m */; };
 		F628B205181FFCD10044073D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F628B204181FFCD10044073D /* QuartzCore.framework */; };
-		F6B016C41814722800DC974C /* CameraOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B016C21814722800DC974C /* CameraOverlay.m */; };
-		F6B016C51814722800DC974C /* CameraOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6B016C31814722800DC974C /* CameraOverlay.xib */; };
 		F6B35AF6181569E7006FFFC9 /* takeareelbuttonhighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B35AF4181569E7006FFFC9 /* takeareelbuttonhighlighted.png */; };
 		F6B35AF7181569E7006FFFC9 /* takereelbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B35AF5181569E7006FFFC9 /* takereelbutton.png */; };
 		F6B8C170184E8D6400849FDF /* backbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B8C169184E8D6400849FDF /* backbutton.png */; };
@@ -109,6 +109,9 @@
 		B514A394185549A80032290D /* Flashon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Flashon.png; sourceTree = "<group>"; };
 		B52BBEEB18491EA000C53E67 /* SelectFriendController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectFriendController.h; sourceTree = "<group>"; };
 		B52BBEEC18491EA000C53E67 /* SelectFriendController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectFriendController.m; sourceTree = "<group>"; };
+		B53CFFE818558D260099279B /* CameraOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraOverlay.h; sourceTree = "<group>"; };
+		B53CFFE918558D260099279B /* CameraOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraOverlay.m; sourceTree = "<group>"; };
+		B53CFFEA18558D260099279B /* CameraOverlay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraOverlay.xib; sourceTree = "<group>"; };
 		B54A552F1854E7CC008A2D35 /* profile_iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_iPad.png; sourceTree = "<group>"; };
 		B54A5535185528E0008A2D35 /* reverse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reverse.png; sourceTree = "<group>"; };
 		B56E78E21819BA5D008AE8D5 /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
@@ -153,9 +156,6 @@
 		F6189FB61813942C00D1F0FA /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		F6189FB71813942C00D1F0FA /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		F628B204181FFCD10044073D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		F6B016C11814722800DC974C /* CameraOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraOverlay.h; path = ../CameraOverlay.h; sourceTree = "<group>"; };
-		F6B016C21814722800DC974C /* CameraOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraOverlay.m; path = ../CameraOverlay.m; sourceTree = "<group>"; };
-		F6B016C31814722800DC974C /* CameraOverlay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CameraOverlay.xib; path = ../CameraOverlay.xib; sourceTree = "<group>"; };
 		F6B35AF4181569E7006FFFC9 /* takeareelbuttonhighlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = takeareelbuttonhighlighted.png; sourceTree = "<group>"; };
 		F6B35AF5181569E7006FFFC9 /* takereelbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = takereelbutton.png; sourceTree = "<group>"; };
 		F6B8C169184E8D6400849FDF /* backbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backbutton.png; sourceTree = "<group>"; };
@@ -298,12 +298,10 @@
 			children = (
 				F6BB9BD6184155D9005FE438 /* Iphone */,
 				F6BB9BD5184155BF005FE438 /* Ipad */,
-				B5E0CAEB18130E120037EA3A /* LoginController.h */,
-				B5E0CAEC18130E120037EA3A /* LoginController.m */,
 				F6189FB61813942C00D1F0FA /* TabBarViewController.h */,
 				F6189FB71813942C00D1F0FA /* TabBarViewController.m */,
-				B52BBEEB18491EA000C53E67 /* SelectFriendController.h */,
-				B52BBEEC18491EA000C53E67 /* SelectFriendController.m */,
+				B5E0CAEB18130E120037EA3A /* LoginController.h */,
+				B5E0CAEC18130E120037EA3A /* LoginController.m */,
 				F6189F7918131BF300D1F0FA /* CameraController.h */,
 				F6189F7A18131BF300D1F0FA /* CameraController.m */,
 				F6189F7F18131DA700D1F0FA /* InboxController.h */,
@@ -316,11 +314,13 @@
 				F6189F8918131DD800D1F0FA /* SignUpEmailController.m */,
 				F6189F9418131E3C00D1F0FA /* SignUpCompleteController.h */,
 				F6189F9518131E3C00D1F0FA /* SignUpCompleteController.m */,
-				F6189F9718131E8E00D1F0FA /* Images.xcassets */,
+				B52BBEEB18491EA000C53E67 /* SelectFriendController.h */,
+				B52BBEEC18491EA000C53E67 /* SelectFriendController.m */,
 				F6F2F6A2184BC35D00DBA868 /* DetialViewController.h */,
 				F6F2F6A3184BC35D00DBA868 /* DetialViewController.m */,
 				B5C2C39E1853A217007B5A8C /* ReelView.h */,
 				B5C2C39F1853A217007B5A8C /* ReelView.m */,
+				F6189F9718131E8E00D1F0FA /* Images.xcassets */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -393,9 +393,9 @@
 			isa = PBXGroup;
 			children = (
 				B56E78E21819BA5D008AE8D5 /* iPad.storyboard */,
+				B56E78EA181A00B5008AE8D5 /* iPadOverlay.xib */,
 				B56E78E8181A00B5008AE8D5 /* iPadOverlay.h */,
 				B56E78E9181A00B5008AE8D5 /* iPadOverlay.m */,
-				B56E78EA181A00B5008AE8D5 /* iPadOverlay.xib */,
 			);
 			name = Ipad;
 			sourceTree = "<group>";
@@ -404,9 +404,9 @@
 			isa = PBXGroup;
 			children = (
 				B5E0CAE718130DD80037EA3A /* Main.storyboard */,
-				F6B016C11814722800DC974C /* CameraOverlay.h */,
-				F6B016C21814722800DC974C /* CameraOverlay.m */,
-				F6B016C31814722800DC974C /* CameraOverlay.xib */,
+				B53CFFEA18558D260099279B /* CameraOverlay.xib */,
+				B53CFFE818558D260099279B /* CameraOverlay.h */,
+				B53CFFE918558D260099279B /* CameraOverlay.m */,
 			);
 			name = Iphone;
 			sourceTree = "<group>";
@@ -503,11 +503,11 @@
 				B5C26D771811C6F00064F180 /* default.png in Resources */,
 				B56E78E31819BA5D008AE8D5 /* iPad.storyboard in Resources */,
 				F6B8C172184E8D6400849FDF /* inputbox.png in Resources */,
+				B53CFFEC18558D260099279B /* CameraOverlay.xib in Resources */,
 				F6B8C176184E8D6400849FDF /* vertical-line.png in Resources */,
 				B54A55301854E7CC008A2D35 /* profile_iPad.png in Resources */,
 				F6B8C180184EA80D00849FDF /* female-gender-sign.png in Resources */,
 				B5E0CAE918130DD80037EA3A /* Main.storyboard in Resources */,
-				F6B016C51814722800DC974C /* CameraOverlay.xib in Resources */,
 				F6B8C182184EA80D00849FDF /* male-gender-sign.png in Resources */,
 				F6B8C17C184EA2C700849FDF /* profile.png in Resources */,
 				F6B8C171184E8D6400849FDF /* film-80.png in Resources */,
@@ -543,10 +543,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F60C3C851852BD7000316C85 /* Reel.m in Sources */,
+				B53CFFEB18558D260099279B /* CameraOverlay.m in Sources */,
 				F6189F8118131DA700D1F0FA /* InboxController.m in Sources */,
 				B5C9038C18032D5500448CE6 /* User.m in Sources */,
 				F6189FB81813942C00D1F0FA /* TabBarViewController.m in Sources */,
-				F6B016C41814722800DC974C /* CameraOverlay.m in Sources */,
 				F6189F8A18131DD800D1F0FA /* SignUpEmailController.m in Sources */,
 				B52BBEEE18491EA000C53E67 /* SelectFriendController.m in Sources */,
 				B506DB401800857A004991A4 /* NetworkManager.m in Sources */,
