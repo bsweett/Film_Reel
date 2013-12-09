@@ -16,8 +16,8 @@
 #import "User.h"
 #import "AppDelegate.h"
 
-@interface LoginController : UIViewController <UIAlertViewDelegate> {
-
+@interface LoginController : UIViewController <UIAlertViewDelegate>
+{
 }
 
 #pragma mark Defined Objects

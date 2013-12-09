@@ -633,7 +633,7 @@
                                 <color key="backgroundColor" white="0.9811815693" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" alpha="0.39999999999999963" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="arrowright.png" translatesAutoresizingMaskIntoConstraints="NO" id="Sg3-mW-R0Y">
-                                <rect key="frame" x="17" y="259" width="52" height="56"/>
+                                <rect key="frame" x="17" y="261" width="52" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="arrowleft.png" translatesAutoresizingMaskIntoConstraints="NO" id="17e-kK-j6b">
@@ -946,45 +946,22 @@
         <image name="FriendsTab" width="30" height="30"/>
         <image name="InboxTab" width="25" height="17"/>
         <image name="ProfileTab" width="24" height="24"/>
-        <image name="ProfileTab" width="24" height="24"/>
         <image name="TakeReelTab" width="25" height="19"/>
         <image name="arrowleft.png" width="72" height="74"/>
         <image name="arrowright.png" width="51" height="50"/>
         <image name="completeimage.png" width="200" height="198"/>
         <image name="default.png" width="128" height="128"/>
-        <image name="default.png" width="128" height="128"/>
         <image name="female-gender-sign-dark.png" width="577" height="868"/>
-        <image name="female-gender-sign-dark.png" width="577" height="868"/>
-        <image name="female-gender-sign.png" width="577" height="868"/>
         <image name="female-gender-sign.png" width="577" height="868"/>
         <image name="film-80.png" width="77" height="80"/>
         <image name="inputbox.png" width="210" height="28"/>
-        <image name="inputbox.png" width="210" height="28"/>
-        <image name="inputbox.png" width="210" height="28"/>
-        <image name="inputbox.png" width="210" height="28"/>
-        <image name="inputbox.png" width="210" height="28"/>
-        <image name="inputbox.png" width="210" height="28"/>
         <image name="login.png" width="119" height="35"/>
         <image name="male-gender-sign-dark.png" width="766" height="769"/>
-        <image name="male-gender-sign-dark.png" width="766" height="769"/>
         <image name="male-gender-sign.png" width="766" height="769"/>
-        <image name="male-gender-sign.png" width="766" height="769"/>
-        <image name="profile.png" width="668" height="1038"/>
         <image name="profile.png" width="668" height="1038"/>
         <image name="signup.png" width="118" height="35"/>
         <image name="star.png" width="30" height="30"/>
-        <image name="star.png" width="30" height="30"/>
-        <image name="star.png" width="30" height="30"/>
-        <image name="star.png" width="30" height="30"/>
-        <image name="star.png" width="30" height="30"/>
-        <image name="star.png" width="30" height="30"/>
-        <image name="star.png" width="30" height="30"/>
-        <image name="star.png" width="30" height="30"/>
         <image name="stargrey.png" width="30" height="30"/>
-        <image name="stargrey.png" width="30" height="30"/>
-        <image name="vertical-line.png" width="8" height="544"/>
-        <image name="vertical-line.png" width="8" height="544"/>
-        <image name="vertical-line.png" width="8" height="544"/>
         <image name="vertical-line.png" width="8" height="544"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

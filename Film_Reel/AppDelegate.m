@@ -75,8 +75,6 @@
 {
     [[UINavigationBar appearance] setBarTintColor:[self colorWithHexString:@BAR_COLOR]];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UINavigationBar appearance] setBackIndicatorImage:[UIImage imageNamed:@"backbutton.png"]];
-    [[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:[UIImage imageNamed:@"backbutton.png"]];
     return YES;
 }
 

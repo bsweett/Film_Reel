@@ -55,8 +55,6 @@
 		F628B205181FFCD10044073D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F628B204181FFCD10044073D /* QuartzCore.framework */; };
 		F69DDFB118552B5700415F7B /* arrowleft.png in Resources */ = {isa = PBXBuildFile; fileRef = F69DDFAF18552B5700415F7B /* arrowleft.png */; };
 		F69DDFB218552B5700415F7B /* arrowright.png in Resources */ = {isa = PBXBuildFile; fileRef = F69DDFB018552B5700415F7B /* arrowright.png */; };
-		F6B016C41814722800DC974C /* CameraOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B016C21814722800DC974C /* CameraOverlay.m */; };
-		F6B016C51814722800DC974C /* CameraOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6B016C31814722800DC974C /* CameraOverlay.xib */; };
 		F6B35AF6181569E7006FFFC9 /* takeareelbuttonhighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B35AF4181569E7006FFFC9 /* takeareelbuttonhighlighted.png */; };
 		F6B35AF7181569E7006FFFC9 /* takereelbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B35AF5181569E7006FFFC9 /* takereelbutton.png */; };
 		F6B8C170184E8D6400849FDF /* backbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B8C169184E8D6400849FDF /* backbutton.png */; };
@@ -73,6 +71,11 @@
 		F6B8C184184EA81600849FDF /* female-gender-sign-dark.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B8C183184EA81600849FDF /* female-gender-sign-dark.png */; };
 		F6BB9BD41841558D005FE438 /* Networking.m in Sources */ = {isa = PBXBuildFile; fileRef = F6BB9BD31841558D005FE438 /* Networking.m */; };
 		F6D12F28181AE61100578906 /* seperator.png in Resources */ = {isa = PBXBuildFile; fileRef = F6D12F27181AE61100578906 /* seperator.png */; };
+		F6EBFB2A1856170F00103391 /* CameraOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EBFB281856170F00103391 /* CameraOverlay.m */; };
+		F6EBFB2B1856170F00103391 /* CameraOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6EBFB291856170F00103391 /* CameraOverlay.xib */; };
+		F6EBFB2D185617E700103391 /* reverse.png in Resources */ = {isa = PBXBuildFile; fileRef = F6EBFB2C185617E700103391 /* reverse.png */; };
+		F6EBFB30185617F000103391 /* flashoff.png in Resources */ = {isa = PBXBuildFile; fileRef = F6EBFB2E185617F000103391 /* flashoff.png */; };
+		F6EBFB31185617F000103391 /* Flashon.png in Resources */ = {isa = PBXBuildFile; fileRef = F6EBFB2F185617F000103391 /* Flashon.png */; };
 		F6F2F6A5184BC35D00DBA868 /* DetialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F2F6A3184BC35D00DBA868 /* DetialViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -151,9 +154,6 @@
 		F628B204181FFCD10044073D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F69DDFAF18552B5700415F7B /* arrowleft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowleft.png; sourceTree = "<group>"; };
 		F69DDFB018552B5700415F7B /* arrowright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowright.png; sourceTree = "<group>"; };
-		F6B016C11814722800DC974C /* CameraOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraOverlay.h; path = ../CameraOverlay.h; sourceTree = "<group>"; };
-		F6B016C21814722800DC974C /* CameraOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraOverlay.m; path = ../CameraOverlay.m; sourceTree = "<group>"; };
-		F6B016C31814722800DC974C /* CameraOverlay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CameraOverlay.xib; path = ../CameraOverlay.xib; sourceTree = "<group>"; };
 		F6B35AF4181569E7006FFFC9 /* takeareelbuttonhighlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = takeareelbuttonhighlighted.png; sourceTree = "<group>"; };
 		F6B35AF5181569E7006FFFC9 /* takereelbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = takereelbutton.png; sourceTree = "<group>"; };
 		F6B8C169184E8D6400849FDF /* backbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backbutton.png; sourceTree = "<group>"; };
@@ -171,6 +171,12 @@
 		F6BB9BD21841558D005FE438 /* Networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Networking.h; sourceTree = "<group>"; };
 		F6BB9BD31841558D005FE438 /* Networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Networking.m; sourceTree = "<group>"; };
 		F6D12F27181AE61100578906 /* seperator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seperator.png; sourceTree = "<group>"; };
+		F6EBFB271856170F00103391 /* CameraOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraOverlay.h; sourceTree = "<group>"; };
+		F6EBFB281856170F00103391 /* CameraOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraOverlay.m; sourceTree = "<group>"; };
+		F6EBFB291856170F00103391 /* CameraOverlay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraOverlay.xib; sourceTree = "<group>"; };
+		F6EBFB2C185617E700103391 /* reverse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reverse.png; sourceTree = "<group>"; };
+		F6EBFB2E185617F000103391 /* flashoff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flashoff.png; sourceTree = "<group>"; };
+		F6EBFB2F185617F000103391 /* Flashon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Flashon.png; sourceTree = "<group>"; };
 		F6F2F6A2184BC35D00DBA868 /* DetialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetialViewController.h; sourceTree = "<group>"; };
 		F6F2F6A3184BC35D00DBA868 /* DetialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetialViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -364,8 +370,11 @@
 				F6B8C16A184E8D6400849FDF /* film-80.png */,
 				F69DDFAF18552B5700415F7B /* arrowleft.png */,
 				F69DDFB018552B5700415F7B /* arrowright.png */,
+				F6EBFB2C185617E700103391 /* reverse.png */,
 				F6B8C17B184EA2C700849FDF /* profile.png */,
 				F6B8C16B184E8D6400849FDF /* inputbox.png */,
+				F6EBFB2E185617F000103391 /* flashoff.png */,
+				F6EBFB2F185617F000103391 /* Flashon.png */,
 				F6B8C17D184EA80D00849FDF /* female-gender-sign.png */,
 				F6B8C17E184EA80D00849FDF /* male-gender-sign-dark.png */,
 				F6B8C183184EA81600849FDF /* female-gender-sign-dark.png */,
@@ -401,9 +410,9 @@
 			isa = PBXGroup;
 			children = (
 				B5E0CAE718130DD80037EA3A /* Main.storyboard */,
-				F6B016C11814722800DC974C /* CameraOverlay.h */,
-				F6B016C21814722800DC974C /* CameraOverlay.m */,
-				F6B016C31814722800DC974C /* CameraOverlay.xib */,
+				F6EBFB271856170F00103391 /* CameraOverlay.h */,
+				F6EBFB281856170F00103391 /* CameraOverlay.m */,
+				F6EBFB291856170F00103391 /* CameraOverlay.xib */,
 			);
 			name = Iphone;
 			sourceTree = "<group>";
@@ -498,13 +507,15 @@
 				F6B8C184184EA81600849FDF /* female-gender-sign-dark.png in Resources */,
 				B5FB31F3184E93D400F9986E /* film-128.png in Resources */,
 				B5C26D771811C6F00064F180 /* default.png in Resources */,
+				F6EBFB31185617F000103391 /* Flashon.png in Resources */,
 				B56E78E31819BA5D008AE8D5 /* iPad.storyboard in Resources */,
 				F6B8C172184E8D6400849FDF /* inputbox.png in Resources */,
+				F6EBFB2B1856170F00103391 /* CameraOverlay.xib in Resources */,
 				F6B8C176184E8D6400849FDF /* vertical-line.png in Resources */,
 				B54A55301854E7CC008A2D35 /* profile_iPad.png in Resources */,
+				F6EBFB30185617F000103391 /* flashoff.png in Resources */,
 				F6B8C180184EA80D00849FDF /* female-gender-sign.png in Resources */,
 				B5E0CAE918130DD80037EA3A /* Main.storyboard in Resources */,
-				F6B016C51814722800DC974C /* CameraOverlay.xib in Resources */,
 				F6B8C182184EA80D00849FDF /* male-gender-sign.png in Resources */,
 				F6B8C17C184EA2C700849FDF /* profile.png in Resources */,
 				F6B8C171184E8D6400849FDF /* film-80.png in Resources */,
@@ -513,6 +524,7 @@
 				F6189FB118134DF800D1F0FA /* star.png in Resources */,
 				F6B35AF7181569E7006FFFC9 /* takereelbutton.png in Resources */,
 				F69DDFB218552B5700415F7B /* arrowright.png in Resources */,
+				F6EBFB2D185617E700103391 /* reverse.png in Resources */,
 				F6189FB31813514000D1F0FA /* stargrey.png in Resources */,
 				B5FB31F0184E92C200F9986E /* login_ipad_button.png in Resources */,
 				F6B8C174184E8D6400849FDF /* seperator-iPad.png in Resources */,
@@ -541,8 +553,8 @@
 				F60C3C851852BD7000316C85 /* Reel.m in Sources */,
 				F6189F8118131DA700D1F0FA /* InboxController.m in Sources */,
 				B5C9038C18032D5500448CE6 /* User.m in Sources */,
+				F6EBFB2A1856170F00103391 /* CameraOverlay.m in Sources */,
 				F6189FB81813942C00D1F0FA /* TabBarViewController.m in Sources */,
-				F6B016C41814722800DC974C /* CameraOverlay.m in Sources */,
 				F6189F8A18131DD800D1F0FA /* SignUpEmailController.m in Sources */,
 				B52BBEEE18491EA000C53E67 /* SelectFriendController.m in Sources */,
 				B506DB401800857A004991A4 /* NetworkManager.m in Sources */,

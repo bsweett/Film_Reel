@@ -43,8 +43,8 @@
 {
     [super viewDidLoad];
     
-    usernameField.delegate = self;
-    passwordField.delegate = self;
+    usernameField.delegate           = self;
+    passwordField.delegate           = self;
     usernameField.keyboardAppearance = UIKeyboardAppearanceDark;
     passwordField.keyboardAppearance = UIKeyboardAppearanceDark;
     
@@ -54,6 +54,7 @@
     [createButton setEnabled:TRUE];
     
 	// Do any additional setup after loading the view, typically from a nib.
+    [self.navigationController setNavigationBarHidden: YES animated:NO];
 }
 
 
@@ -65,15 +66,30 @@
  */
 -(void)viewDidAppear:(BOOL)animated
 {
-    [self.navigationController setNavigationBarHidden: YES animated:YES];
-    // NOTE:: Should have another notification that tells user if the information they entered doesnt exist (no password or username matching)
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@USER_NOT_FOUND object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@LOGIN_SUCCESS object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shouldAutoFillFields:) name:@AUTO_FILL object:nil];
-    [loginButton setEnabled:TRUE];
-    [createButton setEnabled:TRUE];
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                            selector:@selector(didGetNetworkError:)
+                                                name:@ADDRESS_FAIL
+                                              object:nil];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                            selector:@selector(didGetNetworkError:)
+                                                name:@FAIL_STATUS
+                                              object:nil];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                            selector:@selector(didSucceedRequest:)
+                                                name:@USER_NOT_FOUND
+                                              object:nil];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                            selector:@selector(didSucceedRequest:)
+                                                name:@LOGIN_SUCCESS
+                                              object:nil];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                            selector:@selector(shouldAutoFillFields:)
+                                                name:@AUTO_FILL
+                                              object:nil];
 }
 
 
@@ -265,9 +281,9 @@
 {
     if([[notif name] isEqualToString:@LOGIN_SUCCESS])
     {
-        NSDictionary* userDictionary = [notif userInfo];
-        currentUser = [userDictionary valueForKey:@CURRENT_USER];
-        AppDelegate *shared = [AppDelegate appDelegate];
+        currentUser = [[notif userInfo] valueForKey:@CURRENT_USER];
+        
+        AppDelegate* shared = [AppDelegate appDelegate];
         
         //Set App User in our App Delegate
         [shared setAppUser: currentUser];
