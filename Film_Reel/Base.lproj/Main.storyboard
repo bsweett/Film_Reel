@@ -848,15 +848,6 @@
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bap-RW-AV5">
-                                <rect key="frame" x="117" y="87" width="93" height="92"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="Tap to change">
-                                    <color key="titleColor" red="0.36078432199999999" green="0.36078432199999999" blue="0.36078432199999999" alpha="1" colorSpace="deviceRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIs-28-Fn4">
                                 <rect key="frame" x="28" y="210" width="263" height="87"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -928,13 +919,16 @@
                     <connections>
                         <outlet property="bio" destination="KIs-28-Fn4" id="mQA-Lz-GGJ"/>
                         <outlet property="displayPicture" destination="Vm9-vg-gsi" id="o8k-MS-c78"/>
+                        <outlet property="female" destination="VqE-a4-q43" id="lsx-dB-rji"/>
                         <outlet property="friendstar1" destination="IS0-La-cVj" id="0Dd-pG-Ox6"/>
                         <outlet property="friendstar2" destination="W3m-Bm-dMz" id="gk0-zz-X1X"/>
                         <outlet property="friendstar3" destination="M05-xg-cma" id="Vze-sq-ibg"/>
                         <outlet property="friendstar4" destination="N4m-h6-Ig8" id="cr9-ll-Fni"/>
                         <outlet property="friendstar5" destination="fWA-2k-OpH" id="hc5-8s-sy8"/>
                         <outlet property="location" destination="XCV-5b-rqX" id="Hxh-jm-CAz"/>
+                        <outlet property="male" destination="cUB-rV-Dhu" id="L5K-wl-4W0"/>
                         <outlet property="name" destination="2Ko-BV-0kk" id="rIz-L8-e6K"/>
+                        <outlet property="reelCount" destination="xFG-Bm-OjL" id="4bT-7k-Y0c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qMb-Dw-T9H" userLabel="First Responder" sceneMemberID="firstResponder"/>

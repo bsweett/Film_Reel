@@ -21,6 +21,8 @@
 @synthesize email;
 @synthesize location;
 @synthesize bio;
+@synthesize male;
+@synthesize female;
 
 @synthesize friendstar1, friendstar2, friendstar3, friendstar4, friendstar5;
 
@@ -142,6 +144,26 @@
         [[self bio] setText:[friendUser getUserBio]];
         [[self location] setText:[friendUser getLocation]];
         [self setPopStars:[friendUser getPopularity]];
+        
+        NSLog(@"Reel count in friend is: %@", friendUser.getReelCount);
+        NSLog(@"The friend gender is: %@", friendUser.getGender);
+        
+        [[self reelCount] setText:[friendUser getReelCount]];
+        
+        // Set up Boolean for Gender saving locally
+        if([[friendUser getGender] isEqualToString:@"M"])
+        {
+            male.highlighted = TRUE;
+        }
+        if([[friendUser getGender] isEqualToString:@"F"])
+        {
+            female.highlighted = TRUE;
+        }
+        if([[friendUser getGender] isEqualToString:@"U"])
+        {
+            female.highlighted = FALSE;
+            male.highlighted = FALSE;
+        }
         
         name.textAlignment = NSTextAlignmentCenter;
         email.textAlignment = NSTextAlignmentCenter;
