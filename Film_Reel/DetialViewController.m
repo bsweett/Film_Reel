@@ -41,10 +41,26 @@
 {
     [super viewDidLoad];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@USER_NOT_FOUND object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@DATA_SUCCESS object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                            selector:@selector(didGetNetworkError:)
+                                                name:@ERROR_STATUS
+                                              object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                            selector:@selector(didGetNetworkError:)
+                                                name:@ADDRESS_FAIL
+                                              object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                            selector:@selector(didGetNetworkError:)
+                                                name:@FAIL_STATUS
+                                              object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                            selector:@selector(didSucceedRequest:)
+                                                name:@USER_NOT_FOUND
+                                              object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                            selector:@selector(didSucceedRequest:)
+                                                name:@DATA_SUCCESS
+                                              object:nil];
     
     getProfile = [[Networking alloc] init];
     
@@ -83,6 +99,12 @@
 // Handles all Networking errors that come from Networking.m
 -(void) didGetNetworkError: (NSNotification*) notif
 {
+    if([[notif name] isEqualToString:@ERROR_STATUS])
+    {
+    
+        [indicator stopAnimating];
+        self.navigationController.navigationBar.userInteractionEnabled=YES;
+    }
     if([[notif name] isEqualToString:@ADDRESS_FAIL])
     {
         [indicator stopAnimating];
