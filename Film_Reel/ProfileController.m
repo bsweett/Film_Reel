@@ -127,7 +127,6 @@
     [[self location] setText:userdata.getLocation];
     [[self email] setText: userdata.getEmail];
     [[self displaypicture] setImage: userdata.getDP];
-    NSLog(@"The reel count is: %@", [shared.appUser getReelCount]);
     [[self reelCount] setText:[userdata getReelCount]];
     
     // Set up Boolean for Gender saving locally 
@@ -192,6 +191,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    LogDebug(@"Memory Warning");
     // Dispose of any resources that can be recreated.
 }
     
@@ -218,11 +218,12 @@
 {
     if([[notif name] isEqualToString:@ERROR_STATUS])
     {
-        
+        LogError(@"Server threw an exception");
+        [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
     }
     if([[notif name] isEqualToString:@ADDRESS_FAIL])
     {
-        [loading setMessage:@ADDRESS_FAIL_ERROR];
+        LogError(@"Request Address was not URL formatted");
         [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
     }
     if([[notif name] isEqualToString:@FAIL_STATUS])
@@ -243,6 +244,7 @@
 {
     if([[notif name] isEqualToString:@USER_NOT_FOUND])
     {
+        LogError(@"SERVER:: User data could not be found for current user");
         [loading setMessage:@USER_ERROR];
         [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
     }
@@ -258,7 +260,8 @@
         }
         else
         {
-            NSLog(@"SERVER ERROR:: Could not upload profile picture");
+            LogError(@"SERVER:: Could not upload profile picture");
+            [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
         }
     }
     
@@ -332,7 +335,6 @@
         
     } else  if([[[navigationItem rightBarButtonItem]title] isEqualToString:@"Save"])
     {
-
         [[navigationItem rightBarButtonItem] setTitle:@"Edit"];
         bio.editable = NO;
         location.editable = NO;
@@ -365,14 +367,12 @@
         // undo changes
         [self resetViews];
     }
-    else {
-        NSLog(@"Logout pushed");
+    else
+    {
         [shared.appUser setToken:nil];
-        [self.presentingViewController dismissViewControllerAnimated: YES completion:nil];
+        [self performSegueWithIdentifier:@"logout" sender:self];
     }
 }
-
-
 
 // Allow them to pick an image for their profile
 -(IBAction)doImageTap:(id)sender
@@ -562,7 +562,7 @@
     [updateProfile appendString:parameter4];
     [updateProfile appendString:parameter5];
     
-    NSLog(@"REQUEST INFO:: Update Profile -- %@", updateProfile);
+    LogInfo(@"REQUEST:: Update Profile -- %@", updateProfile);
     
     return [updateProfile stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }

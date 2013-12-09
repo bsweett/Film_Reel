@@ -11,7 +11,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TabBarViewController.h"
 #import "Networking.h"
 #import "User.h"
 #import "AppDelegate.h"

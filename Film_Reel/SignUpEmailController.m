@@ -66,6 +66,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    LogDebug(@"Memory Warning");
     // Dispose of any resources that can be recreated.
 }
 
@@ -110,8 +111,6 @@
             
             // Build URL
             NSString* request = [self buildSignUpRequest:email withName:username withPassword:password];
-            
-            // NOTE:: Comment this out to bypass networking
             [userRequest startReceive:request withType:@SIGNUP_REQUEST];
             
             // Set up awesome spiny wheel
@@ -128,11 +127,8 @@
                 self.navigationController.navigationBar.userInteractionEnabled=NO;
                 [indicator startAnimating];
             }
-
-            // NOTE:: If you need to bypass create account uncomment this
-            //[self performSegueWithIdentifier:@"done" sender:sender];
-            
-        } else {
+        }
+        else {
             // Format Errors
             error = [[UIAlertView alloc] initWithTitle: errorTitle message: errorMessage delegate: self cancelButtonTitle: @"Ok" otherButtonTitles: nil];
             [error show];
@@ -164,7 +160,7 @@
     [signup appendString:parameter2];
     [signup appendString:parameter3];
     
-    NSLog(@"REQUEST INFO:: Create Account --  %@", signup);
+    LogInfo(@"REQUEST:: Create Account --  %@", signup);
     
     return [signup stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
@@ -174,14 +170,14 @@
 {
     if([[notif name] isEqualToString:@ERROR_STATUS])
     {
-
+        LogError(@"Server threw an exception");
+        [indicator stopAnimating];
+        self.navigationController.navigationBar.userInteractionEnabled=YES;
     }
     if([[notif name] isEqualToString:@ADDRESS_FAIL])
     {
+        LogError(@"Request Address was not URL formatted");
         [indicator stopAnimating];
-        error = [[UIAlertView alloc] initWithTitle:nil message:@ADDRESS_FAIL_ERROR delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-        [error show];
-        [self performSelector:@selector(dismissErrors:) withObject:error afterDelay:3];
         self.navigationController.navigationBar.userInteractionEnabled=YES;
     }
     if([[notif name] isEqualToString:@FAIL_STATUS])

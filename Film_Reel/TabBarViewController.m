@@ -62,6 +62,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    LogDebug(@"Memory Warning");
     // Dispose of any resources that can be recreated.
 }
 

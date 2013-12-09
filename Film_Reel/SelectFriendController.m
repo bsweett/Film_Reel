@@ -57,7 +57,10 @@
     [super viewDidLoad];
     tableElements = [[NSArray alloc]init];
     shared        = [AppDelegate appDelegate];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ERROR_STATUS object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                            selector:@selector(didGetNetworkError:)
+                                                name:@ERROR_STATUS
+                                              object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didSucceedRequest:)
                                                  name:@RESPONSE_FOR_POST
@@ -102,6 +105,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    LogDebug(@"Memory Warning");
     // Dispose of any resources that can be recreated.
 }
 
@@ -231,7 +235,7 @@
         if([response isEqualToString:@"Success"])
         {
             
-            NSLog(@"SERVER INFO:: Upload of reel was successful");
+            LogInfo(@"SERVER:: Upload of reel was successful");
             if(ImageFileName != nil && sendersEmail != nil && recepient != nil)
             {
                 NSString* request = [self buildSendRequest:sendersEmail
@@ -241,13 +245,13 @@
             }
             else
             {
-                NSLog(@"REEL ERROR:: ImageFileName, sendersEmail, or recepient are null");
+                LogError(@"REEL ERROR:: ImageFileName, sendersEmail, or recepient are null");
             }
             
         }
         else
         {
-            NSLog(@"SERVER ERROR:: Failed to upload reel to server");
+            LogError(@"SERVER ERROR:: Failed to upload reel to server");
             [alert setMessage:@"Reel failed to upload to server"];
             [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
         }
@@ -255,7 +259,6 @@
     
     if([[notif name] isEqualToString:@REEL_SUCCESS])
     {
-        NSLog(@"Inside notification if statement");
         [alert setMessage:@"Message Sent"];
         [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
         [self.navigationController popToRootViewControllerAnimated:YES];
@@ -272,11 +275,13 @@
 {
     if([[notif name] isEqualToString:@ERROR_STATUS])
     {
-    
+        LogError(@"Server threw an exception");
+        [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
+        [self.navigationController popViewControllerAnimated:YES];
     }
     if([[notif name] isEqualToString:@ADDRESS_FAIL])
     {
-        [alert setMessage:@ADDRESS_FAIL_ERROR];
+        LogError(@"Request Address was not URL formatted");
         [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -322,7 +327,7 @@
     [ImageFileName appendString:@"@"];
     [ImageFileName appendString:dateString];
     
-    NSLog(@"REEL INFO:: created filename for Reel -- %@", ImageFileName);
+    LogInfo(@"REEL:: created filename for Reel -- %@", ImageFileName);
     
     return ImageFileName;
 }
@@ -350,7 +355,7 @@
     [send appendString:parameter2];
     [send appendString:parameter3];
     
-    NSLog(@"REQUEST INFO:: Send Reel -- %@", send);
+    LogInfo(@"REQUEST:: Send Reel -- %@", send);
     
     return [send stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }

@@ -73,6 +73,7 @@
 // Override point for customization after application launch.
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    LogInfo(@"Finished Launching on Device model: %@", [UIDevice currentDevice].model);
     [[UINavigationBar appearance] setBarTintColor:[self colorWithHexString:@BAR_COLOR]];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     return YES;
@@ -82,11 +83,9 @@
 // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 - (void)applicationWillResignActive:(UIApplication *)application
 {
-    // Clear the console
-    for(int i = 0; i < 10; i++)
-    {
-        NSLog(@" ");
-    }
+    NSLog(@"==============================================================================");
+    NSLog(@"====                           Resuming                                   ====");
+    NSLog(@"==============================================================================");
 }
 
 // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
@@ -95,7 +94,7 @@
 {
     NSUserDefaults* currentLoggedIn = [NSUserDefaults standardUserDefaults];
  
-    NSLog(@"TOKEN INFO:: Token into background %@", appUser.token);
+    LogInfo(@"TOKEN:: Token into background %@", appUser.token);
 
     NSString* storeToken              = appUser.token;
     NSString* storeName               = appUser.userName;
@@ -108,21 +107,19 @@
     NSMutableDictionary* storeFriends = appUser.getFriendList;
     NSData  * storeImage              = UIImageJPEGRepresentation(appUser.getDP, 0.1f);
     NSString* storeImagePath          = appUser.getDisplayPicturePath;
-        
-        
-        
-        [currentLoggedIn setObject:storeToken forKey:@CURRENT_USER_TOKEN];
-        [currentLoggedIn setObject:storeName forKey:@CURRENT_USER_NAME];
-        [currentLoggedIn setObject:storePass forKey:@CURRENT_USER_PASSWORD];
-        [currentLoggedIn setObject:storeLoc forKey:@CURRENT_USER_LOCATION];
-        [currentLoggedIn setObject:storeEmail forKey:@CURRENT_USER_EMAIL];
-        [currentLoggedIn setObject:storeBio forKey:@CURRENT_USER_BIO];
-        [currentLoggedIn setObject:storePop forKey:@CURRENT_USER_POP];
-        [currentLoggedIn setObject:storeGender forKey:@CURRENT_USER_GENDER];
-        [currentLoggedIn setObject:storeFriends forKey:@CURRENT_USER_FRIENDS];
-        [currentLoggedIn setObject:storeImage forKey:@CURRENT_USER_IMAGE];
-        [currentLoggedIn setObject:storeImagePath forKey:@CURRENT_USER_IMAGE_PATH];
-        [currentLoggedIn synchronize];
+    
+    [currentLoggedIn setObject:storeToken forKey:@CURRENT_USER_TOKEN];
+    [currentLoggedIn setObject:storeName forKey:@CURRENT_USER_NAME];
+    [currentLoggedIn setObject:storePass forKey:@CURRENT_USER_PASSWORD];
+    [currentLoggedIn setObject:storeLoc forKey:@CURRENT_USER_LOCATION];
+    [currentLoggedIn setObject:storeEmail forKey:@CURRENT_USER_EMAIL];
+    [currentLoggedIn setObject:storeBio forKey:@CURRENT_USER_BIO];
+    [currentLoggedIn setObject:storePop forKey:@CURRENT_USER_POP];
+    [currentLoggedIn setObject:storeGender forKey:@CURRENT_USER_GENDER];
+    [currentLoggedIn setObject:storeFriends forKey:@CURRENT_USER_FRIENDS];
+    [currentLoggedIn setObject:storeImage forKey:@CURRENT_USER_IMAGE];
+    [currentLoggedIn setObject:storeImagePath forKey:@CURRENT_USER_IMAGE_PATH];
+    [currentLoggedIn synchronize];
 }
 
 // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
@@ -142,11 +139,6 @@
     {
         main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     }
-    
-    // Bug sends to login screen when users are using other system apps (presmissions, task bar, etc..)
-    
-    //startingview = [main instantiateInitialViewController];
-    //self.window.rootViewController = startingview;
     
     // Add our notifications observers
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ERROR_STATUS object:nil];
@@ -175,7 +167,7 @@
     {
         isTokenValid = @"?";
         validToken = [[Networking alloc] init];
-        NSLog(@"TOKEN INFO:: Token after background %@", token);
+        LogInfo(@"TOKEN:: Token after background %@", token);
         NSString* request = [self buildTokenLoginRequest:token];
         [validToken startReceive:request withType:@VALID_REQUEST];
         
@@ -189,11 +181,11 @@
     }
     else
     {
-        // Big error token is null and hasnt been set
+        // Token is null and hasnt been set
         // Send them to login screen to get another token
+        LogInfo(@"TOKEN:: Token was returned NULL from the NSUSERDEFAULTS\n");
         startingview = [main instantiateInitialViewController];
         self.window.rootViewController = startingview;
-        NSLog(@"TOKEN ERROR:: Token was returned Null from the NSUSERDEFAULTS\n");
     }
 }
 
@@ -210,7 +202,7 @@
     
     [valid appendString:parameter1];
     
-    NSLog(@"TOKEN INFO:: TokenLogin request:: %@", valid);
+    LogInfo(@"TOKEN:: TokenLogin request:: %@", valid);
     
     return valid;
 }
@@ -223,6 +215,7 @@
     startingview = [main instantiateInitialViewController];
     if([[notif name] isEqualToString:@ERROR_STATUS])
     {
+        LogError(@"Server threw an exception");
         self.window.rootViewController = startingview;
     }
     if([[notif name] isEqualToString:@ADDRESS_FAIL])

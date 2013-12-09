@@ -86,7 +86,7 @@
     }
     else
     {
-        NSLog(@"ERROR:: Friend's detial view was sent a NULL Email");
+        LogError(@"FRIEND:: Friend's detial view was sent a NULL Email");
     }
     
     // Do any additional setup after loading the view from its nib.
@@ -103,16 +103,14 @@
 {
     if([[notif name] isEqualToString:@ERROR_STATUS])
     {
-    
+        LogError(@"Server threw an exception");
         [indicator stopAnimating];
         self.navigationController.navigationBar.userInteractionEnabled=YES;
     }
     if([[notif name] isEqualToString:@ADDRESS_FAIL])
     {
+        LogError(@"Request Address was not URL formatted");
         [indicator stopAnimating];
-        error = [[UIAlertView alloc] initWithTitle:nil message:@ADDRESS_FAIL_ERROR delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-        [error show];
-        [self performSelector:@selector(dismissErrors:) withObject:error afterDelay:3];
          self.navigationController.navigationBar.userInteractionEnabled=YES;
     }
     if([[notif name] isEqualToString:@FAIL_STATUS])
@@ -144,10 +142,6 @@
         [[self bio] setText:[friendUser getUserBio]];
         [[self location] setText:[friendUser getLocation]];
         [self setPopStars:[friendUser getPopularity]];
-        
-        NSLog(@"Reel count in friend is: %@", friendUser.getReelCount);
-        NSLog(@"The friend gender is: %@", friendUser.getGender);
-        
         [[self reelCount] setText:[friendUser getReelCount]];
         
         // Set up Boolean for Gender saving locally
@@ -197,7 +191,7 @@
         else
         {
             [[self displayPicture] setImage: [UIImage imageNamed:@"default.png"]];
-            NSLog(@"FRIEND INFO:: Could not load profile image from server");
+            LogError(@"FRIEND:: Could not load profile image from server");
         }
         
         [indicator stopAnimating];
@@ -211,7 +205,7 @@
         [error show];
         [self performSelector:@selector(dismissErrors:) withObject:error afterDelay:3];
         
-        NSLog(@"SERVER ERROR:: A friends user data was not returned from the server");
+        LogError(@"SERVER:: A friends user data was not returned from the server");
          self.navigationController.navigationBar.userInteractionEnabled=YES;
     }
 }
@@ -279,7 +273,7 @@
     
     [friendData appendString:parameter1];
     
-    NSLog(@"REQUEST INFO:: Get Friend Data --  %@", friendData);
+    LogInfo(@"REQUEST:: Get Friend Data --  %@", friendData);
     
     return [friendData stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }

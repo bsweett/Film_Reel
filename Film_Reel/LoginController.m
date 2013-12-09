@@ -105,7 +105,17 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    LogDebug(@"Memory Warning");
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)unwindToThisViewController:(UIStoryboardSegue *)unwindSegue
+{
+    [usernameField setText:@""];
+    [passwordField setText:@""];
+    currentUser.token = nil;
+    NSUserDefaults* currentLoggedIn = [NSUserDefaults standardUserDefaults];
+    [currentLoggedIn setObject:currentUser.token forKey:@CURRENT_USER_TOKEN];
 }
 
 
@@ -222,7 +232,7 @@
     [login appendString:parameter1];
     [login appendString:parameter2];
     
-    NSLog(@"REQUEST INFO:: Login -- %@", login);
+    LogInfo(@"REQUEST:: Login -- %@", login);
     
     return [login stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
@@ -237,19 +247,16 @@
 {
     if([[notif name] isEqualToString:@ERROR_STATUS])
     {
-        
+        LogError(@"Server threw an exception");
+        [indicator stopAnimating];
+        createButton.enabled = YES;
+        loginButton.enabled  = YES;
     }
+    
     if([[notif name] isEqualToString:@ADDRESS_FAIL])
     {
+        LogError(@"Request Address was not URL formatted");
         [indicator stopAnimating];
-        error = [[UIAlertView alloc] initWithTitle:nil
-                                           message:@ADDRESS_FAIL_ERROR
-                                          delegate:self
-                                 cancelButtonTitle:nil
-                                 otherButtonTitles:nil];
-        [error show];
-        
-        [self performSelector:@selector(dismissErrors:) withObject:error afterDelay:3];
         createButton.enabled = YES;
         loginButton.enabled  = YES;
     }
@@ -301,7 +308,7 @@
         NSUserDefaults* currentLoggedIn = [NSUserDefaults standardUserDefaults];
         if([currentUser getToken] != nil)
         {
-            NSLog(@"TOKEN INFO:: Token stored at login %@", currentUser.token);
+            LogInfo(@"TOKEN:: Token stored at login %@", currentUser.token);
             
             NSString* storeToken              = currentUser.token;
             NSString* storeName               = currentUser.userName;

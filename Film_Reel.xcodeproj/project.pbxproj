@@ -116,6 +116,7 @@
 		B56E78EA181A00B5008AE8D5 /* iPadOverlay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPadOverlay.xib; sourceTree = "<group>"; };
 		B56E78EE181A1F2B008AE8D5 /* ALAssetsLibrary+CustomPhotoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALAssetsLibrary+CustomPhotoAlbum.h"; sourceTree = "<group>"; };
 		B56E78EF181A1F2B008AE8D5 /* ALAssetsLibrary+CustomPhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALAssetsLibrary+CustomPhotoAlbum.m"; sourceTree = "<group>"; };
+		B57A1D1F185658F200411B1D /* Logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logging.h; sourceTree = "<group>"; };
 		B5C26D761811C6F00064F180 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
 		B5C2C39E1853A217007B5A8C /* ReelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReelView.h; sourceTree = "<group>"; };
 		B5C2C39F1853A217007B5A8C /* ReelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReelView.m; sourceTree = "<group>"; };
@@ -332,6 +333,7 @@
 		B56E78ED181A1EFE008AE8D5 /* Add-on Code */ = {
 			isa = PBXGroup;
 			children = (
+				B57A1D1F185658F200411B1D /* Logging.h */,
 				B56E78EE181A1F2B008AE8D5 /* ALAssetsLibrary+CustomPhotoAlbum.h */,
 				B56E78EF181A1F2B008AE8D5 /* ALAssetsLibrary+CustomPhotoAlbum.m */,
 			);
