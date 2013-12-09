@@ -56,6 +56,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    LogDebug(@"Memory Warning");
     // Dispose of any resources that can be recreated.
 }
 
@@ -63,7 +64,6 @@
 {
     addfriendalert = [[UIAlertView alloc] initWithTitle:@"Add a Friend" message:@"Enter a email to add: " delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Add", nil];
     addfriendalert.alertViewStyle = UIAlertViewStylePlainTextInput;
-    //addfriendalert
     [addfriendalert show];
 }
 
@@ -131,7 +131,7 @@
         [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
         
         LogError(@"User trying to get friends has an invalid token");
-        // kick them out
+        // kick them out of app
     }
     
 }
@@ -142,10 +142,11 @@
     if([[notif name] isEqualToString:@ERROR_STATUS])
     {
         LogError(@"Server threw an exception");
+        [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
     }
     if([[notif name] isEqualToString:@ADDRESS_FAIL])
     {
-        [loading setMessage:@ADDRESS_FAIL_ERROR];
+        LogError(@"Request Address was not URL formatted");
         [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
     }
     if([[notif name] isEqualToString:@FAIL_STATUS])
@@ -174,7 +175,7 @@
     [add appendString:parameter1];
     [add appendString:parameter2];
     
-    NSLog(@"REQUEST INFO:: Add friend -- %@", add);
+    LogInfo(@"REQUEST:: Add friend -- %@", add);
     
     return [add stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }

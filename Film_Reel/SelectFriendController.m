@@ -105,6 +105,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    LogDebug(@"Memory Warning");
     // Dispose of any resources that can be recreated.
 }
 
@@ -275,10 +276,12 @@
     if([[notif name] isEqualToString:@ERROR_STATUS])
     {
         LogError(@"Server threw an exception");
+        [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
+        [self.navigationController popViewControllerAnimated:YES];
     }
     if([[notif name] isEqualToString:@ADDRESS_FAIL])
     {
-        [alert setMessage:@ADDRESS_FAIL_ERROR];
+        LogError(@"Request Address was not URL formatted");
         [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -324,7 +327,7 @@
     [ImageFileName appendString:@"@"];
     [ImageFileName appendString:dateString];
     
-    NSLog(@"REEL INFO:: created filename for Reel -- %@", ImageFileName);
+    LogInfo(@"REEL:: created filename for Reel -- %@", ImageFileName);
     
     return ImageFileName;
 }
@@ -352,7 +355,7 @@
     [send appendString:parameter2];
     [send appendString:parameter3];
     
-    NSLog(@"REQUEST INFO:: Send Reel -- %@", send);
+    LogInfo(@"REQUEST:: Send Reel -- %@", send);
     
     return [send stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }

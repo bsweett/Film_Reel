@@ -105,6 +105,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    LogDebug(@"Memory Warning");
     // Dispose of any resources that can be recreated.
 }
 
@@ -247,19 +248,15 @@
     if([[notif name] isEqualToString:@ERROR_STATUS])
     {
         LogError(@"Server threw an exception");
+        [indicator stopAnimating];
+        createButton.enabled = YES;
+        loginButton.enabled  = YES;
     }
     
     if([[notif name] isEqualToString:@ADDRESS_FAIL])
     {
+        LogError(@"Request Address was not URL formatted");
         [indicator stopAnimating];
-        error = [[UIAlertView alloc] initWithTitle:nil
-                                           message:@ADDRESS_FAIL_ERROR
-                                          delegate:self
-                                 cancelButtonTitle:nil
-                                 otherButtonTitles:nil];
-        [error show];
-        
-        [self performSelector:@selector(dismissErrors:) withObject:error afterDelay:3];
         createButton.enabled = YES;
         loginButton.enabled  = YES;
     }
