@@ -48,6 +48,7 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@FRIEND_SUCCESS object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@TOKEN_IS_INVALID_ADD_FRIEND object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@ALREADY_FRIENDS object:nil];
 	// Do any additional setup after loading the view.
 }
 
@@ -119,6 +120,7 @@
     if([[notif name] isEqualToString:@ALREADY_FRIENDS])
     {
         [loading setMessage:@FRIEND_ALREADY_ERROR];
+        //This does not show the already friends message just removed sending request dialouge
         [self performSelector:@selector(dismissErrors:) withObject:loading afterDelay:3];
     }
     
