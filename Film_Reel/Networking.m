@@ -87,9 +87,13 @@
         if(dataReceived != nil)
         {
             NSString *localMessage = [dataReceived objectForKey:@"message"];
-
-            // check what type of request it is
-            if([localMessage isEqualToString:@"Fail"])
+            
+            
+            if([localMessage isEqualToString:@"error"])
+            {
+                [[NSNotificationCenter defaultCenter]postNotificationName:@ERROR_STATUS object:nil];
+            }
+            else if([localMessage isEqualToString:@"Fail"])
             {
                 // This is a fault in the request address
                 // Should never happen

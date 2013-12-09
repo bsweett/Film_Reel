@@ -43,20 +43,27 @@
     result = nil;
     
     trimmedStr = [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    if ( (trimmedStr != nil) && (trimmedStr.length != 0) ) {
+    if ( (trimmedStr != nil) && (trimmedStr.length != 0) )
+    {
         schemeMarkerRange = [trimmedStr rangeOfString:@"://"];
         
-        if (schemeMarkerRange.location == NSNotFound) {
+        if (schemeMarkerRange.location == NSNotFound)
+        {
             result = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", trimmedStr]];
-        } else {
+        }
+        else
+        {
             scheme = [trimmedStr substringWithRange:NSMakeRange(0, schemeMarkerRange.location)];
             assert(scheme != nil);
             
             if ( ([scheme compare:@"http"  options:NSCaseInsensitiveSearch] == NSOrderedSame)
-                || ([scheme compare:@"https" options:NSCaseInsensitiveSearch] == NSOrderedSame) ) {
+                || ([scheme compare:@"https" options:NSCaseInsensitiveSearch] == NSOrderedSame) )
+            {
                 result = [NSURL URLWithString:trimmedStr];
-            } else {
-                // It looks like this is some unsupported URL scheme.
+            }
+            else
+            {
+                NSLog(@"CONNECTION ERROR:: Unsupported URL scheme");
             }
         }
     }

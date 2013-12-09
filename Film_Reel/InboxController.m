@@ -54,7 +54,7 @@
     [super viewDidLoad];
     
     shared = [AppDelegate appDelegate];
-    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ERROR_STATUS object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self
                                             selector:@selector(didGetNetworkError:)
                                                 name:@ADDRESS_FAIL
@@ -171,6 +171,10 @@
  */
 -(void) didGetNetworkError: (NSNotification*) notif
 {
+    if([[notif name] isEqualToString:@ERROR_STATUS])
+    {
+        
+    }
     if([[notif name] isEqualToString:@ADDRESS_FAIL_ERROR])
     {
         [refreshControl endRefreshing];

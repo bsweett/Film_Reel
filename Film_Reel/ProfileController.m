@@ -101,6 +101,7 @@
     female.userInteractionEnabled = NO;
     
     // Setup Observers for notification
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ERROR_STATUS object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSucceedRequest:) name:@RESPONSE_FOR_POST object:nil];
@@ -215,6 +216,10 @@
  */
 -(void) didGetNetworkError: (NSNotification*) notif
 {
+    if([[notif name] isEqualToString:@ERROR_STATUS])
+    {
+        
+    }
     if([[notif name] isEqualToString:@ADDRESS_FAIL])
     {
         [loading setMessage:@ADDRESS_FAIL_ERROR];
@@ -274,7 +279,7 @@
     {
         male.highlighted = TRUE;
         female.highlighted = FALSE;
-        userdata.gender = [NSMutableString stringWithFormat:@"M"];
+        [userdata setGender: [NSMutableString stringWithFormat:@"M"]];
     }
 }
 
@@ -283,7 +288,7 @@
     {
         female.highlighted = TRUE;
         male.highlighted = FALSE;
-        userdata.gender = [NSMutableString stringWithFormat:@"F"];
+        [userdata setGender: [NSMutableString stringWithFormat:@"F"]];
     }
 }
 
@@ -339,10 +344,6 @@
         
         // Update profile picture
         [Update saveImageToServer:UIImageJPEGRepresentation(displaypicture.image, 0.1f) withFileName:[userdata getEmail]];
-        
-        
-        //[self prepareForUpdate];
- 
     }
 }
 
@@ -406,18 +407,13 @@
     saveLocation = location.text;
     savedImage = displaypicture.image;
     
-    if(male.highlighted == TRUE) {
-        maleHighlighted = 1;
-    }
-    if(female.highlighted == TRUE) {
-        femaleHighlighted = 1;
-    }
-    if(female.highlighted == FALSE && male.highlighted == FALSE) {
+    if(male.highlighted == TRUE)    { maleHighlighted = 1;   }
+    if(female.highlighted == TRUE)  { femaleHighlighted = 1; }
+    if(female.highlighted == FALSE && male.highlighted == FALSE)
+    {
         femaleHighlighted = 0;
         maleHighlighted = 0;
     }
-
-    
 }
 
 // reset the local values when they hit cancel
@@ -427,15 +423,18 @@
     [[self location] setText:saveLocation];
     [[self displaypicture] setImage: savedImage];
     
-    if(maleHighlighted == 1) {
+    if(maleHighlighted == 1)
+    {
         male.highlighted = TRUE;
         female.Highlighted = FALSE;
     }
-    if(femaleHighlighted == 1) {
+    if(femaleHighlighted == 1)
+    {
         female.highlighted = TRUE;
         male.highlighted = FALSE;
     }
-    if(femaleHighlighted == 0 && maleHighlighted == 0) {
+    if(femaleHighlighted == 0 && maleHighlighted == 0)
+    {
         male.highlighted = FALSE;
         female.highlighted = FALSE;
     }
@@ -450,23 +449,26 @@
     NSString* updatedBio = bio.text;
     NSString* updatedGender;
     
-    if(male.highlighted == TRUE) {
+    if(male.highlighted == TRUE)
+    {
         updatedGender = @"M";
     }
-    if(female.highlighted == TRUE) {
+    if(female.highlighted == TRUE)
+    {
         updatedGender = @"F";
     }
-    if(female.highlighted == FALSE && male.highlighted == FALSE) {
+    if(female.highlighted == FALSE && male.highlighted == FALSE)
+    {
         updatedGender = @"U";
     }
     
     [shared.appUser setLocation:[NSMutableString stringWithString:updatedLocation]];
     [shared.appUser setUserBio:[NSMutableString stringWithString:updatedBio]];
     [shared.appUser setGender: [NSMutableString stringWithString:updatedGender]];
+    [shared.appUser setDisplayPicturePath: [userdata getEmail]];
     [shared.appUser setDisplayPicture:displaypicture.image];
-    //[shared.appUser setPopularity:<#(NSMutableString *)#>];
 
-    NSString* request = [self buildProfileUpdateRequest:[userdata getToken] withLocation:updatedLocation withBio:updatedBio withGender:updatedGender withPath:userdata.getEmail];
+    NSString* request = [self buildProfileUpdateRequest:[userdata getToken] withLocation:updatedLocation withBio:updatedBio withGender:updatedGender withPath:[userdata getEmail]];
     
     [Update startReceive:request withType:@UPDATE_REQUEST];
     
@@ -552,7 +554,7 @@
     NSMutableString* parameter2 = [[NSMutableString alloc] initWithFormat: @"&location=%@" , geolocation];
     NSMutableString* parameter3 = [[NSMutableString alloc] initWithFormat: @"&bio=%@" , about];
     NSMutableString* parameter4 = [[NSMutableString alloc] initWithFormat: @"&gender=%@", gender];
-    NSMutableString* parameter5 = [[NSMutableString alloc] initWithFormat: @"&path=%@", gender];
+    NSMutableString* parameter5 = [[NSMutableString alloc] initWithFormat: @"&path=%@", path];
     
     [updateProfile appendString:parameter1];
     [updateProfile appendString:parameter2];

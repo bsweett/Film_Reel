@@ -50,6 +50,7 @@
     [passField setReturnKeyType:UIReturnKeyNext];
     [passConfirm setReturnKeyType:UIReturnKeyDone];
     
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ERROR_STATUS object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@USER_ALREADY_EXISTS object:nil];
@@ -171,6 +172,10 @@
 // Handles all Networking errors that come from Networking.m
 -(void) didGetNetworkError: (NSNotification*) notif
 {
+    if([[notif name] isEqualToString:@ERROR_STATUS])
+    {
+
+    }
     if([[notif name] isEqualToString:@ADDRESS_FAIL])
     {
         [indicator stopAnimating];
