@@ -277,8 +277,7 @@
 {
     if([[notif name] isEqualToString:@LOGIN_SUCCESS])
     {
-        NSDictionary* userDictionary = [notif userInfo];
-        currentUser = [userDictionary valueForKey:@CURRENT_USER];
+        currentUser = [[notif userInfo] valueForKey:@CURRENT_USER];
         
         AppDelegate* shared = [AppDelegate appDelegate];
         
@@ -358,10 +357,9 @@
 
 
 /**
- * Since this is class a UITextfield delegate this method can be overidden 
- * to handle dropping the keyboard when the enter key is pressed.
+ * Handles dropping the keyboard when the enter key is pressed.
  *
- * @param textfield UITextField who is using the delagte
+ * @param textfield UITextField who is using the keyboard
  * @return YES always returns YES BOOL
  */
 - (BOOL) textFieldShouldReturn:(UITextField*) textField
