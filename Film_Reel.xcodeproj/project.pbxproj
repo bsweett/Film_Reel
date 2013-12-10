@@ -252,7 +252,6 @@
 				B56E78ED181A1EFE008AE8D5 /* Add-on Code */,
 				F6189F99181327C300D1F0FA /* Images */,
 				B55134A11811E02700009FE9 /* View */,
-				B55134A01811D0F200009FE9 /* iPad */,
 				B5C9038D18032D6100448CE6 /* Networking */,
 				B5C9038918032D3600448CE6 /* Models */,
 				B506DB101800806C004991A4 /* Supporting Files */,
@@ -289,13 +288,6 @@
 				B506DB311800806C004991A4 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		B55134A01811D0F200009FE9 /* iPad */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = iPad;
 			sourceTree = "<group>";
 		};
 		B55134A11811E02700009FE9 /* View */ = {

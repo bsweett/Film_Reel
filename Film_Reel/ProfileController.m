@@ -116,18 +116,17 @@
     reelCount.delegate = self;
     
     shared = [AppDelegate appDelegate];
-    userdata = shared.appUser;
     
     // Init Networking
     Update = [[Networking alloc] init];
     
     // Set up values for profile feilds
-    [[self bio] setText: userdata.getUserBio];
-    [[self name] setText: userdata.getUserName];
-    [[self location] setText:userdata.getLocation];
-    [[self email] setText: userdata.getEmail];
-    [[self displaypicture] setImage: userdata.getDP];
-    [[self reelCount] setText:[userdata getReelCount]];
+    [[self bio] setText: [shared.appUser getUserBio]];
+    [[self name] setText: [shared.appUser getUserName]];
+    [[self location] setText:[shared.appUser getLocation]];
+    [[self email] setText: [shared.appUser getUserBio]];
+    [[self displaypicture] setImage: [shared.appUser getDP]];
+    [[self reelCount] setText:[shared.appUser getReelCount]];
     
     // Set up Boolean for Gender saving locally 
     if([[shared.appUser getGender] isEqualToString:@"M"])
@@ -180,7 +179,7 @@
  */
 -(void)viewDidAppear:(BOOL)animated
 {
-  
+
 }
 
 
