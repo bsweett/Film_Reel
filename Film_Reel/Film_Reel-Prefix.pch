@@ -16,7 +16,7 @@
 #endif
 
 //  Other than apple defined marcos the following are used throughout our application
-//  To DISABLE Logging please see add-on code in logging.h
+//  To DISABLE or FILTER Logging please see add-on code in logging.h
 #import "Logging.h"
 
 // Server/app attributes
