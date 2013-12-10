@@ -93,9 +93,8 @@
 
 
 /**
- * This method is called when the SelectFriendController appears as the view.
- * It gets all the friends user from the shared user in the app delegate adds
- * them to the table array and reloads the table data
+ * This method is called when the InboxController appears as the view.
+ * It reloads the table view
  *
  * @param animated A BOOL sent from the view that called the transtion
  */

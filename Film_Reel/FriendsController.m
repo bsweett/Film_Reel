@@ -42,7 +42,6 @@
 }
 
 
-// NOTE:: This method has a bug. Profile image is being returned nil on Resume
 /**
  * This method is called when the ProfileController is loaded for the first
  * time. It adds some observers for networking notifications gets the app delegate
