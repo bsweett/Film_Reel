@@ -212,6 +212,7 @@
             [[self bio] setFont:[UIFont systemFontOfSize:20]];
             [[self location] setFont:[UIFont systemFontOfSize:20]];
             [[self email] setFont:[UIFont systemFontOfSize:22]];
+            [[self reelCount] setFont:[UIFont systemFontOfSize:32]];
         }
         else
         {

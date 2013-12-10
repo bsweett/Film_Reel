@@ -211,7 +211,7 @@
     assert(theConnection == self.connection);
     
     NSString * message = [error localizedDescription];
-    NSLog(@"CONNECTION ERROR:: %@", message);
+    LogError(@"CONNECTION ERROR:: %@", message);
     [self stopReceiveWithStatus:message];
 }
 
@@ -221,7 +221,7 @@
 // causes the image to be displayed.
 {
     assert(theConnection == self.connection);
-    NSLog(@"CONNECTION CLOSED\n");
+    LogInfo(@"CONNECTION CLOSED\n");
     [self stopReceiveWithStatus:nil];
 }
 
@@ -672,7 +672,7 @@
     NSMutableString *urlAddress = [[NSMutableString alloc]initWithString:@SERVER_UPLOAD_ADDRESS];
     [urlAddress appendString:url];
     [urlAddress appendString:@".jpg"];
-      NSLog(@"The url is: %@", urlAddress);
+    LogInfo(@"The url for image is: %@", urlAddress);
     NSData * imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:urlAddress]];
     return [UIImage imageWithData: imageData];
 }
