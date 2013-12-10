@@ -77,4 +77,8 @@ UINavigationControllerDelegate, UIGestureRecognizerDelegate>
 - (void) flipCamera: (NSNotification*) notif;
 - (void) flashChanged: (NSNotification*) notif;
 
+#pragma mark -
+#pragma mark NOTE:: Also contains ImagePicker Delegate
+#pragma mark -
+
 @end

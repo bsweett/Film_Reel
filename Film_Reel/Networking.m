@@ -89,7 +89,7 @@
             NSString *localMessage = [dataReceived objectForKey:@"message"];
             
             
-            if([localMessage isEqualToString:@"error"])
+            if([localMessage isEqualToString:@"Error"])
             {
                 [[NSNotificationCenter defaultCenter]postNotificationName:@ERROR_STATUS object:nil];
             }
@@ -471,22 +471,23 @@
     NSMutableURLRequest* request= [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:urlString]];
     [request setHTTPMethod:@"POST"];
+    
     NSString *boundary = @"---------------------------14737809831466499882746641449";
     NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
     [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    
     NSMutableData *postbody = [NSMutableData data];
     [postbody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     [postbody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"fileUpload\"; filename=\"%@.jpg\"\r\n", filename] dataUsingEncoding:NSUTF8StringEncoding]];
-    // If images stop uploading need to put NSString with string back
     [postbody appendData:[@"Content-Type: image/jpeg \r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     [postbody appendData:[NSData dataWithData:dataImage]];
     [postbody appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPBody:postbody];
     
-    // Get Response of Your Request
+    // Get Response of Request
     NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     NSString *responseString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-    NSLog(@"SERVER INFO:: Image Upload Response -- %@",responseString);
+    LogInfo(@"SERVER:: Image Upload Response -- %@",responseString);
     
     // Put reponse in dictionary and send notifcation
     if(responseString != nil)

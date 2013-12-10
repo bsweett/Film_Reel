@@ -5,11 +5,14 @@
 //  Created by Brayden Girard on 2013-10-19.
 //  Copyright (c) 2013 Ben Sweett (100846396) and Brayden Girard (100852106). All rights reserved.
 //
+//  One of the four tab views. This view controller controls the profile. It handles the displaying
+//  of the current users information and the updating of it to the server. Users can also logout from
+//  this view if they are not editing.
+//
 
 #import "ProfileController.h"
 
 @interface ProfileController ()
-
 @end
 
 @implementation ProfileController
@@ -58,39 +61,66 @@
     return self;
 }
 
-
+// NOTE:: This method has a bug. Profile image is being returned nil on Resume
 /**
- * This method is called when the InboxController is loaded for the first
+ * This method is called when the ProfileController is loaded for the first
  * time. It adds some observers for networking notifications gets the app delegate
- * and allocates the array of table elements. It also sets up the refresh controller
+ * and sets the users data to it.
  *
  */
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    // Setup background and display picture bounds
     [self.view sendSubviewToBack:[self background]];
     displaypicture.userInteractionEnabled = YES;
     displaypicture.contentMode = UIViewContentModeScaleAspectFill;
     displaypicture.clipsToBounds = YES;
     
     // Make gender images into gesture buttons
-    UITapGestureRecognizer *maleTap =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(malePushed:)];
+    UITapGestureRecognizer *maleTap =  [[UITapGestureRecognizer alloc]
+                                        initWithTarget:self action:@selector(malePushed:)];
     [maleTap setNumberOfTapsRequired:1];
     [male addGestureRecognizer:maleTap];
     
-    UITapGestureRecognizer *femaleTap =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(femalePushed:)];
+    UITapGestureRecognizer *femaleTap =  [[UITapGestureRecognizer alloc]
+                                          initWithTarget:self action:@selector(femalePushed:)];
     [femaleTap setNumberOfTapsRequired:1];
     [female addGestureRecognizer:femaleTap];
+    
+    // Setup Observers for notification
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didGetNetworkError:)
+                                                 name:@ERROR_STATUS
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didGetNetworkError:)
+                                                 name:@ADDRESS_FAIL
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didGetNetworkError:)
+                                                 name:@FAIL_STATUS
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didSucceedRequest:)
+                                                 name:@RESPONSE_FOR_POST
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didSucceedRequest:)
+                                                 name:@UPDATE_SUCCESS
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didSucceedRequest:)
+                                                 name:@USER_NOT_FOUND
+                                               object:nil];
     
     // Editable Traits
     bio.editable      = NO;
     name.editable     = NO;
     location.editable = NO;
     email.editable    = NO;
-    
-    // Keyboard Color
-    
+
     // Hide Cancel Button
     [[navigationItem leftBarButtonItem]setTitle:@"Logout"];
     
@@ -100,13 +130,8 @@
     male.userInteractionEnabled   = NO;
     female.userInteractionEnabled = NO;
     
-    // Setup Observers for notification
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ERROR_STATUS object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@ADDRESS_FAIL object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetNetworkError:) name:@FAIL_STATUS object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSucceedRequest:) name:@RESPONSE_FOR_POST object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@UPDATE_SUCCESS object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didSucceedRequest:) name:@USER_NOT_FOUND object:nil];
+    // Profile Data
+    /////////////////////////////////////////////////////////////////////////
     
     // Set Delegates and get userdata
     bio.delegate      = self;
@@ -118,22 +143,12 @@
     shared = [AppDelegate appDelegate];
     userdata = shared.appUser;
     
-    if(userdata.getDP == nil)
-    {
-        [[self displaypicture]  setImage:[UIImage imageNamed:@"default.png"]];
-    }
-    
-    // Init Networking
-    Update = [[Networking alloc] init];
-    
     // Set up values for profile feilds
     [[self bio] setText: userdata.getUserBio];
     [[self name] setText: userdata.getUserName];
     [[self location] setText:userdata.getLocation];
     [[self email] setText: userdata.getEmail];
-    
-    LogDebug(@"users photo is :: %f", userdata.getDP.size.height);
-    [[self displaypicture] setImage: userdata.getDP];
+    [[self displaypicture] setImage: shared.appUser.getDP];
     [[self reelCount] setText:[userdata getReelCount]];
     
     // Set up Boolean for Gender saving locally 
@@ -165,29 +180,45 @@
         name.textAlignment = NSTextAlignmentCenter;
         [[self name] setTextColor:[UIColor blackColor]];
         [[self bio] setFont:[UIFont systemFontOfSize:12]];
-        [[self bio] setTextColor:[[UIColor alloc] initWithRed:92.0/255.0 green:92.0/255.0 blue:92.0/255.0 alpha:1]];
+        [[self bio] setTextColor:[[UIColor alloc] initWithRed:92.0/255.0
+                                                        green:92.0/255.0
+                                                         blue:92.0/255.0
+                                                        alpha:1]];
         [[self location] setFont:[UIFont systemFontOfSize:12]];
-        [[self location] setTextColor:[[UIColor alloc] initWithRed:92.0/255.0 green:92.0/255.0 blue:92.0/255.0 alpha:1]];
+        [[self location] setTextColor:[[UIColor alloc] initWithRed:92.0/255.0
+                                                              green:92.0/255.0
+                                                               blue:92.0/255.0
+                                                              alpha:1]];
         [[self email] setFont:[UIFont systemFontOfSize:12]];
         email.textAlignment = NSTextAlignmentCenter;
         [[self email] setTextColor:[UIColor blackColor]];
     }
-    
-    // Setup popularity view
     [self setPopStars:userdata.getPopularity];
-}
-
-
-/**
- * This method is called when the SelectFriendController appears as the view.
- * It gets all the friends user from the shared user in the app delegate adds
- * them to the table array and reloads the table data
- *
- * @param animated A BOOL sent from the view that called the transtion
- */
--(void)viewDidAppear:(BOOL)animated
-{
-  
+    /////////////////////////////////////////////////////////////////////////
+    
+    // Init Networking
+    Update = [[Networking alloc] init];
+    
+    
+    UIImage* getDpFromServer;
+    if(userdata.getDisplayPicturePath == nil)
+    {
+        LogError("Current User has null image path");
+    }
+    else
+    {
+        // Get displaypicture from server ... our local copy doesnt seem to be saving
+         getDpFromServer = [Update downloadImageFromServer:userdata.getDisplayPicturePath];
+    }
+                                
+    if(getDpFromServer == nil)
+    {
+        [[self displaypicture]  setImage:[UIImage imageNamed:@"default.png"]];
+    }
+    else
+    {
+        [[self displaypicture]  setImage:getDpFromServer];
+    }
 }
 
 
@@ -199,11 +230,17 @@
 {
     [super didReceiveMemoryWarning];
     LogDebug(@"Memory Warning");
-    // Dispose of any resources that can be recreated.
 }
-    
 
-- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+
+/**
+* Removes iOS Status Bar ... strange issue with iPhone
+*
+*
+*
+*/
+- (void)navigationController:(UINavigationController *)navigationController
+      willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
@@ -240,13 +277,22 @@
     }
 }
 
--(void) dismissErrors:(UIAlertView*) alert
-{
-    [alert dismissWithClickedButtonIndex:0 animated:YES];
-}
 
-// Handles Succussful fetching of profile
-// May want to pass the something through notification to check which request was actually made
+/**
+ * Simple method of dimissing all alerts without buttons
+ *
+ * @param alert The alert is passed by the alertView we wish to dismiss
+ */
+-(void) dismissErrors:(UIAlertView*) alert { [alert dismissWithClickedButtonIndex:0 animated:YES]; }
+
+
+/**
+ * Handles any response from the server. If user isnt found display an error
+ * log and alert if user is found then prepare to update the rest of the 
+ * info. If updating is finish dimiss notification
+ *
+ * @param notif The Notification that was sent from Networking
+ */
 -(void) didSucceedRequest: (NSNotification*) notif
 {
     if([[notif name] isEqualToString:@USER_NOT_FOUND])
@@ -278,13 +324,20 @@
     }
 }
 
+
 ///////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Action Handlers
 #pragma mark -
 ///////////////////////////////////////////////////////////////////////////
 
-- (void)malePushed:(UIGestureRecognizer*) recognizer {
+/**
+ * Handles what happens is the user taps the male icon if it is enabled
+ *
+ * @param recongnizer The tap recognizer from the viewDidLoad
+ */
+- (void)malePushed:(UIGestureRecognizer*) recognizer
+{
     if(male.highlighted == FALSE)
     {
         male.highlighted = TRUE;
@@ -293,7 +346,14 @@
     }
 }
 
-- (void)femalePushed:(UIGestureRecognizer*) recognizer {
+
+/**
+ * Handles what happens is the user taps the female icon if it is enabled
+ *
+ * @param recongnizer The tap recognizer from the viewDidLoad
+ */
+- (void)femalePushed:(UIGestureRecognizer*) recognizer
+{
     if(female.highlighted == FALSE)
     {
         female.highlighted = TRUE;
@@ -302,29 +362,14 @@
     }
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self.view endEditing:YES];
-    [super touchesBegan:touches withEvent:event];
-}
 
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
-{
-    return YES;
-}
-- (void)textViewDidBeginEditing:(UITextView *)textView
-{
-    textView.backgroundColor = [UIColor lightGrayColor];
-}
-
-- (BOOL)textViewShouldEndEditing:(UITextView *)textView
-{
-    textView.backgroundColor = [UIColor whiteColor];
-    return YES;
-}
-- (void)textViewDidEndEditing:(UITextView *)textView{
-}
-
+/**
+ * Handles what happens when the user taps the edit or save button.
+ * Disbales and enables the feilds accordingly. Uploads image to server
+ * if it is change.
+ *
+ * @param sender The sender is self
+ */
 -(IBAction)doEdit:(id)sender
 {
     if([[[navigationItem rightBarButtonItem]title] isEqualToString:@"Edit"])
@@ -352,10 +397,19 @@
         female.userInteractionEnabled = NO;
         
         // Update profile picture
-        [Update saveImageToServer:UIImageJPEGRepresentation(displaypicture.image, 0.1f) withFileName:[userdata getEmail]];
+        [Update saveImageToServer:UIImageJPEGRepresentation(displaypicture.image, 0.1f)
+                     withFileName:[userdata getEmail]];
     }
 }
 
+
+/**
+ * Handles what happens when the user taps the cancel or logout button.
+ * Disbales and enables the feilds accordingly. If logout then preform
+ * an unwind segue to the login controller.
+ *
+ * @param sender The sender is self
+ */
 -(IBAction)doCancel:(id)sender
 {
     if([[[navigationItem leftBarButtonItem]title] isEqualToString:@"Cancel"])
@@ -381,7 +435,12 @@
     }
 }
 
-// Allow them to pick an image for their profile
+/**
+ * Handles what happens when the user taps the change image button
+ * starts a picker controller.
+ *
+ * @param sender The sender is self
+ */
 -(IBAction)doImageTap:(id)sender
 {
     UIImagePickerController * picker = [[UIImagePickerController alloc] init];
@@ -391,7 +450,22 @@
     [self presentViewController:picker animated:YES completion:NULL];
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+
+///////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Image Picker Controller
+#pragma mark -
+///////////////////////////////////////////////////////////////////////////
+
+/**
+ * Delegate method for image picker. Called when user is done selecting pic
+ * save the pic to their defualts.
+ *
+ * @param picker The ImagePickerController being used
+ * @param info  Dictionary of info sent back when it closes
+ */
+- (void)imagePickerController:(UIImagePickerController *)picker
+didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
@@ -401,13 +475,28 @@
     [self.view bringSubviewToFront:[self displaypicture]];
 }
 
+/**
+ * Delegate method for image picker. Called when user cancels the picker
+ *
+ * @param picker The ImagePickerController being used
+ */
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
 
-//Store local values in case they hit cancel
+///////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Profile interaction handling
+#pragma mark -
+///////////////////////////////////////////////////////////////////////////
+
+
+/**
+ * Saves local profile values before editing
+ *
+ */
 -(void) saveValues
 {
     saveBio = bio.text;
@@ -423,7 +512,10 @@
     }
 }
 
-// reset the local values when they hit cancel
+/**
+ * reset the local values when they hit cancel
+ *
+ */
 -(void) resetViews
 {
     [[self bio] setText: saveBio];
@@ -448,10 +540,17 @@
 
 }
 
-// get ready to pass the update to the server
+/**
+ * pass the data other than the image to the server when they 
+ * are done updating. Shows an alert while updating
+ *
+ */
 -(void) prepareForUpdate
 {
-    loading = [[UIAlertView alloc] initWithTitle:nil message:@"Updating" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+    loading = [[UIAlertView alloc] initWithTitle:nil message:@"Updating"
+                                        delegate:self
+                               cancelButtonTitle:nil
+                               otherButtonTitles:nil, nil];
     NSString* updatedLocation = location.text;
     NSString* updatedBio = bio.text;
     NSString* updatedGender;
@@ -475,7 +574,11 @@
     [shared.appUser setDisplayPicturePath: [userdata getEmail]];
     [shared.appUser setDisplayPicture:displaypicture.image];
 
-    NSString* request = [self buildProfileUpdateRequest:[userdata getToken] withLocation:updatedLocation withBio:updatedBio withGender:updatedGender withPath:[userdata getEmail]];
+    NSString* request = [self buildProfileUpdateRequest:[userdata getToken]
+                                           withLocation:updatedLocation
+                                                withBio:updatedBio
+                                             withGender:updatedGender
+                                               withPath:[userdata getEmail]];
     
     [Update startReceive:request withType:@UPDATE_REQUEST];
     
@@ -483,8 +586,16 @@
     {
         [loading show];
     }
+
 }
 
+
+/**
+ * Sets the popularity stars based on the number set from server on
+ * login.
+ *
+ * @paaram popular String containing pop number
+ */
 - (void) setPopStars: (NSMutableString*) popular
 {
     if([popular isEqualToString:@"1"])
@@ -537,23 +648,20 @@
     }
 }
 
-// Make sure new username conforms to our signup rules
-- (BOOL)validateUserNameWithString:(NSString*)username
-{
-    if( username.length >= MIN_ENTRY_SIZE && username.length <= MAX_USERNAME_ENTRY )
-    {
-        NSString *nameRegex = @"[A-Z0-9a-z]*";
-        NSPredicate *nameTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", nameRegex];
-        return [nameTest evaluateWithObject:username];
-    }
-    
-    return FALSE;
-}
-
-
-// This is the template for building future URLRequests
-// NOTE:: SERVER_ADDRESS is hardcoded in Networking.h
-- (NSString*) buildProfileUpdateRequest: (NSString*) token withLocation: (NSString*) geolocation withBio: (NSString*) about withGender: (NSString*) gender withPath: (NSString *) path
+/**
+ * This function is a request Builder for getting updating user data. It builds and formats a 
+ * string for use in the Networking class.
+ *
+ * @param token The token of the current logged in user
+ * @param geoLocation The location set by the user
+ * @param about     The bio set by the user
+ * @param gender    The gender set by the user
+ * @param path      Name to save thier profile as
+ * @return updateProfile A string encoded in UTF8 for sending to our Server as a URL
+ */
+- (NSString*) buildProfileUpdateRequest: (NSString*) token withLocation: (NSString*) geolocation
+                                withBio: (NSString*) about withGender: (NSString*) gender
+                               withPath: (NSString *) path
 {
     NSMutableString* updateProfile = [[NSMutableString alloc] initWithString:@SERVER_ADDRESS];
     [updateProfile appendString:@"saveuserdata?"];
@@ -574,5 +682,30 @@
     return [updateProfile stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
+
+///////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark TextView Delegate
+#pragma mark -
+///////////////////////////////////////////////////////////////////////////
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+    [super touchesBegan:touches withEvent:event];
+}
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView { return YES; }
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    textView.backgroundColor = [UIColor lightGrayColor];
+}
+
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView
+{
+    textView.backgroundColor = [UIColor whiteColor];
+    return YES;
+}
 
 @end
