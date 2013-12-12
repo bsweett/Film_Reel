@@ -16,17 +16,13 @@
 #endif
 
 //  Other than apple defined marcos the following are used throughout our application
-//  To DISABLE Logging please see add-on code in logging.h
+//  To DISABLE or FILTER Logging please see add-on code in logging.h
 #import "Logging.h"
 
 // Server/app attributes
-<<<<<<< HEAD
-#define SERVER_ADDRESS          "http://192.168.1.25:8080/filmreel/"
-#define SERVER_UPLOAD_ADDRESS   "http://192.168.1.25:8080/uploads/"
-=======
 #define SERVER_ADDRESS          "http://198.84.223.135:8080/filmreel/"
 #define SERVER_UPLOAD_ADDRESS   "http://198.84.223.135:8080/uploads/"
->>>>>>> f5d7b52cf609918b9339cc3c024020d3ada92f98
+
 #define REEL_ALBUM_NAME         "My Reels"
 #define BAR_COLOR               "009AFF"
 

@@ -65,12 +65,14 @@
                                              selector:@selector(didSucceedRequest:)
                                                  name:@RESPONSE_FOR_POST
                                                object:nil];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didSucceedRequest:)
                                                  name:@REEL_SUCCESS
                                                object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didSucceedRequest:)
+                                                 name:@USER_NOT_FOUND
+                                               object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didGetNetworkError:)
                                                  name:@ADDRESS_FAIL
@@ -262,6 +264,12 @@
     {
         [alert setMessage:@"Message Sent"];
         [self performSelector:@selector(dismissErrors:) withObject:alert afterDelay:3];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    
+    if([[notif name] isEqualToString:@USER_NOT_FOUND])
+    {
+        LogError(@"SERVER:: No User found for token");
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }

@@ -181,6 +181,7 @@
         [[self bio] setFont:[UIFont systemFontOfSize:20]];
         [[self location] setFont:[UIFont systemFontOfSize:20]];
         [[self email] setFont:[UIFont systemFontOfSize:22]];
+        [[self reelCount] setFont:[UIFont systemFontOfSize:32]];
     }
     else
     {
@@ -230,7 +231,7 @@
     }
     else
     {
-        // Get displaypicture from server ... our local copy doesnt seem to be saving
+        // Get displaypicture from server ... had issues with local copy
          getDpFromServer = [Update downloadImageFromServer:userdata.getDisplayPicturePath];
     }
                                 

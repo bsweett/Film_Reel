@@ -155,7 +155,7 @@
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="55" id="YA6-8e-Xag">
-                                        <rect key="frame" x="0.0" y="22" width="768" height="55"/>
+                                        <rect key="frame" x="0.0" y="86" width="768" height="55"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YA6-8e-Xag" id="jgs-Ff-PE9">
                                             <rect key="frame" x="0.0" y="0.0" width="768" height="54"/>
@@ -207,7 +207,7 @@
                                 <color key="sectionIndexTrackingBackgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="beR-X0-JF7">
-                                        <rect key="frame" x="0.0" y="22" width="768" height="44"/>
+                                        <rect key="frame" x="0.0" y="86" width="768" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="beR-X0-JF7" id="MkY-XE-d8E">
                                             <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
@@ -479,7 +479,7 @@
                                 <rect key="frame" x="55" y="270" width="68" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" editable="NO" text="15" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="24Q-65-1qN">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="24Q-65-1qN">
                                 <rect key="frame" x="576" y="292" width="50" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
@@ -776,7 +776,7 @@
                         <color key="sectionIndexTrackingBackgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="BtM-8j-oRK">
-                                <rect key="frame" x="0.0" y="22" width="768" height="44"/>
+                                <rect key="frame" x="0.0" y="86" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BtM-8j-oRK" id="PrB-W5-RMr">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
@@ -900,7 +900,7 @@
                                 <rect key="frame" x="55" y="270" width="68" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" editable="NO" text="15" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d9W-dm-7c2">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d9W-dm-7c2">
                                 <rect key="frame" x="576" y="292" width="50" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
@@ -945,13 +945,16 @@
                         <outlet property="bio" destination="UoG-wj-cjD" id="oN1-Tc-unI"/>
                         <outlet property="displayPicture" destination="XVi-4e-oOi" id="CTj-yV-zRm"/>
                         <outlet property="email" destination="ER4-9B-pLE" id="RQr-UA-7aA"/>
+                        <outlet property="female" destination="Cw7-kn-0NO" id="PfW-3d-wYk"/>
                         <outlet property="friendstar1" destination="8LN-jS-KXi" id="3C0-yM-Rba"/>
                         <outlet property="friendstar2" destination="1TK-nK-Iup" id="gyv-ih-BMK"/>
                         <outlet property="friendstar3" destination="SSj-VE-Ude" id="qx7-hG-2T3"/>
                         <outlet property="friendstar4" destination="mh3-k9-BJn" id="Gpf-NF-nRY"/>
                         <outlet property="friendstar5" destination="RQE-Kc-OdI" id="hr5-9C-W7P"/>
                         <outlet property="location" destination="2ZZ-VU-w4r" id="Itd-rF-hn2"/>
+                        <outlet property="male" destination="xHs-rG-DMP" id="ug2-Hz-0Y2"/>
                         <outlet property="name" destination="SRJ-sS-kJa" id="vij-Xd-29W"/>
+                        <outlet property="reelCount" destination="d9W-dm-7c2" id="oMo-Sa-7Ys"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vdR-Jl-v2q" userLabel="First Responder" sceneMemberID="firstResponder"/>

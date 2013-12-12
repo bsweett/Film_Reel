@@ -5,6 +5,10 @@
 //  Created by Ben Sweett on 2013-10-11.
 //  Copyright (c) 2013 Ben Sweett (100846396) and Brayden Girard (100852106). All rights reserved.
 //
+//  This class handles all of the networking operations, requests, and uploading. It sends
+//  notifications to the view controllers based on what is prasered from the XML Data that
+//  is returned from the server.
+//
 
 #import "Networking.h"
 
@@ -34,6 +38,21 @@
     return self;
 }
 
+///////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark URL & Connection Control
+#pragma mark -
+///////////////////////////////////////////////////////////////////////////
+
+
+/**
+ * Sets up a connection and a manager with a URL based on the URL passed from a 
+ * veiw controller. The type of request is stored for latter validation.
+ *
+ * @param defaultURL url for request
+ * @param  typeOfRequest   Request type for assigning proper notifications
+ */
+
 - (void) startReceive: (NSString *) defaultURL withType:(NSString *) typeOfRequest
 {
     BOOL succuss;
@@ -50,7 +69,9 @@
     {
         // Update with error status
         [[NSNotificationCenter defaultCenter]postNotificationName:@ADDRESS_FAIL object:self];
-    } else {
+    }
+    else
+    {
         request = [NSURLRequest requestWithURL:address cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20];
         assert(request != nil);
         
@@ -61,18 +82,45 @@
     }
 }
 
-- (BOOL)isReceiving
-{
-    return (self.connection != nil);
-}
 
+/**
+ * Returns BOOL based on if connection is open or not. Used to update UI
+ *
+ */
+- (BOOL)isReceiving { return (self.connection != nil); }
+
+
+/**
+ * Start connection manager
+ *
+ */
 - (void) receiveDidStart
 {
-    NSLog(@"CONNECTION OPENED\n");
-    //Update UI with Status
+    LogInfo(@"CONNECTION OPENED\n");
     [[NetworkManager sharedInstance] didStartNetworkOperation];
 }
 
+
+/**
+ * cancels connection sends a status string
+ *
+ */
+- (void)stopReceiveWithStatus:(NSString *)statusString
+{
+    if (self.connection != nil) {
+        [self.connection cancel];
+        self.connection = nil;
+    }
+    
+    [self receiveDidStopWithStatus:statusString];
+}
+
+
+/**
+ * handle which status send on stopping manager
+ *
+ * @param status A status message passed from server
+ */
 - (void) receiveDidStopWithStatus: (NSString *) status
 {
     if(status == nil)
@@ -91,6 +139,7 @@
             
             if([localMessage isEqualToString:@"Error"])
             {
+                // Exception throw by server
                 [[NSNotificationCenter defaultCenter]postNotificationName:@ERROR_STATUS object:nil];
             }
             else if([localMessage isEqualToString:@"Fail"])
@@ -117,8 +166,7 @@
             }
             else if([requestType isEqualToString: @REEL_SEND])
             {
-                // Needs proper valid method
-                [[NSNotificationCenter defaultCenter]postNotificationName:@REEL_SUCCESS object:nil];
+                [self isValidReelRequest: localMessage];
             }
             else if([requestType isEqualToString: @FRIEND_REQUEST])
             {
@@ -140,6 +188,55 @@
     }
 }
 
+///////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Connection Delegate
+#pragma mark -
+///////////////////////////////////////////////////////////////////////////
+
+- (void)connection:(NSURLConnection *)theConnection didReceiveData:(NSData *)theData
+// A delegate method called by the NSURLConnection as data arrives.
+{
+    assert(theConnection == self.connection);
+    // Process the data you received here
+    [data appendData:theData];
+    
+}
+
+- (void)connection:(NSURLConnection *)theConnection didFailWithError:(NSError *)error
+// A delegate method called by the NSURLConnection if the connection fails.
+// We shut down the connection and display the failure.  Production quality code
+// would either display or log the actual error.
+{
+    assert(theConnection == self.connection);
+    
+    NSString * message = [error localizedDescription];
+    LogError(@"CONNECTION ERROR:: %@", message);
+    [self stopReceiveWithStatus:message];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)theConnection
+// A delegate method called by the NSURLConnection when the connection has been
+// done successfully.  We shut down the connection with a nil status, which
+// causes the image to be displayed.
+{
+    assert(theConnection == self.connection);
+    LogInfo(@"CONNECTION CLOSED\n");
+    [self stopReceiveWithStatus:nil];
+}
+
+
+///////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Notification Managing
+#pragma mark -
+///////////////////////////////////////////////////////////////////////////
+
+/**
+ * Check message and send notification for valid login or error
+ *
+ * @param localMessage A status message passed from server
+ */
 - (void) isValidLoginRequest: (NSString*) localMessage
 {
     if ([localMessage isEqualToString:@"UserNotFound"])
@@ -153,6 +250,12 @@
     }
 }
 
+
+/**
+ * Check message and send notification for valid friend request or error
+ *
+ * @param localMessage A status message passed from server
+ */
 - (void) isValidFriendRequest: (NSString*) localMessage
 {
     if ([localMessage isEqualToString:@"UserNotFound"])
@@ -174,6 +277,12 @@
     }
 }
 
+
+/**
+ * Check message and send notification for valid signup or error
+ *
+ * @param localMessage A status message passed from server
+ */
 - (void) isValidSignUpRequest: (NSString*) localMessage
 {
     if ([localMessage isEqualToString:@"UserAlreadyExists"])
@@ -186,6 +295,12 @@
     }
 }
 
+
+/**
+ * Check message and send notification for valid update or error
+ *
+ * @param localMessage A status message passed from server
+ */
 - (void) isValidUpdateRequest: (NSString*) localMessage
 {
     if([localMessage isEqualToString:@"UserNotFound"])
@@ -198,6 +313,12 @@
     }
 }
 
+
+/**
+ * Check message and send notification for valid token or error
+ *
+ * @param localMessage A status message passed from server
+ */
 - (void) isValidTokeLoginRequest: (NSString*) localMessage
 {
     if([localMessage isEqualToString:@"Invalid"])
@@ -211,6 +332,12 @@
     }
 }
 
+
+/**
+ * Check message and send notification for valid data or error
+ *
+ * @param localMessage A status message passed from server
+ */
 - (void) isValidDataRequest: (NSString*) localMessage
 {
     if([localMessage isEqualToString:@"UserNotFound"])
@@ -224,6 +351,12 @@
     }
 }
 
+
+/**
+ * Check message and send notification for valid inbox or error
+ *
+ * @param localMessage A status message passed from server
+ */
 - (void) isValidInboxRequest: (NSString*) localMessage
 {
     if([localMessage isEqualToString:@"NoNewMail"])
@@ -236,50 +369,35 @@
     }
 }
 
-- (void)stopReceiveWithStatus:(NSString *)statusString
+
+/**
+ * Check message and send notification for valid reel or error
+ *
+ * @param localMessage A status message passed from server
+ */
+- (void) isValidReelRequest: (NSString*) localMessage
 {
-    if (self.connection != nil) {
-        [self.connection cancel];
-        self.connection = nil;
+    if([localMessage isEqualToString:@"UserNotFound"])
+    {
+        [[NSNotificationCenter defaultCenter]postNotificationName:@USER_NOT_FOUND object:nil];
     }
-
-    [self receiveDidStopWithStatus:statusString];
+    else
+    {
+        [[NSNotificationCenter defaultCenter]postNotificationName:@REEL_SUCCESS  object:nil userInfo:dataReceived];
+    }
 }
 
-- (void)connection:(NSURLConnection *)theConnection didReceiveData:(NSData *)theData
-// A delegate method called by the NSURLConnection as data arrives.
-{
-    assert(theConnection == self.connection);
-    // Process the data you received here
-    [data appendData:theData];
-    
-}
 
-- (void)connection:(NSURLConnection *)theConnection didFailWithError:(NSError *)error
-// A delegate method called by the NSURLConnection if the connection fails.
-// We shut down the connection and display the failure.  Production quality code
-// would either display or log the actual error.
-{
-    assert(theConnection == self.connection);
-    
-    NSString * message = [error localizedDescription];
-    NSLog(@"CONNECTION ERROR:: %@", message);
-    [self stopReceiveWithStatus:message];
-}
+///////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Parser Delegate
+#pragma mark -
+///////////////////////////////////////////////////////////////////////////
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)theConnection
-// A delegate method called by the NSURLConnection when the connection has been
-// done successfully.  We shut down the connection with a nil status, which
-// causes the image to be displayed.
-{
-    assert(theConnection == self.connection);
-    NSLog(@"CONNECTION CLOSED\n");
-    [self stopReceiveWithStatus:nil];
-}
-
-//-----------------------------
-// Parser
-
+/**
+ * XMLParser Delegate Method. Finds starting elements in xml data
+ *
+ */
 - (void)parser:(NSXMLParser*)parser didStartElement:(NSString *)elementName namespaceURI:(NSString*)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary*)attributeDict
 {
     if([elementName isEqualToString:@"data"])
@@ -287,7 +405,7 @@
         dataReceived = [[NSMutableDictionary alloc] init];
         currentObject = [[NSMutableString alloc]init];
         reelArray = [[NSMutableArray alloc] init];
-        NSLog(@"PARSER INFO: Found Data Element");
+        LogInfo(@"PARSER:: Found Data Element");
     }
     
     if([elementName isEqualToString:@"user"])
@@ -295,7 +413,7 @@
         userObject = [[User alloc] init];
         dataReceived = [[NSMutableDictionary alloc] init];
         currentObject = [[NSMutableString alloc]init];
-        NSLog(@"PARSER INFO: Found User Element");
+        LogInfo(@"PARSER:: Found User Element");
     }
     
     if([elementName isEqualToString:@"snap"])
@@ -354,12 +472,16 @@
     {
         currentObject = [[NSMutableString alloc] init];
     }
-
 }
 
+
+/**
+ * XMLParser Delegate Method. Finds End elements in xml data
+ *
+ */
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
-    NSLog(@"PARSER INFO:: Found end of: %@", elementName);
+    LogInfo(@"PARSER:: Found end of: %@", elementName);
     if([elementName isEqualToString:@"name"])
     {
         [dataReceived setObject:currentObject forKey:elementName];
@@ -406,7 +528,7 @@
     }
     if([elementName isEqualToString:@"message"])
     {
-        NSLog(@"PARSER INFO:: Server said %@", currentObject);
+        LogInfo(@"PARSER:: Server's message was %@", currentObject);
         [dataReceived setObject:currentObject forKey:elementName];
     }
     if([elementName isEqualToString:@"friends"])
@@ -429,11 +551,30 @@
     }
 }
 
+
+/**
+ * XMLParser Delegate Method. Finds characters in between tag elements
+ *
+ */
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
     [currentObject appendString:[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
 }
 
+
+///////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Data Seperation
+#pragma mark -
+///////////////////////////////////////////////////////////////////////////
+
+/**
+ * Seperates Data in a reel string. A reel string contains a sender email
+ * and a imagepath to where reel is stored
+ *
+ * @param reelString A reelString passed from server
+ * @return arrayOfReels  An array with all the reels in it
+ */
 - (NSMutableArray *)seperateReelData:(NSString*)reelString
 {
     NSArray *reels = [reelString componentsSeparatedByString:@"-"];
@@ -450,6 +591,15 @@
     return arrayOfReels;
 }
 
+
+/**
+ * Seperates Data in a friendString. A friend string contains all friends
+ * emails with "-"
+ *
+ * @param friendString A reelString passed from server
+ * @param user currnent User Object
+ */
+
 - (void)seperateFriends:(NSString *)friendsString andUser: (User *)user
 {
 
@@ -461,10 +611,22 @@
     }
 }
 
+
+///////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Image Upload and Download
+#pragma mark -
+///////////////////////////////////////////////////////////////////////////
+
+
+/**
+ * Posts Image to server as a HTTP Post and post notification if a response is sent
+ *
+ * @param dataImage Image to send as JPG Data
+ * @param filename  A filename to call the image on the server
+ */
 -(void)saveImageToServer: (NSData*) dataImage withFileName: (NSString*) filename
 {
-    // set your URL Where to Upload Image
-    //If shit hits the fan put a forward slash infron of the string below
     NSString *urlString = @SERVER_ADDRESS"fileuploadaction.action";
     
     // Create 'POST' MutableRequest with Data and Other Image Attachment.
@@ -478,7 +640,8 @@
     
     NSMutableData *postbody = [NSMutableData data];
     [postbody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [postbody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"fileUpload\"; filename=\"%@.jpg\"\r\n", filename] dataUsingEncoding:NSUTF8StringEncoding]];
+    [postbody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"fileUpload\"; filename=\"%@.jpg\"\r\n", filename]
+                          dataUsingEncoding:NSUTF8StringEncoding]];
     [postbody appendData:[@"Content-Type: image/jpeg \r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     [postbody appendData:[NSData dataWithData:dataImage]];
     [postbody appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -497,12 +660,19 @@
     }
 }
 
+
+/**
+ * Grabs image from a url
+ *
+ * @param url Url to grab image from
+ * @return A UIImage
+ */
 -(UIImage *) downloadImageFromServer: (NSString *) url
 {  
     NSMutableString *urlAddress = [[NSMutableString alloc]initWithString:@SERVER_UPLOAD_ADDRESS];
     [urlAddress appendString:url];
     [urlAddress appendString:@".jpg"];
-      NSLog(@"The url is: %@", urlAddress);
+    LogInfo(@"The url for image is: %@", urlAddress);
     NSData * imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:urlAddress]];
     return [UIImage imageWithData: imageData];
 }
