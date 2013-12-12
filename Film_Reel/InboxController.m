@@ -84,14 +84,17 @@
     [refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
     [inboxTable addSubview:refreshControl];
     
+    
+    
     tablearray = [[NSMutableArray alloc] init];
+    NSUserDefaults* currentLoggedIn = [NSUserDefaults standardUserDefaults];
+    tablearray = [currentLoggedIn objectForKey:@CURRENT_USER_INBOX];
 }
 
 
 /**
- * This method is called when the SelectFriendController appears as the view.
- * It gets all the friends user from the shared user in the app delegate adds
- * them to the table array and reloads the table data
+ * This method is called when the InboxController appears as the view.
+ * It reloads the table view
  *
  * @param animated A BOOL sent from the view that called the transtion
  */
@@ -100,6 +103,12 @@
     [inboxTable reloadData];
 }
 
+-(void)viewDidDisappear:(BOOL)animated
+{
+    NSUserDefaults* currentLoggedIn = [NSUserDefaults standardUserDefaults];
+    [currentLoggedIn setObject:tablearray forKey:@CURRENT_USER_INBOX];
+    [currentLoggedIn synchronize];
+}
 
 /**
  * Handles any memory warnings sent from the OS
@@ -162,6 +171,7 @@
         NSArray *copyArray    = [reels mutableCopy];
         
         [tablearray addObjectsFromArray:copyArray];
+        
         [refreshControl endRefreshing];
         [inboxTable reloadData];
     }

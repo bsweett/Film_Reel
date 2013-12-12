@@ -109,6 +109,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+/**
+ * This is called when this view is displayed from an unwind Segue
+ * It is used to log the user out by setting their token to nil and
+ * updating it in the user defualts
+ *
+ * @param unwindSegue   The storyboard segue that called this view
+ */
 - (IBAction)unwindToThisViewController:(UIStoryboardSegue *)unwindSegue
 {
     [usernameField setText:@""];

@@ -5,6 +5,10 @@
 //  Created by Brayden Girard on 2013-10-19.
 //  Copyright (c) 2013 Ben Sweett (100846396) and Brayden Girard (100852106). All rights reserved.
 //
+//  One of the four tab views. This view controller controls the profile. It handles the displaying
+//  of the current users information and the updating of it to the server. Users can also logout from
+//  this view if they are not editing.
+//
 
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
@@ -52,13 +56,32 @@
 
 ///////////////////////////////////////////////////////////////////////////
 
+#pragma mark Profile interaction handling
+- (void) setPopStars: (NSMutableString*) popular;
+- (void) prepareForUpdate;
+- (void) resetViews;
+- (void) saveValues;
+- (NSString*) buildProfileUpdateRequest: (NSString*) token withLocation: (NSString*) geolocation
+                                withBio: (NSString*) about withGender: (NSString*) gender
+                               withPath: (NSString *) path;
+
 #pragma mark Network Handlers
--(void) didGetNetworkError: (NSNotification*) notif;
--(void) didSucceedRequest: (NSNotification*) notif;
+- (void) didGetNetworkError: (NSNotification*) notif;
+- (void) didSucceedRequest: (NSNotification*) notif;
 
 #pragma mark Action Handlers
-- (IBAction)doEdit:(id)sender;
-- (IBAction)doCancel:(id)sender;
-- (IBAction)doImageTap:(id)sender;
+- (IBAction) doEdit:(id)sender;
+- (IBAction) doCancel:(id)sender;
+- (IBAction) doImageTap:(id)sender;
+- (void) femalePushed:(UIGestureRecognizer*) recognizer;
+- (void) malePushed:(UIGestureRecognizer*) recognizer;
+
+#pragma mark -
+#pragma mark NOTE:: Also contains TextView Delegate
+#pragma mark -
+
+#pragma mark -
+#pragma mark NOTE:: Also contains ImagePicker Delegate
+#pragma mark -
 
 @end

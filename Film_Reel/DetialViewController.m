@@ -5,6 +5,9 @@
 //  Created by Brayden Girard on 12/1/2013.
 //  Copyright (c) 2013 Ben Sweett (100846396) and Brayden Girard (100852106). All rights reserved.
 //
+//  This is a detail view that is called when a user selects a friend's name from the list.
+//  On load grab user data before displaying thier profile.
+//
 
 #import "DetialViewController.h"
 
@@ -30,6 +33,12 @@
 @synthesize error;
 @synthesize indicator;
 
+///////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark View Lifecycle
+#pragma mark -
+///////////////////////////////////////////////////////////////////////////
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -39,6 +48,13 @@
     return self;
 }
 
+
+/**
+ * This method is called when the DetailViewController is loaded for the first
+ * time. Adds obesrvers, sets up indicator, and starts networking to grab a
+ * users profile
+ *
+ */
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -88,17 +104,33 @@
     {
         LogError(@"FRIEND:: Friend's detial view was sent a NULL Email");
     }
-    
-    // Do any additional setup after loading the view from its nib.
 }
 
+
+/**
+ * Handles any memory warnings sent from the OS
+ *
+ */
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    LogDebug(@"Memory Warning");
     // Dispose of any resources that can be recreated.
 }
 
-// Handles all Networking errors that come from Networking.m
+
+///////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Network Handlers
+#pragma mark -
+///////////////////////////////////////////////////////////////////////////
+
+
+/**
+ * Handles any general networking errors from a Network Operation
+ *
+ * @param notif The Notification that was sent from Networking
+ */
 -(void) didGetNetworkError: (NSNotification*) notif
 {
     if([[notif name] isEqualToString:@ERROR_STATUS])
@@ -116,20 +148,31 @@
     if([[notif name] isEqualToString:@FAIL_STATUS])
     {
         [indicator stopAnimating];
-        error = [[UIAlertView alloc] initWithTitle:nil message:@SERVER_CONNECT_ERROR delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+        error = [[UIAlertView alloc] initWithTitle:nil message:@SERVER_CONNECT_ERROR
+                                          delegate:self
+                                  cancelButtonTitle:nil
+                                 otherButtonTitles:nil, nil];
         [error show];
         [self performSelector:@selector(dismissErrors:) withObject:error afterDelay:3];
          self.navigationController.navigationBar.userInteractionEnabled=YES;
     }
 }
 
-// Dismiss dialogs when done
--(void) dismissErrors:(UIAlertView*) alert
-{
-    [alert dismissWithClickedButtonIndex:0 animated:YES];
-}
 
-// Handles Succussful acount creation
+/**
+ * Simple method of dimissing all alerts without buttons
+ *
+ * @param alert The alert is passed by the alertView we wish to dismiss
+ */
+-(void) dismissErrors:(UIAlertView*) alert { [alert dismissWithClickedButtonIndex:0 animated:YES]; }
+
+
+/**
+ * If Data was sent correctly display it and format it. If not
+ * its a bad error.
+ *
+ * @param notif The Notification that was sent from Networking
+ */
 -(void) didSucceedRequest: (NSNotification*) notif
 {
     if([[notif name] isEqualToString:@DATA_SUCCESS])
@@ -184,6 +227,7 @@
         
         UIImage* friendsPic = [getProfile downloadImageFromServer:[friendUser getDisplayPicturePath]];
         
+        // If pic is null report error and make set it to default
         if(friendsPic != nil)
         {
             [[self displayPicture] setImage: friendsPic];
@@ -210,6 +254,20 @@
     }
 }
 
+
+///////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Other Methods
+#pragma mark -
+///////////////////////////////////////////////////////////////////////////
+
+
+/**
+ * Sets the popularity stars based on the number set from grabbing friend
+ * data
+ *
+ * @paaram popular String containing pop number
+ */
 - (void) setPopStars: (NSMutableString*) popular
 {
     if([popular isEqualToString:@"1"])
@@ -262,8 +320,14 @@
     }
 }
 
-// This is the template for building future URLRequests
-// NOTE:: SERVER_ADDRESS is hardcoded in Networking.h
+
+/**
+ * This function is a request Builder for grabing friends data. It builds and
+ * formats a string for use in the Networking class.
+ *
+ * @param anEmail email of a friend
+ * @return friendData A string encoded in UTF8 for sending to our Server as a URL
+ */
 - (NSString*) buildFriendDataRequest: (NSString*) anEmail
 {
     NSMutableString* friendData = [[NSMutableString alloc] initWithString:@SERVER_ADDRESS];

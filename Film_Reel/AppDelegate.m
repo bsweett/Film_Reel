@@ -5,6 +5,8 @@
 //  Created by Ben Sweett on 2013-10-05.
 //  Copyright (c) 2013 Ben Sweett (100846396) and Brayden Girard (100852106). All rights reserved.
 //
+//  Main control point for application
+//
 
 #import "AppDelegate.h"
 
@@ -18,7 +20,17 @@
 @synthesize main;
 @synthesize isTokenValid;
 
-// Call this method anytime we need to get the app delegate
+///////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Utility Functions
+#pragma mark -
+///////////////////////////////////////////////////////////////////////////
+
+/** These methods are used to return the current app user object
+ * and create and instance of the app delegate to use else where.
+ *
+ */
+//---------------------------------------------------------------------
 +(AppDelegate *) appDelegate
 {
     return (AppDelegate *) [[UIApplication sharedApplication] delegate];
@@ -33,7 +45,13 @@
 {
     appUser = aUser;
 }
+//---------------------------------------------------------------------
 
+/**
+ * RGB color converter from a given hex string
+ *
+ * @param hex A string that is a hex color code
+ */
 -(UIColor*)colorWithHexString:(NSString*)hex
 {
     NSString *cString = [[hex stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
@@ -70,7 +88,17 @@
                            alpha:1.0f];
 }
 
-// Override point for customization after application launch.
+
+///////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Application Lifecycle
+#pragma mark -
+///////////////////////////////////////////////////////////////////////////
+
+/**
+ * Customize app after launch. Log the device running the app.
+ *
+ */
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     LogInfo(@"Finished Launching on Device model: %@", [UIDevice currentDevice].model);
@@ -79,20 +107,30 @@
     return YES;
 }
 
-// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-// Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+
+/**
+ * Log Transition into background
+ *
+ */
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     NSLog(@"==============================================================================");
-    NSLog(@"====                           Resuming                                   ====");
+    NSLog(@"====                             Background                               ====");
     NSLog(@"==============================================================================");
 }
 
-// Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-// If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+
+/**
+ * Store User defaults
+ *
+ */
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     NSUserDefaults* currentLoggedIn = [NSUserDefaults standardUserDefaults];
+    
+    if([appUser getDP] == nil) {
+        LogDebug(@"Null in here? ");
+    }
  
     LogInfo(@"TOKEN:: Token into background %@", appUser.token);
 
@@ -122,10 +160,15 @@
     [currentLoggedIn synchronize];
 }
 
+
 // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 - (void)applicationWillEnterForeground:(UIApplication *)application {}
 
-// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+
+/**
+ * Grab the user values from storage on resume and start a token request
+ *
+ */
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     appUser = [[User alloc] init];
@@ -161,8 +204,7 @@
     appUser.displayPicture          = [UIImage imageWithData:[currentLoggedIn objectForKey:@CURRENT_USER_IMAGE]];
     
     NSString* token                 = [appUser getToken];
-    
-    // Start our request
+
     if(token != nil)
     {
         isTokenValid = @"?";
@@ -192,7 +234,20 @@
 // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 - (void)applicationWillTerminate:(UIApplication *)application {}
 
-// Build the request for getting a valid token
+
+///////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Networking Handlers and Builder
+#pragma mark -
+///////////////////////////////////////////////////////////////////////////
+
+/**
+ * This function is a request Builder for token checking. It builds and
+ * formats a string for use in the Networking class.
+ *
+ * @param tokenToCHeck token from storage
+ * @return friendData A string encoded in UTF8 for sending to our Server as a URL
+ */
 - (NSString*) buildTokenLoginRequest: (NSString*) tokenToCheck
 {
     NSMutableString* valid = [[NSMutableString alloc] initWithString:@SERVER_ADDRESS];
@@ -207,9 +262,12 @@
     return valid;
 }
 
-// Handles all Networking errors
-// In both cases send them back to login screen
-// NOTE:: may want to some how notify them that server didnt connect
+
+/**
+ * Handles any general networking errors from a Network Operation
+ *
+ * @param notif The Notification that was sent from Networking
+ */
 -(void) didGetNetworkError: (NSNotification*) notif
 {
     startingview = [main instantiateInitialViewController];
@@ -220,6 +278,7 @@
     }
     if([[notif name] isEqualToString:@ADDRESS_FAIL])
     {
+        LogError(@"Request Address was not URL formatted");
         self.window.rootViewController = startingview;
     }
     if([[notif name] isEqualToString:@FAIL_STATUS])
@@ -228,31 +287,29 @@
     }
 }
 
-// If token is valid load the bypassLogin view (Tab Bar)
-// If token is invalid send back to login screen
+
+/**
+ * If valid token is returned from server bypass login page. 
+ * Otherwise send them to login to get a new one
+ *
+ * @param notif The Notification that was sent from Networking
+ */
 -(void) didSucceedRequest: (NSNotification*) notif
 {
-    
     if([[notif name] isEqualToString:@VALID_SUCCESS])
     {
-        
         appUser = [[notif userInfo] valueForKey:@CURRENT_USER];
         bypassLogin= [main instantiateViewControllerWithIdentifier:@"bypass"];
         self.window.rootViewController = bypassLogin;
-     
-        NSLog(@"TOKEN INFO:: Token has been confirmed by server - ALLOW BYPASS\n");
+        LogInfo(@"TOKEN:: Token has been confirmed by server - ALLOW BYPASS\n");
     }
     
     if([[notif name] isEqualToString:@INVALID_TOKEN])
     {
-  
         startingview = [main instantiateInitialViewController];
         self.window.rootViewController = startingview;
-      
-    
-        NSLog(@"TOKEN INFO:: Token has been devalidate by server\n");
+        LogInfo(@"TOKEN INFO:: Token has been devalidate by server\n");
     }
-    
 }
 
 
