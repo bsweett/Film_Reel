@@ -168,9 +168,12 @@
         LogInfo(@"INBOX INFO:: Got Data from Server\n");
         
         NSMutableArray* reels = [[notif userInfo] valueForKey:@INBOX_DATA];
-        NSArray *copyArray    = [reels mutableCopy];
+        aReelForCell = [reels objectAtIndex:0];
+        LogDebug(@"Reel at 0:: %@", aReelForCell.sender);
         
-        [tablearray addObjectsFromArray:copyArray];
+        #pragma mark Reels are being added null here
+        [tablearray addObjectsFromArray:reels];
+        LogDebug(@"TableArray Count:: %d", [tablearray count]);
         
         [refreshControl endRefreshing];
         [inboxTable reloadData];

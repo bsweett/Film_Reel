@@ -44,8 +44,6 @@
 @synthesize maleHighlighted;
 @synthesize femaleHighlighted;
 
-@synthesize userdata;
-
 ///////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark View Lifecycle
@@ -143,21 +141,12 @@
     shared = [AppDelegate appDelegate];
     
     // Set up values for profile feilds
-<<<<<<< HEAD
     [[self bio] setText: [shared.appUser getUserBio]];
+    [[self email] setText: [shared.appUser getEmail]];
     [[self name] setText: [shared.appUser getUserName]];
     [[self location] setText:[shared.appUser getLocation]];
-    [[self email] setText: [shared.appUser getUserBio]];
     [[self displaypicture] setImage: [shared.appUser getDP]];
     [[self reelCount] setText:[shared.appUser getReelCount]];
-=======
-    [[self bio] setText: userdata.getUserBio];
-    [[self name] setText: userdata.getUserName];
-    [[self location] setText:userdata.getLocation];
-    [[self email] setText: userdata.getEmail];
-    [[self displaypicture] setImage: shared.appUser.getDP];
-    [[self reelCount] setText:[userdata getReelCount]];
->>>>>>> f5d7b52cf609918b9339cc3c024020d3ada92f98
     
     // Set up Boolean for Gender saving locally 
     if([[shared.appUser getGender] isEqualToString:@"M"])
@@ -202,8 +191,45 @@
         email.textAlignment = NSTextAlignmentCenter;
         [[self email] setTextColor:[UIColor blackColor]];
     }
-    [self setPopStars:userdata.getPopularity];
-<<<<<<< HEAD
+    [self setPopStars:shared.appUser.getPopularity];
+    
+    /////////////////////////////////////////////////////////////////////////
+    // NOTE:: This is quite slow at the moment
+    // The code however cannot go into the view did appear beacause alertview
+    // count as new views and it is called again after an alert is popped over
+    
+    // Init Networking
+    Update = [[Networking alloc] init];
+    /*
+    if([shared.appUser getDP] != nil)
+    {
+        [[self displaypicture] setImage:[shared.appUser getDP]];
+    }
+    else
+    {
+    */
+        
+        UIImage* getDpFromServer;
+        if(shared.appUser.getDisplayPicturePath == nil)
+        {
+            LogError("Current User has null image path");
+        }
+        else
+        {
+            // Get displaypicture from server ... had issues with local copy
+            getDpFromServer = [Update downloadImageFromServer:shared.appUser.getDisplayPicturePath];
+        }
+        
+        if(getDpFromServer == nil)
+        {
+            [[self displaypicture]  setImage:[UIImage imageNamed:@"default.png"]];
+        }
+        else
+        {
+            [[self displaypicture]  setImage:getDpFromServer];
+        }
+    //}
+    ///////////////////////////////////////////////////////////////////////////
 }
 
 
@@ -217,33 +243,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
 
-=======
-    /////////////////////////////////////////////////////////////////////////
-    
-    // Init Networking
-    Update = [[Networking alloc] init];
-    
-    
-    UIImage* getDpFromServer;
-    if(userdata.getDisplayPicturePath == nil)
-    {
-        LogError("Current User has null image path");
-    }
-    else
-    {
-        // Get displaypicture from server ... had issues with local copy
-         getDpFromServer = [Update downloadImageFromServer:userdata.getDisplayPicturePath];
-    }
-                                
-    if(getDpFromServer == nil)
-    {
-        [[self displaypicture]  setImage:[UIImage imageNamed:@"default.png"]];
-    }
-    else
-    {
-        [[self displaypicture]  setImage:getDpFromServer];
-    }
->>>>>>> f5d7b52cf609918b9339cc3c024020d3ada92f98
+
 }
 
 
@@ -367,7 +367,7 @@
     {
         male.highlighted = TRUE;
         female.highlighted = FALSE;
-        [userdata setGender: [NSMutableString stringWithFormat:@"M"]];
+        [shared.appUser setGender: [NSMutableString stringWithFormat:@"M"]];
     }
 }
 
@@ -383,7 +383,7 @@
     {
         female.highlighted = TRUE;
         male.highlighted = FALSE;
-        [userdata setGender: [NSMutableString stringWithFormat:@"F"]];
+        [shared.appUser setGender: [NSMutableString stringWithFormat:@"F"]];
     }
 }
 
@@ -422,8 +422,8 @@
         female.userInteractionEnabled = NO;
         
         // Update profile picture
-        [Update saveImageToServer:UIImageJPEGRepresentation(displaypicture.image, 0.1f)
-                     withFileName:[userdata getEmail]];
+        [Update saveImageToServer:UIImageJPEGRepresentation([shared.appUser getDP], 0.1f)
+                     withFileName:[shared.appUser getEmail]];
     }
 }
 
@@ -439,12 +439,10 @@
 {
     if([[[navigationItem leftBarButtonItem]title] isEqualToString:@"Cancel"])
     {
-        [[navigationItem rightBarButtonItem] setTitle:@"Edit"];
-        [[navigationItem leftBarButtonItem]setTitle:@"Logout"];
         bio.editable = NO;
         location.editable = NO;
-        [[navigationItem leftBarButtonItem]setTitle:nil];
-        [[navigationItem leftBarButtonItem]setEnabled:FALSE];
+        [[navigationItem rightBarButtonItem] setTitle:@"Edit"];
+        [[navigationItem leftBarButtonItem] setTitle:@"Logout"];
         imageButton.enabled = NO;
         imageButton.hidden = YES;
         male.userInteractionEnabled = NO;
@@ -453,9 +451,10 @@
         // undo changes
         [self resetViews];
     }
-    else
+    else if([[[navigationItem leftBarButtonItem]title] isEqualToString:@"Logout"])
     {
         [shared.appUser setToken:nil];
+        LogDebug(@"Testing logout");
         [self performSegueWithIdentifier:@"logout" sender:self];
     }
 }
@@ -596,14 +595,14 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     [shared.appUser setLocation:[NSMutableString stringWithString:updatedLocation]];
     [shared.appUser setUserBio:[NSMutableString stringWithString:updatedBio]];
     [shared.appUser setGender: [NSMutableString stringWithString:updatedGender]];
-    [shared.appUser setDisplayPicturePath: [userdata getEmail]];
+    [shared.appUser setDisplayPicturePath: [shared.appUser getEmail]];
     [shared.appUser setDisplayPicture:displaypicture.image];
 
-    NSString* request = [self buildProfileUpdateRequest:[userdata getToken]
+    NSString* request = [self buildProfileUpdateRequest:[shared.appUser getToken]
                                            withLocation:updatedLocation
                                                 withBio:updatedBio
                                              withGender:updatedGender
-                                               withPath:[userdata getEmail]];
+                                               withPath:[shared.appUser getEmail]];
     
     [Update startReceive:request withType:@UPDATE_REQUEST];
     
@@ -707,9 +706,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     return [updateProfile stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
-<<<<<<< HEAD
-=======
-
 ///////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark TextView Delegate
@@ -735,5 +731,4 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     return YES;
 }
 
->>>>>>> f5d7b52cf609918b9339cc3c024020d3ada92f98
 @end

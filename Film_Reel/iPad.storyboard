@@ -533,7 +533,6 @@
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="nO5-iH-ywP">
                                             <connections>
                                                 <action selector="doCancel:" destination="UTL-xD-LwL" id="HgD-mb-KB1"/>
-                                                <segue destination="okd-5e-2zk" kind="unwind" identifier="logout" unwindAction="unwindToThisViewController:" id="UcN-0U-jo8"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Edit" id="9UG-P0-eZc">
@@ -554,7 +553,7 @@
                         <outlet property="cancel" destination="nO5-iH-ywP" id="ql2-qT-Cjh"/>
                         <outlet property="displaypicture" destination="y63-GJ-V25" id="O2M-q0-lrB"/>
                         <outlet property="edit" destination="9UG-P0-eZc" id="5EX-5b-n2y"/>
-                        <outlet property="email" destination="zih-Xg-5LE" id="KlO-vB-bkt"/>
+                        <outlet property="email" destination="zih-Xg-5LE" id="Cxp-KM-26d"/>
                         <outlet property="female" destination="mZv-vG-s5R" id="bmS-eV-qjW"/>
                         <outlet property="imageButton" destination="HTm-Bz-gMd" id="KhH-K5-QLj"/>
                         <outlet property="location" destination="gcm-cD-9EI" id="8T0-8U-ggv"/>
@@ -567,6 +566,7 @@
                         <outlet property="star3" destination="HKf-Lo-9dC" id="8nj-BL-5l7"/>
                         <outlet property="star4" destination="ATJ-gV-dPC" id="Su0-Ss-2YS"/>
                         <outlet property="star5" destination="yUV-R1-j8L" id="JZR-Mz-x8m"/>
+                        <segue destination="okd-5e-2zk" kind="unwind" identifier="logout" unwindAction="unwindToThisViewController:" id="ZKV-Vp-MJV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KDt-WM-k27" userLabel="First Responder" sceneMemberID="firstResponder"/>
