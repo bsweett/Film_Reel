@@ -141,15 +141,23 @@
     reelCount.delegate = self;
     
     shared = [AppDelegate appDelegate];
-    userdata = shared.appUser;
     
     // Set up values for profile feilds
+<<<<<<< HEAD
+    [[self bio] setText: [shared.appUser getUserBio]];
+    [[self name] setText: [shared.appUser getUserName]];
+    [[self location] setText:[shared.appUser getLocation]];
+    [[self email] setText: [shared.appUser getUserBio]];
+    [[self displaypicture] setImage: [shared.appUser getDP]];
+    [[self reelCount] setText:[shared.appUser getReelCount]];
+=======
     [[self bio] setText: userdata.getUserBio];
     [[self name] setText: userdata.getUserName];
     [[self location] setText:userdata.getLocation];
     [[self email] setText: userdata.getEmail];
     [[self displaypicture] setImage: shared.appUser.getDP];
     [[self reelCount] setText:[userdata getReelCount]];
+>>>>>>> f5d7b52cf609918b9339cc3c024020d3ada92f98
     
     // Set up Boolean for Gender saving locally 
     if([[shared.appUser getGender] isEqualToString:@"M"])
@@ -195,6 +203,21 @@
         [[self email] setTextColor:[UIColor blackColor]];
     }
     [self setPopStars:userdata.getPopularity];
+<<<<<<< HEAD
+}
+
+
+/**
+ * This method is called when the SelectFriendController appears as the view.
+ * It gets all the friends user from the shared user in the app delegate adds
+ * them to the table array and reloads the table data
+ *
+ * @param animated A BOOL sent from the view that called the transtion
+ */
+-(void)viewDidAppear:(BOOL)animated
+{
+
+=======
     /////////////////////////////////////////////////////////////////////////
     
     // Init Networking
@@ -220,6 +243,7 @@
     {
         [[self displaypicture]  setImage:getDpFromServer];
     }
+>>>>>>> f5d7b52cf609918b9339cc3c024020d3ada92f98
 }
 
 
@@ -683,6 +707,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     return [updateProfile stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
+<<<<<<< HEAD
+=======
 
 ///////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -709,4 +735,5 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     return YES;
 }
 
+>>>>>>> f5d7b52cf609918b9339cc3c024020d3ada92f98
 @end

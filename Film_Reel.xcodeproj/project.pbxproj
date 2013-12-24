@@ -44,7 +44,6 @@
 		F6189F8118131DA700D1F0FA /* InboxController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F8018131DA700D1F0FA /* InboxController.m */; };
 		F6189F8418131DB500D1F0FA /* ProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F8318131DB500D1F0FA /* ProfileController.m */; };
 		F6189F8718131DC700D1F0FA /* FriendsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F8618131DC700D1F0FA /* FriendsController.m */; };
-		F6189F8A18131DD800D1F0FA /* SignUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F8918131DD800D1F0FA /* SignUpController.m */; };
 		F6189F9618131E3C00D1F0FA /* SignUpCompleteController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F9518131E3C00D1F0FA /* SignUpCompleteController.m */; };
 		F6189F9818131E8E00D1F0FA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6189F9718131E8E00D1F0FA /* Images.xcassets */; };
 		F6189FAF181343E000D1F0FA /* completeimage.png in Resources */ = {isa = PBXBuildFile; fileRef = F6189FAE181343E000D1F0FA /* completeimage.png */; };
@@ -141,8 +140,6 @@
 		F6189F8318131DB500D1F0FA /* ProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileController.m; sourceTree = "<group>"; };
 		F6189F8518131DC700D1F0FA /* FriendsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsController.h; sourceTree = "<group>"; };
 		F6189F8618131DC700D1F0FA /* FriendsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsController.m; sourceTree = "<group>"; };
-		F6189F8818131DD800D1F0FA /* SignUpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpController.h; sourceTree = "<group>"; };
-		F6189F8918131DD800D1F0FA /* SignUpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpController.m; sourceTree = "<group>"; };
 		F6189F9418131E3C00D1F0FA /* SignUpCompleteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpCompleteController.h; sourceTree = "<group>"; };
 		F6189F9518131E3C00D1F0FA /* SignUpCompleteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpCompleteController.m; sourceTree = "<group>"; };
 		F6189F9718131E8E00D1F0FA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -252,7 +249,6 @@
 				B56E78ED181A1EFE008AE8D5 /* Add-on Code */,
 				F6189F99181327C300D1F0FA /* Images */,
 				B55134A11811E02700009FE9 /* View */,
-				B55134A01811D0F200009FE9 /* iPad */,
 				B5C9038D18032D6100448CE6 /* Networking */,
 				B5C9038918032D3600448CE6 /* Models */,
 				B506DB101800806C004991A4 /* Supporting Files */,
@@ -291,13 +287,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		B55134A01811D0F200009FE9 /* iPad */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = iPad;
-			sourceTree = "<group>";
-		};
 		B55134A11811E02700009FE9 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -317,15 +306,13 @@
 				F6189F8318131DB500D1F0FA /* ProfileController.m */,
 				F6189F8518131DC700D1F0FA /* FriendsController.h */,
 				F6189F8618131DC700D1F0FA /* FriendsController.m */,
-				F6189F8818131DD800D1F0FA /* SignUpController.h */,
-				F6189F8918131DD800D1F0FA /* SignUpController.m */,
 				F6189F9418131E3C00D1F0FA /* SignUpCompleteController.h */,
 				F6189F9518131E3C00D1F0FA /* SignUpCompleteController.m */,
-				F6189F9718131E8E00D1F0FA /* Images.xcassets */,
 				F6F2F6A2184BC35D00DBA868 /* DetialViewController.h */,
 				F6F2F6A3184BC35D00DBA868 /* DetialViewController.m */,
 				B5C2C39E1853A217007B5A8C /* ReelView.h */,
 				B5C2C39F1853A217007B5A8C /* ReelView.m */,
+				F6189F9718131E8E00D1F0FA /* Images.xcassets */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -557,7 +544,6 @@
 				B5C9038C18032D5500448CE6 /* User.m in Sources */,
 				F6EBFB2A1856170F00103391 /* CameraOverlay.m in Sources */,
 				F6189FB81813942C00D1F0FA /* TabBarViewController.m in Sources */,
-				F6189F8A18131DD800D1F0FA /* SignUpController.m in Sources */,
 				B52BBEEE18491EA000C53E67 /* SelectFriendController.m in Sources */,
 				B506DB401800857A004991A4 /* NetworkManager.m in Sources */,
 				B5C2C3A01853A217007B5A8C /* ReelView.m in Sources */,

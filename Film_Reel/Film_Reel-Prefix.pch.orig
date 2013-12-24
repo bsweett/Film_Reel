@@ -15,35 +15,51 @@
     #import <Foundation/Foundation.h>
 #endif
 
+//  Other than apple defined marcos the following are used throughout our application
+//  To DISABLE or FILTER Logging please see add-on code in logging.h
+#import "Logging.h"
+
 // Server/app attributes
 <<<<<<< HEAD
-#define SERVER_ADDRESS          "http://192.168.1.237:8080/filmreel/"
+#define SERVER_ADDRESS          "http://172.16.42.8:8080/filmreel/"
+#define SERVER_UPLOAD_ADDRESS   "http://172.16.42.8:8080/uploads/"
 =======
-#define SERVER_ADDRESS          "http://192.168.1.25:8080/filmreel/"
->>>>>>> b44e6484ef8229f344d061fc9389207fb4135002
+#define SERVER_ADDRESS          "http://198.84.223.135:8080/filmreel/"
+#define SERVER_UPLOAD_ADDRESS   "http://198.84.223.135:8080/uploads/"
+
+>>>>>>> 99a08037b6c3cc987fa6ae3c1cc747611a4cef39
 #define REEL_ALBUM_NAME         "My Reels"
-#define CURRENT_USER            "current_user"
-#define CURRENT_USER_NAME       "current_user_name"
-#define CURRENT_USER_BIO        "current_user_bio"
-#define CURRENT_USER_LOCATION   "current_user_location"
-#define CURRENT_USER_PASSWORD   "current_user_password"
-#define CURRENT_USER_EMAIL      "current_user_email"
-#define CURRENT_USER_TOKEN      "current_user_token"
-#define CURRENT_USER_POP        "current_user_pop"
-#define CURRENT_USER_GENDER      "current_user_gender"
-#define CURRENT_USER_FRIENDS    "current_user_friends"
-#define FRIEND_USER             "friend_user"
-#define CACHED_NEW_PASSWORD     "cached_new_password"
-#define CACHED_NEW_USER         "cached_new_user"
+#define BAR_COLOR               "009AFF"
+
+// Dictionary Keys
+#define CURRENT_USER          "current_user"
+#define CURRENT_USER_NAME     "current_user_name"
+#define CURRENT_USER_BIO      "current_user_bio"
+#define CURRENT_USER_LOCATION "current_user_location"
+#define CURRENT_USER_PASSWORD "current_user_password"
+#define CURRENT_USER_EMAIL    "current_user_email"
+#define CURRENT_USER_TOKEN    "current_user_token"
+#define CURRENT_USER_POP      "current_user_pop"
+#define CURRENT_USER_GENDER   "current_user_gender"
+#define CURRENT_USER_FRIENDS  "current_user_friends"
+#define CURRENT_USER_IMAGE    "current_user_image"
+#define CURRENT_USER_IMAGE_PATH "current_user_image_path"
+#define CURRENT_USER_INBOX      "current_user_inbox"
+
+#define FRIEND_USER           "friend_user"
+#define CACHED_NEW_PASSWORD   "cached_new_password"
+#define CACHED_NEW_USER       "cached_new_user"
+#define POST_RESPONSE         "post_response"
+#define INBOX_DATA            "reel_list"
 
 // User Maxs
-#define MAX_USER_SIZE 30
+#define MAX_USER_SIZE     30
 #define MAX_LOCATION_SIZE 15
-#define MAX_BIO_SIZE 160
-#define MAX_FRIENDS_SIZE 99
-#define MAX_EMAIL_SIZE 30
+#define MAX_BIO_SIZE      160
+#define MAX_FRIENDS_SIZE  99
+#define MAX_EMAIL_SIZE    30
 
-// Validation
+// Validation Lengths
 #define MIN_EMAIL_ENTRY     3
 #define MAX_EMAIL_ENTRY     254
 #define MIN_ENTRY_SIZE      4
@@ -52,39 +68,51 @@
 #define MAX_PASSWORD_ENTRY  20
 
 // Request Types
-#define LOGIN_REQUEST   "login"
-#define UPDATE_REQUEST  "update"
-#define SIGNUP_REQUEST  "signup"
-#define REEL_SEND       "send_reel"
-#define INBOX_REQUEST   "inbox"
-#define VALID_REQUEST   "valid_token"
-#define FRIEND_REQUEST  "friend_request"
-#define DATA_REQUEST    "get_friend_data"
+#define LOGIN_REQUEST  "login"
+#define UPDATE_REQUEST "update"
+#define SIGNUP_REQUEST "signup"
+#define REEL_SEND      "send_reel"
+#define INBOX_REQUEST  "inbox"
+#define VALID_REQUEST  "valid_token"
+#define FRIEND_REQUEST "friend_request"
+#define DATA_REQUEST   "get_friend_data"
+
+#define PROFILE_IMAGE  "profile_image"
+#define REEL_IMAGE     "reel_image"
 
 // Nofitication Names
-#define LOGIN_SUCCESS   "login_success"
-#define SIGNUP_SUCCESS  "signup_success"
-#define UPDATE_SUCCESS  "updating_profile_success"
-#define REEL_SUCCESS    "reel_sent"
-#define INBOX_SUCCESS   "inbox_got"
-#define FRIEND_SUCCESS  "friend_sent"
-#define VALID_SUCCESS   "valid_token_success"
-#define DATA_SUCCESS    "got_user_data"
+#define LOGIN_SUCCESS     "login_success"
+#define SIGNUP_SUCCESS    "signup_success"
+#define UPDATE_SUCCESS    "updating_profile_success"
+#define REEL_SUCCESS      "reel_sent"
+#define INBOX_SUCCESS     "inbox_got"
+#define FRIEND_SUCCESS    "friend_sent"
+#define VALID_SUCCESS     "valid_token_success"
+#define DATA_SUCCESS      "got_user_data"
+#define RESPONSE_FOR_POST "image_upload_response"
 
-#define FAIL_STATUS             "general_fail"
-#define ADDRESS_FAIL            "address_fail"
-#define USER_ALREADY_EXISTS     "user_already_exists"
-#define USER_NOT_FOUND          "user_not_found"
-#define INVALID_TOKEN           "invalid_token"
-#define ALREADY_FRIENDS         "already_friends"
+#define ERROR_STATUS                "exception_from_server"
+#define FAIL_STATUS                 "general_fail"
+#define ADDRESS_FAIL                "address_fail"
+#define USER_ALREADY_EXISTS         "user_already_exists"
+#define USER_NOT_FOUND              "user_not_found"
+#define INVALID_TOKEN               "invalid_token"
+#define TOKEN_IS_INVALID_ADD_FRIEND "token_add_friend_invalid"
+#define ALREADY_FRIENDS             "already_friends"
+#define EMPTY_INBOX                 "no_new_mail"
 
-#define CAMERA_START    "startRecord"
-#define CAMERA_STOP     "stopRecord"
-#define CAMERA_CLOSE    "closeCamera"
+#define CAMERA_START            "startRecord"
+#define CAMERA_STOP             "stopRecord"
+#define CAMERA_CLOSE            "closeCamera"
+#define CAMERA_FLIP_FRONT       "flipCameraFront"
+#define CAMERA_FLIP_REAR        "flipCameraRear"
+#define CAMERA_FLASH_ON         "flashOnCamera"
+#define CAMERA_FLASH_OFF        "flashOffCamera"
 
 #define AUTO_FILL       "auto_fill"
 
 // Common Error Messages
+#define ERROR_STATUS_ERROR      "Server caught an exception while preforming an operation"
 #define ADDRESS_FAIL_ERROR      "Server or request address was incorrect"
 #define SERVER_CONNECT_ERROR    "Failed to connect to the server"
 #define REEL_MISSING_ERROR      "No Reel has been taken"
