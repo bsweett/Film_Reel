@@ -191,8 +191,45 @@
         email.textAlignment = NSTextAlignmentCenter;
         [[self email] setTextColor:[UIColor blackColor]];
     }
-    [self setPopStars:userdata.getPopularity];
-
+    [self setPopStars:shared.appUser.getPopularity];
+    
+    /////////////////////////////////////////////////////////////////////////
+    // NOTE:: This is quite slow at the moment
+    // The code however cannot go into the view did appear beacause alertview
+    // count as new views and it is called again after an alert is popped over
+    
+    // Init Networking
+    Update = [[Networking alloc] init];
+    /*
+    if([shared.appUser getDP] != nil)
+    {
+        [[self displaypicture] setImage:[shared.appUser getDP]];
+    }
+    else
+    {
+    */
+        
+        UIImage* getDpFromServer;
+        if(shared.appUser.getDisplayPicturePath == nil)
+        {
+            LogError("Current User has null image path");
+        }
+        else
+        {
+            // Get displaypicture from server ... had issues with local copy
+            getDpFromServer = [Update downloadImageFromServer:shared.appUser.getDisplayPicturePath];
+        }
+        
+        if(getDpFromServer == nil)
+        {
+            [[self displaypicture]  setImage:[UIImage imageNamed:@"default.png"]];
+        }
+        else
+        {
+            [[self displaypicture]  setImage:getDpFromServer];
+        }
+    //}
+    ///////////////////////////////////////////////////////////////////////////
 }
 
 
@@ -214,14 +251,14 @@
     
     
     UIImage* getDpFromServer;
-    if(userdata.getDisplayPicturePath == nil)
+    if(shared.appUser.getDisplayPicturePath == nil)
     {
         LogError("Current User has null image path");
     }
     else
     {
         // Get displaypicture from server ... had issues with local copy
-         getDpFromServer = [Update downloadImageFromServer:userdata.getDisplayPicturePath];
+         getDpFromServer = [Update downloadImageFromServer:shared.appUser.getDisplayPicturePath];
     }
                                 
     if(getDpFromServer == nil)
@@ -718,4 +755,5 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     textView.backgroundColor = [UIColor whiteColor];
     return YES;
 }
+
 @end
