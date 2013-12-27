@@ -39,6 +39,8 @@
 		B5FB31F0184E92C200F9986E /* login_ipad_button.png in Resources */ = {isa = PBXBuildFile; fileRef = B5FB31EE184E92C200F9986E /* login_ipad_button.png */; };
 		B5FB31F1184E92C200F9986E /* signup_ipad_button.png in Resources */ = {isa = PBXBuildFile; fileRef = B5FB31EF184E92C200F9986E /* signup_ipad_button.png */; };
 		B5FB31F3184E93D400F9986E /* film-128.png in Resources */ = {isa = PBXBuildFile; fileRef = B5FB31F2184E93D400F9986E /* film-128.png */; };
+		F60AE577185A69C8001F6608 /* SignUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = F60AE576185A69C8001F6608 /* SignUpController.m */; };
+		F60AE579185A9484001F6608 /* vertical_strip.png in Resources */ = {isa = PBXBuildFile; fileRef = F60AE578185A9484001F6608 /* vertical_strip.png */; };
 		F60C3C851852BD7000316C85 /* Reel.m in Sources */ = {isa = PBXBuildFile; fileRef = F60C3C841852BD7000316C85 /* Reel.m */; };
 		F6189F7B18131BF300D1F0FA /* CameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F7A18131BF300D1F0FA /* CameraController.m */; };
 		F6189F8118131DA700D1F0FA /* InboxController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6189F8018131DA700D1F0FA /* InboxController.m */; };
@@ -130,6 +132,9 @@
 		B5FB31EE184E92C200F9986E /* login_ipad_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_ipad_button.png; sourceTree = "<group>"; };
 		B5FB31EF184E92C200F9986E /* signup_ipad_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signup_ipad_button.png; sourceTree = "<group>"; };
 		B5FB31F2184E93D400F9986E /* film-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "film-128.png"; sourceTree = "<group>"; };
+		F60AE575185A69C8001F6608 /* SignUpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpController.h; sourceTree = "<group>"; };
+		F60AE576185A69C8001F6608 /* SignUpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpController.m; sourceTree = "<group>"; };
+		F60AE578185A9484001F6608 /* vertical_strip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vertical_strip.png; sourceTree = "<group>"; };
 		F60C3C831852BD7000316C85 /* Reel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reel.h; sourceTree = "<group>"; };
 		F60C3C841852BD7000316C85 /* Reel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reel.m; sourceTree = "<group>"; };
 		F6189F7918131BF300D1F0FA /* CameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraController.h; sourceTree = "<group>"; };
@@ -306,6 +311,8 @@
 				F6189F8318131DB500D1F0FA /* ProfileController.m */,
 				F6189F8518131DC700D1F0FA /* FriendsController.h */,
 				F6189F8618131DC700D1F0FA /* FriendsController.m */,
+				F60AE575185A69C8001F6608 /* SignUpController.h */,
+				F60AE576185A69C8001F6608 /* SignUpController.m */,
 				F6189F9418131E3C00D1F0FA /* SignUpCompleteController.h */,
 				F6189F9518131E3C00D1F0FA /* SignUpCompleteController.m */,
 				F6F2F6A2184BC35D00DBA868 /* DetialViewController.h */,
@@ -352,6 +359,7 @@
 		F6189F99181327C300D1F0FA /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				F60AE578185A9484001F6608 /* vertical_strip.png */,
 				B54A552F1854E7CC008A2D35 /* profile_iPad.png */,
 				B5FB31EE184E92C200F9986E /* login_ipad_button.png */,
 				B5FB31EF184E92C200F9986E /* signup_ipad_button.png */,
@@ -489,6 +497,7 @@
 				F6B8C170184E8D6400849FDF /* backbutton.png in Resources */,
 				B506DB141800806C004991A4 /* InfoPlist.strings in Resources */,
 				F6D12F28181AE61100578906 /* seperator.png in Resources */,
+				F60AE579185A9484001F6608 /* vertical_strip.png in Resources */,
 				F6B35AF6181569E7006FFFC9 /* takeareelbuttonhighlighted.png in Resources */,
 				F6189F9818131E8E00D1F0FA /* Images.xcassets in Resources */,
 				F6189FAF181343E000D1F0FA /* completeimage.png in Resources */,
@@ -546,6 +555,7 @@
 				F6189FB81813942C00D1F0FA /* TabBarViewController.m in Sources */,
 				B52BBEEE18491EA000C53E67 /* SelectFriendController.m in Sources */,
 				B506DB401800857A004991A4 /* NetworkManager.m in Sources */,
+				F60AE577185A69C8001F6608 /* SignUpController.m in Sources */,
 				B5C2C3A01853A217007B5A8C /* ReelView.m in Sources */,
 				F6189F9618131E3C00D1F0FA /* SignUpCompleteController.m in Sources */,
 				F6189F7B18131BF300D1F0FA /* CameraController.m in Sources */,

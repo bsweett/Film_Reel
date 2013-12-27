@@ -309,9 +309,11 @@
     stripImage          = [self mergeImage:image1 withImage:image2 andImage:image3 andImage:image4 andImage:image5];
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     CGSize imgSize      = stripImage.size;
-    float ratio         = (screenWidth/2)/imgSize.width;
+    NSLog(@"IMAGE HEIGHT IS: %f", imgSize.height);
+    float ratio         = 320/imgSize.width;
+    //float ratio         = (screenWidth/2)/imgSize.width;
     float scaledHeight  = imgSize.height*ratio;
-    photoStrip.frame    = CGRectMake(0, 0, screenWidth/2, scaledHeight);
+    photoStrip.frame    = CGRectMake(0, 0, 320, scaledHeight);
     combinedImage       = [self imageWithImage:stripImage convertToSize:photoStrip.frame.size];
     frameImage          = [self addBorder:combinedImage];
     
@@ -328,10 +330,10 @@
     }
     else
     {
-        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(screenWidth/4,74, screenWidth/2,415)];
+        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44, 320, 519)];
         [scrollView setBounces:FALSE];
         [scrollView setShowsVerticalScrollIndicator:FALSE];
-        [scrollView setContentSize:CGSizeMake(screenWidth/2,scaledHeight)];
+        [scrollView setContentSize:CGSizeMake(320,scaledHeight)];
         [scrollView addSubview:photoStrip];
         [self.view addSubview:scrollView];
     }
@@ -411,11 +413,13 @@
     
     UIGraphicsBeginImageContext(mergedSize);
 
-    [first drawInRect:CGRectMake(0, 0, firstWidth, firstHeight)];
-    [second drawInRect:CGRectMake(0, firstHeight, secondWidth, secondHeight)];
-    [third drawInRect:CGRectMake(0, firstHeight + secondHeight, thirdWidth, thirdHeight)];
-    [fourth drawInRect:CGRectMake(0, firstHeight + secondHeight + thirdHeight, fourthWidth, fourthHeight)];
-    [fifth drawInRect:CGRectMake(0, firstHeight + secondHeight + thirdHeight + fourthHeight, fifthWidth, fifthHeight)];
+    [first drawInRect:CGRectMake(40, 0, firstWidth, firstHeight)];
+    [second drawInRect:CGRectMake(40, firstHeight, secondWidth, secondHeight)];
+    [third drawInRect:CGRectMake(40, firstHeight + secondHeight, thirdWidth, thirdHeight)];
+    [fourth drawInRect:CGRectMake(40, firstHeight + secondHeight + thirdHeight, fourthWidth, fourthHeight)];
+    [fifth drawInRect:CGRectMake(40, firstHeight + secondHeight + thirdHeight + fourthHeight, fifthWidth, fifthHeight)];
+   
+    
     
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     
@@ -452,10 +456,14 @@
 - (UIImage*)addBorder:(UIImage*)image
 {
     UIImage *seperator  = [UIImage imageNamed:@"seperator.png"];
+    UIImage* verticalStrip = [UIImage imageNamed:@"vertical_strip.png"];
+   
+    
     CGImageRef imageRef = image.CGImage;
+    
     CGFloat firstWidth  = CGImageGetWidth(imageRef);
     CGFloat firstHeight = CGImageGetHeight(imageRef);
-    CGSize mergedSize   = CGSizeMake(firstWidth, firstHeight + 20);
+    CGSize mergedSize   = CGSizeMake(firstWidth, firstHeight);
     
     UIGraphicsBeginImageContext(mergedSize);
     CGFloat heightSep = (firstHeight/5);
@@ -475,6 +483,8 @@
         [seperator drawInRect:CGRectMake(0,(heightSep*2) - 7, 320, 10)];
         [seperator drawInRect:CGRectMake(0,(heightSep*3) - 7, 320, 10)];
         [seperator drawInRect:CGRectMake(0,(heightSep*4) - 7, 320, 10)];
+        [verticalStrip drawInRect:CGRectMake(0, 0, 40, firstHeight)];
+        [verticalStrip drawInRect:CGRectMake(firstWidth - 40, 0, 40, firstHeight)];
     }
     
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
