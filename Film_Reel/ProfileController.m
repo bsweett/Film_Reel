@@ -44,8 +44,6 @@
 @synthesize maleHighlighted;
 @synthesize femaleHighlighted;
 
-@synthesize userdata;
-
 ///////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark View Lifecycle
@@ -144,9 +142,9 @@
     
     // Set up values for profile feilds
     [[self bio] setText: [shared.appUser getUserBio]];
+    [[self email] setText: [shared.appUser getEmail]];
     [[self name] setText: [shared.appUser getUserName]];
     [[self location] setText:[shared.appUser getLocation]];
-    [[self email] setText: [shared.appUser getUserBio]];
     [[self displaypicture] setImage: [shared.appUser getDP]];
     [[self reelCount] setText:[shared.appUser getReelCount]];
     
@@ -357,7 +355,7 @@
     {
         male.highlighted = TRUE;
         female.highlighted = FALSE;
-        [userdata setGender: [NSMutableString stringWithFormat:@"M"]];
+        [shared.appUser setGender: [NSMutableString stringWithFormat:@"M"]];
     }
 }
 
@@ -373,7 +371,7 @@
     {
         female.highlighted = TRUE;
         male.highlighted = FALSE;
-        [userdata setGender: [NSMutableString stringWithFormat:@"F"]];
+        [shared.appUser setGender: [NSMutableString stringWithFormat:@"F"]];
     }
 }
 
@@ -412,8 +410,8 @@
         female.userInteractionEnabled = NO;
         
         // Update profile picture
-        [Update saveImageToServer:UIImageJPEGRepresentation(displaypicture.image, 0.1f)
-                     withFileName:[userdata getEmail]];
+        [Update saveImageToServer:UIImageJPEGRepresentation([shared.appUser getDP], 0.1f)
+                     withFileName:[shared.appUser getEmail]];
     }
 }
 
@@ -429,12 +427,10 @@
 {
     if([[[navigationItem leftBarButtonItem]title] isEqualToString:@"Cancel"])
     {
-        [[navigationItem rightBarButtonItem] setTitle:@"Edit"];
-        [[navigationItem leftBarButtonItem]setTitle:@"Logout"];
         bio.editable = NO;
         location.editable = NO;
-        [[navigationItem leftBarButtonItem]setTitle:nil];
-        [[navigationItem leftBarButtonItem]setEnabled:FALSE];
+        [[navigationItem rightBarButtonItem] setTitle:@"Edit"];
+        [[navigationItem leftBarButtonItem] setTitle:@"Logout"];
         imageButton.enabled = NO;
         imageButton.hidden = YES;
         male.userInteractionEnabled = NO;
@@ -443,9 +439,10 @@
         // undo changes
         [self resetViews];
     }
-    else
+    else if([[[navigationItem leftBarButtonItem]title] isEqualToString:@"Logout"])
     {
         [shared.appUser setToken:nil];
+        LogDebug(@"Testing logout");
         [self performSegueWithIdentifier:@"logout" sender:self];
     }
 }
@@ -586,14 +583,14 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     [shared.appUser setLocation:[NSMutableString stringWithString:updatedLocation]];
     [shared.appUser setUserBio:[NSMutableString stringWithString:updatedBio]];
     [shared.appUser setGender: [NSMutableString stringWithString:updatedGender]];
-    [shared.appUser setDisplayPicturePath: [userdata getEmail]];
+    [shared.appUser setDisplayPicturePath: [shared.appUser getEmail]];
     [shared.appUser setDisplayPicture:displaypicture.image];
 
-    NSString* request = [self buildProfileUpdateRequest:[userdata getToken]
+    NSString* request = [self buildProfileUpdateRequest:[shared.appUser getToken]
                                            withLocation:updatedLocation
                                                 withBio:updatedBio
                                              withGender:updatedGender
-                                               withPath:[userdata getEmail]];
+                                               withPath:[shared.appUser getEmail]];
     
     [Update startReceive:request withType:@UPDATE_REQUEST];
     

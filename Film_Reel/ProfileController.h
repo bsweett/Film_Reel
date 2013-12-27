@@ -20,7 +20,6 @@
 
 #pragma mark Defined Objects
 @property (strong, nonatomic) Networking  * Update;
-@property (strong, nonatomic) User        * userdata;
 @property (strong, nonatomic) AppDelegate *shared;
 
 #pragma mark IBOutlets and Alerts

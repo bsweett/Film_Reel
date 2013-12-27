@@ -365,6 +365,9 @@
     }
     else
     {
+        NSMutableArray * stuff = [dataReceived objectForKey:@INBOX_DATA];
+        LogDebug(@"Reel data in networking parser:: %@", [stuff objectAtIndex:0]);
+        
         [[NSNotificationCenter defaultCenter]postNotificationName:@INBOX_SUCCESS  object:nil userInfo:dataReceived];
     }
 }
