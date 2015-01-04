@@ -26,12 +26,17 @@ The application will include the following social aspects:
 - Photo Sharing
 
 ##Timeline
-Oct 4th: Application communicating with a basic server and database. Users should
+Oct 4th Application communicating with a basic server and database. Users should
 be able to create an account and login to the server.
+
 Oct 20th: Users are able to add friends and view their profiles. Users can also edit their own profiles. These changes will be updated to the server accordingly.
+
 Nov 5th: Fully working social network with default image sending.
+
 Nov 20th: Fully working application.
+
 Dec 4th: Presentation and testing complete
+
 *If we are ahead of schedule we will add the users score system first and then built in notifications.
 
 ##Optional Features
