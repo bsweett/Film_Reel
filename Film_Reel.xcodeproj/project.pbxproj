@@ -33,7 +33,6 @@
 		B5E0CAEA18130DD80037EA3A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5E0CAE718130DD80037EA3A /* Main.storyboard */; };
 		B5E0CAED18130E120037EA3A /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E0CAEC18130E120037EA3A /* LoginController.m */; };
 		B5E0CAEE18130E120037EA3A /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E0CAEC18130E120037EA3A /* LoginController.m */; };
-		B5EC0C851869E72000077820 /* SignUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5EC0C841869E72000077820 /* SignUpController.m */; };
 		B5F4919618087E6E00F03C19 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F4919518087E6E00F03C19 /* CoreMedia.framework */; };
 		B5F4919818087E7700F03C19 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F4919718087E7700F03C19 /* CoreVideo.framework */; };
 		B5F4919A18087E7F00F03C19 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F4919918087E7F00F03C19 /* AVFoundation.framework */; };
@@ -127,8 +126,6 @@
 		B5E0CAE818130DD80037EA3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B5E0CAEB18130E120037EA3A /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
 		B5E0CAEC18130E120037EA3A /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
-		B5EC0C831869E72000077820 /* SignUpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpController.h; sourceTree = "<group>"; };
-		B5EC0C841869E72000077820 /* SignUpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpController.m; sourceTree = "<group>"; };
 		B5F4919518087E6E00F03C19 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		B5F4919718087E7700F03C19 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		B5F4919918087E7F00F03C19 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -461,13 +458,14 @@
 		B506DAFE1800806C004991A4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Ben Sweett (100846396) and Brayden Girard (100852106)";
 				TargetAttributes = {
 					B506DB051800806C004991A4 = {
-						DevelopmentTeam = HL9C6CF9A5;
+						DevelopmentTeam = ENAB6SE373;
 					};
 					B506DB261800806C004991A4 = {
+						DevelopmentTeam = ENAB6SE373;
 						TestTargetID = B506DB051800806C004991A4;
 					};
 				};
@@ -625,7 +623,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -664,7 +661,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -732,7 +728,6 @@
 		B506DB3C1800806C004991A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Film_Reel.app/Film_Reel";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -755,7 +750,6 @@
 		B506DB3D1800806C004991A4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Film_Reel.app/Film_Reel";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

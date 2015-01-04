@@ -10,29 +10,29 @@
 	<string>Film_Reel</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>E27C8136-5DAC-423E-9582-84DF6EB46DA5</key>
+		<key>9933D8A3AF29DCC1974711F460D3E2A43BC8887E</key>
 		<string>https://github.com/venom889/Film_Reel.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Film_Reel.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>E27C8136-5DAC-423E-9582-84DF6EB46DA5</key>
+		<key>9933D8A3AF29DCC1974711F460D3E2A43BC8887E</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/venom889/Film_Reel.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>E27C8136-5DAC-423E-9582-84DF6EB46DA5</string>
+	<string>9933D8A3AF29DCC1974711F460D3E2A43BC8887E</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>E27C8136-5DAC-423E-9582-84DF6EB46DA5</string>
+			<string>9933D8A3AF29DCC1974711F460D3E2A43BC8887E</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Film_Reel</string>
 		</dict>
