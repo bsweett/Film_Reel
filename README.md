@@ -7,8 +7,8 @@ Free alternative to using a photo booth! A simple way for users to be creative i
 
 ##Motivation
 Inspired by Snapchat, Vine, and Instagram. Looking to build a fun and exciting application targeted at young adults.
-Goals
 
+##Goals
 To build a mobile application called Film Reel that will allow users to add friends. Users will then be able to take a short video in which the application will automatically splice into a five-image film reel. The application acts as a basic image editor to display a ten second period of time in a short photo strip. This photo strip will be displayed similarly to a photo strip from a photo booth. These images can then be sent to specific contacts on your friends list.
 A users profile contains a picture, a name, an email address and a short bio. Users also have the option to display their location down to a city. Users will be able to edit their profiles changing any information except their email address. The email address will be used as an identifier for the server.
 
