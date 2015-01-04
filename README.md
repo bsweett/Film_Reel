@@ -40,7 +40,7 @@ Dec 4th: Presentation and testing complete
 *If we are ahead of schedule we will add the users score system first and then built in notifications.
 
 ##Optional Features
-• A score system, visible on the profile.
-• iOS built in notifications. (Service running in background)
-• Users can post short text messages to each others profiles
+- A score system, visible on the profile.
+- iOS built in notifications. (Service running in background)
+- Users can post short text messages to each others profiles
 ￼￼￼
