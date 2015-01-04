@@ -1,5 +1,4 @@
-#Film_Reel
-=========
+#Film Reel
 Final COMP3601 Project
 
 ##Problem Addressed
